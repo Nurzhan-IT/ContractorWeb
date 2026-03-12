@@ -2,18 +2,199 @@
 
 {% block title %}Service Area Map — ContractorPro{% endblock %}
 
-{% block content %}
-<div class="max-w-4xl mx-auto">
-  <h1 class="text-3xl font-bold text-gray-800 mb-2">Service Area Map</h1>
-  <p class="text-gray-500 mb-6">Enter your ZIP code to check if you are in our service zone.</p>
+{% block extra_head %}
+<style>
+  #map { z-index: 0; }
 
-  <!-- Map container placeholder -->
-  <div id="map" class="w-full h-96 rounded-xl border border-gray-200 bg-gray-100 mb-6">
-    <p class="text-gray-400 text-center pt-40">Map — to be implemented</p>
+  /* Accordion chevron */
+  .accordion-chevron { transition: transform 0.2s ease; }
+  .accordion-open .accordion-chevron { transform: rotate(180deg); }
+
+  /* ZIP input focus ring */
+  #zip-input:focus { outline: none; box-shadow: 0 0 0 3px rgba(22,163,74,0.25); }
+
+  @keyframes fadeSlideIn {
+    from { opacity: 0; transform: translateY(6px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .result-animate { animation: fadeSlideIn 0.35s ease-out both; }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="max-w-7xl mx-auto px-4 py-10 sm:py-14">
+
+  <!-- Page header -->
+  <div class="mb-8">
+    <h1 class="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-2">
+      Service Area Map
+    </h1>
+    <p class="text-gray-500 text-base sm:text-lg">
+      We cover a {{ radius_miles }}-mile radius around Atlanta, GA. Check if we serve your ZIP.
+    </p>
   </div>
+
+  <!-- ── Two-column layout ── -->
+  <div class="flex flex-col lg:flex-row gap-6">
+
+    <!-- ══ LEFT COLUMN (40%) ══════════════════════════════════════════════ -->
+    <div class="w-full lg:w-2/5 flex flex-col gap-5">
+
+      <!-- ZIP check card -->
+      <div class="bg-white rounded-2xl shadow p-6 border border-gray-100">
+        <h2 class="text-xl font-bold text-gray-900 mb-1">Do We Serve Your Area?</h2>
+        <p class="text-gray-400 text-sm mb-5">Enter your ZIP code to find out instantly.</p>
+
+        <form id="zip-form" novalidate>
+          <div class="flex gap-2">
+            <input id="zip-input"
+                   type="text" inputmode="numeric" maxlength="5"
+                   placeholder="e.g. 30301"
+                   class="flex-1 px-4 py-3 rounded-xl border border-gray-200 text-sm font-mono
+                          transition-shadow">
+            <button id="check-btn" type="submit"
+                    class="bg-green-600 hover:bg-green-700 active:bg-green-800 text-white
+                           font-semibold text-sm px-5 py-3 rounded-xl transition-colors
+                           flex items-center gap-2 whitespace-nowrap">
+              Check Now →
+            </button>
+          </div>
+          <p id="zip-error" class="hidden text-red-500 text-xs mt-2 ml-1"></p>
+        </form>
+
+        <!-- ── Result block (hidden until first check) ── -->
+        <div id="result-block" class="hidden mt-5">
+
+          <!-- IN ZONE -->
+          <div id="in-zone" class="hidden result-animate">
+            <div class="bg-green-50 border border-green-200 rounded-xl p-4">
+              <div class="flex items-start gap-3">
+                <div class="text-2xl mt-0.5">✅</div>
+                <div>
+                  <p class="font-bold text-green-800 text-base">
+                    Great news! We serve <span id="result-city" class="underline decoration-dotted"></span>
+                  </p>
+                  <p class="text-green-700 text-sm mt-1">
+                    Average arrival time:
+                    <strong id="result-eta" class="text-green-900"></strong>
+                  </p>
+                  <a href="/demo/booking/"
+                     class="inline-block mt-3 bg-green-600 hover:bg-green-700 text-white
+                            font-semibold text-sm px-5 py-2 rounded-lg transition-colors">
+                    Book Now →
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- OUT OF ZONE -->
+          <div id="out-of-zone" class="hidden result-animate">
+            <div class="bg-red-50 border border-red-200 rounded-xl p-4">
+              <div class="flex items-start gap-3">
+                <div class="text-2xl mt-0.5">❌</div>
+                <div>
+                  <p class="font-bold text-red-800 text-base">
+                    We're <span id="result-distance"></span> miles from your ZIP
+                  </p>
+                  <p class="text-red-700 text-sm mt-1">
+                    Outside our {{ radius_miles }}-mile service area
+                  </p>
+                  <p class="text-gray-500 text-sm mt-2">
+                    We can recommend a trusted partner →
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div><!-- /result-block -->
+      </div><!-- /ZIP card -->
+
+      <!-- Cities accordion -->
+      <div class="bg-white rounded-2xl shadow border border-gray-100 overflow-hidden">
+        <button id="cities-toggle"
+                class="w-full flex items-center justify-between px-6 py-4
+                       text-left font-bold text-gray-800 hover:bg-gray-50 transition-colors">
+          <span>📍 Cities We Serve</span>
+          <svg class="accordion-chevron w-5 h-5 text-gray-400"
+               fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M19 9l-7 7-7-7"/>
+          </svg>
+        </button>
+        <div id="cities-list" class="hidden border-t border-gray-100 px-6 py-4">
+          <div class="grid grid-cols-2 gap-y-2 gap-x-4 text-sm text-gray-600">
+            <div class="flex items-center gap-1.5"><span class="text-green-500">✓</span> Atlanta</div>
+            <div class="flex items-center gap-1.5"><span class="text-green-500">✓</span> Sandy Springs</div>
+            <div class="flex items-center gap-1.5"><span class="text-green-500">✓</span> Decatur</div>
+            <div class="flex items-center gap-1.5"><span class="text-green-500">✓</span> Marietta</div>
+            <div class="flex items-center gap-1.5"><span class="text-green-500">✓</span> Smyrna</div>
+            <div class="flex items-center gap-1.5"><span class="text-green-500">✓</span> Roswell</div>
+            <div class="flex items-center gap-1.5"><span class="text-green-500">✓</span> Alpharetta</div>
+            <div class="flex items-center gap-1.5"><span class="text-green-500">✓</span> Dunwoody</div>
+            <div class="flex items-center gap-1.5"><span class="text-green-500">✓</span> Tucker</div>
+            <div class="flex items-center gap-1.5"><span class="text-green-500">✓</span> Norcross</div>
+            <div class="flex items-center gap-1.5"><span class="text-green-500">✓</span> College Park</div>
+            <div class="flex items-center gap-1.5"><span class="text-green-500">✓</span> East Point</div>
+            <div class="flex items-center gap-1.5"><span class="text-green-500">✓</span> Kennesaw</div>
+            <div class="flex items-center gap-1.5"><span class="text-green-500">✓</span> Morrow</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stats strip -->
+      <div class="grid grid-cols-3 gap-3">
+        <div class="bg-white rounded-xl shadow border border-gray-100 p-4 text-center">
+          <p class="text-2xl font-extrabold text-green-600">35mi</p>
+          <p class="text-xs text-gray-500 mt-0.5">Coverage</p>
+        </div>
+        <div class="bg-white rounded-xl shadow border border-gray-100 p-4 text-center">
+          <p class="text-2xl font-extrabold text-green-600">18min</p>
+          <p class="text-xs text-gray-500 mt-0.5">Avg. arrival</p>
+        </div>
+        <div class="bg-white rounded-xl shadow border border-gray-100 p-4 text-center">
+          <p class="text-2xl font-extrabold text-green-600">24/7</p>
+          <p class="text-xs text-gray-500 mt-0.5">Available</p>
+        </div>
+      </div>
+
+    </div><!-- /left col -->
+
+    <!-- ══ RIGHT COLUMN (60%) — Leaflet Map ════════════════════════════════ -->
+    <div class="w-full lg:w-3/5">
+      <div class="bg-white rounded-2xl shadow border border-gray-100 overflow-hidden">
+        <div id="map" class="w-full" style="height:300px;"></div>
+      </div>
+      <p class="text-xs text-gray-400 mt-2 text-center">
+        Green circle = our {{ radius_miles }}-mile service zone · Stars = completed jobs
+      </p>
+    </div>
+
+  </div><!-- /two-column -->
 </div>
 {% endblock %}
 
 {% block extra_js %}
+<script>
+  window.SERVICE_AREA = {
+    centerLat:    {{ center_lat }},
+    centerLng:    {{ center_lng }},
+    radiusMeters: {{ radius_meters }},
+    radiusMiles:  {{ radius_miles }},
+  };
+</script>
 <script src="{{ static('js/service_area.js') }}"></script>
+<script>
+  // Make map 500px tall on desktop
+  (function () {
+    function resizeMap() {
+      var el = document.getElementById('map');
+      if (!el) return;
+      el.style.height = window.innerWidth >= 1024 ? '500px' : '300px';
+    }
+    resizeMap();
+    window.addEventListener('resize', resizeMap);
+  })();
+</script>
 {% endblock %}

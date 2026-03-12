@@ -1,48 +1,41 @@
 import json
+import re
 
 from django.http import JsonResponse
 from django.views import View
 from django.views.generic import TemplateView
 
-from .geo import CENTER_LAT, CENTER_LNG, RADIUS_MILES
+from .geo import CENTER_LAT, CENTER_LNG, RADIUS_MILES, RADIUS_METERS, check_zip
 
 
 class ServiceAreaPageView(TemplateView):
     template_name = 'service_area/index.html'
+
+    def get_context_data(self, **kwargs):
+        ctx = super().get_context_data(**kwargs)
+        ctx['center_lat'] = CENTER_LAT
+        ctx['center_lng'] = CENTER_LNG
+        ctx['radius_miles'] = RADIUS_MILES
+        ctx['radius_meters'] = int(RADIUS_METERS)
+        return ctx
 
 
 class ZipCheckView(View):
     def post(self, request):
         try:
             data = json.loads(request.body)
-            zip_code = data.get('zip', '').strip()
-            if not zip_code:
-                return JsonResponse({'error': 'zip is required'}, status=400)
+        except json.JSONDecodeError:
+            return JsonResponse({'error': 'Invalid JSON'}, status=400)
 
-            # Lazy import — geopy not required at module load time
-            from geopy.geocoders import Nominatim
-            from geopy.distance import geodesic
+        zip_code = data.get('zip', '').strip()
+        if not re.match(r'^\d{5}$', zip_code):
+            return JsonResponse(
+                {'error': 'Please enter a valid 5-digit ZIP code'}, status=400
+            )
 
-            geolocator = Nominatim(user_agent='contractor_demo_v1')
-            location = geolocator.geocode({'postalcode': zip_code, 'country': 'US'})
-            if not location:
-                return JsonResponse({'error': 'ZIP code not found'}, status=404)
+        result = check_zip(zip_code)
 
-            distance = geodesic(
-                (CENTER_LAT, CENTER_LNG),
-                (location.latitude, location.longitude),
-            ).miles
-            in_zone = distance <= RADIUS_MILES
+        if not result.get('found'):
+            return JsonResponse(result, status=404)
 
-            return JsonResponse({
-                'in_zone': in_zone,
-                'city': location.address.split(',')[0],
-                'lat': location.latitude,
-                'lng': location.longitude,
-                'eta_range': '20-40 min' if in_zone else None,
-                'distance_miles': round(distance, 1),
-            })
-        except (json.JSONDecodeError, KeyError) as e:
-            return JsonResponse({'error': str(e)}, status=400)
-        except Exception as e:
-            return JsonResponse({'error': 'Geocoding failed: ' + str(e)}, status=500)
+        return JsonResponse(result)
