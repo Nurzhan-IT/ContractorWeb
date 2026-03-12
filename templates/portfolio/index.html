@@ -1,37 +1,270 @@
 {% extends 'base.html' %}
 
-{% block title %}Before/After Portfolio — ContractorPro{% endblock %}
+{% block title %}Portfolio — ContractorPro{% endblock %}
+
+{% block extra_head %}
+<style>
+  /* Slider sizing & handle styling */
+  img-comparison-slider {
+    display: block;
+    width: 100%;
+    height: 240px;
+    --divider-width: 2px;
+    --divider-color: rgba(255,255,255,0.9);
+    --default-handle-opacity: 0.9;
+    --default-handle-color: white;
+    --default-handle-shadow: 0 2px 10px rgba(0,0,0,0.45);
+  }
+  img-comparison-slider img {
+    width: 100%;
+    height: 240px;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* Active filter tab */
+  .filter-tab.active {
+    background-color: #111827;
+    color: #ffffff;
+    border-color: #111827;
+  }
+
+  /* Description: 2-line clamp */
+  .desc-clamp {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  /* Placeholder shown when image fails to load */
+  .img-ph {
+    width: 100%;
+    height: 240px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+  }
+  .img-ph-before {
+    background: linear-gradient(135deg, #fef2f2 0%, #fecaca 100%);
+    color: #fca5a5;
+  }
+  .img-ph-after {
+    background: linear-gradient(135deg, #f0fdf4 0%, #bbf7d0 100%);
+    color: #86efac;
+  }
+</style>
+{% endblock %}
 
 {% block content %}
-<div class="max-w-4xl mx-auto">
-  <h1 class="text-3xl font-bold text-gray-800 mb-2">Before/After Portfolio</h1>
-  <p class="text-gray-500 mb-8">Drag the slider to compare before and after photos.</p>
+<div class="max-w-7xl mx-auto px-4 py-10 sm:py-14">
 
+  <!-- ── Header ─────────────────────────────────────────────────────────── -->
+  <div class="mb-8 sm:mb-10">
+    <h1 class="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-2">
+      Real Work. Real Results.
+    </h1>
+    <p class="text-gray-500 text-base sm:text-lg">
+      Drag the slider on any card to see the transformation.
+    </p>
+  </div>
+
+  <!-- ── Filter tabs ────────────────────────────────────────────────────── -->
+  <div class="flex flex-wrap gap-2 mb-8">
+    <button data-filter="all"
+            class="filter-tab active px-4 py-2 rounded-full border
+                   text-sm font-semibold transition-colors
+                   hover:bg-gray-900 hover:text-white hover:border-gray-900">
+      All Projects
+    </button>
+    <button data-filter="roofing"
+            class="filter-tab px-4 py-2 rounded-full border border-gray-200
+                   text-sm font-semibold text-gray-700 transition-colors
+                   hover:bg-gray-900 hover:text-white hover:border-gray-900">
+      🏠 Roofing
+    </button>
+    <button data-filter="plumbing"
+            class="filter-tab px-4 py-2 rounded-full border border-gray-200
+                   text-sm font-semibold text-gray-700 transition-colors
+                   hover:bg-gray-900 hover:text-white hover:border-gray-900">
+      🔧 Plumbing
+    </button>
+    <button data-filter="electrical"
+            class="filter-tab px-4 py-2 rounded-full border border-gray-200
+                   text-sm font-semibold text-gray-700 transition-colors
+                   hover:bg-gray-900 hover:text-white hover:border-gray-900">
+      ⚡ Electrical
+    </button>
+    <button data-filter="hvac"
+            class="filter-tab px-4 py-2 rounded-full border border-gray-200
+                   text-sm font-semibold text-gray-700 transition-colors
+                   hover:bg-gray-900 hover:text-white hover:border-gray-900">
+      ❄️ HVAC
+    </button>
+  </div>
+
+  <!-- ── Projects grid ──────────────────────────────────────────────────── -->
   {% if projects %}
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
       {% for project in projects %}
-      <div class="bg-white rounded-xl shadow overflow-hidden border border-gray-100">
-        <img-comparison-slider>
-          <img slot="first" src="{{ project.before_image.url }}" alt="Before" class="w-full" />
-          <img slot="second" src="{{ project.after_image.url }}" alt="After" class="w-full" />
-        </img-comparison-slider>
-        <div class="p-4">
-          <h2 class="font-semibold text-gray-800">{{ project.title }}</h2>
-          <p class="text-sm text-gray-500 mt-1">{{ project.description }}</p>
-          <span class="inline-block mt-2 text-xs bg-blue-100 text-blue-700 px-2 py-0.5 rounded">
-            {{ project.service_type }}
-          </span>
+
+      {% if project.service_type == 'plumbing' %}
+        {% set badge = 'bg-blue-100 text-blue-700' %}
+      {% elif project.service_type == 'electrical' %}
+        {% set badge = 'bg-amber-100 text-amber-700' %}
+      {% elif project.service_type == 'roofing' %}
+        {% set badge = 'bg-orange-100 text-orange-700' %}
+      {% elif project.service_type == 'hvac' %}
+        {% set badge = 'bg-cyan-100 text-cyan-700' %}
+      {% else %}
+        {% set badge = 'bg-gray-100 text-gray-600' %}
+      {% endif %}
+
+      <div class="project-card" data-service-type="{{ project.service_type }}">
+        <div class="bg-white rounded-2xl shadow hover:shadow-lg transition-shadow
+                    overflow-hidden border border-gray-100 h-full flex flex-col">
+
+          <!-- ── Before/After slider ── -->
+          <div class="relative"
+               style="background:linear-gradient(90deg,#fef2f2 50%,#f0fdf4 50%);">
+
+            <img-comparison-slider>
+              <img slot="first"
+                   src="{{ project.before_image_url }}"
+                   alt="Before"
+                   onerror="portfolioImgError(this, 'before')">
+              <img slot="second"
+                   src="{{ project.after_image_url }}"
+                   alt="After"
+                   onerror="portfolioImgError(this, 'after')">
+            </img-comparison-slider>
+
+            <!-- Label overlays — pointer-events-none so they don't block the drag handle -->
+            <div class="pointer-events-none absolute top-3 left-3 z-10">
+              <span class="bg-black bg-opacity-55 text-white text-xs font-bold
+                           px-2.5 py-1 rounded tracking-widest uppercase">
+                Before
+              </span>
+            </div>
+            <div class="pointer-events-none absolute top-3 right-3 z-10">
+              <span class="bg-black bg-opacity-55 text-white text-xs font-bold
+                           px-2.5 py-1 rounded tracking-widest uppercase">
+                After
+              </span>
+            </div>
+          </div>
+
+          <!-- ── Card body ── -->
+          <div class="p-4 sm:p-5 flex flex-col flex-1">
+
+            <!-- Title + service badge -->
+            <div class="flex items-start justify-between gap-2 mb-2">
+              <h3 class="font-bold text-gray-900 text-base leading-snug">
+                {{ project.title }}
+              </h3>
+              <span class="shrink-0 text-xs font-semibold px-2.5 py-1 rounded-full {{ badge }}">
+                {{ project.service_type_display }}
+              </span>
+            </div>
+
+            <!-- Description (2-line clamp) -->
+            <p class="text-gray-500 text-sm leading-relaxed mb-4 desc-clamp">
+              {{ project.description }}
+            </p>
+
+            <!-- Metadata row -->
+            <div class="mt-auto flex flex-wrap gap-x-4 gap-y-1.5 text-xs text-gray-500">
+              <span>📍 {{ project.client_location }}</span>
+              <span>⏱ {{ project.duration }}</span>
+              {% if project.savings %}
+              <span class="text-green-700 font-semibold">💰 Saved: {{ project.savings }}</span>
+              {% endif %}
+            </div>
+
+          </div><!-- /card body -->
         </div>
-      </div>
+      </div><!-- /project-card -->
+
       {% endfor %}
+    </div><!-- /grid -->
+
+    <!-- Empty-filter message -->
+    <div id="empty-filter"
+         class="hidden mt-6 py-14 bg-white rounded-2xl border border-gray-100 text-center">
+      <p class="text-gray-400 text-lg">No projects found for this filter.</p>
     </div>
+
   {% else %}
-    <div class="bg-white rounded-xl shadow p-8 text-center text-gray-400 border border-gray-100">
-      No portfolio items yet. Run:
-      <code class="ml-1 text-sm bg-gray-100 px-2 py-0.5 rounded">
+    <div class="bg-white rounded-2xl shadow p-10 text-center text-gray-400 border border-gray-100">
+      <p class="text-lg mb-4">No portfolio items yet.</p>
+      <code class="text-sm bg-gray-100 px-3 py-2 rounded">
         python manage.py loaddata portfolio
       </code>
     </div>
   {% endif %}
+
+  <!-- ── CTA ────────────────────────────────────────────────────────────── -->
+  <div class="mt-14 bg-gradient-to-br from-gray-900 to-gray-800 rounded-3xl
+              p-8 sm:p-12 text-center text-white">
+    <h2 class="text-2xl sm:text-3xl font-extrabold mb-3">
+      Want us to document your project like this?
+    </h2>
+    <p class="text-gray-400 text-base mb-7 max-w-xl mx-auto">
+      Every project we complete includes professional before &amp; after documentation.
+      Get a free estimate today.
+    </p>
+    <a href="/demo/quote/"
+       class="inline-block bg-white text-gray-900 font-bold text-base
+              px-8 py-4 rounded-xl hover:bg-gray-100 active:bg-gray-200
+              transition-colors shadow-lg">
+      Get Free Estimate →
+    </a>
+  </div>
+
 </div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+  // ── Image placeholder on 404 / load error ─────────────────────────────────
+  // Replaces <img slot="first|second"> with a styled <div slot="…">.
+  // The web component observes slot mutations and re-renders accordingly.
+  function portfolioImgError(img, which) {
+    var div = document.createElement('div');
+    div.setAttribute('slot', img.getAttribute('slot'));
+    div.className = 'img-ph ' + (which === 'before' ? 'img-ph-before' : 'img-ph-after');
+    div.textContent = which === 'before' ? 'Before' : 'After';
+    if (img.parentNode) img.parentNode.replaceChild(div, img);
+  }
+
+  // ── Filter tabs ────────────────────────────────────────────────────────────
+  document.addEventListener('DOMContentLoaded', function () {
+    var tabs     = document.querySelectorAll('[data-filter]');
+    var cards    = document.querySelectorAll('.project-card');
+    var emptyMsg = document.getElementById('empty-filter');
+
+    tabs.forEach(function (tab) {
+      tab.addEventListener('click', function () {
+        var filter = tab.dataset.filter;
+
+        tabs.forEach(function (t) { t.classList.remove('active'); });
+        tab.classList.add('active');
+
+        var visible = 0;
+        cards.forEach(function (card) {
+          var match = filter === 'all' || card.dataset.serviceType === filter;
+          card.classList.toggle('hidden', !match);
+          if (match) visible++;
+        });
+
+        if (emptyMsg) emptyMsg.classList.toggle('hidden', visible > 0);
+      });
+    });
+  });
+</script>
 {% endblock %}

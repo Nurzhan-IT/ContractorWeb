@@ -3,36 +3,75 @@
     "model": "portfolio.beforeafterproject",
     "pk": 1,
     "fields": {
-      "title": "Kitchen Pipe Replacement",
-      "description": "Full kitchen supply line replacement with modern PEX piping.",
-      "before_image": "before_after/before_1.jpg",
-      "after_image": "before_after/after_1.jpg",
-      "service_type": "Plumbing",
-      "created_at": "2025-01-15T10:00:00Z"
+      "title": "Roof Leak Repair",
+      "service_type": "roofing",
+      "before_image": "portfolio/before/roof_leak_before.jpg",
+      "after_image": "portfolio/after/roof_leak_after.jpg",
+      "description": "A severe spring storm tore through sections of the homeowner's roof in Marietta, leaving multiple points of water intrusion and damaged decking near the chimney. We performed emergency sealing within 24 hours, replaced the compromised decking, installed new flashing, and re-shingled the affected sections — all before the next rain system moved in.",
+      "duration": "2 days",
+      "savings": "$2,100",
+      "client_location": "Marietta, GA",
+      "order": 1
     }
   },
   {
     "model": "portfolio.beforeafterproject",
     "pk": 2,
     "fields": {
-      "title": "Electrical Panel Upgrade",
-      "description": "Upgraded 100A panel to 200A service with new breakers.",
-      "before_image": "before_after/before_2.jpg",
-      "after_image": "before_after/after_2.jpg",
-      "service_type": "Electrical",
-      "created_at": "2025-02-10T10:00:00Z"
+      "title": "Faucet Replacement",
+      "service_type": "plumbing",
+      "before_image": "portfolio/before/faucet_before.jpg",
+      "after_image": "portfolio/after/faucet_after.jpg",
+      "description": "Three faucets across the kitchen and master bath had been dripping for over a year, running up the water bill and leaving mineral stains in every basin. We replaced all three with matching brushed-nickel fixtures, re-sealed the supply lines, and re-caulked each sink — the dripping stopped instantly.",
+      "duration": "4 hours",
+      "savings": "$340",
+      "client_location": "Decatur, GA",
+      "order": 2
     }
   },
   {
     "model": "portfolio.beforeafterproject",
     "pk": 3,
     "fields": {
-      "title": "Roof Shingle Replacement",
-      "description": "Complete asphalt shingle replacement on 2,200 sq ft ranch home.",
-      "before_image": "before_after/before_3.jpg",
-      "after_image": "before_after/after_3.jpg",
-      "service_type": "Roofing",
-      "created_at": "2025-03-05T10:00:00Z"
+      "title": "Electrical Panel Upgrade",
+      "service_type": "electrical",
+      "before_image": "portfolio/before/panel_before.jpg",
+      "after_image": "portfolio/after/panel_after.jpg",
+      "description": "The original 100A panel in this Sandy Springs home was fully loaded, causing breakers to trip whenever more than one large appliance ran at once. We upgraded to a 200A main panel, ran 6 new dedicated circuits to the kitchen and garage workshop, and brought the entire service entrance up to current NEC code — passing the final inspection on the first visit.",
+      "duration": "1 day",
+      "savings": "$800",
+      "client_location": "Sandy Springs, GA",
+      "order": 3
+    }
+  },
+  {
+    "model": "portfolio.beforeafterproject",
+    "pk": 4,
+    "fields": {
+      "title": "Water Heater Installation",
+      "service_type": "plumbing",
+      "before_image": "portfolio/before/water_heater_before.jpg",
+      "after_image": "portfolio/after/water_heater_after.jpg",
+      "description": "A 15-year-old 40-gallon tank unit had been leaking from the pressure relief valve and losing thermal efficiency — the homeowner reported running out of hot water after a single shower. We removed the old unit, installed a new 50-gallon high-efficiency water heater, upgraded the shutoff valve and discharge pipe, and had hot water flowing again within three hours.",
+      "duration": "3 hours",
+      "savings": "$600",
+      "client_location": "Roswell, GA",
+      "order": 4
+    }
+  },
+  {
+    "model": "portfolio.beforeafterproject",
+    "pk": 5,
+    "fields": {
+      "title": "Full Roof Shingle Replacement",
+      "service_type": "roofing",
+      "before_image": "portfolio/before/shingle_before.jpg",
+      "after_image": "portfolio/after/shingle_after.jpg",
+      "description": "Aging 3-tab shingles had started to curl, blister, and lose granules across the entire south-facing slope, reducing insulation efficiency and risking winter ice-dam damage. We stripped down to the decking, replaced rotted sections, installed a full layer of ice-and-water shield, and finished with architectural shingles carrying a 30-year manufacturer warranty.",
+      "duration": "3 days",
+      "savings": "$3,200",
+      "client_location": "Kennesaw, GA",
+      "order": 5
     }
   }
 ]
