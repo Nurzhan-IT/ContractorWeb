@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}ContractorPro DEMO{% endblock %}</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+  <!-- img-comparison-slider CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/img-comparison-slider@8/dist/styles.css" />
+
+  <!-- FullCalendar CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.css" />
+
+  <!-- Site CSS -->
+  <link rel="stylesheet" href="{{ static('css/demo.css') }}">
+
+  {% block extra_head %}{% endblock %}
+</head>
+<body class="bg-gray-50 min-h-screen flex flex-col text-gray-800">
+
+  <!-- Fixed navigation bar -->
+  <nav class="fixed top-0 left-0 right-0 z-50 bg-gray-900 text-white shadow-lg">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between h-14">
+
+      <!-- Logo -->
+      <a href="/" class="font-bold text-base sm:text-lg tracking-tight shrink-0">
+        ContractorPro <span class="text-blue-400">DEMO</span>
+      </a>
+
+      <!-- Mobile toggle -->
+      <button id="nav-toggle"
+              class="md:hidden p-1.5 rounded hover:bg-gray-700 focus:outline-none transition-colors"
+              aria-label="Toggle menu">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
+
+      <!-- Desktop links -->
+      <div class="hidden md:flex items-center gap-0.5 text-sm font-medium">
+        <a href="/"
+           class="px-3 py-2 rounded hover:bg-gray-700 hover:text-blue-300 transition-colors">Landing</a>
+        <a href="/demo/"
+           class="px-3 py-2 rounded hover:bg-gray-700 hover:text-blue-300 transition-colors">Hub</a>
+        <a href="/demo/quote/"
+           class="px-3 py-2 rounded hover:bg-gray-700 hover:text-blue-300 transition-colors">Quote</a>
+        <a href="/demo/emergency/"
+           class="px-3 py-2 rounded hover:bg-gray-700 hover:text-blue-300 transition-colors">Emergency</a>
+        <a href="/demo/service-area/"
+           class="px-3 py-2 rounded hover:bg-gray-700 hover:text-blue-300 transition-colors">Service Area</a>
+        <a href="/demo/portfolio/"
+           class="px-3 py-2 rounded hover:bg-gray-700 hover:text-blue-300 transition-colors">Portfolio</a>
+        <a href="/demo/booking/"
+           class="px-3 py-2 rounded hover:bg-gray-700 hover:text-blue-300 transition-colors">Booking</a>
+      </div>
+    </div>
+
+    <!-- Mobile dropdown -->
+    <div id="nav-menu"
+         class="hidden md:hidden border-t border-gray-700 px-4 py-2 flex flex-col gap-0.5 text-sm">
+      <a href="/"
+         class="px-3 py-2 rounded hover:bg-gray-700 hover:text-blue-300 transition-colors">Landing</a>
+      <a href="/demo/"
+         class="px-3 py-2 rounded hover:bg-gray-700 hover:text-blue-300 transition-colors">Demo Hub</a>
+      <a href="/demo/quote/"
+         class="px-3 py-2 rounded hover:bg-gray-700 hover:text-blue-300 transition-colors">Quote Calculator</a>
+      <a href="/demo/emergency/"
+         class="px-3 py-2 rounded hover:bg-gray-700 hover:text-blue-300 transition-colors">Emergency Request</a>
+      <a href="/demo/service-area/"
+         class="px-3 py-2 rounded hover:bg-gray-700 hover:text-blue-300 transition-colors">Service Area Map</a>
+      <a href="/demo/portfolio/"
+         class="px-3 py-2 rounded hover:bg-gray-700 hover:text-blue-300 transition-colors">Before/After Gallery</a>
+      <a href="/demo/booking/"
+         class="px-3 py-2 rounded hover:bg-gray-700 hover:text-blue-300 transition-colors">Online Booking</a>
+    </div>
+  </nav>
+
+  <!-- Main content (pt-14 offsets the fixed 56px navbar) -->
+  <main class="flex-1 pt-14">
+    {% block content %}{% endblock %}
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-gray-400 text-sm text-center py-4">
+    <p>&copy; 2025 ContractorPro &mdash; All content is simulated for demonstration purposes only.</p>
+  </footer>
+
+  <!-- CDN scripts (end of body) -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script type="module" src="https://unpkg.com/img-comparison-slider@8/dist/index.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js"></script>
+
+  <!-- Mobile nav toggle + global CSRF helper -->
+  <script>
+    document.getElementById('nav-toggle').addEventListener('click', function () {
+      document.getElementById('nav-menu').classList.toggle('hidden');
+    });
+
+    /**
+     * getCookie(name) — read a browser cookie by name.
+     * Used by all fetch() POST calls to attach the CSRF token:
+     *   headers: { 'X-CSRFToken': getCookie('csrftoken') }
+     */
+    function getCookie(name) {
+      const value = '; ' + document.cookie;
+      const parts = value.split('; ' + name + '=');
+      if (parts.length === 2) return parts.pop().split(';').shift();
+      return null;
+    }
+  </script>
+
+  {% block extra_js %}{% endblock %}
+</body>
+</html>

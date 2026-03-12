@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block title %}Before/After Portfolio — ContractorPro{% endblock %}
+
+{% block content %}
+<div class="max-w-4xl mx-auto">
+  <h1 class="text-3xl font-bold text-gray-800 mb-2">Before/After Portfolio</h1>
+  <p class="text-gray-500 mb-8">Drag the slider to compare before and after photos.</p>
+
+  {% if projects %}
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      {% for project in projects %}
+      <div class="bg-white rounded-xl shadow overflow-hidden border border-gray-100">
+        <img-comparison-slider>
+          <img slot="first" src="{{ project.before_image.url }}" alt="Before" class="w-full" />
+          <img slot="second" src="{{ project.after_image.url }}" alt="After" class="w-full" />
+        </img-comparison-slider>
+        <div class="p-4">
+          <h2 class="font-semibold text-gray-800">{{ project.title }}</h2>
+          <p class="text-sm text-gray-500 mt-1">{{ project.description }}</p>
+          <span class="inline-block mt-2 text-xs bg-blue-100 text-blue-700 px-2 py-0.5 rounded">
+            {{ project.service_type }}
+          </span>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <div class="bg-white rounded-xl shadow p-8 text-center text-gray-400 border border-gray-100">
+      No portfolio items yet. Run:
+      <code class="ml-1 text-sm bg-gray-100 px-2 py-0.5 rounded">
+        python manage.py loaddata portfolio
+      </code>
+    </div>
+  {% endif %}
+</div>
+{% endblock %}

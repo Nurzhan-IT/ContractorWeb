@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}Instant Quote Calculator — ContractorPro{% endblock %}
+
+{% block content %}
+<div class="max-w-2xl mx-auto">
+  <h1 class="text-3xl font-bold text-gray-800 mb-2">Instant Quote Calculator</h1>
+  <p class="text-gray-500 mb-8">Get a price estimate in under a minute.</p>
+
+  <!-- Wizard placeholder — JS multi-step form goes here -->
+  <div class="bg-white rounded-xl shadow p-6 border border-gray-100">
+    <p class="text-gray-400 text-center py-12">Quote wizard — to be implemented</p>
+  </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ static('js/quote.js') }}"></script>
+{% endblock %}

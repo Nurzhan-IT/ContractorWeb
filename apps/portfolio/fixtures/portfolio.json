@@ -1,0 +1,38 @@
+[
+  {
+    "model": "portfolio.beforeafterproject",
+    "pk": 1,
+    "fields": {
+      "title": "Kitchen Pipe Replacement",
+      "description": "Full kitchen supply line replacement with modern PEX piping.",
+      "before_image": "before_after/before_1.jpg",
+      "after_image": "before_after/after_1.jpg",
+      "service_type": "Plumbing",
+      "created_at": "2025-01-15T10:00:00Z"
+    }
+  },
+  {
+    "model": "portfolio.beforeafterproject",
+    "pk": 2,
+    "fields": {
+      "title": "Electrical Panel Upgrade",
+      "description": "Upgraded 100A panel to 200A service with new breakers.",
+      "before_image": "before_after/before_2.jpg",
+      "after_image": "before_after/after_2.jpg",
+      "service_type": "Electrical",
+      "created_at": "2025-02-10T10:00:00Z"
+    }
+  },
+  {
+    "model": "portfolio.beforeafterproject",
+    "pk": 3,
+    "fields": {
+      "title": "Roof Shingle Replacement",
+      "description": "Complete asphalt shingle replacement on 2,200 sq ft ranch home.",
+      "before_image": "before_after/before_3.jpg",
+      "after_image": "before_after/after_3.jpg",
+      "service_type": "Roofing",
+      "created_at": "2025-03-05T10:00:00Z"
+    }
+  }
+]

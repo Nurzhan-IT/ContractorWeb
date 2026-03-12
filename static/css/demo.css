@@ -1,0 +1,31 @@
+/* demo.css — site-wide custom styles (Tailwind handles most of the UI) */
+
+/* Smooth page transitions */
+* {
+  box-sizing: border-box;
+}
+
+/* img-comparison-slider full-width fix */
+img-comparison-slider {
+  display: block;
+  width: 100%;
+}
+
+img-comparison-slider img {
+  width: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+/* FullCalendar overrides */
+.fc-event {
+  cursor: pointer;
+}
+
+/* Leaflet map z-index fix when used inside flex/grid layouts */
+.leaflet-pane {
+  z-index: 1;
+}
+.leaflet-control {
+  z-index: 2;
+}

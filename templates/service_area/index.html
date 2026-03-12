@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}Service Area Map — ContractorPro{% endblock %}
+
+{% block content %}
+<div class="max-w-4xl mx-auto">
+  <h1 class="text-3xl font-bold text-gray-800 mb-2">Service Area Map</h1>
+  <p class="text-gray-500 mb-6">Enter your ZIP code to check if you are in our service zone.</p>
+
+  <!-- Map container placeholder -->
+  <div id="map" class="w-full h-96 rounded-xl border border-gray-200 bg-gray-100 mb-6">
+    <p class="text-gray-400 text-center pt-40">Map — to be implemented</p>
+  </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ static('js/service_area.js') }}"></script>
+{% endblock %}
