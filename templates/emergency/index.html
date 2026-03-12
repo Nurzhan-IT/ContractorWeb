@@ -1,17 +1,327 @@
 {% extends 'base.html' %}
 
-{% block title %}Emergency 24/7 Request — ContractorPro{% endblock %}
+{% block title %}Emergency 24/7 — ContractorPro{% endblock %}
+
+{% block extra_head %}
+<style>
+  @keyframes drawCircle {
+    from { stroke-dashoffset: 283; }
+    to   { stroke-dashoffset: 0; }
+  }
+  @keyframes drawCheck {
+    from { stroke-dashoffset: 80; }
+    to   { stroke-dashoffset: 0; }
+  }
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes pulseRing {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.5); }
+    50%       { box-shadow: 0 0 0 14px rgba(220, 38, 38, 0); }
+  }
+
+  .circle-animate {
+    stroke-dasharray: 283;
+    stroke-dashoffset: 283;
+    animation: drawCircle 0.6s ease-out 0.1s forwards;
+  }
+  .check-animate {
+    stroke-dasharray: 80;
+    stroke-dashoffset: 80;
+    animation: drawCheck 0.4s ease-out 0.75s forwards;
+  }
+  .fade-in-up {
+    opacity: 0;
+    animation: fadeInUp 0.4s ease-out 0.9s forwards;
+  }
+  .pulse-emergency {
+    animation: pulseRing 2s ease-in-out infinite;
+  }
+
+  .prob-btn.active {
+    background-color: #dc2626;
+    color: #fff;
+    border-color: #dc2626;
+  }
+  .contact-btn.active {
+    background-color: #1d4ed8;
+    color: #fff;
+    border-color: #1d4ed8;
+  }
+  .sms-bubble {
+    background-color: #e5e7eb;
+    border-radius: 18px 18px 18px 4px;
+  }
+</style>
+{% endblock %}
 
 {% block content %}
-<div class="max-w-xl mx-auto">
-  <h1 class="text-3xl font-bold text-gray-800 mb-2">Emergency 24/7 Request</h1>
-  <p class="text-gray-500 mb-8">We dispatch a master within 30 minutes.</p>
 
-  <!-- Emergency form placeholder -->
-  <div class="bg-white rounded-xl shadow p-6 border border-gray-100">
-    <p class="text-gray-400 text-center py-12">Emergency request form — to be implemented</p>
+<!-- ===== HERO ===== -->
+<section class="bg-gradient-to-br from-red-700 via-red-600 to-orange-500 text-white">
+  <div class="max-w-4xl mx-auto px-4 py-16 sm:py-24 text-center">
+
+    <div class="inline-block bg-red-800 bg-opacity-40 rounded-full px-4 py-1.5 text-xs sm:text-sm
+                font-semibold mb-6 tracking-widest uppercase">
+      Available 24 hours · 7 days a week
+    </div>
+
+    <h1 class="text-4xl sm:text-6xl font-extrabold mb-4 leading-tight drop-shadow-lg">
+      24/7 Emergency Service
+    </h1>
+    <p class="text-xl sm:text-2xl text-red-100 mb-10 font-medium">
+      Average response time: <span class="text-white font-extrabold">18 minutes</span>
+    </p>
+
+    <!-- Trust badges -->
+    <div class="flex flex-col sm:flex-row justify-center gap-3 sm:gap-6 mb-12 text-sm sm:text-base">
+      <div class="flex items-center justify-center gap-2 bg-red-800 bg-opacity-35
+                  rounded-xl px-5 py-3 font-semibold">
+        <span class="text-2xl">⚡</span> Fast Response
+      </div>
+      <div class="flex items-center justify-center gap-2 bg-red-800 bg-opacity-35
+                  rounded-xl px-5 py-3 font-semibold">
+        <span class="text-2xl">🛡️</span> Licensed Pros
+      </div>
+      <div class="flex items-center justify-center gap-2 bg-red-800 bg-opacity-35
+                  rounded-xl px-5 py-3 font-semibold">
+        <span class="text-2xl">📍</span> Real-Time Tracking
+      </div>
+    </div>
+
+    <button data-open-modal
+            class="inline-flex items-center gap-3 bg-white text-red-600 font-extrabold
+                   text-lg sm:text-xl px-8 sm:px-12 py-4 sm:py-5 rounded-2xl shadow-2xl
+                   hover:bg-red-50 active:scale-95 transition-all duration-150">
+      🚨 Request Emergency Help Now
+    </button>
+
   </div>
-</div>
+</section>
+
+<!-- ===== HOW IT WORKS ===== -->
+<section class="max-w-4xl mx-auto px-4 py-14">
+  <h2 class="text-2xl sm:text-3xl font-extrabold text-center text-gray-900 mb-10">
+    How It Works
+  </h2>
+  <div class="grid grid-cols-1 sm:grid-cols-3 gap-5">
+    <div class="text-center bg-white rounded-2xl shadow p-6">
+      <div class="text-4xl mb-3">📋</div>
+      <h3 class="font-bold text-gray-800 mb-1">1. Describe the Problem</h3>
+      <p class="text-gray-500 text-sm">Select the type of emergency and add a brief description.</p>
+    </div>
+    <div class="text-center bg-white rounded-2xl shadow p-6">
+      <div class="text-4xl mb-3">🔔</div>
+      <h3 class="font-bold text-gray-800 mb-1">2. We Alert a Pro</h3>
+      <p class="text-gray-500 text-sm">The nearest certified specialist is notified instantly.</p>
+    </div>
+    <div class="text-center bg-white rounded-2xl shadow p-6">
+      <div class="text-4xl mb-3">🚗</div>
+      <h3 class="font-bold text-gray-800 mb-1">3. They're On the Way</h3>
+      <p class="text-gray-500 text-sm">You get an SMS with ETA and live tracking link.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================================================================
+     MODAL
+     =================================================================== -->
+<div id="emergency-modal"
+     class="hidden fixed inset-0 z-50 flex items-center justify-center p-4"
+     style="background:rgba(0,0,0,0.6); backdrop-filter:blur(4px);">
+
+  <div class="bg-white rounded-3xl shadow-2xl w-full max-w-md max-h-[92vh] overflow-y-auto relative">
+
+    <!-- Close -->
+    <button id="modal-close"
+            class="absolute top-4 right-4 text-gray-400 hover:text-gray-700
+                   p-1.5 rounded-full hover:bg-gray-100 transition-colors z-10">
+      <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+              d="M6 18L18 6M6 6l12 12"/>
+      </svg>
+    </button>
+
+    <!-- ─── FORM SCREEN ─── -->
+    <div id="form-screen" class="p-6 sm:p-8">
+
+      <div class="text-center mb-6">
+        <div class="text-4xl mb-2">🚨</div>
+        <h2 class="text-2xl font-extrabold text-gray-900">Emergency Request</h2>
+        <p class="text-gray-400 text-sm mt-1">We'll connect you with a specialist in minutes</p>
+      </div>
+
+      <form id="emergency-form" novalidate>
+
+        <!-- Problem type -->
+        <div class="mb-5">
+          <p class="text-sm font-semibold text-gray-700 mb-2">What's the problem?</p>
+          <div class="flex flex-wrap gap-2">
+            <button type="button" data-problem-type="plumbing"
+                    class="prob-btn px-4 py-2 rounded-full border-2 border-gray-200 text-sm
+                           font-medium hover:border-red-400 hover:text-red-600 transition-colors">
+              🔧 Plumbing
+            </button>
+            <button type="button" data-problem-type="electrical"
+                    class="prob-btn px-4 py-2 rounded-full border-2 border-gray-200 text-sm
+                           font-medium hover:border-red-400 hover:text-red-600 transition-colors">
+              ⚡ Electrical
+            </button>
+            <button type="button" data-problem-type="roofing"
+                    class="prob-btn px-4 py-2 rounded-full border-2 border-gray-200 text-sm
+                           font-medium hover:border-red-400 hover:text-red-600 transition-colors">
+              🏠 Roofing
+            </button>
+            <button type="button" data-problem-type="hvac"
+                    class="prob-btn px-4 py-2 rounded-full border-2 border-gray-200 text-sm
+                           font-medium hover:border-red-400 hover:text-red-600 transition-colors">
+              ❄️ HVAC
+            </button>
+            <button type="button" data-problem-type="other"
+                    class="prob-btn active px-4 py-2 rounded-full border-2 border-gray-200 text-sm
+                           font-medium hover:border-red-400 hover:text-red-600 transition-colors">
+              ❓ Other
+            </button>
+          </div>
+        </div>
+
+        <!-- Name -->
+        <div class="mb-4">
+          <input id="name-input" type="text"
+                 placeholder="Your name (optional)"
+                 class="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm
+                        focus:border-red-400 focus:ring-2 focus:ring-red-100 outline-none transition">
+        </div>
+
+        <!-- Phone -->
+        <div class="mb-4">
+          <input id="phone-input" type="tel" required
+                 placeholder="+1 (555) 000-0000"
+                 class="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm
+                        focus:border-red-400 focus:ring-2 focus:ring-red-100 outline-none transition">
+          <p id="phone-error" class="hidden text-red-500 text-xs mt-1 ml-1">
+            Phone number is required
+          </p>
+        </div>
+
+        <!-- Description -->
+        <div class="mb-4">
+          <textarea id="description-input" rows="3"
+                    placeholder="Describe the problem (e.g. pipe burst, no heat, power outage...)"
+                    class="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm resize-none
+                           focus:border-red-400 focus:ring-2 focus:ring-red-100 outline-none transition">
+          </textarea>
+        </div>
+
+        <!-- Contact preference -->
+        <div class="mb-6">
+          <p class="text-sm font-semibold text-gray-700 mb-2">How should we contact you?</p>
+          <div class="flex gap-3">
+            <button type="button" data-contact="call"
+                    class="contact-btn active flex-1 flex items-center justify-center gap-2
+                           px-4 py-3 rounded-xl border-2 border-gray-200 text-sm font-medium
+                           hover:border-blue-400 transition-colors">
+              📞 Call me
+            </button>
+            <button type="button" data-contact="text"
+                    class="contact-btn flex-1 flex items-center justify-center gap-2
+                           px-4 py-3 rounded-xl border-2 border-gray-200 text-sm font-medium
+                           hover:border-blue-400 transition-colors">
+              💬 Text me
+            </button>
+          </div>
+        </div>
+
+        <!-- Submit -->
+        <button id="submit-btn" type="submit"
+                class="w-full bg-red-600 hover:bg-red-700 active:bg-red-800 text-white
+                       font-bold text-base py-4 rounded-xl shadow-lg
+                       flex items-center justify-center gap-2 transition-colors">
+          Send Emergency Request →
+        </button>
+
+      </form>
+    </div><!-- /form-screen -->
+
+    <!-- ─── SUCCESS SCREEN ─── -->
+    <div id="success-screen" class="hidden p-6 sm:p-8">
+
+      <!-- Animated checkmark -->
+      <div class="flex justify-center mb-5">
+        <svg width="90" height="90" viewBox="0 0 100 100">
+          <circle class="circle-animate" cx="50" cy="50" r="45"
+                  fill="none" stroke="#22c55e" stroke-width="5" stroke-linecap="round"/>
+          <polyline class="check-animate" points="28,52 43,67 72,35"
+                    fill="none" stroke="#22c55e" stroke-width="5"
+                    stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+
+      <h2 class="text-2xl font-extrabold text-gray-900 text-center mb-1 fade-in-up">
+        Request Sent Successfully!
+      </h2>
+      <p class="text-gray-400 text-sm text-center mb-6 fade-in-up">
+        A specialist is being dispatched to your location
+      </p>
+
+      <!-- SMS bubble (iOS iMessage style) -->
+      <div class="mb-5 fade-in-up">
+        <div class="flex items-end gap-2">
+          <div class="w-9 h-9 rounded-full bg-gray-600 text-white text-xs font-bold
+                      flex items-center justify-center shrink-0">
+            <span id="master-initials">MJ</span>
+          </div>
+          <div class="flex-1 min-w-0">
+            <div class="sms-bubble p-4 text-sm text-gray-800 leading-relaxed">
+              <span id="sms-text"></span>
+            </div>
+            <p class="text-xs text-gray-400 mt-1 ml-2">just now</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ETA badge -->
+      <div class="bg-gray-50 border border-gray-200 rounded-2xl p-4 text-center mb-4 fade-in-up">
+        <p class="text-sm text-gray-500 mb-1">⏱ Master arriving in approximately</p>
+        <p class="text-3xl font-extrabold text-gray-900">
+          <span id="eta-value">18</span> minutes
+        </p>
+      </div>
+
+      <!-- Countdown timer -->
+      <div id="countdown-container" class="text-center mb-5 fade-in-up text-green-600">
+        <p class="text-xs text-gray-400 uppercase tracking-widest mb-1">Time remaining</p>
+        <p id="countdown" class="text-5xl font-mono font-extrabold leading-none">18:00</p>
+      </div>
+
+      <!-- Call button -->
+      <a id="call-btn" href="tel:555-0142"
+         class="block w-full bg-green-600 hover:bg-green-700 text-white text-center
+                font-bold py-4 rounded-xl mb-4 transition-colors fade-in-up">
+        <span id="call-btn-text">📞 Call Master</span>
+      </a>
+
+      <!-- Disclaimer -->
+      <p class="text-center text-xs text-gray-400 fade-in-up">
+        * This is a demo. No real service will be dispatched.
+      </p>
+
+    </div><!-- /success-screen -->
+
+  </div><!-- /modal card -->
+</div><!-- /modal -->
+
+
+<!-- ===== FIXED FLOATING BUTTON ===== -->
+<button data-open-modal
+        class="pulse-emergency fixed bottom-6 right-6 z-40
+               bg-red-600 hover:bg-red-700 text-white font-bold text-sm
+               px-5 py-3 rounded-full shadow-2xl flex items-center gap-2
+               transition-colors">
+  🚨 Emergency
+</button>
+
 {% endblock %}
 
 {% block extra_js %}
