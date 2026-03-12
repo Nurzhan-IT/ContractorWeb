@@ -5,11 +5,11 @@ from .models import Booking, TimeSlot
 
 @admin.register(TimeSlot)
 class TimeSlotAdmin(admin.ModelAdmin):
-    list_display = ['date', 'start_time', 'service_type', 'is_available']
-    list_filter = ['service_type', 'is_available', 'date']
+    list_display = ['date', 'start_time', 'end_time', 'service_type', 'is_available']
+    list_filter = ['is_available', 'date']
 
 
 @admin.register(Booking)
 class BookingAdmin(admin.ModelAdmin):
-    list_display = ['customer_name', 'customer_email', 'slot', 'created_at']
-    list_filter = ['slot__service_type', 'created_at']
+    list_display = ['name', 'email', 'service_type', 'status', 'slot', 'created_at']
+    list_filter = ['service_type', 'status', 'created_at']

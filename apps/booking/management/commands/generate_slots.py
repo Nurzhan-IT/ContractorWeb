@@ -1,11 +1,12 @@
 """
 Management command: generate_slots
 
-Creates TimeSlot records for the next N days.
-~40% of slots are randomly pre-marked as unavailable (simulates existing bookings).
+Creates TimeSlot records for the next N days, starting from tomorrow.
+~35% of slots are randomly pre-marked as unavailable (simulates existing bookings).
+Slots are service-agnostic (service_type='').
 
 Usage:
-    python manage.py generate_slots            # 14 days, plumbing/electrical/roofing
+    python manage.py generate_slots            # 14 days
     python manage.py generate_slots --days=30
     python manage.py generate_slots --reset    # delete all slots first
 """
@@ -16,16 +17,12 @@ from django.core.management.base import BaseCommand
 
 from booking.models import TimeSlot
 
-SERVICES = ['plumbing', 'electrical', 'roofing']
-
-SLOT_TIMES = [
-    time(8, 0), time(9, 0), time(10, 0), time(11, 0),
-    time(13, 0), time(14, 0), time(15, 0), time(16, 0),
-]
+# 8:00–16:00 with 1-hour step → 9 slots per day
+SLOT_TIMES = [time(h, 0) for h in range(8, 17)]
 
 
 class Command(BaseCommand):
-    help = 'Generate TimeSlot records for the next N days (~40% pre-booked)'
+    help = 'Generate TimeSlot records for the next N days (~35% pre-booked)'
 
     def add_arguments(self, parser):
         parser.add_argument('--days', type=int, default=14, help='Number of days to generate')
@@ -38,22 +35,26 @@ class Command(BaseCommand):
 
         today = date.today()
         created = 0
+        days = options['days']
 
-        for day_offset in range(options['days']):
+        for day_offset in range(1, days + 1):  # start from tomorrow
             slot_date = today + timedelta(days=day_offset)
             if slot_date.weekday() == 6:  # skip Sundays
                 continue
 
-            for service in SERVICES:
-                for slot_time in SLOT_TIMES:
-                    is_available = random.random() > 0.4  # ~60% available
-                    _, was_created = TimeSlot.objects.get_or_create(
-                        date=slot_date,
-                        start_time=slot_time,
-                        service_type=service,
-                        defaults={'is_available': is_available},
-                    )
-                    if was_created:
-                        created += 1
+            for slot_time in SLOT_TIMES:
+                end_time = time(slot_time.hour + 1, 0)
+                is_available = random.random() > 0.35  # ~35% unavailable
+                _, was_created = TimeSlot.objects.get_or_create(
+                    date=slot_date,
+                    start_time=slot_time,
+                    defaults={
+                        'end_time': end_time,
+                        'is_available': is_available,
+                        'service_type': '',
+                    },
+                )
+                if was_created:
+                    created += 1
 
-        self.stdout.write(self.style.SUCCESS(f'Created {created} new time slots.'))
+        self.stdout.write(self.style.SUCCESS(f'Created {created} slots for {days} days'))
