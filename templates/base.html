@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{% block title %}ContractorPro DEMO{% endblock %}</title>
+  <title>{% block title %}ContractorPro Demo{% endblock %}</title>
+  <meta name="description" content="{% block meta_description %}ContractorPro Demo — interactive contractor website features: instant quote calculator, emergency dispatch, service area map, before/after portfolio, and online booking.{% endblock %}">
 
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -24,8 +25,21 @@
 </head>
 <body class="bg-gray-50 min-h-screen flex flex-col text-gray-800">
 
-  <!-- Fixed navigation bar -->
-  <nav class="fixed top-0 left-0 right-0 z-50 bg-gray-900 text-white shadow-lg">
+  <!-- Demo Banner -->
+  <div id="demo-banner"
+       class="fixed top-0 left-0 right-0 z-[60] h-8 bg-amber-400 text-amber-900
+              text-xs font-semibold flex items-center justify-center px-10 gap-2">
+    <span>⚡ This is an interactive demo. All data is simulated — no real services will be dispatched.</span>
+    <button id="dismiss-banner"
+            class="absolute right-3 text-amber-800 hover:text-amber-950 font-bold
+                   text-lg leading-none p-0.5 transition-colors"
+            aria-label="Dismiss banner">
+      &times;
+    </button>
+  </div>
+
+  <!-- Fixed navigation bar (offset below demo banner) -->
+  <nav id="main-nav" class="fixed top-8 left-0 right-0 z-50 bg-gray-900 text-white shadow-lg">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between h-14">
 
       <!-- Logo -->
@@ -82,8 +96,8 @@
     </div>
   </nav>
 
-  <!-- Main content (pt-14 offsets the fixed 56px navbar) -->
-  <main class="flex-1 pt-14">
+  <!-- Main content: pt-[88px] = 32px banner + 56px navbar -->
+  <main id="main-content" class="flex-1 pt-[88px]">
     {% block content %}{% endblock %}
   </main>
 
@@ -97,10 +111,16 @@
   <script type="module" src="https://unpkg.com/img-comparison-slider@8/dist/index.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js"></script>
 
-  <!-- Mobile nav toggle + global CSRF helper -->
+  <!-- Mobile nav toggle, demo banner dismiss, global CSRF helper -->
   <script>
     document.getElementById('nav-toggle').addEventListener('click', function () {
       document.getElementById('nav-menu').classList.toggle('hidden');
+    });
+
+    document.getElementById('dismiss-banner').addEventListener('click', function () {
+      document.getElementById('demo-banner').style.display = 'none';
+      document.getElementById('main-nav').style.top = '0';
+      document.getElementById('main-content').style.paddingTop = '3.5rem';
     });
 
     /**

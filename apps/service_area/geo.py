@@ -73,5 +73,5 @@ def check_zip(zip_code: str) -> dict:
 
     except Exception as e:
         if "timed out" in str(e).lower() or "timeout" in str(e).lower():
-            return {"found": False, "error": "Geocoding timeout, try again"}
-        return {"found": False, "error": "Geocoding failed, try again"}
+            return {"found": False, "error": "Network error — please try again"}
+        return {"found": False, "error": "Network error — please try again"}
