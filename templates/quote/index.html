@@ -16,7 +16,7 @@
   <div class="flex flex-col lg:flex-row gap-8">
 
     <!-- ── LEFT: Form (60%) ──────────────────────────────────────────────── -->
-    <div class="lg:w-[60%]">
+    <div class="lg:w-[60%]" id="form-col">
       <form id="quote-form" novalidate>
 
         <!-- Block 1: Problem description -->
@@ -139,16 +139,7 @@ on the pipe connections..."
     </div><!-- /left column -->
 
     <!-- ── RIGHT: Result (40%) ────────────────────────────────────────────── -->
-    <div class="lg:w-[40%]" id="result-col">
-
-      <!-- Placeholder (shown before first submit) -->
-      <div id="result-placeholder"
-           class="bg-white rounded-2xl shadow-sm border border-gray-100 p-8
-                  flex flex-col items-center justify-center text-center h-full min-h-[320px]">
-        <div class="text-5xl mb-4">💡</div>
-        <p class="font-semibold text-gray-700 mb-1">AI Estimate will appear here</p>
-        <p class="text-sm text-gray-400">Fill in the form on the left and hit the button.<br>Takes about 15 seconds.</p>
-      </div>
+    <div class="w-full hidden" id="result-col">
 
       <!-- Loading state (hidden until submit) -->
       <div id="result-loading"
@@ -390,14 +381,29 @@ function stopLoadingText() {
   if (loadingTimer) { clearInterval(loadingTimer); loadingTimer = null; }
 }
 
+// ── Column swap helpers ───────────────────────────────────────────────────────
+var formCol   = document.getElementById('form-col');
+var resultCol = document.getElementById('result-col');
+
+function showResultCol() {
+  formCol.classList.add('hidden');
+  resultCol.classList.remove('hidden');
+  if (window.innerWidth < 1024) {
+    resultCol.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+}
+
+function showFormCol() {
+  resultCol.classList.add('hidden');
+  formCol.classList.remove('hidden');
+}
+
 // ── Show panels ───────────────────────────────────────────────────────────────
 function showPanel(name) {
-  ['result-placeholder', 'result-loading', 'result-success', 'result-error'].forEach(function (id) {
+  ['result-loading', 'result-success', 'result-error'].forEach(function (id) {
     document.getElementById(id).classList.toggle('hidden', id !== name);
   });
-  if (name !== 'result-placeholder' && window.innerWidth < 1024) {
-    document.getElementById('result-col').scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }
+  showResultCol();
 }
 
 // ── Render estimate ───────────────────────────────────────────────────────────
@@ -491,9 +497,9 @@ document.getElementById('quote-form').addEventListener('submit', async function 
 
     if (!data.success) {
       if (data.errors) {
+        showFormCol();
         formError.textContent = Object.values(data.errors).join(' ');
         formError.classList.remove('hidden');
-        showPanel('result-placeholder');
       } else {
         document.getElementById('error-text').textContent =
           data.error || 'Something went wrong. Please try again.';
@@ -553,7 +559,7 @@ document.getElementById('btn-pdf').addEventListener('click', async function () {
 
 // ── Try Again ─────────────────────────────────────────────────────────────────
 document.getElementById('btn-retry').addEventListener('click', function () {
-  showPanel('result-placeholder');
+  showFormCol();
   document.getElementById('quote-form').scrollIntoView({ behavior: 'smooth', block: 'start' });
 });
 </script>
