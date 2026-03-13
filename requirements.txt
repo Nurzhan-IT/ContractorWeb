@@ -4,3 +4,5 @@ python-dotenv
 geopy
 reportlab
 Pillow
+openai>=1.0.0
+python-magic

@@ -1,9 +1,9 @@
 from django.urls import path
 
-from .views import QuoteWizardView
+from .views import QuotePageView
 
 app_name = 'quote'
 
 urlpatterns = [
-    path('', QuoteWizardView.as_view(), name='quote'),
+    path('', QuotePageView.as_view(), name='quote'),
 ]

@@ -1,271 +1,159 @@
 {% extends 'base.html' %}
 
-{% block title %}Quote Calculator | ContractorPro Demo{% endblock %}
-{% block meta_description %}Get an instant price estimate for plumbing, electrical, roofing, or HVAC work. Multi-step wizard with PDF export — no signup required.{% endblock %}
+{% block title %}AI Quote Calculator | ContractorPro Demo{% endblock %}
+{% block meta_description %}Describe your repair problem, attach photos, and get an AI-powered price estimate in seconds — free, no signup required.{% endblock %}
 
 {% block content %}
-<div class="max-w-2xl mx-auto px-4 py-8">
-  <h1 class="text-3xl font-bold text-gray-900 mb-1">Instant Quote Calculator</h1>
-  <p class="text-gray-500 mb-6">Get a price estimate in under a minute — no signup needed.</p>
+<div class="max-w-6xl mx-auto px-4 py-8">
 
-  <!-- ── Progress bar ─────────────────────────────────────────────────── -->
+  <!-- Page header -->
   <div class="mb-8">
-    <div class="flex justify-between mb-2" id="step-labels">
-      {% set steps = ['Service', 'Scope', 'Urgency', 'ZIP', 'Contact', 'Result'] %}
-      {% for label in steps %}
-      <span id="label-{{ loop.index }}"
-            class="text-xs font-medium transition-colors duration-200
-                   {% if loop.index == 1 %}text-blue-600{% else %}text-gray-400{% endif %}">
-        {{ label }}
-      </span>
-      {% endfor %}
-    </div>
-    <div class="w-full bg-gray-200 rounded-full h-2">
-      <div id="progress-bar"
-           class="bg-blue-600 h-2 rounded-full transition-all duration-300"
-           style="width: 0%"></div>
-    </div>
+    <h1 class="text-3xl font-bold text-gray-900 mb-1">Get Your Free AI-Powered Estimate</h1>
+    <p class="text-gray-500">Describe your problem, attach photos — get a price in 15 seconds</p>
   </div>
 
-  <!-- ── Wizard container ─────────────────────────────────────────────── -->
-  <div class="bg-white rounded-2xl shadow-md border border-gray-100 overflow-hidden">
+  <!-- Two-column layout -->
+  <div class="flex flex-col lg:flex-row gap-8">
 
-    <!-- STEP 1 — Service selection -->
-    <div id="step-1" class="step-panel p-6 sm:p-8">
-      <h2 class="text-xl font-bold text-gray-800 mb-1">What service do you need?</h2>
-      <p class="text-sm text-gray-500 mb-5">Select one to get started.</p>
+    <!-- ── LEFT: Form (60%) ──────────────────────────────────────────────── -->
+    <div class="lg:w-[60%]">
+      <form id="quote-form" novalidate>
 
-      <div class="grid grid-cols-2 gap-3" id="service-cards">
-        <button type="button" data-service="plumbing_leak"
-                class="service-card text-left p-4 rounded-xl border-2 border-gray-200
-                       hover:border-blue-300 transition-all duration-150 focus:outline-none">
-          <div class="text-2xl mb-2">🔧</div>
-          <div class="font-semibold text-sm text-gray-800">Plumbing Leak Repair</div>
-        </button>
-        <button type="button" data-service="faucet_toilet"
-                class="service-card text-left p-4 rounded-xl border-2 border-gray-200
-                       hover:border-blue-300 transition-all duration-150 focus:outline-none">
-          <div class="text-2xl mb-2">🚿</div>
-          <div class="font-semibold text-sm text-gray-800">Faucet / Toilet Replacement</div>
-        </button>
-        <button type="button" data-service="water_heater"
-                class="service-card text-left p-4 rounded-xl border-2 border-gray-200
-                       hover:border-blue-300 transition-all duration-150 focus:outline-none">
-          <div class="text-2xl mb-2">♨️</div>
-          <div class="font-semibold text-sm text-gray-800">Water Heater Installation</div>
-        </button>
-        <button type="button" data-service="electrical"
-                class="service-card text-left p-4 rounded-xl border-2 border-gray-200
-                       hover:border-blue-300 transition-all duration-150 focus:outline-none">
-          <div class="text-2xl mb-2">⚡</div>
-          <div class="font-semibold text-sm text-gray-800">Electrical Work</div>
-        </button>
-        <button type="button" data-service="roofing"
-                class="service-card col-span-2 text-left p-4 rounded-xl border-2 border-gray-200
-                       hover:border-blue-300 transition-all duration-150 focus:outline-none">
-          <div class="text-2xl mb-2">🏠</div>
-          <div class="font-semibold text-sm text-gray-800">Roof Repair / Replacement</div>
-        </button>
-      </div>
-
-      <div class="mt-6 flex justify-end">
-        <button id="btn-1-next"
-                class="btn-next px-6 py-2.5 rounded-xl font-semibold text-sm
-                       bg-blue-600 text-white opacity-40 cursor-not-allowed
-                       transition-all duration-150"
-                disabled>
-          Next →
-        </button>
-      </div>
-    </div>
-
-    <!-- STEP 2 — Scope of work -->
-    <div id="step-2" class="step-panel hidden p-6 sm:p-8">
-      <h2 class="text-xl font-bold text-gray-800 mb-1">Scope of work</h2>
-      <p class="text-sm text-gray-500 mb-6">Help us estimate the size of the job.</p>
-
-      <!-- roofing: slider -->
-      <div id="scope-roofing" class="scope-input hidden">
-        <label class="block text-sm font-medium text-gray-700 mb-3">
-          Roof area: <span id="roof-area-val" class="font-bold text-blue-600">800</span> sq ft
-        </label>
-        <input id="roof-slider" type="range" min="100" max="3000" value="800" step="50"
-               class="w-full accent-blue-600">
-        <div class="flex justify-between text-xs text-gray-400 mt-1">
-          <span>100 sq ft</span><span>3,000 sq ft</span>
+        <!-- Block 1: Problem description -->
+        <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 mb-4">
+          <label class="block text-sm font-semibold text-gray-700 mb-2" for="problem-desc">
+            What needs to be fixed? <span class="text-red-500">*</span>
+          </label>
+          <textarea
+            id="problem-desc"
+            name="problem_description"
+            rows="5"
+            minlength="20"
+            placeholder="Example: My kitchen faucet has been leaking for 3 days.
+Water is dripping under the sink cabinet. I can see rust
+on the pipe connections..."
+            class="w-full border border-gray-300 rounded-xl px-4 py-3 text-sm
+                   focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none
+                   transition-colors placeholder-gray-400"
+          ></textarea>
+          <p id="char-counter" class="mt-1.5 text-xs text-gray-400">0 characters (20 minimum)</p>
         </div>
-      </div>
 
-      <!-- plumbing / faucet: count input -->
-      <div id="scope-count" class="scope-input hidden">
-        <label id="scope-count-label" class="block text-sm font-medium text-gray-700 mb-2">
-          Number of fixtures / points
-        </label>
-        <input id="scope-count-input" type="number" min="1" max="20" value="1"
-               class="w-32 border border-gray-300 rounded-lg px-3 py-2 text-lg font-bold
-                      focus:outline-none focus:ring-2 focus:ring-blue-500">
-      </div>
+        <!-- Block 2: Photo upload -->
+        <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 mb-4">
+          <p class="text-sm font-semibold text-gray-700 mb-3">Photos <span class="font-normal text-gray-400">(optional)</span></p>
 
-      <!-- electrical: count input -->
-      <div id="scope-electrical" class="scope-input hidden">
-        <label class="block text-sm font-medium text-gray-700 mb-2">
-          Number of outlets / panels
-        </label>
-        <input id="scope-electrical-input" type="number" min="1" max="10" value="1"
-               class="w-32 border border-gray-300 rounded-lg px-3 py-2 text-lg font-bold
-                      focus:outline-none focus:ring-2 focus:ring-blue-500">
-      </div>
+          <!-- Drop zone -->
+          <div id="drop-zone"
+               class="border-2 border-dashed border-gray-300 rounded-xl p-8
+                      flex flex-col items-center justify-center cursor-pointer
+                      hover:border-blue-400 hover:bg-blue-50 transition-colors">
+            <span class="text-4xl mb-2">📷</span>
+            <p class="text-sm font-medium text-gray-600">Drop photos here or click to upload</p>
+            <p class="text-xs text-gray-400 mt-1">Up to 5 photos · JPG, PNG, WEBP · Max 4 MB each</p>
+            <input
+              id="photo-input"
+              type="file"
+              name="photos"
+              multiple
+              accept="image/jpeg,image/png,image/webp"
+              class="hidden"
+            />
+          </div>
 
-      <!-- water heater: fixed -->
-      <div id="scope-water" class="scope-input hidden">
-        <div class="flex items-center gap-3 p-4 bg-blue-50 rounded-xl">
-          <span class="text-3xl">♨️</span>
-          <div>
-            <div class="font-semibold text-gray-800">1 unit</div>
-            <div class="text-xs text-gray-500">Standard water heater installation</div>
+          <!-- Thumbnails -->
+          <div id="photo-preview" class="mt-3 grid grid-cols-3 sm:grid-cols-5 gap-2 hidden"></div>
+        </div>
+
+        <!-- Block 3: Address -->
+        <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 mb-4">
+          <p class="text-sm font-semibold text-gray-700 mb-3">Service Address <span class="text-red-500">*</span></p>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div>
+              <label class="block text-xs text-gray-500 mb-1" for="address">Street Address</label>
+              <input id="address" name="address" type="text"
+                     placeholder="123 Maple St, Atlanta"
+                     class="w-full border border-gray-300 rounded-xl px-3 py-2.5 text-sm
+                            focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors">
+            </div>
+            <div>
+              <label class="block text-xs text-gray-500 mb-1" for="zip-code">ZIP Code</label>
+              <input id="zip-code" name="zip_code" type="text"
+                     placeholder="30301" maxlength="5" pattern="\d{5}"
+                     class="w-full border border-gray-300 rounded-xl px-3 py-2.5 text-sm
+                            focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors">
+            </div>
           </div>
         </div>
-      </div>
 
-      <div class="mt-6 flex justify-between">
-        <button class="btn-back px-5 py-2.5 rounded-xl font-semibold text-sm
-                       text-gray-600 border border-gray-300 hover:bg-gray-50 transition-colors"
-                data-target="1">
-          ← Back
-        </button>
-        <button class="btn-next px-6 py-2.5 rounded-xl font-semibold text-sm
-                       bg-blue-600 text-white hover:bg-blue-700 transition-colors"
-                data-target="3">
-          Next →
-        </button>
-      </div>
-    </div>
-
-    <!-- STEP 3 — Urgency -->
-    <div id="step-3" class="step-panel hidden p-6 sm:p-8">
-      <h2 class="text-xl font-bold text-gray-800 mb-1">How urgent is this?</h2>
-      <p class="text-sm text-gray-500 mb-5">Urgency affects the final estimate.</p>
-
-      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3" id="urgency-cards">
-        <button type="button" data-urgency="normal"
-                class="urgency-card p-4 rounded-xl border-2 border-gray-200
-                       hover:border-gray-400 transition-all duration-150 text-left focus:outline-none">
-          <div class="text-xl mb-1">📋</div>
-          <div class="font-bold text-gray-800 text-sm">Normal</div>
-          <div class="text-xs text-gray-500 mt-0.5">1–3 business days</div>
-          <div class="mt-2 text-xs font-semibold text-gray-500 bg-gray-100
-                      inline-block px-2 py-0.5 rounded-full">+0%</div>
-        </button>
-        <button type="button" data-urgency="urgent"
-                class="urgency-card p-4 rounded-xl border-2 border-yellow-300 bg-yellow-50
-                       hover:border-yellow-400 transition-all duration-150 text-left focus:outline-none">
-          <div class="text-xl mb-1">⚡</div>
-          <div class="font-bold text-gray-800 text-sm">Urgent</div>
-          <div class="text-xs text-gray-500 mt-0.5">Next business day</div>
-          <div class="mt-2 text-xs font-semibold text-yellow-700 bg-yellow-100
-                      inline-block px-2 py-0.5 rounded-full">+40%</div>
-        </button>
-        <button type="button" data-urgency="emergency"
-                class="urgency-card p-4 rounded-xl border-2 border-red-300 bg-red-50
-                       hover:border-red-400 transition-all duration-150 text-left focus:outline-none">
-          <div class="text-xl mb-1">🚨</div>
-          <div class="font-bold text-gray-800 text-sm">Emergency</div>
-          <div class="text-xs text-gray-500 mt-0.5">Within 2–4 hours</div>
-          <div class="mt-2 text-xs font-semibold text-red-700 bg-red-100
-                      inline-block px-2 py-0.5 rounded-full">+100%</div>
-        </button>
-      </div>
-
-      <div class="mt-6 flex justify-between">
-        <button class="btn-back px-5 py-2.5 rounded-xl font-semibold text-sm
-                       text-gray-600 border border-gray-300 hover:bg-gray-50 transition-colors"
-                data-target="2">
-          ← Back
-        </button>
-        <button id="btn-3-next"
-                class="btn-next px-6 py-2.5 rounded-xl font-semibold text-sm
-                       bg-blue-600 text-white opacity-40 cursor-not-allowed
-                       transition-all duration-150"
-                disabled>
-          Next →
-        </button>
-      </div>
-    </div>
-
-    <!-- STEP 4 — ZIP Code -->
-    <div id="step-4" class="step-panel hidden p-6 sm:p-8">
-      <h2 class="text-xl font-bold text-gray-800 mb-1">Your ZIP code</h2>
-      <p class="text-sm text-gray-500 mb-5">We'll check if your area is covered.</p>
-
-      <div class="max-w-xs">
-        <input id="zip-input" type="text" maxlength="5" placeholder="e.g. 30301"
-               class="w-full border border-gray-300 rounded-xl px-4 py-3 text-lg font-bold
-                      tracking-widest focus:outline-none focus:ring-2 focus:ring-blue-500
-                      transition-colors">
-        <div id="zip-status" class="mt-3 text-sm font-medium hidden"></div>
-      </div>
-
-      <div class="mt-6 flex justify-between">
-        <button class="btn-back px-5 py-2.5 rounded-xl font-semibold text-sm
-                       text-gray-600 border border-gray-300 hover:bg-gray-50 transition-colors"
-                data-target="3">
-          ← Back
-        </button>
-        <button id="btn-4-next"
-                class="btn-next px-6 py-2.5 rounded-xl font-semibold text-sm
-                       bg-blue-600 text-white opacity-40 cursor-not-allowed
-                       transition-all duration-150"
-                disabled>
-          Next →
-        </button>
-      </div>
-    </div>
-
-    <!-- STEP 5 — Contact info -->
-    <div id="step-5" class="step-panel hidden p-6 sm:p-8">
-      <h2 class="text-xl font-bold text-gray-800 mb-1">Your contact details</h2>
-      <p class="text-sm text-gray-500 mb-5">Optional — needed only to receive your PDF estimate.</p>
-
-      <div class="space-y-4 max-w-sm">
-        <div>
-          <label class="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
-          <input id="contact-name" type="text" placeholder="John Smith"
-                 class="w-full border border-gray-300 rounded-xl px-4 py-2.5 text-sm
-                        focus:outline-none focus:ring-2 focus:ring-blue-500">
+        <!-- Block 4: Contact -->
+        <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 mb-6">
+          <p class="text-sm font-semibold text-gray-700 mb-3">Your Contact Details <span class="text-red-500">*</span></p>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            <div>
+              <label class="block text-xs text-gray-500 mb-1" for="contact-name">Your Name</label>
+              <input id="contact-name" name="name" type="text" required
+                     placeholder="John Smith"
+                     class="w-full border border-gray-300 rounded-xl px-3 py-2.5 text-sm
+                            focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors">
+            </div>
+            <div>
+              <label class="block text-xs text-gray-500 mb-1" for="contact-phone">Phone Number</label>
+              <input id="contact-phone" name="phone" type="tel" required
+                     placeholder="(555) 000-0000"
+                     class="w-full border border-gray-300 rounded-xl px-3 py-2.5 text-sm
+                            focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors">
+            </div>
+            <div>
+              <label class="block text-xs text-gray-500 mb-1" for="contact-email">Email Address</label>
+              <input id="contact-email" name="email" type="email" required
+                     placeholder="you@example.com"
+                     class="w-full border border-gray-300 rounded-xl px-3 py-2.5 text-sm
+                            focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors">
+            </div>
+          </div>
         </div>
-        <div>
-          <label class="block text-sm font-medium text-gray-700 mb-1">Phone</label>
-          <input id="contact-phone" type="tel" placeholder="(555) 123-4567"
-                 class="w-full border border-gray-300 rounded-xl px-4 py-2.5 text-sm
-                        focus:outline-none focus:ring-2 focus:ring-blue-500">
-        </div>
-        <div>
-          <label class="block text-sm font-medium text-gray-700 mb-1">Email</label>
-          <input id="contact-email" type="email" placeholder="you@example.com"
-                 class="w-full border border-gray-300 rounded-xl px-4 py-2.5 text-sm
-                        focus:outline-none focus:ring-2 focus:ring-blue-500">
-        </div>
+
+        <!-- Submit button -->
+        <button id="submit-btn" type="submit"
+                class="w-full py-4 px-6 rounded-2xl font-bold text-base text-white
+                       bg-blue-600 hover:bg-blue-700 active:bg-blue-800
+                       disabled:opacity-60 disabled:cursor-not-allowed
+                       transition-colors flex items-center justify-center gap-2">
+          <span id="submit-icon">🤖</span>
+          <span id="submit-text">Get AI Estimate — Free &amp; Instant</span>
+          <svg id="submit-spinner" class="hidden animate-spin h-5 w-5 text-white"
+               fill="none" viewBox="0 0 24 24">
+            <circle class="opacity-25" cx="12" cy="12" r="10"
+                    stroke="currentColor" stroke-width="4"></circle>
+            <path class="opacity-75" fill="currentColor"
+                  d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path>
+          </svg>
+        </button>
+
+        <!-- Inline field errors -->
+        <div id="form-error" class="mt-3 hidden text-sm text-red-600 bg-red-50
+                                    border border-red-200 rounded-xl px-4 py-3"></div>
+
+      </form>
+    </div><!-- /left column -->
+
+    <!-- ── RIGHT: Result (40%) ────────────────────────────────────────────── -->
+    <div class="lg:w-[40%]" id="result-col">
+
+      <!-- Placeholder (shown before first submit) -->
+      <div id="result-placeholder"
+           class="bg-white rounded-2xl shadow-sm border border-gray-100 p-8
+                  flex flex-col items-center justify-center text-center h-full min-h-[320px]">
+        <div class="text-5xl mb-4">💡</div>
+        <p class="font-semibold text-gray-700 mb-1">AI Estimate will appear here</p>
+        <p class="text-sm text-gray-400">Fill in the form on the left and hit the button.<br>Takes about 15 seconds.</p>
       </div>
 
-      <div class="mt-6 flex justify-between">
-        <button class="btn-back px-5 py-2.5 rounded-xl font-semibold text-sm
-                       text-gray-600 border border-gray-300 hover:bg-gray-50 transition-colors"
-                data-target="4">
-          ← Back
-        </button>
-        <button id="btn-calculate"
-                class="px-6 py-2.5 rounded-xl font-semibold text-sm
-                       bg-blue-600 text-white hover:bg-blue-700 transition-colors">
-          Calculate My Estimate →
-        </button>
-      </div>
-    </div>
-
-    <!-- STEP 6 — Result -->
-    <div id="step-6" class="step-panel hidden p-6 sm:p-8">
-
-      <!-- Spinner (shown while fetching) -->
-      <div id="result-spinner" class="flex flex-col items-center py-12">
+      <!-- Loading state (hidden until submit) -->
+      <div id="result-loading"
+           class="hidden bg-white rounded-2xl shadow-sm border border-gray-100 p-8
+                  flex flex-col items-center justify-center text-center min-h-[320px]">
         <svg class="animate-spin h-10 w-10 text-blue-600 mb-4"
              fill="none" viewBox="0 0 24 24">
           <circle class="opacity-25" cx="12" cy="12" r="10"
@@ -273,120 +161,127 @@
           <path class="opacity-75" fill="currentColor"
                 d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path>
         </svg>
-        <p class="text-gray-500 text-sm">Calculating your estimate…</p>
+        <p id="loading-text" class="text-gray-500 text-sm font-medium">Analyzing your problem...</p>
       </div>
 
-      <!-- Result content (hidden until fetch completes) -->
-      <div id="result-content" class="hidden">
+      <!-- Success result (hidden until response) -->
+      <div id="result-success" class="hidden">
 
-        <!-- Service label -->
-        <p id="result-service" class="text-sm text-gray-500 mb-2"></p>
-
-        <!-- Main price range -->
-        <div class="text-center py-4 mb-4">
-          <p class="text-sm font-medium text-gray-500 mb-1">Estimated Cost</p>
-          <p id="result-price"
-             class="text-4xl sm:text-5xl font-extrabold text-blue-700 tracking-tight"></p>
+        <!-- Header badge -->
+        <div class="bg-gradient-to-r from-blue-600 to-indigo-600 rounded-2xl p-5 mb-4 text-white">
+          <p class="text-xs font-semibold uppercase tracking-widest opacity-80 mb-1">✨ AI Estimate Ready</p>
+          <p id="result-service-type" class="text-lg font-bold"></p>
         </div>
 
-        <!-- Breakdown -->
-        <div class="border border-gray-200 rounded-xl overflow-hidden mb-4">
-          <button id="breakdown-toggle"
-                  class="w-full flex items-center justify-between px-4 py-3
-                         bg-gray-50 hover:bg-gray-100 transition-colors text-sm font-semibold
-                         text-gray-700 focus:outline-none">
-            <span>Price breakdown</span>
-            <svg id="breakdown-chevron" class="w-4 h-4 transition-transform duration-200"
-                 fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="M19 9l-7 7-7-7"/>
-            </svg>
-          </button>
-          <div id="breakdown-body" class="hidden px-4 py-3 space-y-2 text-sm">
-            <div class="flex justify-between text-gray-600">
-              <span>Base cost</span>
-              <span id="bd-base" class="font-medium text-gray-800"></span>
-            </div>
-            <div id="bd-units-row" class="flex justify-between text-gray-600 hidden">
-              <span>Materials / scope</span>
-              <span id="bd-units" class="font-medium text-gray-800"></span>
-            </div>
-            <div id="bd-surcharge-row" class="flex justify-between text-gray-600 hidden">
-              <span>Urgency surcharge</span>
-              <span id="bd-surcharge" class="font-medium text-red-600"></span>
-            </div>
+        <!-- Price range -->
+        <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 mb-4 text-center">
+          <p class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">Estimated Cost</p>
+          <p id="result-price"
+             class="text-4xl font-extrabold text-green-600 leading-tight"></p>
+        </div>
+
+        <!-- Breakdown table -->
+        <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden mb-4">
+          <div class="px-4 py-3 bg-gray-50 border-b border-gray-100">
+            <p class="text-xs font-semibold text-gray-500 uppercase tracking-wider">Price Breakdown</p>
+          </div>
+          <div id="breakdown-rows" class="divide-y divide-gray-50"></div>
+        </div>
+
+        <!-- Urgency note -->
+        <div id="urgency-block"
+             class="hidden bg-yellow-50 border border-yellow-200 rounded-xl px-4 py-3 mb-3 flex gap-2">
+          <span class="text-yellow-600 text-base shrink-0">⚡</span>
+          <p id="urgency-text" class="text-sm text-yellow-800"></p>
+        </div>
+
+        <!-- Assumptions -->
+        <div id="assumptions-block"
+             class="hidden bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 mb-4 flex gap-2">
+          <span class="text-gray-400 text-base shrink-0">ℹ️</span>
+          <div>
+            <p class="text-xs font-semibold text-gray-500 mb-0.5">Our assumptions:</p>
+            <p id="assumptions-text" class="text-sm text-gray-600"></p>
           </div>
         </div>
 
-        <!-- Disclaimer banner -->
-        <div class="flex items-start gap-3 bg-green-50 border border-green-200
-                    rounded-xl p-4 mb-6 text-sm">
-          <span class="text-green-500 text-lg shrink-0">✓</span>
-          <p class="text-green-800">
-            This is a <strong>free estimate</strong>. Final price confirmed after
-            on-site inspection. No commitment required.
-          </p>
-        </div>
+        <!-- Disclaimer -->
+        <p id="disclaimer-text" class="text-xs text-gray-400 mb-4 text-center"></p>
 
         <!-- Action buttons -->
-        <div class="flex flex-col sm:flex-row gap-3">
-          <button id="btn-download-pdf"
-                  class="flex-1 flex items-center justify-center gap-2 px-5 py-2.5
-                         rounded-xl font-semibold text-sm border-2 border-blue-600
-                         text-blue-600 hover:bg-blue-50 transition-colors">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="M12 10v6m0 0l-3-3m3 3l3-3M3 17V7a2 2 0 012-2h6l2 2h4a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
-            </svg>
-            Download PDF Estimate
+        <div class="flex flex-col gap-3">
+          <button id="btn-pdf"
+                  class="w-full py-3 px-5 rounded-xl font-semibold text-sm
+                         border-2 border-gray-300 text-gray-700 bg-white
+                         hover:bg-gray-50 hover:border-gray-400 transition-colors
+                         flex items-center justify-center gap-2">
+            <span>📄</span>
+            <span id="pdf-btn-text">Download PDF Estimate</span>
           </button>
-          <button id="btn-start-over"
-                  class="flex-1 px-5 py-2.5 rounded-xl font-semibold text-sm
-                         bg-gray-100 text-gray-700 hover:bg-gray-200 transition-colors">
-            Start Over
-          </button>
+          <a href="/demo/booking/"
+             class="w-full py-3 px-5 rounded-xl font-semibold text-sm text-center
+                    bg-blue-600 text-white hover:bg-blue-700 transition-colors">
+            📅 Book Inspection →
+          </a>
+        </div>
+
+      </div><!-- /result-success -->
+
+      <!-- Error state -->
+      <div id="result-error" class="hidden bg-white rounded-2xl shadow-sm border border-red-200 p-6">
+        <div class="flex items-start gap-3">
+          <span class="text-2xl">❌</span>
+          <div>
+            <p class="font-semibold text-gray-800 mb-1">Couldn't generate estimate</p>
+            <p id="error-text" class="text-sm text-gray-500 mb-4"></p>
+            <button id="btn-retry"
+                    class="text-sm font-semibold text-blue-600 hover:text-blue-700 underline">
+              Try Again
+            </button>
+          </div>
         </div>
       </div>
 
-    </div><!-- /step-6 -->
+    </div><!-- /right column -->
 
-  </div><!-- /wizard container -->
-</div>
+  </div><!-- /two-column -->
 
-<!-- ── Try other features ─────────────────────────────────────────────────── -->
-<div class="max-w-2xl mx-auto px-4 pb-12">
-  <p class="text-xs font-semibold text-gray-400 uppercase tracking-widest text-center mb-4">
-    Try other features
-  </p>
-  <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
-    <a href="/demo/emergency/"
-       class="flex items-center gap-3 bg-white rounded-xl shadow border border-gray-100
-              p-4 hover:shadow-md hover:border-red-200 transition-all">
-      <span class="text-2xl">🚨</span>
-      <div>
-        <p class="font-semibold text-sm text-gray-800">Emergency 24/7</p>
-        <p class="text-xs text-gray-400">Dispatch simulation</p>
-      </div>
-    </a>
-    <a href="/demo/service-area/"
-       class="flex items-center gap-3 bg-white rounded-xl shadow border border-gray-100
-              p-4 hover:shadow-md hover:border-green-200 transition-all">
-      <span class="text-2xl">🗺️</span>
-      <div>
-        <p class="font-semibold text-sm text-gray-800">Service Area Map</p>
-        <p class="text-xs text-gray-400">ZIP coverage check</p>
-      </div>
-    </a>
-    <a href="/demo/booking/"
-       class="flex items-center gap-3 bg-white rounded-xl shadow border border-gray-100
-              p-4 hover:shadow-md hover:border-blue-200 transition-all">
-      <span class="text-2xl">📅</span>
-      <div>
-        <p class="font-semibold text-sm text-gray-800">Online Booking</p>
-        <p class="text-xs text-gray-400">Calendar scheduler</p>
-      </div>
-    </a>
+  <!-- Try other features -->
+  <div class="mt-12">
+    <p class="text-xs font-semibold text-gray-400 uppercase tracking-widest text-center mb-4">
+      Try other features
+    </p>
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 max-w-2xl mx-auto">
+      <a href="/demo/emergency/"
+         class="flex items-center gap-3 bg-white rounded-xl shadow border border-gray-100
+                p-4 hover:shadow-md hover:border-red-200 transition-all">
+        <span class="text-2xl">🚨</span>
+        <div>
+          <p class="font-semibold text-sm text-gray-800">Emergency 24/7</p>
+          <p class="text-xs text-gray-400">Dispatch simulation</p>
+        </div>
+      </a>
+      <a href="/demo/service-area/"
+         class="flex items-center gap-3 bg-white rounded-xl shadow border border-gray-100
+                p-4 hover:shadow-md hover:border-green-200 transition-all">
+        <span class="text-2xl">🗺️</span>
+        <div>
+          <p class="font-semibold text-sm text-gray-800">Service Area Map</p>
+          <p class="text-xs text-gray-400">ZIP coverage check</p>
+        </div>
+      </a>
+      <a href="/demo/booking/"
+         class="flex items-center gap-3 bg-white rounded-xl shadow border border-gray-100
+                p-4 hover:shadow-md hover:border-blue-200 transition-all">
+        <span class="text-2xl">📅</span>
+        <div>
+          <p class="font-semibold text-sm text-gray-800">Online Booking</p>
+          <p class="text-xs text-gray-400">Calendar scheduler</p>
+        </div>
+      </a>
+    </div>
   </div>
+
 </div>
 {% endblock %}
 
@@ -394,386 +289,272 @@
 {% block extra_js %}
 <script>
 // ─────────────────────────────────────────────────────────────────────────────
-// Quote Calculator — all state lives in quoteData, no page reloads
+// AI Quote Calculator
 // ─────────────────────────────────────────────────────────────────────────────
 
-const TOTAL_STEPS = 6;
-let quoteData = {};   // { service, unit_count, urgency, zip_code, name, phone, email }
-let currentStep = 1;
-let lastResult = null; // saved API response for PDF re-download
+let selectedFiles = [];
+let lastEstimate  = null;
+let lastFormData  = {};
 
-// ── Step transitions ──────────────────────────────────────────────────────────
+// ── Character counter ─────────────────────────────────────────────────────────
+const problemTextarea = document.getElementById('problem-desc');
+const charCounter     = document.getElementById('char-counter');
 
-function showStep(n) {
-  const prev = document.getElementById('step-' + currentStep);
-  const next = document.getElementById('step-' + n);
-
-  // Animate out
-  prev.style.opacity = '0';
-  prev.style.transform = 'translateY(-8px)';
-  setTimeout(() => {
-    prev.classList.add('hidden');
-    prev.style.opacity = '';
-    prev.style.transform = '';
-
-    // Animate in
-    next.classList.remove('hidden');
-    next.style.opacity = '0';
-    next.style.transform = 'translateY(8px)';
-    next.offsetHeight; // force reflow
-    next.style.transition = 'opacity 120ms ease, transform 120ms ease';
-    next.style.opacity = '1';
-    next.style.transform = 'translateY(0)';
-    setTimeout(() => { next.style.transition = ''; }, 150);
-  }, 100);
-
-  currentStep = n;
-  updateProgress();
-}
-
-// Apply CSS transition style to all panels
-document.querySelectorAll('.step-panel').forEach(el => {
-  el.style.transition = 'opacity 100ms ease, transform 100ms ease';
+problemTextarea.addEventListener('input', function () {
+  const len = this.value.length;
+  charCounter.textContent = len + ' character' + (len !== 1 ? 's' : '') + ' (20 minimum)';
+  charCounter.className   = 'mt-1.5 text-xs ' + (len >= 20 ? 'text-green-600' : 'text-gray-400');
 });
 
-// ── Progress bar ──────────────────────────────────────────────────────────────
+// ── Photo upload ──────────────────────────────────────────────────────────────
+const dropZone     = document.getElementById('drop-zone');
+const photoInput   = document.getElementById('photo-input');
+const photoPreview = document.getElementById('photo-preview');
 
-function updateProgress() {
-  const pct = ((currentStep - 1) / (TOTAL_STEPS - 1)) * 100;
-  document.getElementById('progress-bar').style.width = pct + '%';
+dropZone.addEventListener('click', () => photoInput.click());
 
-  document.querySelectorAll('[id^="label-"]').forEach(el => {
-    const n = parseInt(el.id.split('-')[1]);
-    el.className = 'text-xs font-medium transition-colors duration-200 ' +
-      (n === currentStep ? 'text-blue-600' : n < currentStep ? 'text-blue-400' : 'text-gray-400');
+dropZone.addEventListener('dragover', function (e) {
+  e.preventDefault();
+  this.classList.add('border-blue-500', 'bg-blue-50');
+});
+dropZone.addEventListener('dragleave', function () {
+  this.classList.remove('border-blue-500', 'bg-blue-50');
+});
+dropZone.addEventListener('drop', function (e) {
+  e.preventDefault();
+  this.classList.remove('border-blue-500', 'bg-blue-50');
+  addFiles(Array.from(e.dataTransfer.files));
+});
+
+photoInput.addEventListener('change', function () {
+  addFiles(Array.from(this.files));
+  this.value = '';
+});
+
+function addFiles(newFiles) {
+  var allowed = ['image/jpeg', 'image/png', 'image/webp'];
+  newFiles.forEach(function (file) {
+    if (allowed.indexOf(file.type) === -1) return;
+    if (file.size > 4 * 1024 * 1024) return;
+    if (selectedFiles.length >= 5) return;
+    selectedFiles.push(file);
+  });
+  renderPreviews();
+}
+
+function renderPreviews() {
+  photoPreview.innerHTML = '';
+  if (selectedFiles.length === 0) {
+    photoPreview.classList.add('hidden');
+    return;
+  }
+  photoPreview.classList.remove('hidden');
+  selectedFiles.forEach(function (file, idx) {
+    var url  = URL.createObjectURL(file);
+    var wrap = document.createElement('div');
+    wrap.className = 'relative aspect-square rounded-lg overflow-hidden bg-gray-100';
+    wrap.innerHTML =
+      '<img src="' + url + '" class="w-full h-full object-cover" alt="photo ' + (idx + 1) + '">' +
+      '<button type="button" data-idx="' + idx + '" ' +
+        'class="absolute top-0.5 right-0.5 w-5 h-5 rounded-full bg-red-600 text-white ' +
+               'text-xs font-bold flex items-center justify-center hover:bg-red-700 ' +
+               'transition-colors leading-none">\xd7</button>';
+    (function (capturedUrl, capturedIdx) {
+      wrap.querySelector('button').addEventListener('click', function () {
+        URL.revokeObjectURL(capturedUrl);
+        selectedFiles.splice(capturedIdx, 1);
+        renderPreviews();
+      });
+    })(url, idx);
+    photoPreview.appendChild(wrap);
   });
 }
 
-// ── STEP 1 — Service selection ────────────────────────────────────────────────
+// ── Loading text rotation ─────────────────────────────────────────────────────
+var MSGS_NO_PHOTO   = ['Analyzing your problem...', 'Calculating price...', 'Almost done...'];
+var MSGS_WITH_PHOTO = ['Analyzing your problem...', 'Reading photos...', 'Calculating price...', 'Almost done...'];
+var loadingTimer = null;
 
-document.querySelectorAll('.service-card').forEach(card => {
-  card.addEventListener('click', () => {
-    // Clear previous selection
-    document.querySelectorAll('.service-card').forEach(c => {
-      c.classList.remove('border-blue-500', 'bg-blue-50', 'ring-2', 'ring-blue-400');
-      c.classList.add('border-gray-200');
-    });
-    // Highlight selected
-    card.classList.remove('border-gray-200');
-    card.classList.add('border-blue-500', 'bg-blue-50', 'ring-2', 'ring-blue-400');
+function startLoadingText(hasPhotos) {
+  var msgs = hasPhotos ? MSGS_WITH_PHOTO : MSGS_NO_PHOTO;
+  var el   = document.getElementById('loading-text');
+  var i    = 0;
+  el.textContent = msgs[0];
+  loadingTimer = setInterval(function () {
+    i = (i + 1) % msgs.length;
+    el.textContent = msgs[i];
+  }, 2000);
+}
 
-    quoteData.service = card.dataset.service;
+function stopLoadingText() {
+  if (loadingTimer) { clearInterval(loadingTimer); loadingTimer = null; }
+}
 
-    // Enable Next button
-    const btn = document.getElementById('btn-1-next');
-    btn.disabled = false;
-    btn.classList.remove('opacity-40', 'cursor-not-allowed');
-    btn.classList.add('hover:bg-blue-700');
+// ── Show panels ───────────────────────────────────────────────────────────────
+function showPanel(name) {
+  ['result-placeholder', 'result-loading', 'result-success', 'result-error'].forEach(function (id) {
+    document.getElementById(id).classList.toggle('hidden', id !== name);
   });
-});
-
-document.getElementById('btn-1-next').addEventListener('click', () => {
-  if (!quoteData.service) return;
-  prepareScopeStep();
-  showStep(2);
-});
-
-// ── STEP 2 — Scope ────────────────────────────────────────────────────────────
-
-function prepareScopeStep() {
-  // Hide all scope inputs
-  document.querySelectorAll('.scope-input').forEach(el => el.classList.add('hidden'));
-
-  const s = quoteData.service;
-  if (s === 'roofing') {
-    document.getElementById('scope-roofing').classList.remove('hidden');
-    quoteData.unit_count = parseInt(document.getElementById('roof-slider').value);
-  } else if (s === 'plumbing_leak' || s === 'faucet_toilet') {
-    const el = document.getElementById('scope-count');
-    el.classList.remove('hidden');
-    document.getElementById('scope-count-label').textContent =
-      s === 'plumbing_leak' ? 'Number of pipes / points' : 'Number of fixtures';
-    quoteData.unit_count = parseInt(document.getElementById('scope-count-input').value);
-  } else if (s === 'electrical') {
-    document.getElementById('scope-electrical').classList.remove('hidden');
-    quoteData.unit_count = parseInt(document.getElementById('scope-electrical-input').value);
-  } else if (s === 'water_heater') {
-    document.getElementById('scope-water').classList.remove('hidden');
-    quoteData.unit_count = 1;
+  if (name !== 'result-placeholder' && window.innerWidth < 1024) {
+    document.getElementById('result-col').scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 }
 
-// Live update for roof slider
-document.getElementById('roof-slider').addEventListener('input', function () {
-  document.getElementById('roof-area-val').textContent = this.value;
-  quoteData.unit_count = parseInt(this.value);
-});
+// ── Render estimate ───────────────────────────────────────────────────────────
+function renderEstimate(estimate) {
+  document.getElementById('result-service-type').textContent =
+    estimate.service_type || 'Estimate';
 
-// Live update for count inputs
-['scope-count-input', 'scope-electrical-input'].forEach(id => {
-  document.getElementById(id).addEventListener('input', function () {
-    quoteData.unit_count = parseInt(this.value) || 1;
+  var min = estimate.min_price || 0;
+  var max = estimate.max_price || 0;
+  document.getElementById('result-price').textContent =
+    '$' + min.toLocaleString() + ' \u2013 $' + max.toLocaleString();
+
+  var container = document.getElementById('breakdown-rows');
+  container.innerHTML = '';
+  (estimate.breakdown || []).forEach(function (row, i) {
+    var div = document.createElement('div');
+    div.className = 'flex justify-between items-center px-4 py-2.5 text-sm ' +
+                    (i % 2 === 0 ? 'bg-white' : 'bg-gray-50');
+    div.innerHTML =
+      '<span class="text-gray-600">' + (row.item || '') + '</span>' +
+      '<span class="font-medium text-gray-800 text-right ml-2">' + (row.cost || '') + '</span>';
+    container.appendChild(div);
   });
-});
 
-// Back buttons (generic)
-document.querySelectorAll('.btn-back').forEach(btn => {
-  btn.addEventListener('click', () => showStep(parseInt(btn.dataset.target)));
-});
-
-// Step 2 next → step 3 (button has data-target="3" handled generically above
-// but it's not a .btn-back so we add it separately)
-document.querySelector('#step-2 .btn-next').addEventListener('click', () => showStep(3));
-
-// ── STEP 3 — Urgency ─────────────────────────────────────────────────────────
-
-document.querySelectorAll('.urgency-card').forEach(card => {
-  card.addEventListener('click', () => {
-    document.querySelectorAll('.urgency-card').forEach(c => {
-      c.classList.remove('ring-2', 'ring-blue-400', 'border-blue-500');
-    });
-    card.classList.add('ring-2', 'ring-blue-400', 'border-blue-500');
-
-    quoteData.urgency = card.dataset.urgency;
-
-    const btn = document.getElementById('btn-3-next');
-    btn.disabled = false;
-    btn.classList.remove('opacity-40', 'cursor-not-allowed');
-    btn.classList.add('hover:bg-blue-700');
-  });
-});
-
-document.getElementById('btn-3-next').addEventListener('click', () => {
-  if (!quoteData.urgency) return;
-  showStep(4);
-});
-
-// ── STEP 4 — ZIP Code ─────────────────────────────────────────────────────────
-
-const zipInput   = document.getElementById('zip-input');
-const zipStatus  = document.getElementById('zip-status');
-const btn4next   = document.getElementById('btn-4-next');
-
-function setZipStatus(html, color) {
-  zipStatus.className = 'mt-3 text-sm font-medium ' + color;
-  zipStatus.innerHTML = html;
-  zipStatus.classList.remove('hidden');
-}
-
-async function checkZip(zip) {
-  if (zip.length !== 5 || !/^\d{5}$/.test(zip)) return;
-  quoteData.zip_code = zip;
-
-  setZipStatus('Checking…', 'text-gray-500');
-
-  try {
-    const res = await fetch('/api/service-area/check/', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'X-CSRFToken': getCookie('csrftoken'),
-      },
-      body: JSON.stringify({ zip }),
-    });
-    const data = await res.json();
-    if (res.ok) {
-      if (data.in_zone) {
-        setZipStatus('&#10003; We serve your area — ' + (data.city || zip), 'text-green-600');
-      } else {
-        setZipStatus('&#9888; Outside main zone — we may still help', 'text-orange-500');
-      }
-    } else {
-      setZipStatus('Could not verify ZIP — you can still continue', 'text-gray-500');
-    }
-  } catch {
-    setZipStatus('Could not verify ZIP — you can still continue', 'text-gray-500');
-  }
-}
-
-zipInput.addEventListener('input', function () {
-  const val = this.value.replace(/\D/g, '').slice(0, 5);
-  this.value = val;
-  zipStatus.classList.add('hidden');
-
-  const ready = val.length === 5;
-  btn4next.disabled = !ready;
-  if (ready) {
-    btn4next.classList.remove('opacity-40', 'cursor-not-allowed');
-    btn4next.classList.add('hover:bg-blue-700');
-    quoteData.zip_code = val;
+  var urgencyBlock = document.getElementById('urgency-block');
+  var urgencyText  = estimate.urgency_note || '';
+  if (urgencyText) {
+    document.getElementById('urgency-text').textContent = urgencyText;
+    urgencyBlock.classList.remove('hidden');
   } else {
-    btn4next.classList.add('opacity-40', 'cursor-not-allowed');
-    btn4next.classList.remove('hover:bg-blue-700');
+    urgencyBlock.classList.add('hidden');
   }
-});
 
-zipInput.addEventListener('blur',  () => checkZip(zipInput.value));
-zipInput.addEventListener('keydown', e => { if (e.key === 'Enter') checkZip(zipInput.value); });
+  var assumBlock = document.getElementById('assumptions-block');
+  var assumText  = estimate.assumptions || '';
+  if (assumText) {
+    document.getElementById('assumptions-text').textContent = assumText;
+    assumBlock.classList.remove('hidden');
+  } else {
+    assumBlock.classList.add('hidden');
+  }
 
-btn4next.addEventListener('click', () => {
-  if (btn4next.disabled) return;
-  showStep(5);
-});
+  document.getElementById('disclaimer-text').textContent =
+    estimate.disclaimer || 'Final price after on-site inspection.';
+}
 
-// ── STEP 5 — Contact → Calculate ─────────────────────────────────────────────
+// ── Form submit ───────────────────────────────────────────────────────────────
+document.getElementById('quote-form').addEventListener('submit', async function (e) {
+  e.preventDefault();
 
-document.getElementById('btn-calculate').addEventListener('click', async () => {
-  quoteData.name  = document.getElementById('contact-name').value.trim();
-  quoteData.phone = document.getElementById('contact-phone').value.trim();
-  quoteData.email = document.getElementById('contact-email').value.trim();
+  var btn       = document.getElementById('submit-btn');
+  var icon      = document.getElementById('submit-icon');
+  var text      = document.getElementById('submit-text');
+  var spinner   = document.getElementById('submit-spinner');
+  var formError = document.getElementById('form-error');
 
-  showStep(6);
-  document.getElementById('result-spinner').classList.remove('hidden');
-  document.getElementById('result-content').classList.add('hidden');
+  formError.classList.add('hidden');
+
+  var fd = new FormData();
+  fd.append('problem_description', document.getElementById('problem-desc').value);
+  fd.append('address',   document.getElementById('address').value);
+  fd.append('zip_code',  document.getElementById('zip-code').value);
+  fd.append('name',      document.getElementById('contact-name').value);
+  fd.append('phone',     document.getElementById('contact-phone').value);
+  fd.append('email',     document.getElementById('contact-email').value);
+  selectedFiles.forEach(function (file) { fd.append('photos', file); });
+
+  lastFormData = {
+    name:    document.getElementById('contact-name').value.trim(),
+    address: document.getElementById('address').value.trim() +
+             (document.getElementById('zip-code').value.trim()
+               ? ', ' + document.getElementById('zip-code').value.trim() : ''),
+    problem_description: document.getElementById('problem-desc').value.trim(),
+  };
+
+  btn.disabled = true;
+  icon.classList.add('hidden');
+  spinner.classList.remove('hidden');
+  text.textContent = 'Thinking...';
+  showPanel('result-loading');
+  startLoadingText(selectedFiles.length > 0);
 
   try {
-    const res = await fetch('/api/quote/calculate/', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'X-CSRFToken': getCookie('csrftoken'),
-      },
-      body: JSON.stringify(quoteData),
+    var res  = await fetch('/api/quote/submit/', {
+      method:  'POST',
+      headers: { 'X-CSRFToken': getCookie('csrftoken') },
+      body:    fd,
     });
-    const data = await res.json();
+    var data = await res.json();
+    stopLoadingText();
 
-    if (!res.ok) {
-      alert('Error: ' + (data.error || 'Unknown error'));
-      showStep(5);
+    if (!data.success) {
+      if (data.errors) {
+        formError.textContent = Object.values(data.errors).join(' ');
+        formError.classList.remove('hidden');
+        showPanel('result-placeholder');
+      } else {
+        document.getElementById('error-text').textContent =
+          data.error || 'Something went wrong. Please try again.';
+        showPanel('result-error');
+      }
       return;
     }
 
-    lastResult = data;
-    renderResult(data);
+    lastEstimate = data.estimate;
+    renderEstimate(data.estimate);
+    showPanel('result-success');
+
   } catch (err) {
-    alert('Network error. Please try again.');
-    showStep(5);
+    stopLoadingText();
+    document.getElementById('error-text').textContent =
+      'Network error. Please check your connection and try again.';
+    showPanel('result-error');
+  } finally {
+    btn.disabled = false;
+    icon.classList.remove('hidden');
+    spinner.classList.add('hidden');
+    text.textContent = 'Get AI Estimate \u2014 Free & Instant';
   }
-});
-
-// ── STEP 6 — Render result ────────────────────────────────────────────────────
-
-function renderResult(data) {
-  document.getElementById('result-spinner').classList.add('hidden');
-  document.getElementById('result-content').classList.remove('hidden');
-
-  document.getElementById('result-service').textContent = data.service_display || '';
-  document.getElementById('result-price').textContent =
-    '$' + data.min_price.toLocaleString() + ' – $' + data.max_price.toLocaleString();
-
-  const bd = data.breakdown;
-  document.getElementById('bd-base').textContent = bd.base;
-
-  const unitsRow = document.getElementById('bd-units-row');
-  if (bd.units) {
-    document.getElementById('bd-units').textContent = bd.units;
-    unitsRow.classList.remove('hidden');
-  } else {
-    unitsRow.classList.add('hidden');
-  }
-
-  const surchargeRow = document.getElementById('bd-surcharge-row');
-  if (bd.urgency_surcharge) {
-    document.getElementById('bd-surcharge').textContent = bd.urgency_surcharge;
-    surchargeRow.classList.remove('hidden');
-  } else {
-    surchargeRow.classList.add('hidden');
-  }
-}
-
-// Breakdown accordion toggle
-document.getElementById('breakdown-toggle').addEventListener('click', () => {
-  const body    = document.getElementById('breakdown-body');
-  const chevron = document.getElementById('breakdown-chevron');
-  const open    = !body.classList.contains('hidden');
-  body.classList.toggle('hidden', open);
-  chevron.style.transform = open ? '' : 'rotate(180deg)';
 });
 
 // ── PDF download ──────────────────────────────────────────────────────────────
+document.getElementById('btn-pdf').addEventListener('click', async function () {
+  if (!lastEstimate) return;
 
-document.getElementById('btn-download-pdf').addEventListener('click', async () => {
-  const btn = document.getElementById('btn-download-pdf');
-  btn.textContent = 'Generating…';
-  btn.disabled = true;
+  var btnText = document.getElementById('pdf-btn-text');
+  this.disabled = true;
+  btnText.textContent = 'Generating PDF...';
 
   try {
-    const res = await fetch('/api/quote/pdf/', {
-      method: 'POST',
+    var payload = Object.assign({ estimate: lastEstimate }, lastFormData);
+    var res = await fetch('/api/quote/pdf/', {
+      method:  'POST',
       headers: {
         'Content-Type': 'application/json',
-        'X-CSRFToken': getCookie('csrftoken'),
+        'X-CSRFToken':  getCookie('csrftoken'),
       },
-      body: JSON.stringify(quoteData),
+      body: JSON.stringify(payload),
     });
-
-    if (!res.ok) {
-      alert('Could not generate PDF.');
-      return;
-    }
-
-    const blob = await res.blob();
-    const url  = URL.createObjectURL(blob);
-    const a    = document.createElement('a');
-    a.href     = url;
-    a.download = 'contractorpro-estimate.pdf';
-    a.click();
+    if (!res.ok) { alert('Could not generate PDF.'); return; }
+    var blob = await res.blob();
+    var url  = URL.createObjectURL(blob);
+    var a    = document.createElement('a');
+    a.href = url; a.download = 'contractorpro-estimate.pdf'; a.click();
     URL.revokeObjectURL(url);
   } catch {
     alert('Network error generating PDF.');
   } finally {
-    btn.innerHTML =
-      '<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">' +
-      '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" ' +
-      'd="M12 10v6m0 0l-3-3m3 3l3-3M3 17V7a2 2 0 012-2h6l2 2h4a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>' +
-      '</svg> Download PDF Estimate';
-    btn.disabled = false;
+    this.disabled = false;
+    btnText.textContent = 'Download PDF Estimate';
   }
 });
 
-// ── Start Over ────────────────────────────────────────────────────────────────
-
-document.getElementById('btn-start-over').addEventListener('click', () => {
-  quoteData  = {};
-  lastResult = null;
-  currentStep = 1;
-
-  // Reset service cards
-  document.querySelectorAll('.service-card').forEach(c => {
-    c.classList.remove('border-blue-500', 'bg-blue-50', 'ring-2', 'ring-blue-400');
-    c.classList.add('border-gray-200');
-  });
-  const btn1 = document.getElementById('btn-1-next');
-  btn1.disabled = true;
-  btn1.classList.add('opacity-40', 'cursor-not-allowed');
-  btn1.classList.remove('hover:bg-blue-700');
-
-  // Reset urgency cards
-  document.querySelectorAll('.urgency-card').forEach(c =>
-    c.classList.remove('ring-2', 'ring-blue-400', 'border-blue-500'));
-  const btn3 = document.getElementById('btn-3-next');
-  btn3.disabled = true;
-  btn3.classList.add('opacity-40', 'cursor-not-allowed');
-  btn3.classList.remove('hover:bg-blue-700');
-
-  // Reset zip
-  document.getElementById('zip-input').value = '';
-  document.getElementById('zip-status').classList.add('hidden');
-  btn4next.disabled = true;
-  btn4next.classList.add('opacity-40', 'cursor-not-allowed');
-  btn4next.classList.remove('hover:bg-blue-700');
-
-  // Reset contacts
-  ['contact-name', 'contact-phone', 'contact-email'].forEach(id =>
-    (document.getElementById(id).value = ''));
-
-  // Hide all steps except 1
-  document.querySelectorAll('.step-panel').forEach(el => el.classList.add('hidden'));
-  document.getElementById('step-1').classList.remove('hidden');
-  updateProgress();
+// ── Try Again ─────────────────────────────────────────────────────────────────
+document.getElementById('btn-retry').addEventListener('click', function () {
+  showPanel('result-placeholder');
+  document.getElementById('quote-form').scrollIntoView({ behavior: 'smooth', block: 'start' });
 });
-
-// Initialise progress bar at step 1
-updateProgress();
 </script>
 {% endblock %}

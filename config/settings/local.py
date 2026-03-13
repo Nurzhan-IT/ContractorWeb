@@ -3,10 +3,11 @@ from pathlib import Path
 
 from dotenv import load_dotenv
 
-from .base import *  # noqa: F401, F403
+# Load .env BEFORE importing base so env vars are available when base.py runs
+_BASE_DIR = Path(__file__).resolve().parent.parent.parent
+load_dotenv(_BASE_DIR / '.env')
 
-# Load .env from project root
-load_dotenv(BASE_DIR / '.env')  # noqa: F405
+from .base import *  # noqa: F401, F403
 
 SECRET_KEY = os.environ.get(
     'SECRET_KEY',

@@ -92,11 +92,13 @@ contractor_demo/
 - Do not modify without explicit instruction
 
 ### `quote`
-- No database models — all pricing logic is in `quote/pricing.py`
-- `QuoteWizardView` — renders the multi-step wizard page
-- `QuoteCalculateView` — POST API, receives form JSON, returns price range JSON
-- `QuotePDFView` — POST API, receives form JSON, returns PDF file (ReportLab)
-- Wizard steps handled entirely in JS (no page reloads between steps)
+- Model `QuoteRequest` stores submissions (without photos — they are not persisted)
+- `QuoteAIService` in `ai_service.py` calls OpenRouter → `google/gemini-2.5-flash-lite`
+- Photos passed as base64 directly to AI API, never saved to disk
+- `QuotePageView` → single-page form (not a wizard)
+- `QuoteSubmitView` → POST multipart/form-data → AI estimate → JSON response
+- `QuotePDFView` → POST JSON with estimate → PDF file (ReportLab)
+- Rate limit: 5 requests/hour per IP (Django cache)
 
 ### `emergency`
 - No database models
@@ -134,8 +136,8 @@ CSRF token must be included in all POST requests (use `getCookie('csrftoken')` i
 
 | Method | URL | App | Description |
 |---|---|---|---|
-| POST | `/api/quote/calculate/` | quote | Returns `{min_price, max_price, breakdown}` |
-| POST | `/api/quote/pdf/` | quote | Returns PDF file (application/pdf) |
+| POST | `/api/quote/submit/` | quote | multipart with photos + description → AI estimate JSON |
+| POST | `/api/quote/pdf/` | quote | JSON with estimate → PDF file |
 | POST | `/api/emergency/submit/` | emergency | Returns `{master_name, eta_minutes, sms_text}` |
 | POST | `/api/service-area/check/` | service_area | Returns `{in_zone, city, lat, lng, eta_range}` |
 | GET | `/api/booking/slots/` | booking | Params: `?service=roofing&days=14`. Returns slot list |
@@ -169,11 +171,11 @@ Final output is always a **range**, never a single number. This is intentional f
 
 ## Key Frontend Patterns
 
-### Multi-step wizard (quote)
-- All steps are in one HTML file, hidden/shown via JS classes
-- State stored in a JS object `quoteData = {}`
-- Progress bar updates on each step via `updateProgress(step, total)`
-- On final step, `fetch('/api/quote/calculate/', {...})` called, result rendered in DOM
+### AI Quote form (quote)
+- Single-page form with drag-and-drop photo upload (no wizard steps)
+- Submits as multipart/form-data to `POST /api/quote/submit/`
+- Result rendered in right-hand column; on mobile it scrolls into view
+- PDF download via `POST /api/quote/pdf/` → blob download
 
 ### SMS simulation (emergency)
 - Form submit → `fetch('/api/emergency/submit/')` → show spinner
@@ -200,6 +202,9 @@ DJANGO_SETTINGS_MODULE=config.settings.local
 SECRET_KEY=your-secret-key-here
 DEBUG=True
 DATABASE_URL=sqlite:///db.sqlite3
+
+# OpenRouter AI (for Quote Calculator)
+OPENROUTER_API_KEY=your-key-here
 
 # Production only
 ALLOWED_HOSTS=demo.yourdomain.com

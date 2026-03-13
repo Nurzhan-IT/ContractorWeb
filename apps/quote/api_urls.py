@@ -1,8 +1,8 @@
 from django.urls import path
 
-from .views import QuoteCalculateView, QuotePDFView
+from .views import QuotePDFView, QuoteSubmitView
 
 urlpatterns = [
-    path('calculate/', QuoteCalculateView.as_view()),
-    path('pdf/', QuotePDFView.as_view()),
+    path('submit/', QuoteSubmitView.as_view()),
+    path('pdf/',    QuotePDFView.as_view()),
 ]
