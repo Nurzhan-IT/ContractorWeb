@@ -1,11 +1,11 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ContractorWeb — Professional Contractor Websites</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="{{ static('css/landing/styles.css') }}">
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 <body class="bg-white text-gray-900 min-h-screen">
 
@@ -756,8 +756,8 @@
       <div class="animate-section relative">
         <div class="relative p-8 sm:p-12 rounded-2xl shadow-2xl" style="background:linear-gradient(135deg,#f8fafc,#ffffff);border:1px solid #e2e8f0">
 
-          <form id="contact-form" method="post" action="{{ url('landing:contact') }}" enctype="multipart/form-data" class="space-y-6">
-            {{ csrf_input }}
+          <form id="contact-form" method="post" action="{% url 'contact' %}" enctype="multipart/form-data" class="space-y-6">
+            {% csrf_token %}
 
             <div class="grid sm:grid-cols-2 gap-6">
               <div>
@@ -1079,6 +1079,6 @@
     </div>
   </footer>
 
-  <script src="{{ static('js/landing/main.js') }}"></script>
+  <script src="{% static 'js/main.js' %}"></script>
 </body>
 </html>
