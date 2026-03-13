@@ -25,7 +25,7 @@ Demo subdomain for a web agency showcasing interactive features to local contrac
 | PDF generation | ReportLab |
 | Geocoding | geopy + Nominatim (free, no API key) |
 | Maps | Leaflet.js (CDN, no API key) |
-| Calendar UI | FullCalendar.js (CDN, free tier) |
+| Calendar UI | Cal.com Embed (official inline JS widget) |
 | Before/After slider | `img-comparison-slider` (CDN, web component) |
 | Styling | Tailwind CSS (CDN) |
 | HTTP client (JS) | fetch API (native, no axios) |
@@ -120,12 +120,13 @@ contractor_demo/
 - No AJAX — all data server-rendered
 
 ### `booking`
-- Has two models: `TimeSlot` and `Booking`
-- `generate_slots` management command creates 14 days of slots with ~40% randomly marked as booked
-- `BookingPageView` — renders calendar page
-- `SlotsAPIView` — GET, returns available slots as JSON for FullCalendar
-- `BookingSubmitView` — POST, creates Booking record, marks slot unavailable, returns Google Calendar URL
-- Google Calendar integration = URL scheme only (no OAuth, no API key needed)
+- No local models — all booking data is stored on Cal.com's side
+- Embed: official Cal.com inline JS embed, one namespace per service type (lazy-initialised)
+- `CalComService` in `cal_service.py` — queries Cal.com API v2 for the "Next Available Slots" preview block
+- `BookingPageView` passes to template: `cal_username`, `cal_slugs`, `services_preview`, `service_choices`
+- Setup: create 5 event types in Cal.com dashboard (slugs from `.env`), set `CAL_API_KEY` and `CAL_USERNAME`
+- Page works (embed loads) even without `CAL_API_KEY` — only the preview table will be empty
+- "Powered by Cal.com" badge is required and placed prominently on the page
 
 ---
 
@@ -140,8 +141,7 @@ CSRF token must be included in all POST requests (use `getCookie('csrftoken')` i
 | POST | `/api/quote/pdf/` | quote | JSON with estimate → PDF file |
 | POST | `/api/emergency/submit/` | emergency | Returns `{master_name, eta_minutes, sms_text}` |
 | POST | `/api/service-area/check/` | service_area | Returns `{in_zone, city, lat, lng, eta_range}` |
-| GET | `/api/booking/slots/` | booking | Params: `?service=roofing&days=14`. Returns slot list |
-| POST | `/api/booking/submit/` | booking | Returns `{success, gcal_url, booking_id}` |
+| — | `/demo/booking/` | booking | Cal.com Embed renders booking UI directly on page (no local API) |
 
 ---
 
@@ -189,9 +189,10 @@ Final output is always a **range**, never a single number. This is intentional f
 - Marker color set based on `in_zone` boolean
 
 ### Calendar (booking)
-- FullCalendar initialized with `eventSources` pointing to `/api/booking/slots/`
-- On event click → show booking modal with pre-filled date/time
-- On booking submit → show success screen with `gcal_url` as href
+- Cal.com Embed: official inline widget via `app.cal.com/embed/embed.js`
+- One namespace per service (`Cal("init", "plumbing_leak", ...)`) — lazily initialised on first tab click
+- `switchService(key)` hides/shows containers, updates tab styles, triggers lazy `Cal.ns[key]("inline", ...)`
+- `CalComService.get_all_services_preview()` fetches slot data from Cal.com API v2 (cached 15 min)
 
 ---
 
@@ -205,6 +206,16 @@ DATABASE_URL=sqlite:///db.sqlite3
 
 # OpenRouter AI (for Quote Calculator)
 OPENROUTER_API_KEY=your-key-here
+
+# Cal.com (for Booking Calendar)
+# Get API key: cal.com → Settings → Developer → API Keys
+CAL_API_KEY=cal_live_xxxxxxxxxxxx
+CAL_USERNAME=your-cal-username
+CAL_SLUG_PLUMBING=plumbing-repair
+CAL_SLUG_FAUCET=faucet-toilet
+CAL_SLUG_WATER_HEATER=water-heater
+CAL_SLUG_ELECTRICAL=electrical-work
+CAL_SLUG_ROOFING=roof-repair
 
 # Production only
 ALLOWED_HOSTS=demo.yourdomain.com
@@ -224,8 +235,12 @@ python manage.py migrate
 # Load portfolio seed data
 python manage.py loaddata portfolio
 
-# Generate booking slots for next 14 days
-python manage.py generate_slots --days=14
+# Configure Cal.com (one-time setup before first deploy)
+# 1. Create account at cal.com (free plan is sufficient)
+# 2. Create 5 event types with slugs: plumbing-repair, faucet-toilet,
+#    water-heater, electrical-work, roof-repair
+# 3. Set availability (e.g. Mon–Fri 8:00–17:00)
+# 4. Set CAL_API_KEY and CAL_USERNAME in .env
 
 # Run dev server
 python manage.py runserver
@@ -235,10 +250,10 @@ python manage.py runserver
 
 ## Data & Demo Content
 
-- All prices, ETAs, master names, and slot availability are **simulated** — no real data
+- All prices, ETAs, and master names are **simulated** — no real data
+- Booking availability is **real** — fetched live from Cal.com (or empty if `CAL_API_KEY` not set)
 - Before/After images stored in `static/img/before_after/` — filename convention: `before_N.jpg` / `after_N.jpg`
 - Portfolio fixture at `apps/portfolio/fixtures/portfolio.json` — edit to add/change projects
-- To reset booking slots: `python manage.py generate_slots --days=14 --reset`
 
 ---
 

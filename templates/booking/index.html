@@ -1,73 +1,28 @@
 {% extends 'base.html' %}
 
 {% block title %}Online Booking | ContractorPro Demo{% endblock %}
-{% block meta_description %}Book a contractor appointment online. Browse available time slots, pick a time that works for you, and get Google Calendar confirmation.{% endblock %}
+{% block meta_description %}Book a contractor service appointment online. Real-time availability and instant confirmation powered by Cal.com.{% endblock %}
 
 {% block extra_head %}
 <style>
-  /* ── Animated checkmark ── */
-  @keyframes drawCircle {
-    from { stroke-dashoffset: 283; }
-    to   { stroke-dashoffset: 0; }
-  }
-  @keyframes drawCheck {
-    from { stroke-dashoffset: 80; }
-    to   { stroke-dashoffset: 0; }
-  }
-  @keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(10px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-  .circle-animate {
-    stroke-dasharray: 283;
-    stroke-dashoffset: 283;
-    animation: drawCircle 0.6s ease-out 0.1s forwards;
-  }
-  .check-animate {
-    stroke-dasharray: 80;
-    stroke-dashoffset: 80;
-    animation: drawCheck 0.4s ease-out 0.75s forwards;
-  }
-  .fade-in-up {
-    opacity: 0;
-    animation: fadeInUp 0.4s ease-out 0.9s forwards;
-  }
-
-  /* ── Service tag active ── */
-  .service-tag.active-tag {
+  /* ── Service tab active state ── */
+  .service-tab.active {
     background-color: #2563eb;
     color: #fff;
     border-color: #2563eb;
   }
 
-  /* ── FullCalendar overrides ── */
-  .fc .fc-button-primary {
-    background-color: #2563eb !important;
-    border-color: #1d4ed8 !important;
-    font-size: 0.78rem !important;
-    padding: 0.3rem 0.65rem !important;
+  /* ── Cal.com embed wrapper ── */
+  .cal-embed-wrapper {
+    min-height: 600px;
   }
-  .fc .fc-button-primary:hover {
-    background-color: #1d4ed8 !important;
-  }
-  .fc .fc-button-primary:not(:disabled).fc-button-active {
-    background-color: #1e40af !important;
-  }
-  .fc .fc-event {
-    border: none !important;
-    border-radius: 4px !important;
-  }
-  .fc .fc-timegrid-slot { height: 38px !important; }
-  .fc-theme-standard td, .fc-theme-standard th { border-color: #f1f5f9 !important; }
-  .fc .fc-list-event:hover td { background: #eff6ff !important; }
 
-  /* ── FAQ chevron ── */
-  .faq-chevron { transition: transform 0.2s ease; }
-
-  /* ── Modal pop-in ── */
-  #booking-modal .modal-card {
-    animation: fadeInUp 0.18s ease-out both;
+  /* ── Fade-in for info bar ── */
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(4px); }
+    to   { opacity: 1; transform: translateY(0); }
   }
+  .fade-in { animation: fadeIn 0.2s ease-out both; }
 </style>
 {% endblock %}
 
@@ -77,165 +32,285 @@
 <!-- ═══ PAGE HEADER ══════════════════════════════════════════════════════════ -->
 <section class="bg-gradient-to-br from-blue-700 via-blue-600 to-indigo-600 text-white">
   <div class="max-w-5xl mx-auto px-4 py-12 sm:py-16">
-    <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
-      <div>
-        <div class="inline-block bg-blue-900 bg-opacity-40 rounded-full px-4 py-1.5
-                    text-xs font-semibold mb-4 tracking-widest uppercase">
-          Schedule a Visit
-        </div>
-        <h1 class="text-3xl sm:text-5xl font-extrabold leading-tight mb-3">
-          Book Your Service<br class="hidden sm:block"> Appointment
-        </h1>
-        <p class="text-blue-100 text-base sm:text-lg max-w-md">
-          Pick an available slot below — we confirm within 2 hours, no prepayment required.
-        </p>
-      </div>
-      <div class="flex flex-row sm:flex-col gap-3 text-sm shrink-0 w-full sm:w-auto">
-        <div class="flex items-center gap-2 bg-blue-900 bg-opacity-35
-                    rounded-xl px-4 py-2.5 font-medium flex-1 sm:flex-none justify-center sm:justify-start">
-          <span>✅</span> Free Confirmation
-        </div>
-        <div class="flex items-center gap-2 bg-blue-900 bg-opacity-35
-                    rounded-xl px-4 py-2.5 font-medium flex-1 sm:flex-none justify-center sm:justify-start">
-          <span>📅</span> Google Calendar
-        </div>
-        <div class="flex items-center gap-2 bg-blue-900 bg-opacity-35
-                    rounded-xl px-4 py-2.5 font-medium flex-1 sm:flex-none justify-center sm:justify-start">
-          <span>🔒</span> No Prepayment
-        </div>
-      </div>
+
+    <div class="inline-block bg-blue-900 bg-opacity-40 rounded-full px-4 py-1.5
+                text-xs font-semibold mb-4 tracking-widest uppercase">
+      Schedule a Visit
     </div>
+
+    <h1 class="text-3xl sm:text-5xl font-extrabold leading-tight mb-3">
+      Book Your Service<br class="hidden sm:block"> Appointment
+    </h1>
+
+    <p class="text-blue-100 text-base sm:text-lg max-w-md mb-5">
+      Real-time availability. Instant confirmation. Powered by Cal.com.
+    </p>
+
+    <!-- Cal.com pill badge -->
+    <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full
+                 bg-white bg-opacity-15 border border-white border-opacity-30
+                 text-white text-xs font-medium">
+      &#9889; Scheduling powered by
+      <a href="https://cal.com" target="_blank" rel="noopener"
+         class="underline underline-offset-2 hover:no-underline">Cal.com</a>
+    </span>
+
   </div>
 </section>
 
 
 <!-- ═══ MAIN CONTENT ════════════════════════════════════════════════════════ -->
-<div class="max-w-5xl mx-auto px-4 py-8 space-y-5">
+<div class="max-w-5xl mx-auto px-4 py-8 space-y-6">
 
-  <!-- ─── ZONE 1: Service filter ──────────────────────────────────────────── -->
-  <div class="bg-white rounded-2xl shadow border border-gray-100 px-5 py-4">
+  <!-- ─── SECTION 1: Service selection ─────────────────────────────────────── -->
+  <div class="bg-white rounded-2xl shadow border border-gray-100 px-5 py-5">
+
     <p class="text-xs font-semibold text-gray-400 uppercase tracking-widest mb-3">
-      Filter by service type
-      <span class="font-normal normal-case text-gray-400">— optional, click to toggle</span>
+      Select service type
     </p>
-    <div class="flex flex-wrap gap-2" id="service-tags">
-      <button type="button" data-service="plumbing_leak"
-              class="service-tag px-4 py-2 rounded-full border-2 border-gray-200 text-sm
-                     font-medium text-gray-700 hover:border-blue-400 hover:text-blue-600
-                     transition-all duration-150 focus:outline-none">
-        🔧 Plumbing Leak
+
+    <!-- Service tabs -->
+    <div class="flex flex-wrap gap-2" role="tablist">
+      {% for svc in service_choices %}
+      <button type="button"
+              role="tab"
+              class="service-tab px-4 py-2 rounded-full border-2 text-sm font-medium
+                     transition-all duration-150 focus:outline-none
+                     {% if loop.first %}active bg-blue-600 text-white border-blue-600
+                     {% else %}bg-white text-gray-700 border-gray-200 hover:border-blue-400 hover:text-blue-600{% endif %}"
+              data-service="{{ svc.key }}"
+              data-label="{{ svc.label }}"
+              data-duration="{{ svc.duration }}"
+              onclick="switchService('{{ svc.key }}')">
+        {{ svc.label }}
       </button>
-      <button type="button" data-service="faucet_toilet"
-              class="service-tag px-4 py-2 rounded-full border-2 border-gray-200 text-sm
-                     font-medium text-gray-700 hover:border-blue-400 hover:text-blue-600
-                     transition-all duration-150 focus:outline-none">
-        🚿 Faucet &amp; Toilet
-      </button>
-      <button type="button" data-service="water_heater"
-              class="service-tag px-4 py-2 rounded-full border-2 border-gray-200 text-sm
-                     font-medium text-gray-700 hover:border-blue-400 hover:text-blue-600
-                     transition-all duration-150 focus:outline-none">
-        ♨️ Water Heater
-      </button>
-      <button type="button" data-service="electrical"
-              class="service-tag px-4 py-2 rounded-full border-2 border-gray-200 text-sm
-                     font-medium text-gray-700 hover:border-blue-400 hover:text-blue-600
-                     transition-all duration-150 focus:outline-none">
-        ⚡ Electrical
-      </button>
-      <button type="button" data-service="roofing"
-              class="service-tag px-4 py-2 rounded-full border-2 border-gray-200 text-sm
-                     font-medium text-gray-700 hover:border-blue-400 hover:text-blue-600
-                     transition-all duration-150 focus:outline-none">
-        🏠 Roofing
-      </button>
+      {% endfor %}
     </div>
-    <!-- Duration hint (shown after service selection) -->
-    <p id="duration-hint"
-       class="hidden mt-3 text-sm font-semibold text-blue-600 flex items-center gap-1.5">
+
+    <!-- Selected service info bar -->
+    <p id="selected-info" class="mt-3 text-sm font-medium text-blue-700 flex items-center gap-1.5">
       <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
               d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
       </svg>
-      <span id="duration-text"></span>
+      <span id="selected-info-text">Selected: {{ service_choices[0].label }} &middot; Est. duration: {{ service_choices[0].duration }}</span>
     </p>
+
   </div>
 
-  <!-- ─── ZONE 2: Calendar ────────────────────────────────────────────────── -->
-  <div class="bg-white rounded-2xl shadow border border-gray-100 p-4 sm:p-5">
-    <!-- Header row with legend -->
-    <div class="flex items-center justify-between mb-4 flex-wrap gap-3">
-      <h2 class="text-base font-bold text-gray-800">Select a Time Slot</h2>
-      <div class="flex items-center gap-4 text-xs text-gray-500 font-medium">
-        <span class="flex items-center gap-1.5">
-          <span class="w-3 h-3 rounded-sm inline-block" style="background:#22c55e;"></span>
-          Available — click to book
-        </span>
-        <span class="flex items-center gap-1.5">
-          <span class="w-3 h-3 rounded-sm inline-block" style="background:#9ca3af;"></span>
-          Booked
-        </span>
-      </div>
+
+  <!-- ─── SECTION 2: Cal.com Embed ─────────────────────────────────────────── -->
+  <div class="bg-white rounded-2xl shadow border border-gray-100 overflow-hidden">
+
+    {% for svc in service_choices %}
+    <div id="cal-{{ svc.key }}-container"
+         class="cal-embed-wrapper{% if not loop.first %} hidden{% endif %}">
     </div>
-    <div id="calendar"></div>
+    {% endfor %}
+
   </div>
 
-  <!-- ─── HOW IT WORKS ─────────────────────────────────────────────────────── -->
+
+  <!-- ─── SECTION 3: Next Available Slots ──────────────────────────────────── -->
+  <!-- {% if services_preview %}
+  <div class="bg-white rounded-2xl shadow border border-gray-100 px-6 py-6">
+    <h2 class="text-base font-bold text-gray-900 mb-4">Next Available Slots</h2>
+
+    <div class="overflow-x-auto -mx-2">
+      <table class="w-full text-sm min-w-[420px]">
+        <thead>
+          <tr class="text-left text-gray-400 text-xs uppercase tracking-wide border-b border-gray-100">
+            <th class="pb-3 px-2 font-semibold">Service</th>
+            <th class="pb-3 px-2 font-semibold">Next Available</th>
+            <th class="pb-3 px-2 font-semibold text-right">Slots This Week</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-50">
+          {% for item in services_preview %}
+          <tr class="hover:bg-gray-50 transition-colors">
+            <td class="py-3 px-2 font-medium text-gray-800">{{ item.service }}</td>
+            <td class="py-3 px-2 text-gray-600">
+              {% if item.next_available in ('N/A', 'No slots available', '') %}
+              <span class="text-gray-400">&mdash;</span>
+              {% else %}
+              <span class="text-green-600 font-semibold">{{ item.next_available }}</span>
+              {% endif %}
+            </td>
+            <td class="py-3 px-2 text-right">
+              {% if item.total_slots_week > 0 %}
+              <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold
+                           bg-green-50 text-green-700 border border-green-200">
+                {{ item.total_slots_week }} slots
+              </span>
+              {% else %}
+              <span class="text-gray-400 text-xs">No data</span>
+              {% endif %}
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    <p class="mt-3 text-xs text-gray-400">Availability updates every 15 minutes.</p>
+  </div>
+  {% endif %} -->
+
+
+  <!-- ─── SECTION 3: How it works ──────────────────────────────────────────── -->
   <div class="bg-white rounded-2xl shadow border border-gray-100 px-6 py-8 sm:px-8">
     <h2 class="text-xl sm:text-2xl font-extrabold text-gray-900 text-center mb-8">
       How It Works
     </h2>
     <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
 
-      <div class="text-center">
-        <div class="w-14 h-14 rounded-2xl bg-blue-50 border-2 border-blue-100
-                    flex items-center justify-center text-2xl mx-auto mb-3">
-          📅
+      <div class="flex flex-col items-center text-center">
+        <div class="w-12 h-12 rounded-2xl bg-blue-50 border-2 border-blue-100
+                    flex items-center justify-center text-xl mx-auto mb-3">
+          &#128197;
         </div>
-        <div class="w-7 h-7 rounded-full bg-blue-600 text-white text-xs font-bold
-                    flex items-center justify-center mx-auto mb-2 ring-2 ring-white">
+        <div class="w-6 h-6 rounded-full bg-blue-600 text-white text-xs font-bold
+                    flex items-center justify-center mx-auto mb-2">
           1
         </div>
-        <h3 class="font-bold text-gray-800 mb-1 text-sm">Choose Time</h3>
+        <h3 class="font-bold text-gray-800 mb-1 text-sm">Choose Your Service &amp; Time</h3>
         <p class="text-gray-500 text-xs leading-relaxed">
-          Browse the calendar and click any green slot that fits your schedule.
+          Select the type of work above, then pick any available time slot in the calendar.
         </p>
       </div>
 
-      <div class="text-center">
-        <div class="w-14 h-14 rounded-2xl bg-blue-50 border-2 border-blue-100
-                    flex items-center justify-center text-2xl mx-auto mb-3">
-          📝
+      <div class="flex flex-col items-center text-center">
+        <div class="w-12 h-12 rounded-2xl bg-blue-50 border-2 border-blue-100
+                    flex items-center justify-center text-xl mx-auto mb-3">
+          &#128203;
         </div>
-        <div class="w-7 h-7 rounded-full bg-blue-600 text-white text-xs font-bold
-                    flex items-center justify-center mx-auto mb-2 ring-2 ring-white">
+        <div class="w-6 h-6 rounded-full bg-blue-600 text-white text-xs font-bold
+                    flex items-center justify-center mx-auto mb-2">
           2
         </div>
-        <h3 class="font-bold text-gray-800 mb-1 text-sm">Fill Details</h3>
+        <h3 class="font-bold text-gray-800 mb-1 text-sm">Fill In Your Contact Details</h3>
         <p class="text-gray-500 text-xs leading-relaxed">
-          Enter your name, phone, and email. Optionally describe the job.
+          Enter your name, email, and any notes — Cal.com handles the rest securely.
         </p>
       </div>
 
-      <div class="text-center">
-        <div class="w-14 h-14 rounded-2xl bg-blue-50 border-2 border-blue-100
-                    flex items-center justify-center text-2xl mx-auto mb-3">
-          ✅
+      <div class="flex flex-col items-center text-center">
+        <div class="w-12 h-12 rounded-2xl bg-blue-50 border-2 border-blue-100
+                    flex items-center justify-center text-xl mx-auto mb-3">
+          &#10003;
         </div>
-        <div class="w-7 h-7 rounded-full bg-blue-600 text-white text-xs font-bold
-                    flex items-center justify-center mx-auto mb-2 ring-2 ring-white">
+        <div class="w-6 h-6 rounded-full bg-blue-600 text-white text-xs font-bold
+                    flex items-center justify-center mx-auto mb-2">
           3
         </div>
-        <h3 class="font-bold text-gray-800 mb-1 text-sm">Get Confirmation</h3>
+        <h3 class="font-bold text-gray-800 mb-1 text-sm">Get Instant Confirmation</h3>
         <p class="text-gray-500 text-xs leading-relaxed">
-          We'll confirm by call or text within 2 hours and send a reminder the day before.
+          Receive an email confirmation with a calendar invite and technician details.
         </p>
       </div>
 
     </div>
   </div>
 
-  <!-- ─── TRY OTHER FEATURES ──────────────────────────────────────────────── -->
+
+  <!-- ─── Calendar Integrations ───────────────────────────────────────────── -->
+  <div class="bg-white rounded-2xl shadow border border-gray-100 px-6 py-6">
+    <h2 class="text-base font-bold text-gray-900 mb-1">Works With Your Calendar</h2>
+    <p class="text-sm text-gray-500 mb-6">
+      Confirmed bookings sync automatically with all major calendar apps via Cal.com.
+    </p>
+
+    <div class="grid grid-cols-4 sm:grid-cols-8 gap-3">
+
+      <!-- Google Calendar -->
+      <div class="flex flex-col items-center gap-2">
+        <div class="w-12 h-12 rounded-2xl flex items-center justify-center shadow-sm"
+             style="background:#ffffff; border: 1.5px solid #e5e7eb;">
+          <img src="https://ssl.gstatic.com/calendar/images/dynamiclogo_2020q4/calendar_31_2x.png"
+               alt="Google Calendar" class="w-8 h-8 object-contain"
+               onerror="this.src='https://cdn.simpleicons.org/googlecalendar/4285F4'">
+        </div>
+        <span class="text-xs text-gray-600 font-medium text-center leading-tight">Google<br>Calendar</span>
+      </div>
+
+      <!-- Outlook Calendar -->
+      <div class="flex flex-col items-center gap-2">
+        <div class="w-12 h-12 rounded-2xl flex items-center justify-center shadow-sm"
+             style="background:#ffffff; border: 1.5px solid #e5e7eb;">
+          <img src="https://img.icons8.com/color/48/outlook-calendar.png"
+               alt="Outlook" class="w-7 h-7 object-contain">
+        </div>
+        <span class="text-xs text-gray-600 font-medium text-center leading-tight">Outlook<br>Calendar</span>
+      </div>
+
+      <!-- Apple Calendar -->
+      <div class="flex flex-col items-center gap-2">
+        <div class="w-12 h-12 rounded-2xl flex items-center justify-center shadow-sm"
+             style="background:#ffffff; border: 1.5px solid #e5e7eb;">
+          <img src="https://app.cal.com/app-store/applecalendar/icon.svg"
+               alt="Apple Calendar" class="w-6 h-6 object-contain">
+        </div>
+        <span class="text-xs text-gray-600 font-medium text-center leading-tight">Apple<br>Calendar</span>
+      </div>
+
+      <!-- CalDAV -->
+      <div class="flex flex-col items-center gap-2">
+        <div class="w-12 h-12 rounded-2xl flex items-center justify-center shadow-sm overflow-hidden relative"
+             style="background:#ffffff; border: 1.5px solid #e5e7eb;">
+          <img src="https://app.cal.com/app-store/caldavcalendar/icon.svg"
+               alt="CalDAV" class="w-10 h-10 object-contain">
+          <span class="absolute -top-1.5 -right-1.5 bg-amber-400 text-amber-900
+                       text-[9px] font-bold px-1 py-0.5 rounded-full leading-none">
+            Beta
+          </span>
+        </div>
+        <span class="text-xs text-gray-600 font-medium text-center leading-tight">CalDAV<br><span class="text-gray-400">(Beta)</span></span>
+      </div>
+
+      <!-- Zoho Calendar -->
+      <div class="flex flex-col items-center gap-2">
+        <div class="w-12 h-12 rounded-2xl flex items-center justify-center shadow-sm overflow-hidden"
+             style="background:#ffffff; border: 1.5px solid #e5e7eb;">
+          <img src="https://app.cal.com/app-store/zohocalendar/icon.svg"
+               alt="Zoho Calendar" class="w-10 h-10 object-contain">
+        </div>
+        <span class="text-xs text-gray-600 font-medium text-center leading-tight">Zoho<br>Calendar</span>
+      </div>
+
+      <!-- ICS Feed -->
+      <div class="flex flex-col items-center gap-2">
+        <div class="w-12 h-12 rounded-2xl flex items-center justify-center shadow-sm overflow-hidden"
+             style="background:#ffffff; border: 1.5px solid #e5e7eb;">
+          <img src="https://app.cal.com/app-store/ics-feedcalendar/icon.svg"
+               alt="ICS Feed" class="w-10 h-10 object-contain">
+        </div>
+        <span class="text-xs text-gray-600 font-medium text-center leading-tight">ICS<br>Feed</span>
+      </div>
+
+      <!-- Lark Calendar -->
+      <div class="flex flex-col items-center gap-2">
+        <div class="w-12 h-12 rounded-2xl flex items-center justify-center shadow-sm overflow-hidden"
+             style="background:#ffffff; border: 1.5px solid #e5e7eb;">
+          <img src="https://app.cal.com/app-store/larkcalendar/icon.svg"
+               alt="Lark Calendar" class="w-10 h-10 object-contain">
+        </div>
+        <span class="text-xs text-gray-600 font-medium text-center leading-tight">Lark<br>Calendar</span>
+      </div>
+
+      <!-- Microsoft Exchange -->
+      <div class="flex flex-col items-center gap-2">
+        <div class="w-12 h-12 rounded-2xl flex items-center justify-center shadow-sm overflow-hidden"
+             style="background:#ffffff; border: 1.5px solid #e5e7eb;">
+          <img src="https://app.cal.com/app-store/exchangecalendar/icon.svg"
+               alt="Microsoft Exchange" class="w-10 h-10 object-contain">
+        </div>
+        <span class="text-xs text-gray-600 font-medium text-center leading-tight">Microsoft<br>Exchange</span>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- ─── Try other features ───────────────────────────────────────────────── -->
   <div class="pb-2">
     <p class="text-xs font-semibold text-gray-400 uppercase tracking-widest text-center mb-4">
       Try other features
@@ -244,16 +319,16 @@
       <a href="/demo/quote/"
          class="flex items-center gap-3 bg-white rounded-xl shadow border border-gray-100
                 p-4 hover:shadow-md hover:border-blue-200 transition-all">
-        <span class="text-2xl">💰</span>
+        <span class="text-2xl">&#128176;</span>
         <div>
           <p class="font-semibold text-sm text-gray-800">Quote Calculator</p>
-          <p class="text-xs text-gray-400">Instant estimate</p>
+          <p class="text-xs text-gray-400">Instant AI estimate</p>
         </div>
       </a>
       <a href="/demo/emergency/"
          class="flex items-center gap-3 bg-white rounded-xl shadow border border-gray-100
                 p-4 hover:shadow-md hover:border-red-200 transition-all">
-        <span class="text-2xl">🚨</span>
+        <span class="text-2xl">&#128680;</span>
         <div>
           <p class="font-semibold text-sm text-gray-800">Emergency 24/7</p>
           <p class="text-xs text-gray-400">Dispatch simulation</p>
@@ -262,7 +337,7 @@
       <a href="/demo/portfolio/"
          class="flex items-center gap-3 bg-white rounded-xl shadow border border-gray-100
                 p-4 hover:shadow-md hover:border-purple-200 transition-all">
-        <span class="text-2xl">📸</span>
+        <span class="text-2xl">&#128247;</span>
         <div>
           <p class="font-semibold text-sm text-gray-800">Portfolio</p>
           <p class="text-xs text-gray-400">Before/after gallery</p>
@@ -271,538 +346,154 @@
     </div>
   </div>
 
-  <!-- ─── FAQ ACCORDION ────────────────────────────────────────────────────── -->
-  <div class="bg-white rounded-2xl shadow border border-gray-100 px-6 py-8 sm:px-8">
-    <h2 class="text-xl sm:text-2xl font-extrabold text-gray-900 mb-5">
-      Frequently Asked Questions
-    </h2>
-    <div class="space-y-3" id="faq-list">
 
-      <div class="faq-item border border-gray-200 rounded-xl overflow-hidden">
-        <button class="faq-question w-full flex items-center justify-between
-                       px-5 py-4 text-left bg-gray-50 hover:bg-gray-100
-                       text-sm font-semibold text-gray-800 transition-colors focus:outline-none">
-          <span>How is my booking confirmed?</span>
-          <svg class="faq-chevron w-4 h-4 text-gray-400 shrink-0"
-               fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M19 9l-7 7-7-7"/>
-          </svg>
-        </button>
-        <div class="faq-answer hidden px-5 py-4 text-sm text-gray-600
-                    border-t border-gray-100 leading-relaxed">
-          Once you submit the booking form, our team receives an instant notification.
-          We'll review availability and send a confirmation call or text within 2 hours.
-          You'll also receive a reminder 24 hours before your appointment.
-        </div>
-      </div>
-
-      <div class="faq-item border border-gray-200 rounded-xl overflow-hidden">
-        <button class="faq-question w-full flex items-center justify-between
-                       px-5 py-4 text-left bg-gray-50 hover:bg-gray-100
-                       text-sm font-semibold text-gray-800 transition-colors focus:outline-none">
-          <span>Can I cancel or reschedule my appointment?</span>
-          <svg class="faq-chevron w-4 h-4 text-gray-400 shrink-0"
-               fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M19 9l-7 7-7-7"/>
-          </svg>
-        </button>
-        <div class="faq-answer hidden px-5 py-4 text-sm text-gray-600
-                    border-t border-gray-100 leading-relaxed">
-          Yes — cancellations and reschedules are completely free if made at least
-          4 hours before the visit. Just call us or reply to the confirmation text.
-          We understand that plans change!
-        </div>
-      </div>
-
-      <div class="faq-item border border-gray-200 rounded-xl overflow-hidden">
-        <button class="faq-question w-full flex items-center justify-between
-                       px-5 py-4 text-left bg-gray-50 hover:bg-gray-100
-                       text-sm font-semibold text-gray-800 transition-colors focus:outline-none">
-          <span>Is a prepayment required to reserve a slot?</span>
-          <svg class="faq-chevron w-4 h-4 text-gray-400 shrink-0"
-               fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M19 9l-7 7-7-7"/>
-          </svg>
-        </button>
-        <div class="faq-answer hidden px-5 py-4 text-sm text-gray-600
-                    border-t border-gray-100 leading-relaxed">
-          No prepayment is required. Booking is completely free and holds your slot for
-          24 hours. Payment is only collected after the work is completed and you're
-          satisfied. We accept cash, card, and most major payment apps.
-        </div>
-      </div>
-
-    </div>
+  <!-- ─── Powered by Cal.com badge (prominent) ─────────────────────────────── -->
+  <div class="flex flex-wrap items-center justify-center gap-3 py-6
+              border-t border-gray-200 mt-2">
+    <span class="text-gray-500 text-sm">Scheduling powered by</span>
+    <a href="https://cal.com" target="_blank" rel="noopener"
+       class="flex items-center gap-2 hover:opacity-80 transition-opacity">
+      <img src="https://cal.com/logo.svg"
+           alt="Cal.com"
+           class="h-6 w-auto"
+           onerror="this.style.display='none'">
+      <span class="font-bold text-gray-800 text-base">Cal.com</span>
+    </a>
+    <span class="text-xs text-gray-400">
+      Real-time availability &middot; Instant confirmation &middot; Calendar sync
+    </span>
   </div>
 
 </div><!-- /max-w-5xl -->
-
-
-<!-- ═══════════════════════════════════════════════════════════════════════════
-     ZONE 3 — BOOKING MODAL
-     ═══════════════════════════════════════════════════════════════════════════ -->
-<div id="booking-modal"
-     class="hidden fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-4"
-     style="background: rgba(0,0,0,0.55); backdrop-filter: blur(3px);">
-
-  <div class="modal-card bg-white w-full sm:max-w-md rounded-t-3xl sm:rounded-3xl
-              shadow-2xl max-h-[94vh] overflow-y-auto relative">
-
-    <!-- Close button -->
-    <button id="modal-close"
-            class="absolute top-4 right-4 text-gray-400 hover:text-gray-700
-                   p-1.5 rounded-full hover:bg-gray-100 transition-colors z-10"
-            aria-label="Close modal">
-      <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
-              d="M6 18L18 6M6 6l12 12"/>
-      </svg>
-    </button>
-
-    <!-- ── FORM SCREEN ─────────────────────────────────────────────────── -->
-    <div id="booking-form-screen" class="p-6 sm:p-8">
-
-      <h2 class="text-xl font-extrabold text-gray-900 mb-1 pr-8">Book This Slot</h2>
-      <p class="text-gray-500 text-sm mb-4">Fill in your details to reserve this time.</p>
-
-      <!-- Slot info badge -->
-      <div class="flex items-start gap-2 bg-blue-50 border border-blue-200
-                  rounded-xl px-4 py-3 mb-5 text-sm font-medium text-blue-800 leading-snug">
-        <span id="slot-details">📅 Loading…</span>
-      </div>
-
-      <!-- Error message -->
-      <div id="booking-error"
-           class="hidden mb-4 bg-red-50 border border-red-200 rounded-xl px-4 py-3
-                  text-sm text-red-700 font-medium flex items-start gap-2">
-        <span class="shrink-0 mt-0.5">⚠️</span>
-        <span id="booking-error-text"></span>
-      </div>
-
-      <!-- Form -->
-      <div class="space-y-4">
-
-        <div>
-          <label class="block text-sm font-medium text-gray-700 mb-1">
-            Full Name <span class="text-red-500">*</span>
-          </label>
-          <input id="booking-name" type="text" autocomplete="name"
-                 placeholder="John Smith"
-                 class="w-full border border-gray-300 rounded-xl px-4 py-2.5 text-sm
-                        focus:outline-none focus:ring-2 focus:ring-blue-500
-                        focus:border-transparent transition-colors">
-        </div>
-
-        <div>
-          <label class="block text-sm font-medium text-gray-700 mb-1">
-            Phone Number <span class="text-red-500">*</span>
-          </label>
-          <input id="booking-phone" type="tel" autocomplete="tel"
-                 placeholder="(555) 123-4567"
-                 class="w-full border border-gray-300 rounded-xl px-4 py-2.5 text-sm
-                        focus:outline-none focus:ring-2 focus:ring-blue-500
-                        focus:border-transparent transition-colors">
-        </div>
-
-        <div>
-          <label class="block text-sm font-medium text-gray-700 mb-1">
-            Email Address <span class="text-red-500">*</span>
-          </label>
-          <input id="booking-email" type="email" autocomplete="email"
-                 placeholder="you@example.com"
-                 class="w-full border border-gray-300 rounded-xl px-4 py-2.5 text-sm
-                        focus:outline-none focus:ring-2 focus:ring-blue-500
-                        focus:border-transparent transition-colors">
-        </div>
-
-        <div>
-          <label class="block text-sm font-medium text-gray-700 mb-1">Service Type</label>
-          <div class="relative">
-            <select id="booking-service"
-                    class="w-full appearance-none border border-gray-300 rounded-xl
-                           px-4 py-2.5 text-sm bg-white pr-8
-                           focus:outline-none focus:ring-2 focus:ring-blue-500
-                           focus:border-transparent transition-colors">
-              <option value="">— Select service —</option>
-              <option value="plumbing_leak">🔧 Plumbing Leak</option>
-              <option value="faucet_toilet">🚿 Faucet &amp; Toilet</option>
-              <option value="water_heater">♨️ Water Heater</option>
-              <option value="electrical">⚡ Electrical</option>
-              <option value="roofing">🏠 Roofing</option>
-            </select>
-            <svg class="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2
-                        w-4 h-4 text-gray-400"
-                 fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="M19 9l-7 7-7-7"/>
-            </svg>
-          </div>
-        </div>
-
-        <div>
-          <label class="block text-sm font-medium text-gray-700 mb-1">
-            Additional Notes
-            <span class="text-gray-400 font-normal">(optional)</span>
-          </label>
-          <textarea id="booking-comment" rows="3"
-                    placeholder="Describe the issue or any special access instructions…"
-                    class="w-full border border-gray-300 rounded-xl px-4 py-2.5 text-sm
-                           resize-none focus:outline-none focus:ring-2 focus:ring-blue-500
-                           focus:border-transparent transition-colors"></textarea>
-        </div>
-
-      </div><!-- /form fields -->
-
-      <button id="booking-submit-btn"
-              class="mt-5 w-full bg-blue-600 hover:bg-blue-700 active:bg-blue-800
-                     text-white font-bold text-sm py-3.5 rounded-xl shadow
-                     flex items-center justify-center gap-2 transition-colors">
-        Confirm Booking →
-      </button>
-
-      <p class="mt-3 text-center text-xs text-gray-400">
-        * Demo only — no real appointment will be scheduled.
-      </p>
-
-    </div><!-- /form-screen -->
-
-
-    <!-- ── SUCCESS SCREEN ──────────────────────────────────────────────── -->
-    <div id="booking-success-screen" class="hidden p-6 sm:p-8 text-center">
-
-      <!-- Animated checkmark -->
-      <div class="flex justify-center mb-5">
-        <svg width="90" height="90" viewBox="0 0 100 100">
-          <circle class="circle-animate" cx="50" cy="50" r="45"
-                  fill="none" stroke="#22c55e" stroke-width="5" stroke-linecap="round"/>
-          <polyline class="check-animate" points="28,52 43,67 72,35"
-                    fill="none" stroke="#22c55e" stroke-width="5"
-                    stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </div>
-
-      <h2 class="text-2xl font-extrabold text-gray-900 mb-1 fade-in-up">
-        Booking Request Submitted!
-      </h2>
-      <p class="text-gray-500 text-sm mb-6 fade-in-up">
-        We'll confirm your appointment within 2 hours.
-      </p>
-
-      <!-- Booking summary -->
-      <div class="bg-gray-50 border border-gray-200 rounded-2xl p-4 mb-5
-                  text-left fade-in-up">
-        <div class="grid grid-cols-2 gap-y-3 gap-x-4 text-sm">
-          <div>
-            <p class="text-gray-400 text-xs uppercase tracking-wide mb-0.5">Date</p>
-            <p id="success-date" class="font-bold text-gray-900">—</p>
-          </div>
-          <div>
-            <p class="text-gray-400 text-xs uppercase tracking-wide mb-0.5">Time</p>
-            <p id="success-time" class="font-bold text-gray-900">—</p>
-          </div>
-          <div class="col-span-2">
-            <p class="text-gray-400 text-xs uppercase tracking-wide mb-0.5">Service</p>
-            <p id="success-service" class="font-bold text-gray-900">—</p>
-          </div>
-        </div>
-      </div>
-
-      <a id="gcal-btn" href="#" target="_blank" rel="noopener noreferrer"
-         class="block w-full border-2 border-blue-500 text-blue-600 bg-white
-                hover:bg-blue-50 font-bold text-sm py-3 rounded-xl mb-3
-                transition-colors fade-in-up">
-        📅 Add to Google Calendar
-      </a>
-
-      <button id="modal-close-success"
-              class="w-full bg-gray-100 hover:bg-gray-200 text-gray-700
-                     font-bold text-sm py-3 rounded-xl transition-colors fade-in-up">
-        Close
-      </button>
-
-      <p class="mt-3 text-center text-xs text-gray-400 fade-in-up">
-        * Demo only — no real appointment will be confirmed.
-      </p>
-
-    </div><!-- /success-screen -->
-
-  </div><!-- /modal-card -->
-</div><!-- /booking-modal -->
 
 {% endblock %}
 
 
 {% block extra_js %}
+<!-- ─── Cal.com Embed: official inline snippet ───────────────────────────── -->
 <script>
-// ─────────────────────────────────────────────────────────────────────────────
-// Online Booking Calendar
-// All state lives in bookingState. No page reloads.
-// ─────────────────────────────────────────────────────────────────────────────
+(function (C, A, L) {
+  let p = function (a, ar) { a.q.push(ar); };
+  let d = C.document;
+  C.Cal = C.Cal || function () {
+    let cal = C.Cal; let ar = arguments;
+    if (!cal.loaded) {
+      cal.ns = {}; cal.q = cal.q || [];
+      d.head.appendChild(d.createElement("script")).src = A;
+      cal.loaded = true;
+    }
+    if (ar[0] === L) {
+      const api = function () { p(api, arguments); };
+      const namespace = ar[1];
+      api.q = api.q || [];
+      if (typeof namespace === "string") {
+        cal.ns[namespace] = cal.ns[namespace] || api;
+        p(cal.ns[namespace], ar);
+        p(cal, ["initNamespace", namespace]);
+      } else p(cal, ar);
+      return;
+    }
+    p(cal, ar);
+  };
+})(window, "https://app.cal.com/embed/embed.js", "init");
+</script>
 
-const SERVICE_DURATIONS = {
-  plumbing_leak: 1.0,
-  faucet_toilet: 1.0,
-  water_heater:  3.0,
-  electrical:    2.0,
-  roofing:       6.0,
+<!-- ─── Booking page logic ─────────────────────────────────────────────────── -->
+<script>
+const CAL_USERNAME = "{{ cal_username }}";
+
+// Map service key → cal.com event slug (from server context)
+const CAL_SLUGS = {
+  {% for key, slug in cal_slugs.items() %}
+  "{{ key }}": "{{ slug }}"{% if not loop.last %},{% endif %}
+
+  {% endfor %}
 };
 
-const SERVICE_LABELS = {
-  plumbing_leak: 'Plumbing Leak Repair',
-  faucet_toilet: 'Faucet & Toilet Replacement',
-  water_heater:  'Water Heater Installation',
-  electrical:    'Electrical Work',
-  roofing:       'Roof Repair / Replacement',
-};
+// Service choices list (same order as tab buttons)
+const SERVICE_CHOICES = [
+  {% for svc in service_choices %}
+  {"key": "{{ svc.key }}", "label": "{{ svc.label }}", "duration": "{{ svc.duration }}"}{% if not loop.last %},{% endif %}
 
-let bookingState = { service: null, selectedEvent: null };
-let calendar = null;
+  {% endfor %}
+];
 
-// ── Zone 1: Service tags ──────────────────────────────────────────────────────
+// Track which namespaces have been initialised (lazy init per service)
+const initializedServices = {};
 
-document.querySelectorAll('.service-tag').forEach(function (btn) {
-  btn.addEventListener('click', function () {
-    const wasActive = btn.classList.contains('active-tag');
+/**
+ * Initialise a Cal.com embed namespace for the given service key.
+ * Called lazily on first tab activation.
+ */
+function initCalEmbed(serviceKey) {
+  if (initializedServices[serviceKey]) return;
 
-    // Deselect all
-    document.querySelectorAll('.service-tag').forEach(function (b) {
-      b.classList.remove('active-tag');
-    });
+  const slug = CAL_SLUGS[serviceKey];
+  if (!slug) return;
 
-    if (wasActive) {
-      // Toggle off
-      bookingState.service = null;
-      document.getElementById('duration-hint').classList.add('hidden');
+  const containerId = '#cal-' + serviceKey + '-container';
+
+  Cal("init", serviceKey, {origin: "https://app.cal.com"});
+  Cal.ns[serviceKey]("inline", {
+    elementOrSelector: containerId,
+    calLink: CAL_USERNAME + "/" + slug,
+    layout: "month_view",
+  });
+  Cal.ns[serviceKey]("ui", {
+    styles: {branding: {brandColor: "#2563eb"}},
+    hideEventTypeDetails: false,
+    layout: "month_view",
+  });
+
+  initializedServices[serviceKey] = true;
+}
+
+/**
+ * Switch active service tab:
+ *  1. Hide all embed containers
+ *  2. Show the target container
+ *  3. Update tab button styles
+ *  4. Update info bar text
+ *  5. Lazily init Cal embed if needed
+ */
+function switchService(serviceKey) {
+  // Hide all containers
+  document.querySelectorAll('[id$="-container"][id^="cal-"]').forEach(function (el) {
+    el.classList.add('hidden');
+  });
+
+  // Show target
+  var container = document.getElementById('cal-' + serviceKey + '-container');
+  if (container) container.classList.remove('hidden');
+
+  // Update tab styles
+  document.querySelectorAll('.service-tab').forEach(function (btn) {
+    if (btn.dataset.service === serviceKey) {
+      btn.classList.add('active', 'bg-blue-600', 'text-white', 'border-blue-600');
+      btn.classList.remove('bg-white', 'text-gray-700', 'border-gray-200');
     } else {
-      btn.classList.add('active-tag');
-      bookingState.service = btn.dataset.service;
-      const h = SERVICE_DURATIONS[bookingState.service];
-      document.getElementById('duration-text').textContent =
-        'Estimated duration: ' + h + ' hour' + (h !== 1 ? 's' : '');
-      document.getElementById('duration-hint').classList.remove('hidden');
+      btn.classList.remove('active', 'bg-blue-600', 'text-white', 'border-blue-600');
+      btn.classList.add('bg-white', 'text-gray-700', 'border-gray-200');
     }
   });
-});
 
-// ── Zone 2: FullCalendar ──────────────────────────────────────────────────────
+  // Update info bar
+  var svc = SERVICE_CHOICES.find(function (s) { return s.key === serviceKey; });
+  if (svc) {
+    var infoEl = document.getElementById('selected-info-text');
+    if (infoEl) {
+      infoEl.textContent = 'Selected: ' + svc.label + ' \u00b7 Est. duration: ' + svc.duration;
+      infoEl.closest('p').classList.add('fade-in');
+    }
+  }
 
+  // Lazy init Cal embed
+  initCalEmbed(serviceKey);
+}
+
+// Init first service on page load
 document.addEventListener('DOMContentLoaded', function () {
-  var calEl  = document.getElementById('calendar');
-  var mobile = window.innerWidth < 640;
-
-  calendar = new FullCalendar.Calendar(calEl, {
-    initialView:  mobile ? 'listWeek' : 'timeGridWeek',
-    headerToolbar: {
-      left:   'prev,next today',
-      center: 'title',
-      right:  'dayGridMonth,timeGridWeek',
-    },
-    slotMinTime:  '08:00:00',
-    slotMaxTime:  '17:00:00',
-    height:       mobile ? 400 : 600,
-    nowIndicator: true,
-    allDaySlot:   false,
-    eventSources: [{ url: '/api/booking/slots/', method: 'GET' }],
-
-    // Custom event label
-    eventContent: function (info) {
-      var avail = info.event.extendedProps.is_available;
-      var el = document.createElement('div');
-      el.style.fontSize   = '0.7rem';
-      el.style.fontWeight = '600';
-      el.style.padding    = '1px 4px';
-      el.style.overflow   = 'hidden';
-      el.style.whiteSpace = 'nowrap';
-      el.textContent = avail ? 'Available \u2713' : 'Booked';
-      return { domNodes: [el] };
-    },
-
-    // Visual feedback for booked slots
-    eventDidMount: function (info) {
-      if (!info.event.extendedProps.is_available) {
-        info.el.style.cursor  = 'not-allowed';
-        info.el.style.opacity = '0.6';
-        info.el.title = 'This slot is already booked';
-      } else {
-        info.el.title = 'Click to book this slot';
-      }
-    },
-
-    // Open modal on available slot click
-    eventClick: function (info) {
-      if (!info.event.extendedProps.is_available) return;
-      openBookingModal(info.event);
-    },
-  });
-
-  calendar.render();
-
-  // ── FAQ accordion ──────────────────────────────────────────────────────────
-  document.querySelectorAll('.faq-question').forEach(function (btn) {
-    btn.addEventListener('click', function () {
-      var item    = btn.closest('.faq-item');
-      var answer  = item.querySelector('.faq-answer');
-      var chevron = btn.querySelector('.faq-chevron');
-      var wasOpen = !answer.classList.contains('hidden');
-
-      // Collapse all
-      document.querySelectorAll('.faq-answer').forEach(function (a) {
-        a.classList.add('hidden');
-      });
-      document.querySelectorAll('.faq-chevron').forEach(function (c) {
-        c.style.transform = '';
-      });
-
-      if (!wasOpen) {
-        answer.classList.remove('hidden');
-        chevron.style.transform = 'rotate(180deg)';
-      }
-    });
-  });
-
-  // ── Modal wiring ────────────────────────────────────────────────────────────
-  document.getElementById('modal-close').addEventListener('click', closeModal);
-
-  document.getElementById('booking-modal').addEventListener('click', function (e) {
-    if (e.target === this) closeModal();
-  });
-
-  document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape') closeModal();
-  });
-
-  document.getElementById('booking-submit-btn').addEventListener('click', submitBooking);
-
-  // Close success → refetch events to reflect booked state
-  document.getElementById('modal-close-success').addEventListener('click', function () {
-    closeModal();
-    if (calendar) calendar.refetchEvents();
-  });
-
-}); // end DOMContentLoaded
-
-// ── Modal: open ───────────────────────────────────────────────────────────────
-
-function openBookingModal(event) {
-  bookingState.selectedEvent = event;
-
-  // Format slot info string
-  var start   = event.start;
-  var dayName = start.toLocaleDateString('en-US', { weekday: 'long' });
-  var dateStr = start.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
-  var timeStr = start.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true });
-  var svc     = bookingState.service || '';
-  var hours   = SERVICE_DURATIONS[svc] || 1;
-
-  document.getElementById('slot-details').textContent =
-    '\uD83D\uDCC5 ' + dayName + ', ' + dateStr + ' at ' + timeStr +
-    ' \u2022 Est. ' + hours + ' hour' + (hours !== 1 ? 's' : '');
-
-  // Pre-fill service from Zone 1
-  document.getElementById('booking-service').value = bookingState.service || '';
-
-  // Clear inputs
-  ['booking-name', 'booking-phone', 'booking-email', 'booking-comment'].forEach(function (id) {
-    document.getElementById(id).value = '';
-  });
-
-  // Reset screen state
-  document.getElementById('booking-error').classList.add('hidden');
-  document.getElementById('booking-form-screen').classList.remove('hidden');
-  document.getElementById('booking-success-screen').classList.add('hidden');
-
-  // Open
-  document.getElementById('booking-modal').classList.remove('hidden');
-  document.body.style.overflow = 'hidden';
-  setTimeout(function () { document.getElementById('booking-name').focus(); }, 60);
-}
-
-// ── Modal: close ──────────────────────────────────────────────────────────────
-
-function closeModal() {
-  document.getElementById('booking-modal').classList.add('hidden');
-  document.body.style.overflow = '';
-  bookingState.selectedEvent = null;
-}
-
-// ── Booking submit ────────────────────────────────────────────────────────────
-
-async function submitBooking() {
-  var name    = document.getElementById('booking-name').value.trim();
-  var phone   = document.getElementById('booking-phone').value.trim();
-  var email   = document.getElementById('booking-email').value.trim();
-  var service = document.getElementById('booking-service').value;
-  var comment = document.getElementById('booking-comment').value.trim();
-
-  if (!name || !phone || !email) {
-    showFormError('Please fill in Name, Phone, and Email.');
-    return;
-  }
-
-  var event = bookingState.selectedEvent;
-  if (!event) return;
-
-  var btn = document.getElementById('booking-submit-btn');
-  btn.disabled    = true;
-  btn.textContent = 'Submitting\u2026';
-  document.getElementById('booking-error').classList.add('hidden');
-
-  try {
-    var res = await fetch('/api/booking/submit/', {
-      method:  'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'X-CSRFToken':  getCookie('csrftoken'),
-      },
-      body: JSON.stringify({
-        slot_id:      parseInt(event.id, 10),
-        name:         name,
-        phone:        phone,
-        email:        email,
-        service_type: service,
-        comment:      comment,
-      }),
-    });
-
-    var data = await res.json();
-
-    if (res.status === 409) {
-      showFormError('This slot was just booked. Please choose another time.');
-      if (calendar) calendar.refetchEvents();
-      return;
-    }
-
-    if (!res.ok) {
-      showFormError(data.error || 'Something went wrong. Please try again.');
-      return;
-    }
-
-    // ── Success ──
-    document.getElementById('success-date').textContent    = data.slot_date;
-    document.getElementById('success-time').textContent    = data.slot_time;
-    document.getElementById('success-service').textContent =
-      SERVICE_LABELS[service] || SERVICE_LABELS[bookingState.service] || 'Home Service';
-    document.getElementById('gcal-btn').href = data.gcal_url;
-
-    document.getElementById('booking-form-screen').classList.add('hidden');
-    document.getElementById('booking-success-screen').classList.remove('hidden');
-
-  } catch (err) {
-    showFormError('Something went wrong. Please try again.');
-  } finally {
-    btn.disabled    = false;
-    btn.textContent = 'Confirm Booking \u2192';
-  }
-}
-
-function showFormError(msg) {
-  document.getElementById('booking-error-text').textContent = msg;
-  var wrap = document.getElementById('booking-error');
-  wrap.classList.remove('hidden');
-  wrap.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-}
+  switchService('{{ service_choices[0].key }}');
+});
 </script>
 {% endblock %}

@@ -110,3 +110,13 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 OPENROUTER_API_KEY = os.environ.get('OPENROUTER_API_KEY', '')
 OPENROUTER_BASE_URL = 'https://openrouter.ai/api/v1'
 OPENROUTER_MODEL = 'google/gemini-2.5-flash-lite'
+
+# Cal.com (used by booking app)
+CAL_API_KEY  = os.environ.get('CAL_API_KEY', '')
+CAL_USERNAME = os.environ.get('CAL_USERNAME', 'demo')
+CAL_BASE_URL = 'https://api.cal.com/v2'
+CAL_SLUGS = {
+    'plumbing_leak': os.environ.get('CAL_SLUG_PLUMBING',   'plumbing-repair'),
+    'faucet_toilet': os.environ.get('CAL_SLUG_FAUCET',     'faucet-toilet'),
+    'electrical':    os.environ.get('CAL_SLUG_ELECTRICAL', 'electrical-work'),
+}
