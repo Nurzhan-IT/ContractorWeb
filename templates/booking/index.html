@@ -4,6 +4,8 @@
 {% block meta_description %}Book a contractor service appointment online. Real-time availability and instant confirmation powered by Cal.com.{% endblock %}
 
 {% block extra_head %}
+<!-- FullCalendar CSS (booking page only) -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.css" />
 <style>
   /* ── Service tab active state ── */
   .service-tab.active {
@@ -54,6 +56,10 @@
       <a href="https://cal.com" target="_blank" rel="noopener"
          class="underline underline-offset-2 hover:no-underline">Cal.com</a>
     </span>
+
+    <p class="mt-4 text-blue-200 text-xs max-w-md">
+      💡 <strong>Demo context:</strong> This shows how your customers would book appointments on your website. Switch service types above to see how multiple services work.
+    </p>
 
   </div>
 </section>
@@ -444,6 +450,9 @@
 
 
 {% block extra_js %}
+<!-- FullCalendar JS (booking page only) -->
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js"></script>
+
 <!-- ─── Cal.com Embed: official inline snippet ───────────────────────────── -->
 <script>
 (function (C, A, L) {
