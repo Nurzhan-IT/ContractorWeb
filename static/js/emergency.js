@@ -48,9 +48,35 @@ document.addEventListener('DOMContentLoaded', function () {
     if (e.target === modal) closeModal();
   });
 
+  // ESC key closes the modal
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && !modal.classList.contains('hidden')) closeModal();
+  });
+
+  // Focus trap — keep keyboard navigation inside the open modal
+  modal.addEventListener('keydown', function (e) {
+    if (e.key !== 'Tab') return;
+    var focusableEls = Array.from(modal.querySelectorAll(
+      'button, input, textarea, select, a[href], [tabindex]:not([tabindex="-1"])'
+    )).filter(function (el) { return !el.disabled; });
+    if (focusableEls.length === 0) return;
+    var firstEl = focusableEls[0];
+    var lastEl  = focusableEls[focusableEls.length - 1];
+    if (e.shiftKey) {
+      if (document.activeElement === firstEl) { e.preventDefault(); lastEl.focus(); }
+    } else {
+      if (document.activeElement === lastEl) { e.preventDefault(); firstEl.focus(); }
+    }
+  });
+
   function openModal() {
     modal.classList.remove('hidden');
     document.body.style.overflow = 'hidden';
+    // Focus first focusable element for accessibility
+    setTimeout(function () {
+      var firstFocusable = modal.querySelector('input, button, textarea');
+      if (firstFocusable) firstFocusable.focus();
+    }, 50);
   }
 
   function closeModal() {
@@ -72,7 +98,12 @@ document.addEventListener('DOMContentLoaded', function () {
   form.addEventListener('submit', function (e) {
     e.preventDefault();
 
-    if (!phoneInput.value.trim()) {
+    var phoneVal = phoneInput.value.trim();
+    var phoneDigits = phoneVal.replace(/\D/g, '');
+    if (!phoneVal || phoneDigits.length < 10) {
+      phoneError.textContent = phoneDigits.length > 0 && phoneDigits.length < 10
+        ? 'Please enter a valid phone number (at least 10 digits)'
+        : 'Phone number is required';
       phoneError.classList.remove('hidden');
       phoneInput.focus();
       return;

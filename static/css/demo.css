@@ -1,6 +1,6 @@
 /* demo.css — site-wide custom styles (Tailwind handles most of the UI) */
 
-/* Smooth page transitions */
+/* Global box-sizing */
 * {
   box-sizing: border-box;
 }
@@ -17,15 +17,31 @@ img-comparison-slider img {
   object-fit: cover;
 }
 
-/* FullCalendar overrides */
-.fc-event {
-  cursor: pointer;
-}
-
 /* Leaflet map z-index fix when used inside flex/grid layouts */
 .leaflet-pane {
   z-index: 1;
 }
 .leaflet-control {
   z-index: 2;
+}
+
+/* ── Mobile nav slide-in animation ──────────────────────────────────────────
+   Controls the mobile dropdown. The `open` class is toggled via JS.
+   On md+ screens the menu is hidden by Tailwind's md:hidden utility.  */
+@media (max-width: 767px) {
+  #nav-menu {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 0.25s ease-out, opacity 0.2s ease;
+  }
+  #nav-menu.open {
+    max-height: 500px;
+    opacity: 1;
+  }
+}
+
+/* ── Portfolio filter card fade transition ───────────────────────────────── */
+.project-card {
+  transition: opacity 0.2s ease;
 }

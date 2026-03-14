@@ -129,6 +129,9 @@
      MODAL
      =================================================================== -->
 <div id="emergency-modal"
+     role="dialog"
+     aria-modal="true"
+     aria-labelledby="emergency-modal-title"
      class="hidden fixed inset-0 z-50 flex items-center justify-center p-4"
      style="background:rgba(0,0,0,0.6); backdrop-filter:blur(4px);">
 
@@ -149,7 +152,7 @@
 
       <div class="text-center mb-6">
         <div class="text-4xl mb-2">🚨</div>
-        <h2 class="text-2xl font-extrabold text-gray-900">Emergency Request</h2>
+        <h2 id="emergency-modal-title" class="text-2xl font-extrabold text-gray-900">Emergency Request</h2>
         <p class="text-gray-400 text-sm mt-1">We'll connect you with a specialist in minutes</p>
       </div>
 

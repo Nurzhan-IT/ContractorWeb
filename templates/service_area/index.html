@@ -4,6 +4,8 @@
 {% block meta_description %}Interactive coverage map with instant ZIP code check. See if your area is within our 35-mile service zone around Atlanta, GA.{% endblock %}
 
 {% block extra_head %}
+<!-- Leaflet CSS (service area page only) -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 <style>
   #map { z-index: 0; }
 
@@ -64,7 +66,7 @@
         </form>
 
         <!-- ── Result block (hidden until first check) ── -->
-        <div id="result-block" class="hidden mt-5">
+        <div id="result-block" class="hidden mt-5" aria-live="polite" aria-atomic="true">
 
           <!-- IN ZONE -->
           <div id="in-zone" class="hidden result-animate">
@@ -214,6 +216,8 @@
 {% endblock %}
 
 {% block extra_js %}
+<!-- Leaflet JS (service area page only) -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
   window.SERVICE_AREA = {
     centerLat:    {{ center_lat }},

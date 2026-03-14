@@ -6,17 +6,32 @@
   <title>{% block title %}ContractorPro Demo{% endblock %}</title>
   <meta name="description" content="{% block meta_description %}ContractorPro Demo — interactive contractor website features: instant quote calculator, emergency dispatch, service area map, before/after portfolio, and online booking.{% endblock %}">
 
+  <!-- Open Graph / Social Sharing -->
+  <meta property="og:title" content="{% block og_title %}ContractorPro Demo{% endblock %}">
+  <meta property="og:description" content="{% block og_description %}Interactive contractor website features — see your future website in action.{% endblock %}">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- Favicon (inline SVG wrench emoji) -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔧</text></svg>">
+
+  <!-- Inter font — professional, consistent typography across all OS/browsers -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
-
-  <!-- Leaflet CSS -->
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 
   <!-- img-comparison-slider CSS -->
   <link rel="stylesheet" href="https://unpkg.com/img-comparison-slider@8/dist/styles.css" />
 
   <!-- Site CSS -->
   <link rel="stylesheet" href="{{ static('css/demo.css') }}">
+
+  <style>
+    body { font-family: 'Inter', system-ui, -apple-system, sans-serif; }
+  </style>
 
   {% block extra_head %}{% endblock %}
 </head>
@@ -47,7 +62,9 @@
       <!-- Mobile toggle -->
       <button id="nav-toggle"
               class="md:hidden p-1.5 rounded hover:bg-gray-700 focus:outline-none transition-colors"
-              aria-label="Toggle menu">
+              aria-label="Toggle menu"
+              aria-expanded="false"
+              aria-controls="nav-menu">
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                 d="M4 6h16M4 12h16M4 18h16"/>
@@ -57,39 +74,55 @@
       <!-- Desktop links -->
       <div class="hidden md:flex items-center gap-0.5 text-sm font-medium">
         <a href="/"
-           class="px-3 py-2 rounded hover:bg-gray-700 hover:text-blue-300 transition-colors">Landing</a>
+           class="px-3 py-2 rounded transition-colors {% if request.path == '/' %}bg-gray-700 text-blue-300{% else %}hover:bg-gray-700 hover:text-blue-300{% endif %}">Landing</a>
         <a href="/demo/"
-           class="px-3 py-2 rounded hover:bg-gray-700 hover:text-blue-300 transition-colors">Hub</a>
+           class="px-3 py-2 rounded transition-colors {% if request.path == '/demo/' %}bg-gray-700 text-blue-300{% else %}hover:bg-gray-700 hover:text-blue-300{% endif %}">Hub</a>
         <a href="/demo/quote/"
-           class="px-3 py-2 rounded hover:bg-gray-700 hover:text-blue-300 transition-colors">Quote</a>
+           class="px-3 py-2 rounded transition-colors {% if request.path.startswith('/demo/quote') %}bg-gray-700 text-blue-300{% else %}hover:bg-gray-700 hover:text-blue-300{% endif %}">Quote</a>
         <a href="/demo/emergency/"
-           class="px-3 py-2 rounded hover:bg-gray-700 hover:text-blue-300 transition-colors">Emergency</a>
+           class="px-3 py-2 rounded transition-colors {% if request.path.startswith('/demo/emergency') %}bg-gray-700 text-blue-300{% else %}hover:bg-gray-700 hover:text-blue-300{% endif %}">Emergency</a>
         <a href="/demo/service-area/"
-           class="px-3 py-2 rounded hover:bg-gray-700 hover:text-blue-300 transition-colors">Service Area</a>
+           class="px-3 py-2 rounded transition-colors {% if request.path.startswith('/demo/service-area') %}bg-gray-700 text-blue-300{% else %}hover:bg-gray-700 hover:text-blue-300{% endif %}">Service Area</a>
         <a href="/demo/portfolio/"
-           class="px-3 py-2 rounded hover:bg-gray-700 hover:text-blue-300 transition-colors">Portfolio</a>
+           class="px-3 py-2 rounded transition-colors {% if request.path.startswith('/demo/portfolio') %}bg-gray-700 text-blue-300{% else %}hover:bg-gray-700 hover:text-blue-300{% endif %}">Portfolio</a>
         <a href="/demo/booking/"
-           class="px-3 py-2 rounded hover:bg-gray-700 hover:text-blue-300 transition-colors">Booking</a>
+           class="px-3 py-2 rounded transition-colors {% if request.path.startswith('/demo/booking') %}bg-gray-700 text-blue-300{% else %}hover:bg-gray-700 hover:text-blue-300{% endif %}">Booking</a>
       </div>
     </div>
 
-    <!-- Mobile dropdown -->
+    <!-- Mobile dropdown (animated via CSS in demo.css) -->
     <div id="nav-menu"
-         class="hidden md:hidden border-t border-gray-700 px-4 py-2 flex flex-col gap-0.5 text-sm">
+         class="md:hidden border-t border-gray-700 px-4 flex flex-col gap-0.5 text-sm"
+         role="navigation"
+         aria-label="Mobile navigation">
+
+      <!-- Close affordance -->
+      <div class="flex justify-end pt-2">
+        <button id="nav-close"
+                class="text-gray-400 hover:text-white p-1 rounded hover:bg-gray-700 transition-colors"
+                aria-label="Close navigation menu">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                  d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
+      </div>
+
       <a href="/"
-         class="px-3 py-2 rounded hover:bg-gray-700 hover:text-blue-300 transition-colors">Landing</a>
+         class="px-3 py-3 rounded transition-colors {% if request.path == '/' %}bg-gray-700 text-blue-300{% else %}hover:bg-gray-700 hover:text-blue-300{% endif %}">Landing</a>
       <a href="/demo/"
-         class="px-3 py-2 rounded hover:bg-gray-700 hover:text-blue-300 transition-colors">Demo Hub</a>
+         class="px-3 py-3 rounded transition-colors {% if request.path == '/demo/' %}bg-gray-700 text-blue-300{% else %}hover:bg-gray-700 hover:text-blue-300{% endif %}">Demo Hub</a>
       <a href="/demo/quote/"
-         class="px-3 py-2 rounded hover:bg-gray-700 hover:text-blue-300 transition-colors">Quote Calculator</a>
+         class="px-3 py-3 rounded transition-colors {% if request.path.startswith('/demo/quote') %}bg-gray-700 text-blue-300{% else %}hover:bg-gray-700 hover:text-blue-300{% endif %}">Quote Calculator</a>
       <a href="/demo/emergency/"
-         class="px-3 py-2 rounded hover:bg-gray-700 hover:text-blue-300 transition-colors">Emergency Request</a>
+         class="px-3 py-3 rounded transition-colors {% if request.path.startswith('/demo/emergency') %}bg-gray-700 text-blue-300{% else %}hover:bg-gray-700 hover:text-blue-300{% endif %}">Emergency Request</a>
       <a href="/demo/service-area/"
-         class="px-3 py-2 rounded hover:bg-gray-700 hover:text-blue-300 transition-colors">Service Area Map</a>
+         class="px-3 py-3 rounded transition-colors {% if request.path.startswith('/demo/service-area') %}bg-gray-700 text-blue-300{% else %}hover:bg-gray-700 hover:text-blue-300{% endif %}">Service Area Map</a>
       <a href="/demo/portfolio/"
-         class="px-3 py-2 rounded hover:bg-gray-700 hover:text-blue-300 transition-colors">Before/After Gallery</a>
+         class="px-3 py-3 rounded transition-colors {% if request.path.startswith('/demo/portfolio') %}bg-gray-700 text-blue-300{% else %}hover:bg-gray-700 hover:text-blue-300{% endif %}">Before/After Gallery</a>
       <a href="/demo/booking/"
-         class="px-3 py-2 rounded hover:bg-gray-700 hover:text-blue-300 transition-colors">Online Booking</a>
+         class="px-3 py-3 rounded transition-colors {% if request.path.startswith('/demo/booking') %}bg-gray-700 text-blue-300{% else %}hover:bg-gray-700 hover:text-blue-300{% endif %}">Online Booking</a>
+      <div class="pb-2"></div>
     </div>
   </nav>
 
@@ -98,21 +131,46 @@
     {% block content %}{% endblock %}
   </main>
 
-  <!-- Footer -->
-  <footer class="bg-gray-900 text-gray-400 text-sm text-center py-4">
-    <p>&copy; 2025 ContractorWeb &mdash; All content is simulated for demonstration purposes only.</p>
+  <!-- Footer — improved with feature links -->
+  <footer class="bg-gray-900 text-gray-400 text-sm py-6 sm:py-8">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+        <p>&copy; 2025 ContractorWeb &mdash; All content is simulated for demonstration purposes only.</p>
+        <nav aria-label="Footer navigation">
+          <div class="flex flex-wrap gap-x-4 gap-y-1 text-xs">
+            <a href="/demo/" class="hover:text-gray-200 transition-colors">Hub</a>
+            <a href="/demo/quote/" class="hover:text-gray-200 transition-colors">Quote</a>
+            <a href="/demo/emergency/" class="hover:text-gray-200 transition-colors">Emergency</a>
+            <a href="/demo/service-area/" class="hover:text-gray-200 transition-colors">Service Area</a>
+            <a href="/demo/portfolio/" class="hover:text-gray-200 transition-colors">Portfolio</a>
+            <a href="/demo/booking/" class="hover:text-gray-200 transition-colors">Booking</a>
+          </div>
+        </nav>
+      </div>
+    </div>
   </footer>
 
   <!-- CDN scripts (end of body) -->
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script type="module" src="https://unpkg.com/img-comparison-slider@8/dist/index.js"></script>
 
   <!-- Mobile nav toggle, demo banner dismiss, global CSRF helper -->
   <script>
-    document.getElementById('nav-toggle').addEventListener('click', function () {
-      document.getElementById('nav-menu').classList.toggle('hidden');
+    // ── Mobile nav toggle (animated via CSS) ─────────────────────────────────
+    var navToggle = document.getElementById('nav-toggle');
+    var navMenu   = document.getElementById('nav-menu');
+    var navClose  = document.getElementById('nav-close');
+
+    navToggle.addEventListener('click', function () {
+      var isOpen = navMenu.classList.toggle('open');
+      navToggle.setAttribute('aria-expanded', String(isOpen));
     });
 
+    navClose.addEventListener('click', function () {
+      navMenu.classList.remove('open');
+      navToggle.setAttribute('aria-expanded', 'false');
+    });
+
+    // ── Demo banner dismiss ───────────────────────────────────────────────────
     document.getElementById('dismiss-banner').addEventListener('click', function () {
       document.getElementById('demo-banner').style.display = 'none';
       document.getElementById('main-nav').style.top = '0';

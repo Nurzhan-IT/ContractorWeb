@@ -5,11 +5,11 @@
 
 {% block extra_head %}
 <style>
-  /* Slider sizing & handle styling */
+  /* Slider sizing & handle styling — responsive height via clamp() */
   img-comparison-slider {
     display: block;
     width: 100%;
-    height: 240px;
+    height: clamp(180px, 35vw, 320px);
     --divider-width: 2px;
     --divider-color: rgba(255,255,255,0.9);
     --default-handle-opacity: 0.9;
@@ -18,7 +18,7 @@
   }
   img-comparison-slider img {
     width: 100%;
-    height: 240px;
+    height: clamp(180px, 35vw, 320px);
     object-fit: cover;
     display: block;
   }
@@ -41,7 +41,7 @@
   /* Placeholder shown when image fails to load */
   .img-ph {
     width: 100%;
-    height: 240px;
+    height: clamp(180px, 35vw, 320px);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -137,11 +137,13 @@
             <img-comparison-slider>
               <img slot="first"
                    src="{{ project.before_image_url }}"
-                   alt="Before"
+                   alt="Before: {{ project.title }}"
+                   loading="lazy"
                    onerror="portfolioImgError(this, 'before')">
               <img slot="second"
                    src="{{ project.after_image_url }}"
-                   alt="After"
+                   alt="After: {{ project.title }}"
+                   loading="lazy"
                    onerror="portfolioImgError(this, 'after')">
             </img-comparison-slider>
 
@@ -279,7 +281,7 @@
     if (img.parentNode) img.parentNode.replaceChild(div, img);
   }
 
-  // ── Filter tabs ────────────────────────────────────────────────────────────
+  // ── Filter tabs (with fade transition via .project-card transition in demo.css) ──
   document.addEventListener('DOMContentLoaded', function () {
     var tabs     = document.querySelectorAll('[data-filter]');
     var cards    = document.querySelectorAll('.project-card');
@@ -295,8 +297,17 @@
         var visible = 0;
         cards.forEach(function (card) {
           var match = filter === 'all' || card.dataset.serviceType === filter;
-          card.classList.toggle('hidden', !match);
-          if (match) visible++;
+          if (match) {
+            card.classList.remove('hidden');
+            // Trigger fade-in via rAF to allow display:block to render first
+            requestAnimationFrame(function () {
+              requestAnimationFrame(function () { card.style.opacity = '1'; });
+            });
+            visible++;
+          } else {
+            card.style.opacity = '0';
+            setTimeout(function () { card.classList.add('hidden'); }, 200);
+          }
         });
 
         if (emptyMsg) emptyMsg.classList.toggle('hidden', visible > 0);
