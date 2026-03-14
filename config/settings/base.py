@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     'service_area',
     'portfolio',
     'booking',
+    'web_quote',
 ]
 
 MIDDLEWARE = [

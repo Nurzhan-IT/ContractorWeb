@@ -13,6 +13,7 @@ from django.urls import path, include
 
 urlpatterns = [
     path('quote/', include('quote.api_urls')),
+    path('web-quote/', include('web_quote.api_urls')),
     path('emergency/', include('emergency.api_urls')),
     path('service-area/', include('service_area.api_urls')),
 ]

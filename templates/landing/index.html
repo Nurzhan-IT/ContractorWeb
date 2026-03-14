@@ -788,7 +788,7 @@
           <span class="text-sm font-mono text-purple-600">&lt;Form /&gt;</span>
         </div>
         <h2 class="text-4xl sm:text-5xl font-bold text-gray-900 mb-4">Ready to Grow Your Business?</h2>
-        <p class="text-xl text-gray-600">Tell us about your needs and we'll send you a custom quote within 24 hours</p>
+        <p class="text-xl text-gray-600">Describe your project — get an AI cost estimate in seconds</p>
         <p class="text-base text-gray-500 mt-2">
           Prefer to talk? Call us: <a href="tel:+15551234567" class="font-semibold text-cyan-600 hover:underline">(555) 123-4567</a>
           <span class="text-gray-400 text-sm"> — Mon–Fri 8am–6pm EST</span>
@@ -804,7 +804,7 @@
         <div class="text-center p-4 rounded-xl bg-gray-50 border border-gray-200">
           <div class="text-2xl mb-2">⚡</div>
           <p class="text-xs font-bold text-gray-800">Step 2</p>
-          <p class="text-xs text-gray-500 mt-1">We send a custom<br>proposal in 24h</p>
+          <p class="text-xs text-gray-500 mt-1">AI analyzes your needs<br>(~15 seconds)</p>
         </div>
         <div class="text-center p-4 rounded-xl bg-gray-50 border border-gray-200">
           <div class="text-2xl mb-2">🚀</div>
@@ -814,89 +814,205 @@
       </div>
 
       <div class="animate-section relative">
-        <div class="relative p-8 sm:p-12 rounded-2xl shadow-2xl" style="background:linear-gradient(135deg,#f8fafc,#ffffff);border:1px solid #e2e8f0">
+        <!-- AI Web Quote Form -->
+        <div>
 
-          <form id="contact-form" method="post" action="{{ url('landing:contact') }}" enctype="multipart/form-data" class="space-y-6">
-            {{ csrf_input }}
+          <!-- ── Form ─────────────────────────────────────────────────────── -->
+          <div class="w-full" id="wq-form-col">
 
-            <div class="grid sm:grid-cols-2 gap-6">
-              <div>
-                <label for="name" class="block text-sm font-semibold text-gray-900 mb-2">Your Name *</label>
-                <input type="text" id="name" name="name" required placeholder="John Smith"
-                  class="w-full px-4 py-3 rounded-lg border border-gray-300 bg-white text-gray-900 transition-all"
-                  style="border-color:#d1d5db">
-              </div>
-              <div>
-                <label for="email" class="block text-sm font-semibold text-gray-900 mb-2">Email Address *</label>
-                <input type="email" id="email" name="email" required placeholder="john@example.com"
-                  class="w-full px-4 py-3 rounded-lg border border-gray-300 bg-white text-gray-900 transition-all"
-                  style="border-color:#d1d5db">
-              </div>
-            </div>
-
-            <div class="grid sm:grid-cols-2 gap-6">
-              <div>
-                <label for="phone" class="block text-sm font-semibold text-gray-900 mb-2">Phone Number</label>
-                <input type="tel" id="phone" name="phone" placeholder="(555) 123-4567"
-                  class="w-full px-4 py-3 rounded-lg border border-gray-300 bg-white text-gray-900 transition-all"
-                  style="border-color:#d1d5db">
-              </div>
-              <div>
-                <label for="trade" class="block text-sm font-semibold text-gray-900 mb-2">Your Trade *</label>
-                <select id="trade" name="trade" required
-                  class="w-full px-4 py-3 rounded-lg border border-gray-300 bg-white text-gray-900 transition-all"
+            <!-- Card 1: Trade + Description -->
+            <div class="bg-white rounded-2xl shadow-sm p-6 mb-4" style="border:1px solid #e2e8f0">
+              <div class="mb-5">
+                <label for="wq-trade" class="block text-sm font-semibold text-gray-900 mb-2">Your Trade *</label>
+                <select id="wq-trade" name="trade"
+                  class="w-full px-4 py-3 rounded-lg border bg-white text-gray-900 transition-all"
                   style="border-color:#d1d5db">
                   <option value="">Select your trade</option>
-                  <option value="plumbing">Plumbing</option>
-                  <option value="electrical">Electrical</option>
-                  <option value="roofing">Roofing</option>
-                  <option value="hvac">HVAC</option>
-                  <option value="general">General Contractor</option>
-                  <option value="other">Other</option>
+                  <option value="Plumbing">Plumbing</option>
+                  <option value="Electrical">Electrical</option>
+                  <option value="Roofing">Roofing</option>
+                  <option value="HVAC">HVAC</option>
+                  <option value="General Contractor">General Contractor</option>
+                  <option value="Landscaping">Landscaping</option>
+                  <option value="Other">Other</option>
                 </select>
               </div>
-            </div>
-
-            <div>
-              <label for="description" class="block text-sm font-semibold text-gray-900 mb-2">Describe Your Project *</label>
-              <textarea id="description" name="description" required rows="5"
-                class="w-full px-4 py-3 rounded-lg border border-gray-300 bg-white text-gray-900 transition-all resize-none"
-                style="border-color:#d1d5db"
-                placeholder="Tell us about your business, what features you need, and any specific requirements..."></textarea>
-            </div>
-
-            <div>
-              <label class="block text-sm font-semibold text-gray-900 mb-2">Attach Files (optional)</label>
-              <div class="relative">
-                <input type="file" id="file-upload" name="attachment" class="hidden" accept=".pdf,.doc,.docx,.png,.jpg,.jpeg">
-                <label for="file-upload" class="flex items-center justify-center gap-3 w-full px-4 py-4 rounded-lg cursor-pointer transition-all" style="border:2px dashed #d1d5db;background:#f8fafc">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/>
-                  </svg>
-                  <span id="file-label-text" class="text-sm text-gray-600">Upload logo, brand guidelines, or inspiration</span>
-                </label>
+              <div>
+                <div class="flex justify-between items-center mb-2">
+                  <label for="wq-description" class="block text-sm font-semibold text-gray-900">Describe Your Project *</label>
+                  <span id="wq-char-count" class="text-xs text-gray-400">0 / 20 min</span>
+                </div>
+                <textarea id="wq-description" name="project_description" rows="5"
+                  class="w-full px-4 py-3 rounded-lg border text-gray-900 transition-all resize-none"
+                  style="border-color:#d1d5db"
+                  placeholder="Tell us about your business, how many pages you need, any special features (booking, gallery, quote calculator), and your goals..."></textarea>
               </div>
-              <p class="text-xs text-gray-500 mt-2">PDF, DOC, or images up to 10MB</p>
             </div>
 
-            <button type="submit" class="w-full py-4 px-8 rounded-lg font-semibold transition-all duration-300 flex items-center justify-center gap-2 text-white" style="background:linear-gradient(to right,#06b6d4,#2563eb)">
-              Get My Custom Quote — Free
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/>
+            <!-- Card 2: Budget + Timeline -->
+            <div class="bg-white rounded-2xl shadow-sm p-6 mb-4" style="border:1px solid #e2e8f0">
+              <div class="grid sm:grid-cols-2 gap-5">
+                <div>
+                  <label for="wq-budget" class="block text-sm font-semibold text-gray-900 mb-2">Budget Range <span class="font-normal text-gray-400">(optional)</span></label>
+                  <select id="wq-budget" name="budget_range"
+                    class="w-full px-4 py-3 rounded-lg border bg-white text-gray-900 transition-all"
+                    style="border-color:#d1d5db">
+                    <option value="">Not sure yet</option>
+                    <option value="Under $3,500">Under $3,500</option>
+                    <option value="$3,500 – $8,000">$3,500 – $8,000</option>
+                    <option value="$8,000 – $15,000">$8,000 – $15,000</option>
+                    <option value="Over $15,000">Over $15,000</option>
+                  </select>
+                </div>
+                <div>
+                  <label for="wq-timeline" class="block text-sm font-semibold text-gray-900 mb-2">Preferred Timeline <span class="font-normal text-gray-400">(optional)</span></label>
+                  <select id="wq-timeline" name="timeline_pref"
+                    class="w-full px-4 py-3 rounded-lg border bg-white text-gray-900 transition-all"
+                    style="border-color:#d1d5db">
+                    <option value="">Flexible</option>
+                    <option value="ASAP (under 2 weeks)">ASAP (under 2 weeks)</option>
+                    <option value="1–2 months">1–2 months</option>
+                    <option value="2–3 months">2–3 months</option>
+                    <option value="No rush">No rush</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 3: Contact Info -->
+            <div class="bg-white rounded-2xl shadow-sm p-6 mb-6" style="border:1px solid #e2e8f0">
+              <div class="grid sm:grid-cols-3 gap-4">
+                <div>
+                  <label for="wq-name" class="block text-sm font-semibold text-gray-900 mb-2">Your Name *</label>
+                  <input type="text" id="wq-name" name="name" placeholder="John Smith"
+                    class="w-full px-4 py-3 rounded-lg border bg-white text-gray-900 transition-all"
+                    style="border-color:#d1d5db">
+                </div>
+                <div>
+                  <label for="wq-email" class="block text-sm font-semibold text-gray-900 mb-2">Email *</label>
+                  <input type="email" id="wq-email" name="email" placeholder="john@example.com"
+                    class="w-full px-4 py-3 rounded-lg border bg-white text-gray-900 transition-all"
+                    style="border-color:#d1d5db">
+                </div>
+                <div>
+                  <label for="wq-phone" class="block text-sm font-semibold text-gray-900 mb-2">Phone <span class="font-normal text-gray-400">(opt)</span></label>
+                  <input type="tel" id="wq-phone" name="phone" placeholder="(555) 123-4567"
+                    class="w-full px-4 py-3 rounded-lg border bg-white text-gray-900 transition-all"
+                    style="border-color:#d1d5db">
+                </div>
+              </div>
+            </div>
+
+            <!-- Submit button -->
+            <button id="wq-submit-btn" type="button"
+              class="w-full py-4 px-8 rounded-xl font-semibold transition-all duration-300 flex items-center justify-center gap-3 text-white"
+              style="background:linear-gradient(to right,#06b6d4,#2563eb)">
+              <svg id="wq-spinner" class="hidden animate-spin" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10" stroke-opacity=".25"/><path d="M12 2a10 10 0 0 1 10 10" stroke-linecap="round"/></svg>
+              <span id="wq-btn-text">Get AI Estimate — Free &amp; Instant</span>
+              <svg id="wq-btn-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96-.46 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.88A2.5 2.5 0 0 1 9.5 2Z"/><path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96-.46 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.88A2.5 2.5 0 0 0 14.5 2Z"/>
               </svg>
             </button>
-          <p class="text-center text-xs text-gray-500 mt-3">🔒 Your information is private and never shared. We respond within 4 business hours.</p>
-          </form>
+            <p class="text-center text-xs text-gray-500 mt-3">🔒 Your information is private and never shared.</p>
 
-          <div id="form-success" class="hidden text-green-600 font-medium mt-4">
-            Your message has been sent successfully!
+            <!-- Validation error -->
+            <div id="wq-form-error" class="hidden mt-4 px-4 py-3 rounded-lg text-sm text-red-700" style="background:#fef2f2;border:1px solid #fecaca"></div>
           </div>
-          <div id="form-error" class="hidden text-red-600 font-medium mt-4">
-            Something went wrong. Please try again.
-          </div>
+          <!-- /left col -->
 
-          <div class="absolute top-4 right-4 font-mono text-xs text-gray-400">{ contact }</div>
+          <!-- ── RIGHT COLUMN: Result panel (40%) ───────────────────────── -->
+          <div class="w-full hidden" id="wq-result-col">
+
+            <!-- Loading state -->
+            <div id="wq-result-loading" class="hidden">
+              <div class="bg-white rounded-2xl shadow-sm p-8 text-center" style="border:1px solid #e2e8f0">
+                <div class="flex justify-center mb-4">
+                  <svg class="animate-spin" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#06b6d4" stroke-width="2">
+                    <circle cx="12" cy="12" r="10" stroke-opacity=".2"/><path d="M12 2a10 10 0 0 1 10 10" stroke-linecap="round"/>
+                  </svg>
+                </div>
+                <p id="wq-loading-text" class="text-gray-600 font-medium text-sm">Analyzing project scope…</p>
+                <p class="text-xs text-gray-400 mt-1">Powered by Gemini AI</p>
+              </div>
+            </div>
+
+            <!-- Success state -->
+            <div id="wq-result-success" class="hidden">
+              <div class="bg-white rounded-2xl shadow-sm overflow-hidden" style="border:1px solid #e2e8f0">
+                <!-- Header gradient -->
+                <div class="p-5" style="background:linear-gradient(135deg,#0891b2,#1d4ed8)">
+                  <p class="text-xs font-semibold text-cyan-200 uppercase tracking-wider mb-1">AI Estimate Ready</p>
+                  <p id="wq-project-type" class="text-white font-bold text-lg leading-tight"></p>
+                </div>
+                <div class="p-5">
+                  <!-- Price range -->
+                  <div class="mb-4">
+                    <p class="text-xs text-gray-500 font-semibold uppercase tracking-wider mb-1">Estimated Cost</p>
+                    <p id="wq-price-range" class="text-3xl font-bold" style="color:#15803d"></p>
+                  </div>
+                  <!-- Timeline -->
+                  <div class="mb-5">
+                    <span id="wq-timeline-badge" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold" style="background:#f0fdf4;color:#15803d;border:1px solid #bbf7d0">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                      <span id="wq-timeline-text"></span>
+                    </span>
+                  </div>
+                  <!-- Features -->
+                  <div class="mb-4" id="wq-features-block">
+                    <p class="text-xs text-gray-500 font-semibold uppercase tracking-wider mb-2">Features Included</p>
+                    <ul id="wq-features-list" class="space-y-1"></ul>
+                  </div>
+                  <!-- Breakdown -->
+                  <div class="mb-4" id="wq-breakdown-block">
+                    <p class="text-xs text-gray-500 font-semibold uppercase tracking-wider mb-2">Price Breakdown</p>
+                    <div class="rounded-lg overflow-hidden" style="border:1px solid #e5e7eb">
+                      <table class="w-full text-sm">
+                        <tbody id="wq-breakdown-body"></tbody>
+                      </table>
+                    </div>
+                  </div>
+                  <!-- Assumptions -->
+                  <div id="wq-assumptions-block" class="hidden mb-4 px-3 py-2 rounded-lg text-xs text-gray-600" style="background:#f8fafc;border:1px solid #e2e8f0">
+                    <span class="font-semibold">Assumptions: </span><span id="wq-assumptions-text"></span>
+                  </div>
+                  <!-- Disclaimer -->
+                  <p id="wq-disclaimer" class="text-xs text-gray-400 mb-5"></p>
+                  <!-- Actions -->
+                  <div class="flex flex-col gap-3">
+                    <button id="wq-pdf-btn" class="w-full py-3 px-4 rounded-lg font-semibold text-sm flex items-center justify-center gap-2 transition-all" style="background:#f0fdf4;color:#15803d;border:1px solid #bbf7d0">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                      Download PDF Estimate
+                    </button>
+                    <a href="tel:+15551234567" class="w-full py-3 px-4 rounded-lg font-semibold text-sm flex items-center justify-center gap-2 text-white transition-all" style="background:linear-gradient(to right,#06b6d4,#2563eb)">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.06 6.06l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                      Book a Discovery Call
+                    </a>
+                    <button id="wq-retry-btn" class="text-xs text-gray-400 hover:text-gray-600 underline transition-all">
+                      ← Start over / adjust details
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- /success state -->
+
+            <!-- Error state -->
+            <div id="wq-result-error" class="hidden">
+              <div class="bg-white rounded-2xl shadow-sm p-6 text-center" style="border:1px solid #fecaca">
+                <div class="text-3xl mb-3">⚠️</div>
+                <p id="wq-error-msg" class="text-gray-700 text-sm font-medium mb-4"></p>
+                <button id="wq-retry-btn-err" class="px-5 py-2 rounded-lg text-sm font-semibold text-white transition-all" style="background:linear-gradient(to right,#06b6d4,#2563eb)">
+                  Try Again
+                </button>
+              </div>
+            </div>
+            <!-- /error state -->
+
+          </div>
+          <!-- /right col -->
+
         </div>
+        <!-- /two-col -->
       </div>
 
       <div class="mt-8 text-center animate-section">
@@ -1164,5 +1280,6 @@
   </script>
 
   <script src="{{ static('js/landing/main.js') }}"></script>
+  <script src="{{ static('js/landing/web_quote.js') }}"></script>
 </body>
 </html>
