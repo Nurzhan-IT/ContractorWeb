@@ -157,13 +157,14 @@
 
   function validate() {
     var ok = true;
-    [fldTrade, fldDesc, fldName, fldEmail].forEach(clearFieldError);
+    [fldTrade, fldDesc, fldName, fldEmail, fldPhone].forEach(clearFieldError);
 
     if (!fldTrade || !fldTrade.value) { setFieldError(fldTrade); ok = false; }
     if (!fldDesc || !fldDesc.value.trim()) { setFieldError(fldDesc); ok = false; }
     else if (fldDesc.value.trim().length < 20) { setFieldError(fldDesc); ok = false; }
     if (!fldName || !fldName.value.trim()) { setFieldError(fldName); ok = false; }
     if (!fldEmail || !fldEmail.value.trim()) { setFieldError(fldEmail); ok = false; }
+    if (!fldPhone || !fldPhone.value.trim()) { setFieldError(fldPhone); ok = false; }
 
     if (!ok) showFormError('Please fill in all required fields (description must be at least 20 characters).');
     return ok;
