@@ -112,6 +112,11 @@ OPENROUTER_API_KEY = os.environ.get('OPENROUTER_API_KEY', '')
 OPENROUTER_BASE_URL = 'https://openrouter.ai/api/v1'
 OPENROUTER_MODEL = 'google/gemini-2.5-flash-lite'
 
+# Cloudflare Turnstile (used by web_quote form on landing page)
+# Default test keys always pass — replace with real keys from dash.cloudflare.com → Turnstile
+CF_TURNSTILE_SITE_KEY   = os.environ.get('CF_TURNSTILE_SITE_KEY',   '1x00000000000000000000AA')
+CF_TURNSTILE_SECRET_KEY = os.environ.get('CF_TURNSTILE_SECRET_KEY', '1x0000000000000000000000000000000AA')
+
 # Cal.com (used by booking app)
 CAL_API_KEY  = os.environ.get('CAL_API_KEY', '')
 CAL_USERNAME = os.environ.get('CAL_USERNAME', 'demo')

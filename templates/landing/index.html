@@ -910,6 +910,11 @@
               </div>
             </div>
 
+            <!-- Cloudflare Turnstile -->
+            <div class="flex justify-center mb-4">
+              <div class="cf-turnstile" data-sitekey="{{ cf_turnstile_site_key }}" data-theme="light"></div>
+            </div>
+
             <!-- Submit button -->
             <button id="wq-submit-btn" type="button"
               class="w-full py-4 px-8 rounded-xl font-semibold transition-all duration-300 flex items-center justify-center gap-3 text-white"
@@ -1302,6 +1307,9 @@
 
   <script src="{{ static('js/landing/main.js') }}"></script>
   <script src="{{ static('js/landing/web_quote.js') }}"></script>
+
+  <!-- Cloudflare Turnstile -->
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 
   <!-- Cal.com embed — element-click triggers + floating button -->
   <script type="text/javascript">

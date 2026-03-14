@@ -307,6 +307,10 @@
       fd.append('timeline_pref', fldTimeline ? fldTimeline.value : '');
       fd.append('project_description', fldDesc ? fldDesc.value.trim() : '');
 
+      // Turnstile token (auto-inserted hidden input by CF widget)
+      var cfInput = document.querySelector('[name="cf-turnstile-response"]');
+      fd.append('cf-turnstile-response', cfInput ? cfInput.value : '');
+
       lastFormData = {
         name: fldName ? fldName.value.trim() : '',
         trade: fldTrade ? fldTrade.value : '',
