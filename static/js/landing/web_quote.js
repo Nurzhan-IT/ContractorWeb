@@ -163,10 +163,16 @@
     if (!fldDesc || !fldDesc.value.trim()) { setFieldError(fldDesc); ok = false; }
     else if (fldDesc.value.trim().length < 20) { setFieldError(fldDesc); ok = false; }
     if (!fldName || !fldName.value.trim()) { setFieldError(fldName); ok = false; }
-    if (!fldEmail || !fldEmail.value.trim()) { setFieldError(fldEmail); ok = false; }
-    if (!fldPhone || !fldPhone.value.trim()) { setFieldError(fldPhone); ok = false; }
 
-    if (!ok) showFormError('Please fill in all required fields (description must be at least 20 characters).');
+    var emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+    if (!fldEmail || !fldEmail.value.trim()) { setFieldError(fldEmail); ok = false; }
+    else if (!emailRe.test(fldEmail.value.trim())) { setFieldError(fldEmail); ok = false; }
+
+    var phoneDigits = (fldPhone ? fldPhone.value : '').replace(/\D/g, '');
+    if (!fldPhone || !fldPhone.value.trim()) { setFieldError(fldPhone); ok = false; }
+    else if (phoneDigits.length < 10 || phoneDigits.length > 15) { setFieldError(fldPhone); ok = false; }
+
+    if (!ok) showFormError('Please fill in all required fields. Email must be valid. Phone must contain at least 10 digits.');
     return ok;
   }
 

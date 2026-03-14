@@ -92,11 +92,20 @@ class QuoteSubmitView(View):
         problem     = request.POST.get('problem_description', '').strip()
 
         # --- Validation ---
+        _EMAIL_RE = re.compile(r'^[^\s@]+@[^\s@]+\.[^\s@]{2,}$')
         errors = {}
         if not name:
             errors['name'] = 'Name is required.'
         if not phone:
             errors['phone'] = 'Phone is required.'
+        else:
+            phone_digits = re.sub(r'\D', '', phone)
+            if len(phone_digits) < 10 or len(phone_digits) > 15:
+                errors['phone'] = 'Enter a valid phone number (10+ digits).'
+        if not email:
+            errors['email'] = 'Email is required.'
+        elif not _EMAIL_RE.match(email):
+            errors['email'] = 'Enter a valid email address.'
         if not address:
             errors['address'] = 'Address is required.'
         if not problem:

@@ -202,6 +202,20 @@ document.getElementById('quote-form').addEventListener('submit', async function 
     problem_description: document.getElementById('problem-desc').value.trim(),
   };
 
+  // --- Client-side format validation ---
+  var emailVal    = document.getElementById('contact-email').value.trim();
+  var phoneVal    = document.getElementById('contact-phone').value.trim();
+  var emailRe     = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+  var phoneDigits = phoneVal.replace(/\D/g, '');
+  var valErrors   = [];
+  if (!emailRe.test(emailVal)) valErrors.push('Enter a valid email address.');
+  if (phoneDigits.length < 10 || phoneDigits.length > 15) valErrors.push('Enter a valid phone number (10+ digits).');
+  if (valErrors.length) {
+    formError.textContent = valErrors.join(' ');
+    formError.classList.remove('hidden');
+    return;
+  }
+
   btn.disabled = true;
   icon.classList.add('hidden');
   spinner.classList.remove('hidden');
