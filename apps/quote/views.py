@@ -1,8 +1,11 @@
 import io
 import json
 import re
+import urllib.parse
+import urllib.request
 from datetime import date
 
+from django.conf import settings
 from django.core.cache import cache
 from django.http import HttpResponse, JsonResponse
 from django.views import View
@@ -11,6 +14,30 @@ from django.views.generic import TemplateView
 from .ai_service import QuoteAIService
 from .models import QuoteRequest
 from .utils import files_to_base64
+
+
+# ── Turnstile verification ─────────────────────────────────────────────────────
+
+def _verify_turnstile(token: str, ip: str) -> bool:
+    """Verify Cloudflare Turnstile token. Returns True if valid or if key not set."""
+    secret = getattr(settings, 'CF_TURNSTILE_SECRET_KEY', '')
+    if not secret:
+        return True
+    data = urllib.parse.urlencode({
+        'secret': secret,
+        'response': token,
+        'remoteip': ip,
+    }).encode()
+    try:
+        req = urllib.request.Request(
+            'https://challenges.cloudflare.com/turnstile/v0/siteverify',
+            data=data,
+        )
+        with urllib.request.urlopen(req, timeout=5) as resp:
+            result = json.loads(resp.read())
+            return result.get('success', False)
+    except Exception:
+        return True  # Fail open on network error — rate limit still guards
 
 
 # ── Rate limiting ─────────────────────────────────────────────────────────────
@@ -30,6 +57,11 @@ def _check_rate_limit(ip: str) -> bool:
 class QuotePageView(TemplateView):
     template_name = 'quote/index.html'
 
+    def get_context_data(self, **kwargs):
+        ctx = super().get_context_data(**kwargs)
+        ctx['cf_turnstile_site_key'] = settings.CF_TURNSTILE_SITE_KEY
+        return ctx
+
 
 # ── API: Submit (multipart + optional photos) ─────────────────────────────────
 
@@ -41,6 +73,14 @@ class QuoteSubmitView(View):
             return JsonResponse(
                 {"success": False, "error": "Too many requests. Please try again in an hour."},
                 status=429,
+            )
+
+        # --- Turnstile ---
+        cf_token = request.POST.get('cf-turnstile-response', '')
+        if not _verify_turnstile(cf_token, ip):
+            return JsonResponse(
+                {"success": False, "error": "Captcha verification failed. Please refresh the page and try again."},
+                status=400,
             )
 
         # --- Parse fields from multipart/form-data ---

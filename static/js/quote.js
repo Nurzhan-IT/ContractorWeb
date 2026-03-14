@@ -190,6 +190,10 @@ document.getElementById('quote-form').addEventListener('submit', async function 
   fd.append('email',     document.getElementById('contact-email').value);
   selectedFiles.forEach(function (file) { fd.append('photos', file); });
 
+  // Turnstile token (auto-inserted hidden input by CF widget)
+  var cfInput = document.querySelector('[name="cf-turnstile-response"]');
+  fd.append('cf-turnstile-response', cfInput ? cfInput.value : '');
+
   lastFormData = {
     name:    document.getElementById('contact-name').value.trim(),
     address: document.getElementById('address').value.trim() +

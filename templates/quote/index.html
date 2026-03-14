@@ -114,6 +114,11 @@ on the pipe connections..."
           </div>
         </div>
 
+        <!-- Cloudflare Turnstile -->
+        <div class="flex justify-center mb-4">
+          <div class="cf-turnstile" data-sitekey="{{ cf_turnstile_site_key }}" data-theme="light"></div>
+        </div>
+
         <!-- Submit button -->
         <button id="submit-btn" type="submit"
                 class="w-full py-4 px-6 rounded-2xl font-bold text-base text-white
@@ -278,5 +283,6 @@ on the pipe connections..."
 
 
 {% block extra_js %}
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 <script src="{{ static('js/quote.js') }}"></script>
 {% endblock %}
