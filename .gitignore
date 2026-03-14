@@ -10,8 +10,8 @@ __pycache__/
 # Django specific
 *.log
 local_settings.py  # Used for local-specific configuration and secrets
-*.sqlite3         # Default Django database file
-
+db.sqlite3         # Default Django database file
+*.sqlite3
 # Environment variables
 .env
 .env.*
