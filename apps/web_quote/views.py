@@ -11,6 +11,7 @@ from django.http import HttpResponse, JsonResponse
 from django.views import View
 
 from .ai_service import WebQuoteAIService
+from .models import WebQuoteRequest
 
 
 # ── Turnstile verification ─────────────────────────────────────────────────────
@@ -103,7 +104,22 @@ class WebQuoteSubmitView(View):
             timeline_pref=timeline_pref,
         )
 
-        if "error" in result:
+        # --- Save to DB ---
+        has_error = "error" in result
+        WebQuoteRequest.objects.create(
+            name=name,
+            email=email,
+            phone=phone,
+            trade=trade,
+            budget_range=budget_range,
+            timeline_pref=timeline_pref,
+            project_description=description,
+            ai_response=result if not has_error else None,
+            ai_error=result.get("error", ""),
+            ip_address=ip,
+        )
+
+        if has_error:
             return JsonResponse({"success": False, "error": result["error"]})
 
         return JsonResponse({"success": True, "estimate": result})
