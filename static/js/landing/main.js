@@ -6,52 +6,7 @@
 document.addEventListener('DOMContentLoaded', function () {
 
   // ─────────────────────────────────────────
-  // 1. HEADER SHADOW ON SCROLL
-  // ─────────────────────────────────────────
-  var header = document.getElementById('site-header');
-  if (header) {
-    window.addEventListener('scroll', function () {
-      if (window.scrollY > 10) {
-        header.classList.add('shadow-md', 'scrolled');
-      } else {
-        header.classList.remove('shadow-md', 'scrolled');
-      }
-    });
-  }
-
-  // ─────────────────────────────────────────
-  // 2. MOBILE MENU
-  // ─────────────────────────────────────────
-  var menuBtn = document.getElementById('mobile-menu-btn');
-  var menuClose = document.getElementById('mobile-menu-close');
-  var mobileMenu = document.getElementById('mobile-menu');
-
-  function openMenu() {
-    if (mobileMenu) {
-      mobileMenu.style.display = 'block';
-      document.body.style.overflow = 'hidden';
-    }
-  }
-
-  function closeMenu() {
-    if (mobileMenu) {
-      mobileMenu.style.display = 'none';
-      document.body.style.overflow = '';
-    }
-  }
-
-  if (menuBtn) menuBtn.addEventListener('click', openMenu);
-  if (menuClose) menuClose.addEventListener('click', closeMenu);
-
-  // Close when clicking a nav link
-  if (mobileMenu) {
-    mobileMenu.querySelectorAll('a').forEach(function (link) {
-      link.addEventListener('click', closeMenu);
-    });
-  }
-
-  // ─────────────────────────────────────────
-  // 3. SCROLL ANIMATIONS (IntersectionObserver)
+  // 1. SCROLL ANIMATIONS (IntersectionObserver)
   // ─────────────────────────────────────────
   var animatedSections = document.querySelectorAll('.animate-section');
   if (animatedSections.length && 'IntersectionObserver' in window) {
@@ -75,7 +30,45 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   // ─────────────────────────────────────────
-  // 4. FAQ ACCORDION
+  // 2. NAVBAR SCROLL + MOBILE MENU
+  // ─────────────────────────────────────────
+  var mainNav    = document.getElementById('main-nav');
+  var navBurger  = document.getElementById('nav-burger');
+  var mobileMenu = document.getElementById('mobile-menu');
+  var menuOpen   = false;
+
+  function updateNavScroll() {
+    if (mainNav) mainNav.classList.toggle('nav-scrolled', window.scrollY > 60);
+  }
+  window.addEventListener('scroll', updateNavScroll, { passive: true });
+  updateNavScroll();
+
+  if (navBurger) {
+    navBurger.addEventListener('click', function () {
+      menuOpen = !menuOpen;
+      mainNav.classList.toggle('menu-open', menuOpen);
+      mobileMenu.style.maxHeight = menuOpen ? mobileMenu.scrollHeight + 'px' : '0';
+    });
+  }
+
+  document.querySelectorAll('.nav-mobile-link').forEach(function (link) {
+    link.addEventListener('click', function () {
+      menuOpen = false;
+      if (mainNav) mainNav.classList.remove('menu-open');
+      if (mobileMenu) mobileMenu.style.maxHeight = '0';
+    });
+  });
+
+  document.addEventListener('click', function (e) {
+    if (menuOpen && mainNav && !mainNav.contains(e.target)) {
+      menuOpen = false;
+      mainNav.classList.remove('menu-open');
+      mobileMenu.style.maxHeight = '0';
+    }
+  });
+
+  // ─────────────────────────────────────────
+  // 3. FAQ ACCORDION
   // ─────────────────────────────────────────
   var faqItems = document.querySelectorAll('.faq-item');
   faqItems.forEach(function (item) {
