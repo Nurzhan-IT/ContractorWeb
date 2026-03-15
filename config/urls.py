@@ -9,6 +9,8 @@ urlpatterns = [
     path('demo/', include('config.demo_urls')),
     # API endpoints: /api/
     path('api/', include('config.api_urls')),
+    # Blog at /blog/ — part of main marketing site for SEO
+    path('blog/', include('blog.urls')),
     # Landing page at root / — must come last (prefix '' matches everything)
     path('', include('landing.urls')),
 ]

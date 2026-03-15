@@ -6,3 +6,5 @@ reportlab
 Pillow
 openai>=1.0.0
 python-magic
+markdown
+bleach

@@ -1,0 +1,96 @@
+[
+  {
+    "model": "blog.category",
+    "pk": 1,
+    "fields": {
+      "name": "Plumbing Tips",
+      "slug": "plumbing-tips"
+    }
+  },
+  {
+    "model": "blog.category",
+    "pk": 2,
+    "fields": {
+      "name": "Electrical Safety",
+      "slug": "electrical-safety"
+    }
+  },
+  {
+    "model": "blog.category",
+    "pk": 3,
+    "fields": {
+      "name": "Roofing Advice",
+      "slug": "roofing-advice"
+    }
+  },
+  {
+    "model": "blog.article",
+    "pk": 1,
+    "fields": {
+      "title": "5 Signs Your Water Heater Needs Replacing",
+      "slug": "5-signs-water-heater-needs-replacing",
+      "category": 1,
+      "excerpt": "Most water heaters last 8–12 years. Learn the warning signs before a cold shower catches you off guard.",
+      "content": "## How Long Do Water Heaters Last?\n\nThe average tank water heater has a lifespan of **8 to 12 years**. But age alone isn't always the best indicator — it's the symptoms that matter most.\n\n### 1. Rusty or Discolored Water\n\nIf hot water from your tap looks reddish or murky, corrosion inside the tank is likely to blame. This is a strong sign the unit is near the end of its life.\n\n### 2. Rumbling or Banging Noises\n\nSediment builds up at the bottom of the tank over time. When heated, this sediment hardens and causes loud rumbling sounds — a sign the heater is working harder than it should.\n\n### 3. Water Around the Base\n\nAny pooling water near your water heater indicates a leak. Even small leaks can become floods quickly. Don't ignore this one.\n\n### 4. Inconsistent Water Temperature\n\nIf your hot water fluctuates wildly — scalding one minute, lukewarm the next — the heating element or thermostat may be failing.\n\n### 5. Increasing Energy Bills\n\nAn aging water heater loses efficiency. If your gas or electric bill has crept up without explanation, the water heater could be the culprit.\n\n## What to Do Next\n\nIf you're noticing two or more of these signs, it's worth getting a professional inspection. Replacing a water heater proactively is far cheaper than dealing with a burst tank and water damage.\n\n> **Pro tip:** Ask your plumber about tankless (on-demand) water heaters — they last 20+ years and can reduce energy costs by up to 30%.",
+      "cover_image_url": "https://picsum.photos/seed/waterheater/800/450",
+      "published_at": "2025-02-10T09:00:00Z",
+      "is_published": true
+    }
+  },
+  {
+    "model": "blog.article",
+    "pk": 2,
+    "fields": {
+      "title": "How to Stop a Running Toilet in 10 Minutes",
+      "slug": "stop-running-toilet-10-minutes",
+      "category": 1,
+      "excerpt": "A running toilet can waste up to 200 gallons of water per day. Here's a step-by-step fix any homeowner can try.",
+      "content": "## Why Is My Toilet Running?\n\nA constantly running toilet is almost always caused by one of three things: a **faulty flapper**, a **worn fill valve**, or an **improperly adjusted float**. The good news — all three are inexpensive DIY fixes.\n\n## What You'll Need\n\n- Adjustable wrench\n- Replacement flapper (around $5 at any hardware store)\n- Towel or bucket\n\n## Step-by-Step Fix\n\n### Step 1 — Identify the Problem\n\nRemove the tank lid and listen. If water is trickling into the bowl, the flapper isn't sealing. If water is spilling into the overflow tube, the float is set too high.\n\n### Step 2 — Replace the Flapper\n\n1. Turn off the water supply valve (behind the toilet).\n2. Flush to drain the tank.\n3. Unhook the old flapper from the overflow tube pegs.\n4. Snap the new flapper into place and reconnect the chain.\n5. Turn water back on — the running should stop within 30 seconds.\n\n### Step 3 — Adjust the Float\n\nIf the water level is above the overflow tube, bend the float arm down slightly (older ball-float style) or turn the adjustment screw on modern fill valves. The water level should sit about 1 inch below the top of the overflow tube.\n\n## When to Call a Plumber\n\nIf you've replaced the flapper and adjusted the float but the toilet still runs, the fill valve itself likely needs replacing. This is still a straightforward job but requires draining and reassembling the valve assembly — something a plumber can do in under 30 minutes.",
+      "cover_image_url": "https://picsum.photos/seed/toilet/800/450",
+      "published_at": "2025-02-24T10:00:00Z",
+      "is_published": true
+    }
+  },
+  {
+    "model": "blog.article",
+    "pk": 3,
+    "fields": {
+      "title": "GFCI Outlets: What They Are and Where You Need Them",
+      "slug": "gfci-outlets-what-they-are-where-you-need-them",
+      "category": 2,
+      "excerpt": "GFCI outlets prevent electrocution in wet areas. Find out exactly where code requires them — and what happens when they fail.",
+      "content": "## What Is a GFCI Outlet?\n\nA **Ground Fault Circuit Interrupter (GFCI)** outlet monitors the flow of electricity in a circuit. If it detects a difference of just 5 milliamps between the hot and neutral wires — which indicates current is flowing somewhere it shouldn't (like through a person) — it trips within 1/40th of a second.\n\nThat's fast enough to prevent electrocution.\n\n## Where Are GFCI Outlets Required by Code?\n\nThe National Electrical Code (NEC) requires GFCI protection in any location near water:\n\n- **Bathrooms** — all receptacles\n- **Kitchens** — outlets within 6 feet of a sink\n- **Garages and outbuildings**\n- **Outdoor receptacles**\n- **Crawl spaces and unfinished basements**\n- **Pools, hot tubs, and fountains**\n\n## How to Test a GFCI Outlet\n\nEvery GFCI outlet has a **TEST** and **RESET** button on its face.\n\n1. Press **TEST** — the outlet should lose power immediately.\n2. Plug in a lamp or phone charger to confirm no power.\n3. Press **RESET** — power should restore.\n\nIf pressing TEST doesn't cut power, the outlet has failed and needs replacement.\n\n## Signs Your GFCI Has Failed\n\n- The outlet doesn't respond to the TEST button\n- The RESET button won't stay in\n- The outlet is over 10 years old (they degrade over time)\n\n## DIY vs. Hiring an Electrician\n\nReplacing a GFCI outlet is one of the easier electrical tasks — but **only if** you're comfortable working inside electrical boxes and know how to verify the power is off. For new installations or if you're unsure, always call a licensed electrician.",
+      "cover_image_url": "https://picsum.photos/seed/gfci/800/450",
+      "published_at": "2025-03-03T11:00:00Z",
+      "is_published": true
+    }
+  },
+  {
+    "model": "blog.article",
+    "pk": 4,
+    "fields": {
+      "title": "How to Spot Roof Damage After a Storm",
+      "slug": "how-to-spot-roof-damage-after-storm",
+      "category": 3,
+      "excerpt": "After heavy wind or hail, a quick visual inspection from the ground can save you thousands. Know what to look for.",
+      "content": "## Why Post-Storm Inspections Matter\n\nRoof damage from storms is often subtle at first — a few missing shingles here, a dented flashing there. Left unaddressed, small damage lets moisture in, leading to rot, mold, and structural repairs that cost 5–10x more than a prompt fix.\n\n## What to Check After a Storm\n\n### From the Ground (No Ladder Needed)\n\n- **Missing or lifted shingles** — gaps or shingles curling at the edges\n- **Granule loss** — dark patches on shingles where the granule coating has worn away\n- **Sagging areas** — a dip in the roofline suggests underlying structural damage\n- **Damaged gutters** — dented, bent, or filled with shingle granules\n- **Fallen debris** — large branches or debris on the roof itself\n\n### From the Attic (Safe and Easy)\n\nAfter a heavy storm, check your attic in daylight:\n\n- Look for **light coming through** the roof deck — a sure sign of a hole or gap\n- Check for **wet insulation** or water stains on rafters\n- Look for **dark streaks** indicating moisture that has already dried\n\n## Hail Damage: What It Looks Like\n\nHail damage isn't always visible from the ground. Signs include:\n\n- Circular dents or bruising on shingles (soft spots when pressed)\n- Dented metal flashing or ridge caps\n- Cracked or split shingles\n\nHail damage is often covered by homeowner's insurance — document everything with photos before any repairs.\n\n## When to Call a Roofer\n\nIf you see any of the above signs, get a professional inspection within **2–3 weeks** of the storm. Most reputable roofers offer free post-storm assessments. Don't wait until you see an interior leak — by that point, the damage has already spread.",
+      "cover_image_url": "https://picsum.photos/seed/roofstorm/800/450",
+      "published_at": "2025-03-08T09:30:00Z",
+      "is_published": true
+    }
+  },
+  {
+    "model": "blog.article",
+    "pk": 5,
+    "fields": {
+      "title": "Circuit Breaker Keeps Tripping? Here's Why",
+      "slug": "circuit-breaker-keeps-tripping",
+      "category": 2,
+      "excerpt": "A repeatedly tripping breaker is more than an inconvenience — it's a warning sign. Learn the three main causes and what to do about each.",
+      "content": "## Why Do Breakers Trip?\n\nCircuit breakers are designed to trip — it's a safety feature, not a malfunction. They protect your wiring from overheating by cutting power when current exceeds the breaker's rated capacity. The problem is when they trip **repeatedly** on the same circuit.\n\n## The Three Main Causes\n\n### 1. Overloaded Circuit\n\nThis is the most common cause. An overloaded circuit means you're drawing more power than the circuit is rated for.\n\n**Common culprits:**\n- Running a microwave, toaster, and coffee maker on the same kitchen circuit\n- Space heaters (they draw 1,500W — a lot for a 15-amp circuit)\n- Multiple high-draw appliances on a single bedroom circuit\n\n**Fix:** Redistribute appliances to different circuits. If the problem persists, you may need a dedicated circuit added.\n\n### 2. Short Circuit\n\nA short circuit occurs when a hot wire touches a neutral wire — either inside an outlet, a device, or the wiring itself. It produces a sudden large current surge that trips the breaker immediately.\n\n**Signs:** Burning smell, scorch marks on outlets, breaker trips the moment you flip it back.\n\n**Fix:** This requires a licensed electrician to inspect and repair. Don't keep resetting the breaker.\n\n### 3. Ground Fault\n\nSimilar to a short circuit, but involves current flowing to the ground wire or a grounded surface (like a wet floor). More common in bathrooms, kitchens, and outdoor circuits.\n\n**Fix:** Check if a GFCI outlet on the circuit has tripped first — reset it. If the problem continues, call an electrician.\n\n## What NOT to Do\n\n- **Never replace a breaker with a higher-rated one** — this is a fire hazard\n- **Don't repeatedly reset a tripping breaker** — find the cause first\n- **Don't ignore a burning smell** — cut power to that circuit and call an electrician immediately\n\n## When to Call an Electrician\n\nIf redistributing appliances doesn't solve the problem, or if you notice any burning smell, scorch marks, or sparks — call a licensed electrician. Electrical fires are silent, fast, and devastating.",
+      "cover_image_url": "https://picsum.photos/seed/breaker/800/450",
+      "published_at": "2025-03-12T14:00:00Z",
+      "is_published": true
+    }
+  }
+]

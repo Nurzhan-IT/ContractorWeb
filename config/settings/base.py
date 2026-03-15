@@ -31,6 +31,7 @@ INSTALLED_APPS = [
     'portfolio',
     'booking',
     'web_quote',
+    'blog',
 ]
 
 MIDDLEWARE = [
