@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="{% block robots %}index, follow{% endblock %}">
   <title>{% block title %}ContractorPro Demo{% endblock %}</title>
   <meta name="description" content="{% block meta_description %}ContractorPro Demo — interactive contractor website features: instant quote calculator, emergency dispatch, service area map, before/after portfolio, and online booking.{% endblock %}">
 
@@ -10,21 +11,42 @@
   <meta property="og:title" content="{% block og_title %}ContractorPro Demo{% endblock %}">
   <meta property="og:description" content="{% block og_description %}Interactive contractor website features — see your future website in action.{% endblock %}">
   <meta property="og:type" content="website">
-  <meta name="twitter:card" content="summary_large_image">
+  <meta property="og:url" content="{% block og_url %}{{ request.scheme }}://{{ request.get_host() }}{{ request.path }}{% endblock %}">
+  <meta property="og:image" content="{% block og_image %}{{ request.scheme }}://{{ request.get_host() }}/static/img/og-default.png{% endblock %}">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
 
-  <!-- Favicon (inline SVG wrench emoji) -->
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔧</text></svg>">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{% block twitter_title %}ContractorPro Demo{% endblock %}">
+  <meta name="twitter:description" content="{% block twitter_description %}Interactive contractor website features — see your future website in action.{% endblock %}">
+  <meta name="twitter:image" content="{% block twitter_image %}{{ request.scheme }}://{{ request.get_host() }}/static/img/og-default.png{% endblock %}">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="{{ static('img/favicons/favicon.svg') }}">
+  {# TODO: generate favicon-32.png, favicon-16.png, apple-touch-icon.png (180x180)
+     from favicon.svg using https://realfavicongenerator.net, then uncomment: #}
+  {# <link rel="icon" type="image/png" sizes="32x32" href="{{ static('img/favicons/favicon-32.png') }}"> #}
+  {# <link rel="icon" type="image/png" sizes="16x16" href="{{ static('img/favicons/favicon-16.png') }}"> #}
+  {# <link rel="apple-touch-icon" sizes="180x180" href="{{ static('img/favicons/apple-touch-icon.png') }}"> #}
+  <meta name="theme-color" content="#1e3a5f">
+  <link rel="canonical" href="{% block canonical %}{{ request.scheme }}://{{ request.get_host() }}{{ request.path }}{% endblock %}">
 
   <!-- Inter font — professional, consistent typography across all OS/browsers -->
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+  <link rel="dns-prefetch" href="https://fonts.gstatic.com">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+        media="print"
+        onload="this.media='all'">
+  <noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  </noscript>
 
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
-
-  <!-- img-comparison-slider CSS -->
-  <link rel="stylesheet" href="https://unpkg.com/img-comparison-slider@8/dist/styles.css" />
 
   <!-- Site CSS -->
   <link rel="stylesheet" href="{{ static('css/demo.css') }}">
@@ -41,7 +63,7 @@
   <div id="demo-banner"
        class="fixed top-0 left-0 right-0 z-[60] h-8 bg-amber-400 text-amber-900
               text-xs font-semibold flex items-center justify-center px-10 gap-2">
-    <span>⚡ This is an interactive demo. All data is simulated — no real services will be dispatched.</span>
+    <span><span aria-hidden="true">⚡</span> This is an interactive demo. All data is simulated — no real services will be dispatched.</span>
     <button id="dismiss-banner"
             class="absolute right-3 text-amber-800 hover:text-amber-950 font-bold
                    text-lg leading-none p-0.5 transition-colors"
@@ -150,9 +172,6 @@
     </div>
   </footer>
 
-  <!-- CDN scripts (end of body) -->
-  <script type="module" src="https://unpkg.com/img-comparison-slider@8/dist/index.js"></script>
-
   <!-- Mobile nav toggle, demo banner dismiss, global CSRF helper -->
   <script>
     // ── Mobile nav toggle (animated via CSS) ─────────────────────────────────
@@ -189,6 +208,27 @@
       return null;
     }
   </script>
+
+  {% block structured_data %}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebDesignAgency",
+    "name": "ContractorWeb",
+    "url": "{{ request.scheme }}://{{ request.get_host() }}",
+    "description": "Professional websites for local contractors",
+    "telephone": "+1-555-123-4567",
+    "email": "hello@contractorweb.dev",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Austin",
+      "addressRegion": "TX",
+      "addressCountry": "US"
+    },
+    "areaServed": "United States"
+  }
+  </script>
+  {% endblock %}
 
   {% block extra_js %}{% endblock %}
 </body>

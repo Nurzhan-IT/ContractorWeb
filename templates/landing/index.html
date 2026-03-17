@@ -4,6 +4,27 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ContractorWeb — Professional Contractor Websites</title>
+
+  <!-- SEO -->
+  <meta name="description" content="ContractorWeb builds modern websites for plumbers, electricians, roofers, and contractors. Get an instant quote calculator, online booking, and a service area map — all in one site.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://contractorweb.dev/">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="ContractorWeb — Professional Contractor Websites">
+  <meta property="og:description" content="ContractorWeb builds modern websites for plumbers, electricians, roofers, and contractors. Get an instant quote calculator, online booking, and a service area map — all in one site.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://contractorweb.dev/">
+  <meta property="og:image" content="https://contractorweb.dev/static/img/og-landing.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="ContractorWeb — Professional Contractor Websites">
+  <meta name="twitter:description" content="ContractorWeb builds modern websites for plumbers, electricians, roofers, and contractors. Get an instant quote calculator, online booking, and a service area map — all in one site.">
+  <meta name="twitter:image" content="https://contractorweb.dev/static/img/og-landing.png">
+
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="{{ static('css/landing/styles.css') }}">
 </head>
@@ -1395,6 +1416,55 @@
         "buttonText": "Book a Call"
       });
     }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Do I really own the website, or is it subscription-based?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "You own it 100%. One-time payment, source code included. You can host it anywhere you want after the first year. No monthly fees, no vendor lock-in. It's yours forever."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How long does it take to build and launch?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Most sites launch within 2-3 weeks. Basic tier can be live in as little as 5 business days. Premium tier with custom integrations takes 3-4 weeks. We'll give you a precise timeline in your quote."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Will my website work on mobile phones?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Absolutely. Over 60% of contractor website visitors are on mobile. Every site we build looks perfect on phones, tablets, and desktops. We test on real devices before launch."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can you integrate with my existing tools (QuickBooks, ServiceTitan, etc)?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes! Premium tier includes custom integrations. We've connected to QuickBooks, ServiceTitan, Jobber, Housecall Pro, and many others. If it has an API, we can integrate it."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What if I need changes after launch?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "All plans include support (1-12 months depending on tier). After that, you can make changes yourself (we provide documentation), hire us for updates, or work with any developer since you own the code."
+        }
+      }
+    ]
+  }
   </script>
 </body>
 </html>

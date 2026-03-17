@@ -4,6 +4,7 @@
 {% block meta_description %}Before and after gallery showcasing completed contractor projects. Drag the slider on any card to see the transformation.{% endblock %}
 
 {% block extra_head %}
+<link rel="stylesheet" href="https://unpkg.com/img-comparison-slider@8/dist/styles.css">
 <style>
   /* Slider sizing & handle styling — responsive height via clamp() */
   img-comparison-slider {
@@ -62,6 +63,29 @@
 {% endblock %}
 
 {% block content %}
+<nav aria-label="Breadcrumb" class="max-w-5xl mx-auto px-4 pt-4">
+  <ol class="flex items-center gap-1.5 text-xs text-gray-400"
+      itemscope itemtype="https://schema.org/BreadcrumbList">
+    <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+      <a href="/" itemprop="item" class="hover:text-gray-600 transition-colors">
+        <span itemprop="name">Home</span>
+      </a>
+      <meta itemprop="position" content="1">
+    </li>
+    <li aria-hidden="true" class="text-gray-300">/</li>
+    <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+      <a href="/demo/" itemprop="item" class="hover:text-gray-600 transition-colors">
+        <span itemprop="name">Demo Hub</span>
+      </a>
+      <meta itemprop="position" content="2">
+    </li>
+    <li aria-hidden="true" class="text-gray-300">/</li>
+    <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+      <span itemprop="name" class="text-gray-600">Portfolio</span>
+      <meta itemprop="position" content="3">
+    </li>
+  </ol>
+</nav>
 <div class="max-w-7xl mx-auto px-4 py-10 sm:py-14">
 
   <!-- ── Header ─────────────────────────────────────────────────────────── -->
@@ -269,6 +293,7 @@
 {% endblock %}
 
 {% block extra_js %}
+<script type="module" src="https://unpkg.com/img-comparison-slider@8/dist/index.js"></script>
 <script>
   // ── Image placeholder on 404 / load error ─────────────────────────────────
   // Replaces <img slot="first|second"> with a styled <div slot="…">.

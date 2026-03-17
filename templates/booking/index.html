@@ -28,6 +28,29 @@
 
 
 {% block content %}
+<nav aria-label="Breadcrumb" class="max-w-5xl mx-auto px-4 pt-4">
+  <ol class="flex items-center gap-1.5 text-xs text-gray-400"
+      itemscope itemtype="https://schema.org/BreadcrumbList">
+    <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+      <a href="/" itemprop="item" class="hover:text-gray-600 transition-colors">
+        <span itemprop="name">Home</span>
+      </a>
+      <meta itemprop="position" content="1">
+    </li>
+    <li aria-hidden="true" class="text-gray-300">/</li>
+    <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+      <a href="/demo/" itemprop="item" class="hover:text-gray-600 transition-colors">
+        <span itemprop="name">Demo Hub</span>
+      </a>
+      <meta itemprop="position" content="2">
+    </li>
+    <li aria-hidden="true" class="text-gray-300">/</li>
+    <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+      <span itemprop="name" class="text-gray-600">Online Booking</span>
+      <meta itemprop="position" content="3">
+    </li>
+  </ol>
+</nav>
 
 <!-- ═══ PAGE HEADER ══════════════════════════════════════════════════════════ -->
 <section class="bg-gradient-to-br from-blue-700 via-blue-600 to-indigo-600 text-white">
@@ -50,13 +73,13 @@
     <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full
                  bg-white bg-opacity-15 border border-white border-opacity-30
                  text-white text-xs font-medium">
-      &#9889; Scheduling powered by
-      <a href="https://cal.com" target="_blank" rel="noopener"
+      <span aria-hidden="true">&#9889;</span> Scheduling powered by
+      <a href="https://cal.com" target="_blank" rel="noopener noreferrer"
          class="underline underline-offset-2 hover:no-underline">Cal.com</a>
     </span>
 
     <p class="mt-4 text-blue-200 text-xs max-w-md">
-      💡 <strong>Demo context:</strong> This shows how your customers would book appointments on your website. Switch service types above to see how multiple services work.
+      <span aria-hidden="true">💡</span> <strong>Demo context:</strong> This shows how your customers would book appointments on your website. Switch service types above to see how multiple services work.
     </p>
 
   </div>
@@ -75,7 +98,8 @@
 
       <div class="flex flex-col items-center text-center">
         <div class="w-12 h-12 rounded-2xl bg-blue-50 border-2 border-blue-100
-                    flex items-center justify-center text-xl mx-auto mb-3">
+                    flex items-center justify-center text-xl mx-auto mb-3"
+             role="img" aria-label="Calendar">
           &#128197;
         </div>
         <div class="w-6 h-6 rounded-full bg-blue-600 text-white text-xs font-bold
@@ -90,7 +114,8 @@
 
       <div class="flex flex-col items-center text-center">
         <div class="w-12 h-12 rounded-2xl bg-blue-50 border-2 border-blue-100
-                    flex items-center justify-center text-xl mx-auto mb-3">
+                    flex items-center justify-center text-xl mx-auto mb-3"
+             role="img" aria-label="Clipboard">
           &#128203;
         </div>
         <div class="w-6 h-6 rounded-full bg-blue-600 text-white text-xs font-bold
@@ -105,7 +130,8 @@
 
       <div class="flex flex-col items-center text-center">
         <div class="w-12 h-12 rounded-2xl bg-blue-50 border-2 border-blue-100
-                    flex items-center justify-center text-xl mx-auto mb-3">
+                    flex items-center justify-center text-xl mx-auto mb-3"
+             role="img" aria-label="Check mark">
           &#10003;
         </div>
         <div class="w-6 h-6 rounded-full bg-blue-600 text-white text-xs font-bold
@@ -274,7 +300,7 @@
       </div>
       <span class="shrink-0 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full
                    bg-green-50 border border-green-200 text-green-700 text-xs font-semibold self-start">
-        &#128274; Secure checkout
+        <span aria-hidden="true">&#128274;</span> Secure checkout
       </span>
     </div>
 
@@ -341,7 +367,7 @@
       <a href="/demo/quote/"
          class="flex items-center gap-3 bg-white rounded-xl shadow border border-gray-100
                 p-4 hover:shadow-md hover:border-blue-200 transition-all">
-        <span class="text-2xl">&#128176;</span>
+        <span class="text-2xl" aria-hidden="true">&#128176;</span>
         <div>
           <p class="font-semibold text-sm text-gray-800">Quote Calculator</p>
           <p class="text-xs text-gray-400">Instant AI estimate</p>
@@ -350,7 +376,7 @@
       <a href="/demo/emergency/"
          class="flex items-center gap-3 bg-white rounded-xl shadow border border-gray-100
                 p-4 hover:shadow-md hover:border-red-200 transition-all">
-        <span class="text-2xl">&#128680;</span>
+        <span class="text-2xl" aria-hidden="true">&#128680;</span>
         <div>
           <p class="font-semibold text-sm text-gray-800">Emergency 24/7</p>
           <p class="text-xs text-gray-400">Dispatch simulation</p>
@@ -359,7 +385,7 @@
       <a href="/demo/portfolio/"
          class="flex items-center gap-3 bg-white rounded-xl shadow border border-gray-100
                 p-4 hover:shadow-md hover:border-purple-200 transition-all">
-        <span class="text-2xl">&#128247;</span>
+        <span class="text-2xl" aria-hidden="true">&#128247;</span>
         <div>
           <p class="font-semibold text-sm text-gray-800">Portfolio</p>
           <p class="text-xs text-gray-400">Before/after gallery</p>
@@ -373,7 +399,7 @@
   <div class="flex flex-wrap items-center justify-center gap-3 py-6
               border-t border-gray-200 mt-2">
     <span class="text-gray-500 text-sm">Scheduling powered by</span>
-    <a href="https://cal.com" target="_blank" rel="noopener"
+    <a href="https://cal.com" target="_blank" rel="noopener noreferrer"
        class="flex items-center gap-2 hover:opacity-80 transition-opacity">
       <img src="https://cal.com/logo.svg"
            alt="Cal.com"

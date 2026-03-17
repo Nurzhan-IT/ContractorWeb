@@ -58,6 +58,29 @@
 {% endblock %}
 
 {% block content %}
+<nav aria-label="Breadcrumb" class="max-w-5xl mx-auto px-4 pt-4">
+  <ol class="flex items-center gap-1.5 text-xs text-gray-400"
+      itemscope itemtype="https://schema.org/BreadcrumbList">
+    <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+      <a href="/" itemprop="item" class="hover:text-gray-600 transition-colors">
+        <span itemprop="name">Home</span>
+      </a>
+      <meta itemprop="position" content="1">
+    </li>
+    <li aria-hidden="true" class="text-gray-300">/</li>
+    <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+      <a href="/demo/" itemprop="item" class="hover:text-gray-600 transition-colors">
+        <span itemprop="name">Demo Hub</span>
+      </a>
+      <meta itemprop="position" content="2">
+    </li>
+    <li aria-hidden="true" class="text-gray-300">/</li>
+    <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+      <span itemprop="name" class="text-gray-600">Emergency Service</span>
+      <meta itemprop="position" content="3">
+    </li>
+  </ol>
+</nav>
 
 <!-- ===== HERO ===== -->
 <section class="bg-gradient-to-br from-red-700 via-red-600 to-orange-500 text-white">
@@ -79,15 +102,15 @@
     <div class="flex flex-col sm:flex-row justify-center gap-3 sm:gap-6 mb-12 text-sm sm:text-base">
       <div class="flex items-center justify-center gap-2 bg-red-800 bg-opacity-35
                   rounded-xl px-5 py-3 font-semibold">
-        <span class="text-2xl">⚡</span> Fast Response
+        <span class="text-2xl" aria-hidden="true">⚡</span> Fast Response
       </div>
       <div class="flex items-center justify-center gap-2 bg-red-800 bg-opacity-35
                   rounded-xl px-5 py-3 font-semibold">
-        <span class="text-2xl">🛡️</span> Licensed Pros
+        <span class="text-2xl" aria-hidden="true">🛡️</span> Licensed Pros
       </div>
       <div class="flex items-center justify-center gap-2 bg-red-800 bg-opacity-35
                   rounded-xl px-5 py-3 font-semibold">
-        <span class="text-2xl">📍</span> Real-Time Tracking
+        <span class="text-2xl" aria-hidden="true">📍</span> Real-Time Tracking
       </div>
     </div>
 
@@ -95,7 +118,7 @@
             class="inline-flex items-center gap-3 bg-white text-red-600 font-extrabold
                    text-lg sm:text-xl px-8 sm:px-12 py-4 sm:py-5 rounded-2xl shadow-2xl
                    hover:bg-red-50 active:scale-95 transition-all duration-150">
-      🚨 Request Emergency Help Now
+      <span aria-hidden="true">🚨</span> Request Emergency Help Now
     </button>
 
   </div>
@@ -108,17 +131,17 @@
   </h2>
   <div class="grid grid-cols-1 sm:grid-cols-3 gap-5">
     <div class="text-center bg-white rounded-2xl shadow p-6">
-      <div class="text-4xl mb-3">📋</div>
+      <div class="text-4xl mb-3" role="img" aria-label="Clipboard">📋</div>
       <h3 class="font-bold text-gray-800 mb-1">1. Describe the Problem</h3>
       <p class="text-gray-500 text-sm">Select the type of emergency and add a brief description.</p>
     </div>
     <div class="text-center bg-white rounded-2xl shadow p-6">
-      <div class="text-4xl mb-3">🔔</div>
+      <div class="text-4xl mb-3" role="img" aria-label="Bell">🔔</div>
       <h3 class="font-bold text-gray-800 mb-1">2. We Alert a Pro</h3>
       <p class="text-gray-500 text-sm">The nearest certified specialist is notified instantly.</p>
     </div>
     <div class="text-center bg-white rounded-2xl shadow p-6">
-      <div class="text-4xl mb-3">🚗</div>
+      <div class="text-4xl mb-3" role="img" aria-label="Car">🚗</div>
       <h3 class="font-bold text-gray-800 mb-1">3. They're On the Way</h3>
       <p class="text-gray-500 text-sm">You get an SMS with ETA and live tracking link.</p>
     </div>
@@ -151,7 +174,7 @@
     <div id="form-screen" class="p-6 sm:p-8">
 
       <div class="text-center mb-6">
-        <div class="text-4xl mb-2">🚨</div>
+        <div class="text-4xl mb-2" role="img" aria-label="Rotating light">🚨</div>
         <h2 id="emergency-modal-title" class="text-2xl font-extrabold text-gray-900">Emergency Request</h2>
         <p class="text-gray-400 text-sm mt-1">We'll connect you with a specialist in minutes</p>
       </div>
@@ -165,27 +188,27 @@
             <button type="button" data-problem-type="plumbing"
                     class="prob-btn px-4 py-2 rounded-full border-2 border-gray-200 text-sm
                            font-medium hover:border-red-400 hover:text-red-600 transition-colors">
-              🔧 Plumbing
+              <span aria-hidden="true">🔧</span> Plumbing
             </button>
             <button type="button" data-problem-type="electrical"
                     class="prob-btn px-4 py-2 rounded-full border-2 border-gray-200 text-sm
                            font-medium hover:border-red-400 hover:text-red-600 transition-colors">
-              ⚡ Electrical
+              <span aria-hidden="true">⚡</span> Electrical
             </button>
             <button type="button" data-problem-type="roofing"
                     class="prob-btn px-4 py-2 rounded-full border-2 border-gray-200 text-sm
                            font-medium hover:border-red-400 hover:text-red-600 transition-colors">
-              🏠 Roofing
+              <span aria-hidden="true">🏠</span> Roofing
             </button>
             <button type="button" data-problem-type="hvac"
                     class="prob-btn px-4 py-2 rounded-full border-2 border-gray-200 text-sm
                            font-medium hover:border-red-400 hover:text-red-600 transition-colors">
-              ❄️ HVAC
+              <span aria-hidden="true">❄️</span> HVAC
             </button>
             <button type="button" data-problem-type="other"
                     class="prob-btn active px-4 py-2 rounded-full border-2 border-gray-200 text-sm
                            font-medium hover:border-red-400 hover:text-red-600 transition-colors">
-              ❓ Other
+              <span aria-hidden="true">❓</span> Other
             </button>
           </div>
         </div>
@@ -226,13 +249,13 @@
                     class="contact-btn active flex-1 flex items-center justify-center gap-2
                            px-4 py-3 rounded-xl border-2 border-gray-200 text-sm font-medium
                            hover:border-blue-400 transition-colors">
-              📞 Call me
+              <span aria-hidden="true">📞</span> Call me
             </button>
             <button type="button" data-contact="text"
                     class="contact-btn flex-1 flex items-center justify-center gap-2
                            px-4 py-3 rounded-xl border-2 border-gray-200 text-sm font-medium
                            hover:border-blue-400 transition-colors">
-              💬 Text me
+              <span aria-hidden="true">💬</span> Text me
             </button>
           </div>
         </div>
@@ -287,7 +310,7 @@
 
       <!-- ETA badge -->
       <div class="bg-gray-50 border border-gray-200 rounded-2xl p-4 text-center mb-4 fade-in-up">
-        <p class="text-sm text-gray-500 mb-1">⏱ Master arriving in approximately</p>
+        <p class="text-sm text-gray-500 mb-1"><span aria-hidden="true">⏱</span> Master arriving in approximately</p>
         <p class="text-3xl font-extrabold text-gray-900">
           <span id="eta-value">18</span> minutes
         </p>
@@ -303,7 +326,7 @@
       <a id="call-btn" href="tel:555-0142"
          class="block w-full bg-green-600 hover:bg-green-700 text-white text-center
                 font-bold py-4 rounded-xl mb-4 transition-colors fade-in-up">
-        <span id="call-btn-text">📞 Call Master</span>
+        <span id="call-btn-text"><span aria-hidden="true">📞</span> Call Master</span>
       </a>
 
       <!-- Disclaimer -->
@@ -323,7 +346,7 @@
                bg-red-600 hover:bg-red-700 text-white font-bold text-sm
                px-5 py-3 rounded-full shadow-2xl flex items-center gap-2
                transition-colors">
-  🚨 Emergency
+  <span aria-hidden="true">🚨</span> Emergency
 </button>
 
 <!-- ── Try other features ─────────────────────────────────────────────────── -->
@@ -335,7 +358,7 @@
     <a href="/demo/quote/"
        class="flex items-center gap-3 bg-white rounded-xl shadow border border-gray-100
               p-4 hover:shadow-md hover:border-blue-200 transition-all">
-      <span class="text-2xl">💰</span>
+      <span class="text-2xl" aria-hidden="true">💰</span>
       <div>
         <p class="font-semibold text-sm text-gray-800">Quote Calculator</p>
         <p class="text-xs text-gray-400">Instant estimate</p>
@@ -344,7 +367,7 @@
     <a href="/demo/service-area/"
        class="flex items-center gap-3 bg-white rounded-xl shadow border border-gray-100
               p-4 hover:shadow-md hover:border-green-200 transition-all">
-      <span class="text-2xl">🗺️</span>
+      <span class="text-2xl" aria-hidden="true">🗺️</span>
       <div>
         <p class="font-semibold text-sm text-gray-800">Service Area Map</p>
         <p class="text-xs text-gray-400">ZIP coverage check</p>
@@ -353,7 +376,7 @@
     <a href="/demo/portfolio/"
        class="flex items-center gap-3 bg-white rounded-xl shadow border border-gray-100
               p-4 hover:shadow-md hover:border-purple-200 transition-all">
-      <span class="text-2xl">📸</span>
+      <span class="text-2xl" aria-hidden="true">📸</span>
       <div>
         <p class="font-semibold text-sm text-gray-800">Portfolio</p>
         <p class="text-xs text-gray-400">Before/after gallery</p>

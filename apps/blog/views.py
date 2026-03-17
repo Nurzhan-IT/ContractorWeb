@@ -73,4 +73,16 @@ class ArticleDetailView(TemplateView):
             'category_slug':   article.category.slug if article.category else '',
             'content_html':    _render_markdown(article.content),
         }
+
+        related_qs = Article.objects.filter(is_published=True).exclude(id=article.id)
+        if article.category:
+            related_qs = related_qs.filter(category=article.category)
+        ctx['related_articles'] = [
+            {
+                'title':           a.title,
+                'slug':            a.slug,
+                'cover_image_url': a.cover_image_url,
+            }
+            for a in related_qs.order_by('-published_at')[:3]
+        ]
         return ctx
