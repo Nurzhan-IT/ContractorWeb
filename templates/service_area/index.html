@@ -72,16 +72,16 @@
         <p class="text-gray-400 text-sm mb-5">Enter your ZIP code to find out instantly.</p>
 
         <form id="zip-form" novalidate>
-          <div class="flex gap-2">
+          <div class="flex flex-col sm:flex-row gap-2">
             <input id="zip-input"
                    type="text" inputmode="numeric" maxlength="5"
                    placeholder="e.g. 30334"
                    class="flex-1 px-4 py-3 rounded-xl border border-gray-200 text-sm font-mono
                           transition-shadow">
             <button id="check-btn" type="submit"
-                    class="bg-green-600 hover:bg-green-700 active:bg-green-800 text-white
+                    class="w-full sm:w-auto bg-green-600 hover:bg-green-700 active:bg-green-800 text-white
                            font-semibold text-sm px-5 py-3 rounded-xl transition-colors
-                           flex items-center gap-2 whitespace-nowrap">
+                           flex items-center justify-center gap-2 whitespace-nowrap">
               Check Now →
             </button>
           </div>
@@ -241,13 +241,11 @@
 {% block extra_js %}
 <!-- Leaflet JS (service area page only) -->
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script type="application/json" id="service-area-config">
+{"centerLat": {{ center_lat }}, "centerLng": {{ center_lng }}, "radiusMeters": {{ radius_meters }}, "radiusMiles": {{ radius_miles }}}
+</script>
 <script>
-  window.SERVICE_AREA = {
-    centerLat:    {{ center_lat }},
-    centerLng:    {{ center_lng }},
-    radiusMeters: {{ radius_meters }},
-    radiusMiles:  {{ radius_miles }},
-  };
+  window.SERVICE_AREA = JSON.parse(document.getElementById('service-area-config').textContent);
 </script>
 <script src="{{ static('js/service_area.js') }}"></script>
 <script>

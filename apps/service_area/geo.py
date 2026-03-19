@@ -1,7 +1,7 @@
 import random
 
 # ── Service zone config — change per client deployment ──────────────────────
-CENTER = (33.7490, -84.3880)   # Atlanta, GA
+CENTER = (33.7448168212341, -84.38487732662206)   # Atlanta, GA
 CENTER_LAT, CENTER_LNG = CENTER
 
 RADIUS_MILES = 35
