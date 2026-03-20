@@ -142,7 +142,6 @@ class QuoteSubmitView(View):
             problem_description=problem,
             ai_response=result if not has_error else None,
             ai_error=result.get("error", ""),
-            ip_address=ip,
         )
 
         if has_error:

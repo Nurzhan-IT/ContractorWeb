@@ -202,6 +202,15 @@ document.getElementById('quote-form').addEventListener('submit', async function 
     problem_description: document.getElementById('problem-desc').value.trim(),
   };
 
+  // --- Consent validation ---
+  var consentCheckbox = document.getElementById('consent_required');
+  if (consentCheckbox && !consentCheckbox.checked) {
+    formError.textContent = 'You must agree to the Privacy Policy and AI processing consent to continue.';
+    formError.classList.remove('hidden');
+    consentCheckbox.focus();
+    return;
+  }
+
   // --- Client-side format validation ---
   var emailVal    = document.getElementById('contact-email').value.trim();
   var phoneVal    = document.getElementById('contact-phone').value.trim();

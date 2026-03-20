@@ -20,7 +20,7 @@
   <div class="grid grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
 
     <!-- 1. Instant Quote Calculator (blue) -->
-    <a href="/demo/quote/"
+    <a href="{{ url('quote:quote') }}"
        class="group flex flex-col bg-white rounded-2xl shadow hover:shadow-xl
               transition-all duration-200 hover:scale-105 overflow-hidden">
       <div class="h-1.5 bg-blue-500"></div>
@@ -44,7 +44,7 @@
     </a>
 
     <!-- 2. Emergency Request (red) -->
-    <a href="/demo/emergency/"
+    <a href="{{ url('emergency:index') }}"
        class="group flex flex-col bg-white rounded-2xl shadow hover:shadow-xl
               transition-all duration-200 hover:scale-105 overflow-hidden">
       <div class="h-1.5 bg-red-500"></div>
@@ -68,7 +68,7 @@
     </a>
 
     <!-- 3. Service Area Map (green) -->
-    <a href="/demo/service-area/"
+    <a href="{{ url('service_area:index') }}"
        class="group flex flex-col bg-white rounded-2xl shadow hover:shadow-xl
               transition-all duration-200 hover:scale-105 overflow-hidden">
       <div class="h-1.5 bg-green-500"></div>
@@ -92,7 +92,7 @@
     </a>
 
     <!-- 4. Before & After Gallery (purple) -->
-    <a href="/demo/portfolio/"
+    <a href="{{ url('portfolio:index') }}"
        class="group flex flex-col bg-white rounded-2xl shadow hover:shadow-xl
               transition-all duration-200 hover:scale-105 overflow-hidden">
       <div class="h-1.5 bg-purple-500"></div>
@@ -116,7 +116,7 @@
     </a>
 
     <!-- 5. Online Booking (amber) -->
-    <a href="/demo/booking/"
+    <a href="{{ url('booking:index') }}"
        class="group flex flex-col bg-white rounded-2xl shadow hover:shadow-xl
               transition-all duration-200 hover:scale-105 overflow-hidden">
       <div class="h-1.5 bg-amber-500"></div>
@@ -140,7 +140,7 @@
     </a>
 
     <!-- 6. Custom Feature (gray dashed) -->
-    <a href="/demo/booking/" class="flex flex-col bg-white rounded-2xl border-2 border-dashed border-gray-200
+    <a href="{{ url('booking:index') }}" class="flex flex-col bg-white rounded-2xl border-2 border-dashed border-gray-200
                 hover:border-gray-400 transition-all duration-200 overflow-hidden cursor-pointer">
       <div class="h-1.5 bg-gradient-to-r from-gray-300 to-gray-400"></div>
       <div class="p-4 sm:p-6 flex flex-col flex-1">
@@ -170,7 +170,7 @@
     <p class="text-xl sm:text-2xl font-extrabold mb-5">
       See the full feature list on a call.
     </p>
-    <a href="/demo/booking/"
+    <a href="{{ url('booking:index') }}"
        class="inline-block bg-white text-blue-600 font-bold text-sm sm:text-base
               px-6 py-3 rounded-xl hover:bg-blue-50 transition-colors">
       Book a Call

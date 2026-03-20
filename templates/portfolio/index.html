@@ -67,14 +67,14 @@
   <ol class="flex items-center gap-1.5 text-xs text-gray-400"
       itemscope itemtype="https://schema.org/BreadcrumbList">
     <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-      <a href="/" itemprop="item" class="hover:text-gray-600 transition-colors">
+      <a href="{{ url('landing:landing') }}" itemprop="item" class="hover:text-gray-600 transition-colors">
         <span itemprop="name">Home</span>
       </a>
       <meta itemprop="position" content="1">
     </li>
     <li aria-hidden="true" class="text-gray-300">/</li>
     <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-      <a href="/demo/" itemprop="item" class="hover:text-gray-600 transition-colors">
+      <a href="{{ url('demo_hub') }}" itemprop="item" class="hover:text-gray-600 transition-colors">
         <span itemprop="name">Demo Hub</span>
       </a>
       <meta itemprop="position" content="2">
@@ -245,7 +245,7 @@
       Every project we complete includes professional before &amp; after documentation.
       Get a free estimate today.
     </p>
-    <a href="/demo/quote/"
+    <a href="{{ url('quote:quote') }}"
        class="inline-block bg-white text-gray-900 font-bold text-base
               px-8 py-4 rounded-xl hover:bg-gray-100 active:bg-gray-200
               transition-colors shadow-lg">
@@ -259,7 +259,7 @@
       Try other features
     </p>
     <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
-      <a href="/demo/quote/"
+      <a href="{{ url('quote:quote') }}"
          class="flex items-center gap-3 bg-white rounded-xl shadow border border-gray-100
                 p-4 hover:shadow-md hover:border-blue-200 transition-all">
         <span class="text-2xl">💰</span>
@@ -268,7 +268,7 @@
           <p class="text-xs text-gray-400">Instant estimate</p>
         </div>
       </a>
-      <a href="/demo/booking/"
+      <a href="{{ url('booking:index') }}"
          class="flex items-center gap-3 bg-white rounded-xl shadow border border-gray-100
                 p-4 hover:shadow-md hover:border-blue-200 transition-all">
         <span class="text-2xl">📅</span>
@@ -277,7 +277,7 @@
           <p class="text-xs text-gray-400">Calendar scheduler</p>
         </div>
       </a>
-      <a href="/demo/emergency/"
+      <a href="{{ url('emergency:index') }}"
          class="flex items-center gap-3 bg-white rounded-xl shadow border border-gray-100
                 p-4 hover:shadow-md hover:border-red-200 transition-all">
         <span class="text-2xl">🚨</span>

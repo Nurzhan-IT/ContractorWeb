@@ -8,7 +8,7 @@ class WebQuoteRequestAdmin(admin.ModelAdmin):
     list_display    = ('name', 'email', 'phone', 'trade', 'budget_range', 'created_at', 'has_error')
     list_filter     = ('trade', 'budget_range')
     search_fields   = ('name', 'email', 'phone')
-    readonly_fields = ('ai_response', 'ai_error', 'ip_address', 'created_at')
+    readonly_fields = ('ai_response', 'ai_error', 'created_at')
 
     def has_error(self, obj):
         return bool(obj.ai_error)

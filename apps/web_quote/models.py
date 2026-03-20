@@ -11,7 +11,6 @@ class WebQuoteRequest(models.Model):
     project_description = models.TextField()
     ai_response         = models.JSONField(null=True, blank=True)
     ai_error            = models.TextField(blank=True, default='')
-    ip_address          = models.GenericIPAddressField(null=True, blank=True)
     created_at          = models.DateTimeField(auto_now_add=True)
 
     class Meta:

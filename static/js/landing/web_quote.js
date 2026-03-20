@@ -159,6 +159,14 @@
     var ok = true;
     [fldTrade, fldDesc, fldName, fldEmail, fldPhone].forEach(clearFieldError);
 
+    var consentCheckbox = document.getElementById('wq-consent-required');
+    if (!consentCheckbox || !consentCheckbox.checked) {
+      if (consentCheckbox) setFieldError(consentCheckbox);
+      showFormError('You must agree to the Privacy Policy and AI processing consent to continue.');
+      if (consentCheckbox) consentCheckbox.focus();
+      return false;
+    }
+
     if (!fldTrade || !fldTrade.value) { setFieldError(fldTrade); ok = false; }
     if (!fldDesc || !fldDesc.value.trim()) { setFieldError(fldDesc); ok = false; }
     else if (fldDesc.value.trim().length < 20) { setFieldError(fldDesc); ok = false; }

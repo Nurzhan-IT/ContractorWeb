@@ -20,6 +20,10 @@ urlpatterns = [
     path('api/', include('config.api_urls')),
     # Blog at /blog/ — part of main marketing site for SEO
     path('blog/', include('blog.urls')),
+    # Legal pages
+    path('privacy/', TemplateView.as_view(template_name='legal/privacy.html'), name='privacy'),
+    path('terms/',   TemplateView.as_view(template_name='legal/terms.html'),   name='terms'),
+    path('cookies/', TemplateView.as_view(template_name='legal/cookies.html'), name='cookies'),
     # SEO files
     path('robots.txt', TemplateView.as_view(template_name='robots.txt', content_type='text/plain')),
     path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='sitemap'),

@@ -1,0 +1,207 @@
+{% extends 'base_landing_solid_navbar.html' %}
+
+{% block title %}Privacy Policy — ContractorWeb{% endblock %}
+{% block meta_description %}Privacy Policy for ContractorWeb demo site. Learn what data we collect, how we use it, and your rights.{% endblock %}
+
+{% block content %}
+<div class="max-w-3xl mx-auto px-4 py-12">
+
+  <h1 class="text-3xl font-bold text-gray-900 mb-2">Privacy Policy</h1>
+  <p class="text-sm text-gray-500 mb-10">Last updated: March 2026</p>
+
+  <!-- 1. Who we are -->
+  <section class="mb-10">
+    <h2 class="text-xl font-semibold text-gray-800 mb-3">1. Who We Are</h2>
+    <p class="text-gray-600 leading-relaxed">
+      ContractorWeb is a web development agency demo site showcasing interactive features for local contractors.
+      This site is operated for demonstration purposes. For any privacy-related requests, contact us at
+      <a href="mailto:help@yourdomain.com" class="text-blue-600 underline">help@yourdomain.com</a>.
+    </p>
+  </section>
+
+  <!-- 2. What we collect -->
+  <section class="mb-10">
+    <h2 class="text-xl font-semibold text-gray-800 mb-3">2. What Data We Collect</h2>
+    <div class="overflow-x-auto">
+      <table class="w-full text-sm border-collapse border border-gray-200 rounded-lg">
+        <thead class="bg-gray-50">
+          <tr>
+            <th class="text-left px-4 py-3 border-b border-gray-200 font-semibold text-gray-700">Source</th>
+            <th class="text-left px-4 py-3 border-b border-gray-200 font-semibold text-gray-700">Data</th>
+            <th class="text-left px-4 py-3 border-b border-gray-200 font-semibold text-gray-700">Stored</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-200">
+          <tr>
+            <td class="px-4 py-3 text-gray-700">Quote Calculator form</td>
+            <td class="px-4 py-3 text-gray-600">Name, phone, email, address, ZIP, problem description, photos (not saved — see §4)</td>
+            <td class="px-4 py-3 text-gray-600">Yes — deleted after 90 days</td>
+          </tr>
+          <tr class="bg-gray-50">
+            <td class="px-4 py-3 text-gray-700">Web Quote form (landing page)</td>
+            <td class="px-4 py-3 text-gray-600">Name, email, phone, trade, budget range, timeline, project description</td>
+            <td class="px-4 py-3 text-gray-600">Yes — deleted after 90 days</td>
+          </tr>
+          <tr>
+            <td class="px-4 py-3 text-gray-700">Emergency form</td>
+            <td class="px-4 py-3 text-gray-600">Name, phone, problem type (simulation only)</td>
+            <td class="px-4 py-3 text-gray-600">No — discarded immediately</td>
+          </tr>
+          <tr class="bg-gray-50">
+            <td class="px-4 py-3 text-gray-700">Service Area check</td>
+            <td class="px-4 py-3 text-gray-600">ZIP code (for geolocation lookup)</td>
+            <td class="px-4 py-3 text-gray-600">No — not stored</td>
+          </tr>
+          <tr>
+            <td class="px-4 py-3 text-gray-700">Cookies</td>
+            <td class="px-4 py-3 text-gray-600">csrftoken (CSRF protection), sessionid (technical session)</td>
+            <td class="px-4 py-3 text-gray-600">Browser only — see <a href="{{ url('cookies') }}" class="text-blue-600 underline">Cookie Policy</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- 3. Why we collect it -->
+  <section class="mb-10">
+    <h2 class="text-xl font-semibold text-gray-800 mb-3">3. Why We Collect It</h2>
+    <ul class="list-disc pl-6 space-y-2 text-gray-600">
+      <li>To generate AI-powered price estimates in response to your request</li>
+      <li>To demonstrate the features of a contractor website to potential agency clients</li>
+      <li>To protect our forms from spam and automated abuse (CSRF tokens, Cloudflare Turnstile)</li>
+    </ul>
+    <p class="mt-3 text-gray-600">
+      <strong>Legal basis (GDPR):</strong> Consent (Article 6(1)(a)) — you explicitly agree before submitting any form.
+    </p>
+  </section>
+
+  <!-- 4. AI processing -->
+  <section id="ai-processing" class="mb-10 scroll-mt-24">
+    <h2 class="text-xl font-semibold text-gray-800 mb-3">4. AI Processing of Your Data</h2>
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-4">
+      <p class="text-sm text-blue-800 font-medium">How AI estimates work</p>
+    </div>
+    <p class="text-gray-600 leading-relaxed mb-3">
+      When you submit the Quote Calculator or Web Quote form, your text description (and any photos you attach)
+      are sent to <strong>Google Gemini AI</strong> via the <strong>OpenRouter</strong> API service to generate a
+      cost estimate. This means:
+    </p>
+    <ul class="list-disc pl-6 space-y-2 text-gray-600 mb-3">
+      <li>Your description and photos are transmitted to OpenRouter's servers and then to Google's AI infrastructure</li>
+      <li><strong>Photos are never saved to disk</strong> — they are converted to a temporary data format, sent to the AI, and then discarded</li>
+      <li>The AI-generated estimate is returned to you and stored alongside your contact details for up to 90 days</li>
+    </ul>
+    <p class="text-gray-600 leading-relaxed">
+      <strong>Important:</strong> AI estimates are generated automatically and are not professional assessments.
+      They are indicative only and must be confirmed by an on-site inspection.
+      See <a href="{{ url('terms') }}" class="text-blue-600 underline">Terms of Use</a> for full disclaimer.
+    </p>
+    <p class="mt-3 text-gray-600">
+      OpenRouter privacy policy:
+      <a href="https://openrouter.ai/privacy" target="_blank" rel="noopener" class="text-blue-600 underline">openrouter.ai/privacy</a>.
+      Google privacy policy:
+      <a href="https://policies.google.com/privacy" target="_blank" rel="noopener" class="text-blue-600 underline">policies.google.com/privacy</a>.
+    </p>
+  </section>
+
+  <!-- 5. Third parties -->
+  <section class="mb-10">
+    <h2 class="text-xl font-semibold text-gray-800 mb-3">5. Third-Party Data Processors</h2>
+    <div class="overflow-x-auto">
+      <table class="w-full text-sm border-collapse border border-gray-200 rounded-lg">
+        <thead class="bg-gray-50">
+          <tr>
+            <th class="text-left px-4 py-3 border-b border-gray-200 font-semibold text-gray-700">Service</th>
+            <th class="text-left px-4 py-3 border-b border-gray-200 font-semibold text-gray-700">Purpose</th>
+            <th class="text-left px-4 py-3 border-b border-gray-200 font-semibold text-gray-700">Privacy Policy</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-200">
+          <tr>
+            <td class="px-4 py-3 text-gray-700">OpenRouter / Google Gemini</td>
+            <td class="px-4 py-3 text-gray-600">AI estimate generation</td>
+            <td class="px-4 py-3"><a href="https://openrouter.ai/privacy" target="_blank" rel="noopener" class="text-blue-600 underline">openrouter.ai/privacy</a></td>
+          </tr>
+          <tr class="bg-gray-50">
+            <td class="px-4 py-3 text-gray-700">Cal.com</td>
+            <td class="px-4 py-3 text-gray-600">Online booking scheduling — stores name, email, phone, and chosen time slot on Cal.com servers</td>
+            <td class="px-4 py-3"><a href="https://cal.com/privacy" target="_blank" rel="noopener" class="text-blue-600 underline">cal.com/privacy</a></td>
+          </tr>
+          <tr>
+            <td class="px-4 py-3 text-gray-700">Cloudflare Turnstile</td>
+            <td class="px-4 py-3 text-gray-600">Bot protection on all forms</td>
+            <td class="px-4 py-3"><a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener" class="text-blue-600 underline">cloudflare.com/privacypolicy</a></td>
+          </tr>
+          <tr class="bg-gray-50">
+            <td class="px-4 py-3 text-gray-700">OpenStreetMap / Nominatim</td>
+            <td class="px-4 py-3 text-gray-600">ZIP code geocoding on Service Area page</td>
+            <td class="px-4 py-3"><a href="https://osmfoundation.org/wiki/Privacy_Policy" target="_blank" rel="noopener" class="text-blue-600 underline">osmfoundation.org</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- 6. Data retention -->
+  <section class="mb-10">
+    <h2 class="text-xl font-semibold text-gray-800 mb-3">6. Data Retention</h2>
+    <ul class="list-disc pl-6 space-y-2 text-gray-600">
+      <li><strong>Quote and Web Quote requests</strong> — automatically deleted after <strong>90 days</strong></li>
+      <li><strong>IP addresses</strong> — not stored in the database; used only in temporary server memory for rate-limiting and discarded immediately</li>
+      <li><strong>Booking data</strong> — stored by Cal.com according to their own retention policy</li>
+      <li><strong>Cookies</strong> — session cookie expires when the browser closes; CSRF cookie persists per browser session</li>
+    </ul>
+  </section>
+
+  <!-- 7. Your rights -->
+  <section class="mb-10">
+    <h2 class="text-xl font-semibold text-gray-800 mb-3">7. Your Rights</h2>
+    <p class="text-gray-600 mb-3">Under GDPR and CCPA you have the right to:</p>
+    <ul class="list-disc pl-6 space-y-2 text-gray-600 mb-4">
+      <li><strong>Access</strong> — request a copy of the data we hold about you</li>
+      <li><strong>Deletion</strong> — request that we delete all records associated with your email address</li>
+      <li><strong>Rectification</strong> — request correction of inaccurate data</li>
+      <li><strong>Portability</strong> — receive your data in a machine-readable format</li>
+      <li><strong>Withdraw consent</strong> — at any time, for future processing</li>
+    </ul>
+    <div class="bg-gray-100 rounded-lg px-5 py-4">
+      <p class="text-gray-700 text-sm">
+        To exercise any of these rights, email us at
+        <a href="mailto:help@yourdomain.com" class="text-blue-600 underline font-medium">help@yourdomain.com</a>
+        with the subject line <strong>"Data Request"</strong>. We will respond within <strong>30 days</strong>.
+      </p>
+    </div>
+  </section>
+
+  <!-- 8. Security -->
+  <section class="mb-10">
+    <h2 class="text-xl font-semibold text-gray-800 mb-3">8. Security</h2>
+    <ul class="list-disc pl-6 space-y-2 text-gray-600">
+      <li>All data is transmitted over HTTPS (TLS encryption)</li>
+      <li>Forms are protected by CSRF tokens and Cloudflare Turnstile</li>
+      <li>Photos are never written to disk — processed in memory only</li>
+      <li>Database access is restricted to the application server</li>
+    </ul>
+  </section>
+
+  <!-- 9. Changes -->
+  <section class="mb-10">
+    <h2 class="text-xl font-semibold text-gray-800 mb-3">9. Changes to This Policy</h2>
+    <p class="text-gray-600 leading-relaxed">
+      We may update this policy from time to time. The "Last updated" date at the top of this page reflects
+      the most recent revision. Continued use of the site after a policy change constitutes acceptance of the
+      updated terms.
+    </p>
+  </section>
+
+  <!-- Contact -->
+  <section class="mb-4">
+    <h2 class="text-xl font-semibold text-gray-800 mb-3">10. Contact</h2>
+    <p class="text-gray-600">
+      For any privacy questions or data requests:<br>
+      <a href="mailto:help@yourdomain.com" class="text-blue-600 underline">help@yourdomain.com</a>
+    </p>
+  </section>
+
+</div>
+{% endblock %}

@@ -85,7 +85,7 @@
 <div class="max-w-3xl mx-auto px-4 py-10 sm:py-14">
 
   <!-- Back link -->
-  <a href="/blog/" class="inline-flex items-center gap-1 text-sm text-cyan-600 hover:text-cyan-800 mb-6 font-medium">
+  <a href="{{ url('blog:index') }}" class="inline-flex items-center gap-1 text-sm text-cyan-600 hover:text-cyan-800 mb-6 font-medium">
     ← Back to Blog
   </a>
 
@@ -104,7 +104,7 @@
   <!-- Article header -->
   <header class="mb-8">
     {% if article.category_name %}
-    <a href="/blog/?category={{ article.category_slug }}"
+    <a href="{{ url('blog:index') }}?category={{ article.category_slug }}"
        class="inline-block text-xs font-semibold text-cyan-700 bg-cyan-50 px-3 py-1 rounded-full mb-3 hover:bg-cyan-100 transition-colors">
       {{ article.category_name }}
     </a>
@@ -130,7 +130,7 @@
     <h2 class="text-xl font-bold text-gray-900 mb-6">Related Articles</h2>
     <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
       {% for post in related_articles %}
-      <a href="/blog/{{ post.slug }}/"
+      <a href="{{ url('blog:detail', slug=post.slug) }}"
          class="block group rounded-xl border border-gray-200 overflow-hidden hover:shadow-md transition-shadow">
         {% if post.cover_image_url %}
         <img src="{{ post.cover_image_url }}"
@@ -151,7 +151,7 @@
 
   <!-- Footer separator + back link -->
   <hr class="my-10 border-gray-200">
-  <a href="/blog/" class="inline-flex items-center gap-1 text-sm text-cyan-600 hover:text-cyan-800 font-medium">
+  <a href="{{ url('blog:index') }}" class="inline-flex items-center gap-1 text-sm text-cyan-600 hover:text-cyan-800 font-medium">
     ← Back to all articles
   </a>
 

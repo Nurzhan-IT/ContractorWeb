@@ -116,7 +116,6 @@ class WebQuoteSubmitView(View):
             project_description=description,
             ai_response=result if not has_error else None,
             ai_error=result.get("error", ""),
-            ip_address=ip,
         )
 
         if has_error:
