@@ -1,5 +1,5 @@
 /* ============================================================
-   main.js — ContractorWeb Django Template
+   main.js — ContractorWebDev Django Template
    Vanilla JS only — no frameworks
    ============================================================ */
 

@@ -1,9 +1,9 @@
 {% extends 'blog/base_blog.html' %}
 
-{% block title %}{{ article.title }} | ContractorWeb Blog{% endblock %}
+{% block title %}{{ article.title }} | ContractorWebDev Blog{% endblock %}
 {% block meta_description %}{{ article.excerpt }}{% endblock %}
 {% block canonical %}{{ request.build_absolute_uri(request.path) }}{% endblock %}
-{% block og_title %}{{ article.title }} | ContractorWeb Blog{% endblock %}
+{% block og_title %}{{ article.title }} | ContractorWebDev Blog{% endblock %}
 {% block og_description %}{{ article.excerpt }}{% endblock %}
 {% block og_image %}{{ article.cover_image_url if article.cover_image_url else request.scheme + '://' + request.get_host() + '/static/img/og-blog.png' }}{% endblock %}
 {% block twitter_image %}{{ article.cover_image_url if article.cover_image_url else request.scheme + '://' + request.get_host() + '/static/img/og-blog.png' }}{% endblock %}
@@ -21,7 +21,7 @@
   "mainEntityOfPage": {{ request.build_absolute_uri(request.path) | tojson }},
   "publisher": {
     "@type": "Organization",
-    "name": "ContractorWeb",
+    "name": "ContractorWebDev",
     "logo": {
       "@type": "ImageObject",
       "url": {{ (request.scheme + '://' + request.get_host() + '/static/img/og-default.png') | tojson }}

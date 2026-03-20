@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{% block title %}Blog | ContractorWeb{% endblock %}</title>
+  <title>{% block title %}Blog | ContractorWebDev{% endblock %}</title>
   <meta name="description" content="{% block meta_description %}Practical tips and guides for homeowners — plumbing, electrical, roofing and more.{% endblock %}">
   <link rel="canonical" href="{% block canonical %}{{ request.scheme }}://{{ request.get_host() }}{{ request.path }}{% endblock %}">
 
   <!-- Open Graph -->
-  <meta property="og:title" content="{% block og_title %}Blog | ContractorWeb{% endblock %}">
+  <meta property="og:title" content="{% block og_title %}Blog | ContractorWebDev{% endblock %}">
   <meta property="og:description" content="{% block og_description %}Practical tips and guides for homeowners — plumbing, electrical, roofing and more.{% endblock %}">
   <meta property="og:type" content="article">
   <meta property="og:url" content="{% block og_url %}{{ request.scheme }}://{{ request.get_host() }}{{ request.path }}{% endblock %}">
@@ -16,7 +16,7 @@
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="{% block twitter_title %}Blog | ContractorWeb{% endblock %}">
+  <meta name="twitter:title" content="{% block twitter_title %}Blog | ContractorWebDev{% endblock %}">
   <meta name="twitter:image" content="{% block twitter_image %}{{ request.scheme }}://{{ request.get_host() }}/static/img/og-blog.png{% endblock %}">
 
   <script src="https://cdn.tailwindcss.com"></script>
@@ -39,7 +39,7 @@
               <polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>
             </svg>
           </div>
-          <span class="text-xl font-bold text-gray-900">ContractorWeb</span>
+          <span class="text-xl font-bold text-gray-900">ContractorWebDev</span>
         </a>
 
         <!-- Desktop Navigation -->
@@ -77,7 +77,7 @@
     <div id="mobile-menu" style="display:none" class="fixed inset-0 z-50 bg-white">
       <div class="flex flex-col h-full">
         <div class="flex items-center justify-between px-4 h-16 border-b border-gray-200">
-          <span class="text-xl font-bold text-gray-900">ContractorWeb</span>
+          <span class="text-xl font-bold text-gray-900">ContractorWebDev</span>
           <button id="mobile-menu-close" class="p-2 rounded-lg bg-gray-100" aria-label="Close menu">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
@@ -124,7 +124,7 @@
                 <polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>
               </svg>
             </div>
-            <span class="text-xl font-bold">ContractorWeb</span>
+            <span class="text-xl font-bold">ContractorWebDev</span>
           </div>
           <p class="text-sm" style="color:#94a3b8">Professional websites for local contractors. Built to bring more jobs.</p>
         </div>
@@ -149,7 +149,7 @@
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>
               </svg>
-              <a href="mailto:hello@contractorweb.dev" class="transition-colors" onmouseover="this.style.color='#22d3ee'" onmouseout="this.style.color='#94a3b8'" style="color:inherit">hello@contractorweb.dev</a>
+              <a href="mailto:hello@contractorwebdev.com" class="transition-colors" onmouseover="this.style.color='#22d3ee'" onmouseout="this.style.color='#94a3b8'" style="color:inherit">hello@contractorwebdev.com</a>
             </li>
             <li class="flex items-center gap-2" style="color:#94a3b8">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -168,7 +168,7 @@
       </div>
 
       <div class="pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-        <p class="text-sm" style="color:#94a3b8">&copy; 2026 ContractorWeb. All rights reserved.</p>
+        <p class="text-sm" style="color:#94a3b8">&copy; 2026 ContractorWebDev. All rights reserved.</p>
         <div class="flex gap-6 text-sm">
           <a href="{{ url('privacy') }}" class="transition-colors" style="color:#94a3b8" onmouseover="this.style.color='#22d3ee'" onmouseout="this.style.color='#94a3b8'">Privacy Policy</a>
           <a href="{{ url('terms') }}" class="transition-colors" style="color:#94a3b8" onmouseover="this.style.color='#22d3ee'" onmouseout="this.style.color='#94a3b8'">Terms of Service</a>

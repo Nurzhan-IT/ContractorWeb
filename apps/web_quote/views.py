@@ -183,7 +183,7 @@ def _build_pdf_web(name: str, trade: str, description: str, estimate: dict) -> i
     # ── Header ──────────────────────────────────────────────────────────────
     header_table = Table(
         [[
-            Paragraph('ContractorWeb', ParagraphStyle(
+            Paragraph('ContractorWebDev', ParagraphStyle(
                 'Header', parent=styles['Normal'],
                 fontSize=22, fontName='Helvetica-Bold', textColor=colors.white, spaceAfter=4,
             )),
@@ -338,7 +338,7 @@ def _build_pdf_web(name: str, trade: str, description: str, estimate: dict) -> i
     story.append(HRFlowable(width='100%', thickness=0.5, color=colors.HexColor('#e5e7eb'), spaceBefore=8))
     disclaimer = estimate.get('disclaimer', 'Final price confirmed after discovery call. Prices in USD.')
     story.append(Paragraph(
-        f'{disclaimer}  \u2022  ContractorWeb \u00b7 (555) 123-4567 \u00b7 hello@contractorweb.dev',
+        f'{disclaimer}  \u2022  ContractorWebDev \u00b7 (555) 123-4567 \u00b7 hello@contractorwebdev.com',
         ParagraphStyle('Footer', parent=styles['Normal'],
             fontSize=7, textColor=GRAY, alignment=1),
     ))
