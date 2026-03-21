@@ -6,20 +6,10 @@ set -euo pipefail
 
 APP_DIR="/var/www/contractorwebdev/website_django"
 VENV="$APP_DIR/../venv"
-ENV_FILE="$APP_DIR/../.env"
 SERVICE="contractorwebdev"
 
-# Load .env so production.py can read SECRET_KEY, DATABASE_URL, etc.
-if [[ -f "$ENV_FILE" ]]; then
-    set -a
-    # shellcheck disable=SC1090
-    source "$ENV_FILE"
-    set +a
-else
-    echo "ERROR: .env not found at $ENV_FILE" >&2
-    exit 1
-fi
-
+# .env is NOT sourced here — production.py loads it automatically via python-dotenv.
+# Sourcing .env in bash breaks when SECRET_KEY contains special characters (^, #, %).
 export DJANGO_SETTINGS_MODULE=config.settings.production
 
 echo "==> Pulling latest code..."
