@@ -1,5 +1,15 @@
 import os
 import urllib.parse
+from pathlib import Path
+
+from dotenv import load_dotenv
+
+# Auto-load .env — looks in /var/www/contractorwebdev/.env (parent of project root)
+# This makes `manage.py` work without manually sourcing .env in bash.
+# load_dotenv does NOT override vars already set in the environment (systemd, etc.).
+_project_root = Path(__file__).resolve().parent.parent.parent  # = website_django/
+load_dotenv(_project_root.parent / '.env')   # /var/www/contractorwebdev/.env
+load_dotenv(_project_root / '.env')          # fallback: website_django/.env
 
 from .base import *  # noqa: F401, F403
 
