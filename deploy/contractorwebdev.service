@@ -1,0 +1,48 @@
+[Unit]
+Description=ContractorWebDev Django Application
+After=network.target postgresql.service
+Requires=postgresql.service
+
+[Service]
+Type=notify
+
+# Run as dedicated user (created during setup)
+User=contractorwebdev
+Group=contractorwebdev
+
+# Project directory
+WorkingDirectory=/var/www/contractorwebdev/website_django
+
+# Runtime directory for the Unix socket
+RuntimeDirectory=contractorwebdev
+RuntimeDirectoryMode=0755
+
+# Environment
+Environment="DJANGO_SETTINGS_MODULE=config.settings.production"
+EnvironmentFile=/var/www/contractorwebdev/.env
+
+# Start gunicorn
+ExecStart=/var/www/contractorwebdev/venv/bin/gunicorn \
+    --config /var/www/contractorwebdev/website_django/deploy/gunicorn.conf.py \
+    config.wsgi:application
+
+# Graceful reload on SIGHUP (used by deploy script)
+ExecReload=/bin/kill -s HUP $MAINPID
+
+# Cleanup on stop
+KillMode=mixed
+KillSignal=SIGTERM
+TimeoutStopSec=30
+
+# Auto-restart on failure
+Restart=on-failure
+RestartSec=5s
+
+# Security hardening
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ReadWritePaths=/var/www/contractorwebdev
+
+[Install]
+WantedBy=multi-user.target
