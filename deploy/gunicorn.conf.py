@@ -6,11 +6,13 @@ import multiprocessing
 # Bind to Unix socket (nginx will proxy to this)
 bind = "unix:/run/contractorwebdev/gunicorn.sock"
 
-# Workers: 2–4 × CPU cores is the standard recommendation
+# Workers: with gthread, fewer workers + more threads is optimal
 workers = multiprocessing.cpu_count() * 2 + 1
 
-# Worker class: sync is fine for this app (no async I/O needed)
-worker_class = "sync"
+# gthread: each worker runs N threads concurrently.
+# While one thread waits for OpenRouter API, others serve normal requests.
+worker_class = "gthread"
+threads = 4  # each worker handles up to 4 concurrent requests
 
 # Timeout: 120s for AI calls (OpenRouter can be slow)
 timeout = 120
