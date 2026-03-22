@@ -27,18 +27,48 @@ img-comparison-slider img {
 
 /* ── Mobile nav slide-in animation ──────────────────────────────────────────
    Controls the mobile dropdown. The `open` class is toggled via JS.
-   On md+ screens the menu is hidden by Tailwind's md:hidden utility.  */
-@media (max-width: 767px) {
+   On lg+ screens the menu is hidden by Tailwind's lg:hidden utility.  */
+@media (max-width: 1023px) {
   #nav-menu {
     max-height: 0;
     opacity: 0;
     overflow: hidden;
-    transition: max-height 0.25s ease-out, opacity 0.2s ease;
+    transition: max-height 0.3s ease-out, opacity 0.25s ease;
   }
   #nav-menu.open {
-    max-height: 500px;
+    max-height: 600px;
     opacity: 1;
   }
+}
+
+/* ── Animated burger icon (3 lines → X) ─────────────────────────────────── */
+.burger-icon {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 20px;
+  height: 20px;
+}
+
+.burger-line {
+  display: block;
+  height: 2px;
+  background: currentColor;
+  border-radius: 2px;
+  transition: transform 0.28s ease, opacity 0.2s ease;
+  transform-origin: center;
+}
+
+#nav-toggle.burger-open .burger-line:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+#nav-toggle.burger-open .burger-line:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+#nav-toggle.burger-open .burger-line:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
 }
 
 /* ── Portfolio filter card fade transition ───────────────────────────────── */

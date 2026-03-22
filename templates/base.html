@@ -76,18 +76,19 @@
 
       <!-- Mobile toggle -->
       <button id="nav-toggle"
-              class="md:hidden p-1.5 rounded hover:bg-gray-700 focus:outline-none transition-colors"
+              class="lg:hidden p-1.5 rounded hover:bg-gray-700 focus:outline-none transition-colors"
               aria-label="Toggle menu"
               aria-expanded="false"
               aria-controls="nav-menu">
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M4 6h16M4 12h16M4 18h16"/>
-        </svg>
+        <span class="burger-icon" aria-hidden="true">
+          <span class="burger-line"></span>
+          <span class="burger-line"></span>
+          <span class="burger-line"></span>
+        </span>
       </button>
 
       <!-- Desktop links -->
-      <div class="hidden md:flex items-center gap-0.5 text-sm font-medium">
+      <div class="hidden lg:flex items-center gap-0.5 text-sm font-medium">
         <a href="{{ url('landing:landing') }}"
            class="px-3 py-2 rounded transition-colors {% if request.path == '/' %}bg-gray-700 text-blue-300{% else %}hover:bg-gray-700 hover:text-blue-300{% endif %}">Landing</a>
         <a href="{{ url('demo_hub') }}"
@@ -107,7 +108,7 @@
 
     <!-- Mobile dropdown (animated via CSS in demo.css) -->
     <div id="nav-menu"
-         class="md:hidden border-t border-gray-700 px-4 flex flex-col gap-0.5 text-sm"
+         class="lg:hidden border-t border-gray-700 px-4 flex flex-col gap-0.5 text-sm"
          role="navigation"
          aria-label="Mobile navigation">
 
@@ -140,6 +141,9 @@
       <div class="pb-2"></div>
     </div>
   </nav>
+
+  <!-- Click-outside overlay: closes mobile nav when tapping outside -->
+  <div id="nav-overlay" class="fixed inset-0 z-40 hidden lg:hidden"></div>
 
   <!-- Main content: pt-[88px] = 32px banner + 56px navbar -->
   <main id="main-content" class="flex-1 pt-[88px]">
@@ -175,19 +179,31 @@
   <!-- Mobile nav toggle, demo banner dismiss, global CSRF helper -->
   <script>
     // ── Mobile nav toggle (animated via CSS) ─────────────────────────────────
-    var navToggle = document.getElementById('nav-toggle');
-    var navMenu   = document.getElementById('nav-menu');
-    var navClose  = document.getElementById('nav-close');
+    var navToggle  = document.getElementById('nav-toggle');
+    var navMenu    = document.getElementById('nav-menu');
+    var navClose   = document.getElementById('nav-close');
+    var navOverlay = document.getElementById('nav-overlay');
+
+    function openMenu() {
+      navMenu.classList.add('open');
+      navOverlay.classList.remove('hidden');
+      navToggle.classList.add('burger-open');
+      navToggle.setAttribute('aria-expanded', 'true');
+    }
+
+    function closeMenu() {
+      navMenu.classList.remove('open');
+      navOverlay.classList.add('hidden');
+      navToggle.classList.remove('burger-open');
+      navToggle.setAttribute('aria-expanded', 'false');
+    }
 
     navToggle.addEventListener('click', function () {
-      var isOpen = navMenu.classList.toggle('open');
-      navToggle.setAttribute('aria-expanded', String(isOpen));
+      navMenu.classList.contains('open') ? closeMenu() : openMenu();
     });
 
-    navClose.addEventListener('click', function () {
-      navMenu.classList.remove('open');
-      navToggle.setAttribute('aria-expanded', 'false');
-    });
+    navClose.addEventListener('click', closeMenu);
+    navOverlay.addEventListener('click', closeMenu);
 
     // ── Demo banner dismiss ───────────────────────────────────────────────────
     document.getElementById('dismiss-banner').addEventListener('click', function () {
@@ -233,17 +249,38 @@
   {% block extra_js %}{% endblock %}
 
   <!-- Cookie notice (informational only — strictly necessary cookies don't require opt-in) -->
-  <div id="cookie-notice" class="fixed bottom-0 inset-x-0 bg-gray-900 text-white px-6 py-3 z-[9999] shadow-lg">
-    <div class="max-w-7xl mx-auto flex items-center justify-between gap-6">
-      <p class="text-sm text-gray-300">
-        We use strictly necessary cookies only (CSRF protection &amp; session). No tracking or analytics.
-        <a href="{{ url('cookies') }}" class="underline ml-1 hover:text-white">Cookie Policy</a>
-      </p>
+  <div id="cookie-notice"
+       style="position:fixed;bottom:1.5rem;left:1.5rem;z-index:9999;width:300px;
+              background:#111827;border:1px solid rgba(6,182,212,0.2);
+              border-radius:0.75rem;box-shadow:0 8px 32px rgba(0,0,0,0.4);
+              padding:1.25rem;color:white;font-family:inherit;">
+    <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:0.5rem;margin-bottom:0.75rem;">
+      <div style="display:flex;align-items:center;gap:0.5rem;">
+        <div style="width:2rem;height:2rem;border-radius:0.5rem;background:linear-gradient(135deg,#06b6d4,#2563eb);
+                    display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/><circle cx="8" cy="9" r="1" fill="white"/><circle cx="15" cy="7" r="1" fill="white"/><circle cx="14" cy="14" r="1.5" fill="white"/><circle cx="9" cy="15" r="1" fill="white"/>
+          </svg>
+        </div>
+        <span style="font-size:0.8125rem;font-weight:700;color:white;letter-spacing:0.01em;">Cookie Notice</span>
+      </div>
       <button onclick="dismissCookieNotice()"
-              class="shrink-0 bg-white text-gray-900 text-xs font-semibold px-4 py-2 rounded hover:bg-gray-100">
-        Got it
-      </button>
+              style="color:#6b7280;background:none;border:none;cursor:pointer;padding:0.125rem;line-height:1;font-size:1rem;flex-shrink:0;"
+              onmouseover="this.style.color='#d1d5db'" onmouseout="this.style.color='#6b7280'"
+              aria-label="Dismiss">&#x2715;</button>
     </div>
+    <p style="font-size:0.75rem;color:#9ca3af;margin:0 0 1rem 0;line-height:1.5;">
+      We use strictly necessary cookies only — CSRF protection &amp; session. No tracking or analytics.
+      <a href="{{ url('cookies') }}" style="color:#22d3ee;text-decoration:none;"
+         onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">Learn more</a>
+    </p>
+    <button onclick="dismissCookieNotice()"
+            style="width:100%;padding:0.5rem 1rem;background:linear-gradient(135deg,#06b6d4,#2563eb);
+                   color:white;font-size:0.75rem;font-weight:700;border:none;border-radius:0.5rem;
+                   cursor:pointer;transition:opacity 0.15s;letter-spacing:0.02em;"
+            onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='1'">
+      Got it
+    </button>
   </div>
   <script>
     function dismissCookieNotice() {
