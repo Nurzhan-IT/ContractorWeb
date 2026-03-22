@@ -84,7 +84,7 @@ SECURE_HSTS_PRELOAD = True
 SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True
 SESSION_COOKIE_HTTPONLY = True
-CSRF_COOKIE_HTTPONLY = True
+CSRF_COOKIE_HTTPONLY = False  # Must be False: JS needs to read csrftoken cookie for fetch() calls
 
 # Clickjacking / content sniffing
 X_FRAME_OPTIONS = 'DENY'
