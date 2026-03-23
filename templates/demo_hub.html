@@ -140,8 +140,12 @@
     </a>
 
     <!-- 6. Custom Feature (gray dashed) -->
-    <a href="{{ url('booking:index') }}" class="flex flex-col bg-white rounded-2xl border-2 border-dashed border-gray-200
-                hover:border-gray-400 transition-all duration-200 overflow-hidden cursor-pointer">
+    <div
+      data-cal-link="contractorwebdev/website-development-consulting"
+      data-cal-namespace="website-development-consulting"
+      data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'
+      class="flex flex-col bg-white rounded-2xl border-2 border-dashed border-gray-200
+             hover:border-gray-400 transition-all duration-200 overflow-hidden cursor-pointer">
       <div class="h-1.5 bg-gradient-to-r from-gray-300 to-gray-400"></div>
       <div class="p-4 sm:p-6 flex flex-col flex-1">
         <div class="text-3xl sm:text-4xl mb-3 sm:mb-4" role="img" aria-label="Sparkles">✨</div>
@@ -158,7 +162,7 @@
           </span>
         </div>
       </div>
-    </a>
+    </div>
 
   </div>
 
@@ -170,12 +174,50 @@
     <p class="text-xl sm:text-2xl font-extrabold mb-5">
       See the full feature list on a call.
     </p>
-    <a href="{{ url('booking:index') }}"
-       class="inline-block bg-white text-blue-600 font-bold text-sm sm:text-base
-              px-6 py-3 rounded-xl hover:bg-blue-50 transition-colors">
+    <button
+      data-cal-link="contractorwebdev/website-development-consulting"
+      data-cal-namespace="website-development-consulting"
+      data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'
+      class="inline-block bg-white text-blue-600 font-bold text-sm sm:text-base
+             px-6 py-3 rounded-xl hover:bg-blue-50 transition-colors cursor-pointer">
       Book a Call
-    </a>
+    </button>
   </div>
 
 </div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+(function (C, A, L) {
+  let p = function (a, ar) { a.q.push(ar); };
+  let d = C.document;
+  C.Cal = C.Cal || function () {
+    let cal = C.Cal; let ar = arguments;
+    if (!cal.loaded) {
+      cal.ns = {}; cal.q = cal.q || [];
+      d.head.appendChild(d.createElement("script")).src = A;
+      cal.loaded = true;
+    }
+    if (ar[0] === L) {
+      const api = function () { p(api, arguments); };
+      const namespace = ar[1];
+      api.q = api.q || [];
+      if (typeof namespace === "string") {
+        cal.ns[namespace] = cal.ns[namespace] || api;
+        p(cal.ns[namespace], ar);
+        p(cal, ["initNamespace", namespace]);
+      } else p(cal, ar);
+      return;
+    }
+    p(cal, ar);
+  };
+})(window, "https://app.cal.com/embed/embed.js", "init");
+
+Cal("init", "website-development-consulting", {origin: "https://app.cal.com"});
+Cal.ns["website-development-consulting"]("ui", {
+  "hideEventTypeDetails": false,
+  "layout": "month_view"
+});
+</script>
 {% endblock %}
