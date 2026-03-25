@@ -48,21 +48,6 @@
     "model": "portfolio.beforeafterproject",
     "pk": 4,
     "fields": {
-      "title": "Water Heater Installation",
-      "service_type": "plumbing",
-      "before_image": "portfolio/before/water_heater_before.jpg",
-      "after_image": "portfolio/after/water_heater_after.jpg",
-      "description": "A 15-year-old 40-gallon tank unit had been leaking from the pressure relief valve and losing thermal efficiency — the homeowner reported running out of hot water after a single shower. We removed the old unit, installed a new 50-gallon high-efficiency water heater, upgraded the shutoff valve and discharge pipe, and had hot water flowing again within three hours.",
-      "duration": "3 hours",
-      "savings": "$600",
-      "client_location": "Roswell, GA",
-      "order": 4
-    }
-  },
-  {
-    "model": "portfolio.beforeafterproject",
-    "pk": 5,
-    "fields": {
       "title": "Full Roof Shingle Replacement",
       "service_type": "roofing",
       "before_image": "portfolio/before/shingle_before.jpg",
@@ -72,6 +57,21 @@
       "savings": "$3,200",
       "client_location": "Kennesaw, GA",
       "order": 5
+    }
+  },
+  {
+    "model": "portfolio.beforeafterproject",
+    "pk": 5,
+    "fields": {
+      "title": "Evaporator Coil Deep Cleaning",
+      "service_type": "hvac",
+      "before_image": "portfolio/before/hvac_before.jpg",
+      "after_image": "portfolio/after/hvac_after.jpg",
+      "description": "The homeowner in Alpharetta called about weak airflow and rising energy bills — the AC was running almost continuously but barely cooling the house. When we pulled the air handler panel, the evaporator coil was completely blanketed in a thick layer of dust, mold, and debris, choking airflow to near zero. We performed a full no-rinse foaming coil clean, flushed and treated the condensate drain pan, replaced the clogged 1-inch filter with a properly rated 4-inch media filter, and checked refrigerant charge. Airflow measured 40% higher after service, and the system reached setpoint twice as fast on the first test cycle.",
+      "duration": "3 hours",
+      "savings": "$1,200",
+      "client_location": "Alpharetta, GA",
+      "order": 6
     }
   }
 ]
