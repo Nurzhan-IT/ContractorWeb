@@ -1313,6 +1313,43 @@
           syncCTA();
         }, { threshold: 0.1 }).observe(footer);
       }
+
+      // All mobile devices: hide sticky CTA when virtual keyboard is open
+      // and prevent browser-level zoom on input focus
+      var isMobile = /Android|iPad|iPhone|iPod|webOS|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || (navigator.maxTouchPoints > 1 && window.innerWidth < 1024);
+      if (isMobile) {
+        var inputFocused = false;
+        var viewportMeta = document.querySelector('meta[name="viewport"]');
+        var originalContent = viewportMeta ? viewportMeta.getAttribute('content') : '';
+
+        function onInputFocus() {
+          inputFocused = true;
+          cta.style.display = 'none';
+          // Prevent viewport zoom on focus
+          if (viewportMeta) {
+            viewportMeta.setAttribute('content', originalContent + ', maximum-scale=1');
+          }
+        }
+
+        function onInputBlur() {
+          inputFocused = false;
+          // Small delay — browsers may fire blur before refocusing on next input
+          setTimeout(function() {
+            if (!inputFocused) {
+              syncCTA();
+              // Restore original viewport (allow pinch-to-zoom)
+              if (viewportMeta) {
+                viewportMeta.setAttribute('content', originalContent);
+              }
+            }
+          }, 150);
+        }
+
+        document.querySelectorAll('input, select, textarea').forEach(function(el) {
+          el.addEventListener('focus', onInputFocus);
+          el.addEventListener('blur', onInputBlur);
+        });
+      }
     })();
   </script>
 {% endblock %}
