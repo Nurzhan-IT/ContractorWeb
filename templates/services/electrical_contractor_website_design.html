@@ -1,1 +1,230 @@
-<!-- placeholder: electrical_contractor_website_design.html -->
+{% extends "services/_base_service.html" %}
+
+{#— Meta tags —#}
+{% block title %}Electrical Contractor Website Design | ContractorWebDev{% endblock %}
+{% block meta_description %}Electrical contractor website design from $2,499. Panel upgrade quotes, EV charger installs, emergency 24/7 flows, generator sales. Launch in 3 weeks.{% endblock %}
+{% block canonical %}https://contractorwebdev.com/electrical-contractor-website-design/{% endblock %}
+{% block og_title %}Electrical Contractor Website Design | ContractorWebDev{% endblock %}
+{% block og_description %}Electrical contractor website design from $2,499 — panel upgrade quotes, EV charger installs, emergency 24/7 flows, generator sales. Launch in 3 weeks.{% endblock %}
+
+{#— Schema.org —#}
+{% block schema_org %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "serviceType": "Electrical Contractor Website Design",
+  "provider": {
+    "@type": "ProfessionalService",
+    "name": "ContractorWebDev",
+    "url": "https://contractorwebdev.com"
+  },
+  "areaServed": "United States",
+  "offers": {
+    "@type": "Offer",
+    "price": "2499",
+    "priceCurrency": "USD"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://contractorwebdev.com/"},
+    {"@type": "ListItem", "position": 2, "name": "Services", "item": "https://contractorwebdev.com/services/"},
+    {"@type": "ListItem", "position": 3, "name": "Electrical Contractor Website Design"}
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What should an electrical contractor website include?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A high-converting electrical contractor website must display your licensing credentials and insurance prominently, list your full service menu (residential, commercial, industrial), include an instant quote tool for common jobs like panel upgrades, offer a 24/7 emergency request flow, show financing options for larger installs, feature a before/after photo gallery, and provide a service area map. Trust signals — master electrician status, state license number, manufacturer certifications — are especially important because electrical work carries safety implications that make homeowners cautious before calling."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do you build websites for solar and EV charger specialists?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Any electrical sub-specialty gets dedicated landing pages optimized for those specific searches. If you install EV chargers, we build a dedicated EV charger installation page targeting searches like 'Level 2 EV charger installation near me' and 'home EV charging station cost.' Same approach for solar inverter installs, whole-home backup generators, and industrial panel work. These pages rank independently and feed leads into a single dispatch flow."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can the site show different pricing for residential vs commercial electrical work?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. We use tab navigation or completely separate service pages, depending on how distinct your residential and commercial pricing and audiences are. Many electrical contractors have a residential site that ranks for homeowner searches and a commercial section targeting property managers and general contractors — both can live under the same domain with clean URL structures."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How important is mobile for electrical contractor websites?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Critical. 68% of electrical service searches happen on mobile. Emergency calls — tripping breaker, burning smell, power outage — are nearly 100% mobile. Our electrical contractor websites put 'Call now' and 'Emergency request' one tap away on every page, with tap-to-call phone numbers and streamlined mobile forms that don't require typing long addresses before someone calls you back."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do you integrate with field service software for electrical contractors?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Housecall Pro, ServiceTitan, and Jobber are all supported. Every form submission, online booking, and quote request flows directly into your dispatch software — no manual data entry. We also support Kickserv and FieldEdge for contractors already using those platforms."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What about SEO for electrical contractors?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "On-page SEO fundamentals are included with every website build: meta tags, schema markup for ElectricalContractor, image optimization, and city-level landing pages for your service area. Ongoing ranking work — link building, Google Business Profile management, content creation — is a separate monthly service. See our <a href='/contractor-seo/'>contractor SEO services</a> page for details."
+      }
+    }
+  ]
+}
+</script>
+{% endblock %}
+
+{#— Breadcrumb label —#}
+{% block breadcrumb_current %}Electrical Contractor Website Design{% endblock %}
+
+{#— Hero —#}
+{% block service_h1 %}Electrical Contractor Website Design That Grounds More Leads{% endblock %}
+{% block service_hero_subtitle %}Built for electrical contractors — panel upgrades, EV chargers, generator sales, emergency service calls. Instant online quotes, 24/7 emergency booking, licensed-electrician messaging front-and-center.{% endblock %}
+{% block hero_cta_text %}Get a Free Electrical Website Quote{% endblock %}
+
+{#— Intro —#}
+{% block service_intro %}
+<p>Electricians win (or lose) jobs based on trust. A homeowner booking a panel upgrade or generator install is making a $2,000+ decision, and they need to verify you're licensed, insured, and not going to burn their house down before they even call. We build electrical contractor websites that lead with credibility — license numbers, journeyman/master status, manufacturer certifications — and close with conversion tools like instant panel-upgrade quotes and 24/7 emergency CTAs. Starting at <strong>${{ agency_price }}</strong>.</p>
+{% endblock %}
+
+{#— Benefits —#}
+{% block benefits_heading %}Why Electrical Contractors Choose ContractorWebDev{% endblock %}
+{% block service_benefits %}
+<div class="benefit-card">
+  <h3>License &amp; Credentials Upfront</h3>
+  <p>Master electrician credentials, state license number, bonding, and insurance displayed on every page. Removes buyer hesitation before the first click — and it's the #1 difference between a site that books panel upgrades and one that doesn't.</p>
+</div>
+<div class="benefit-card">
+  <h3>Instant Panel Upgrade Quotes</h3>
+  <p>Homeowner enters panel amperage, home size, and service type, and gets a price range in 15 seconds. Contact info captured even if they don't book. No more "how much does a 200-amp panel cost?" calls that eat your office time.</p>
+</div>
+<div class="benefit-card">
+  <h3>EV Charger &amp; Solar-Ready Messaging</h3>
+  <p>Dedicated landing pages for growing revenue streams — Level 2 EV charger installation, whole-home backup generators, solar inverter installs. Each page ranks independently and feeds leads straight into your dispatch flow.</p>
+</div>
+<div class="benefit-card">
+  <h3>24/7 Emergency Flow</h3>
+  <p>After-hours electrical calls — smoke smell, breaker tripping repeatedly, power loss — route to your on-call tech with SMS alerts. Emergency leads booked online convert at 3× the rate of form submissions that require a callback.</p>
+</div>
+{% endblock %}
+
+{#— Features —#}
+{% block features_heading %}What's Included in Every Electrical Contractor Website{% endblock %}
+{% block service_features %}
+<ul>
+  <li><strong>Panel Upgrade Quote Calculator</strong> — Instant price range for 100A, 200A, and 400A panel upgrades. Captures name, phone, and email before showing the quote so you always get the lead.</li>
+  <li><strong>EV Charger Installation Page</strong> — Dedicated page targeting Level 2 and commercial EV charger searches. Includes a cost estimator for different charger models and installation complexities.</li>
+  <li><strong>Generator Sales &amp; Install Page</strong> — Whole-home standby generator page with brand showcases (Generac, Kohler, Briggs &amp; Stratton), size calculators, and financing options.</li>
+  <li><strong>Emergency 24/7 Request Flow</strong> — Sticky emergency CTA on mobile, after-hours dispatch form, automatic SMS to on-call technician.</li>
+  <li><strong>License &amp; Credential Display</strong> — Master electrician badge, state license number, IBEW membership, manufacturer certifications — shown prominently on every page, not buried in the footer.</li>
+  <li><strong>Service Area Map</strong> — Interactive map showing which ZIP codes and cities you service for residential, commercial, and industrial work.</li>
+  <li><strong>Before/After Project Gallery</strong> — Panel makeovers, generator installs, and EV charger setups photograph beautifully and build immediate credibility with homeowners comparing contractors.</li>
+  <li><strong>Financing for Large Installs</strong> — GreenSky and Wisetack financing calculators on panel upgrade, generator, and EV charger pages. Monthly payment options close $5,000+ jobs that stall on price.</li>
+</ul>
+{% endblock %}
+
+{#— Process —#}
+{% block process_heading %}How We Build Your Electrical Contractor Website{% endblock %}
+{% block service_process %}
+<ol>
+  <li><strong>Discovery (Week 1)</strong> — 60-min kickoff call. We review your service area, license details, dispatch software, and revenue breakdown across panels, EV, generators, residential, and commercial. You send logos, photos, certifications, and any branding guidelines.</li>
+  <li><strong>Design (Week 1–2)</strong> — Wireframes for homepage, core service pages (panels, EV, generators, emergency), service area, and contact. We present designs before writing a single line of code — you approve every screen.</li>
+  <li><strong>Build &amp; Copy (Week 2–3)</strong> — Development, electrical-specific copywriting, dispatch software integration, SSL, analytics setup, and mobile optimization. Panel quote calculator and emergency flow coded and tested.</li>
+  <li><strong>Launch &amp; Support (Week 4)</strong> — QA across 12 device/browser combos, Google Business Profile sync, load testing to 10× average traffic, then public launch. 30 days of free post-launch tweaks included.</li>
+</ol>
+{% endblock %}
+
+{#— Examples —#}
+{% block examples_heading %}Electrical Website Examples{% endblock %}
+{% block service_examples %}
+<p>Every electrical contractor website we build is custom — not a template skinned in yellow and black. We've launched sites for solo licensed electricians doing $300k in residential panel work and regional firms running commercial and industrial divisions. See our full portfolio for live examples of electrical websites ranking and converting. <a href="/#portfolio">See our portfolio →</a></p>
+<div class="examples-grid">
+  <div class="example-card">
+    <h3>Residential Electrical</h3>
+    <p>Single-location electrician focused on panel upgrades, EV chargers, and home rewiring. Panel quote calculator books 6–10 leads per week without a phone call.</p>
+  </div>
+  <div class="example-card">
+    <h3>Commercial &amp; Industrial Electrical</h3>
+    <p>Property-manager-focused site with RFP forms, service contract flows, and three-phase panel estimators for light industrial clients.</p>
+  </div>
+  <div class="example-card">
+    <h3>Solar + EV Specialist</h3>
+    <p>Dual revenue stream site — solar inverter installs and EV charger installation — each with dedicated landing pages, cost calculators, and financing flows.</p>
+  </div>
+</div>
+{% endblock %}
+
+{#— Pricing extra —#}
+{% block service_pricing_extra %}
+<p style="margin-top:1rem;">Standard electrical contractor site: ${{ agency_price }}. Electricians with solar, EV, and generator divisions on one site: $3,499–$4,499. Every quote is fixed — no surprises, no monthly creep, no "scope change" upsells.</p>
+{% endblock %}
+
+{#— FAQ —#}
+{% block service_faq %}
+<details class="faq-item">
+  <summary>What should an electrical contractor website include?</summary>
+  <div>A high-converting electrical contractor website must display your licensing credentials and insurance prominently, list your full service menu (residential, commercial, industrial), include an instant quote tool for common jobs like panel upgrades, offer a 24/7 emergency request flow, show financing options for larger installs, feature a before/after photo gallery, and provide a service area map. Trust signals — master electrician status, state license number, manufacturer certifications — are especially important because electrical work carries safety implications that make homeowners cautious before calling.</div>
+</details>
+<details class="faq-item">
+  <summary>Do you build websites for solar and EV charger specialists?</summary>
+  <div>Yes. Any electrical sub-specialty gets dedicated landing pages optimized for those specific searches. If you install EV chargers, we build a dedicated EV charger installation page targeting searches like "Level 2 EV charger installation near me" and "home EV charging station cost." Same approach for solar inverter installs, whole-home backup generators, and industrial panel work. These pages rank independently and feed leads into a single dispatch flow.</div>
+</details>
+<details class="faq-item">
+  <summary>Can the site show different pricing for residential vs commercial electrical work?</summary>
+  <div>Yes. We use tab navigation or completely separate service pages, depending on how distinct your residential and commercial pricing and audiences are. Many electrical contractors maintain a residential section that ranks for homeowner searches and a commercial section targeting property managers and general contractors — both under the same domain with clean URL structures.</div>
+</details>
+<details class="faq-item">
+  <summary>How important is mobile for electrical contractor websites?</summary>
+  <div>Critical. 68% of electrical service searches happen on mobile. Emergency calls — tripping breaker, burning smell, power outage — are nearly 100% mobile. Our electrical contractor websites put "Call now" and "Emergency request" one tap away on every page, with tap-to-call phone numbers and streamlined mobile forms that don't require typing long addresses before someone calls you back.</div>
+</details>
+<details class="faq-item">
+  <summary>Do you integrate with field service software for electrical contractors?</summary>
+  <div>Yes. Housecall Pro, ServiceTitan, and Jobber are all supported. Every form submission, online booking, and quote request flows directly into your dispatch software — no manual data entry. We also support Kickserv and FieldEdge for contractors already using those platforms.</div>
+</details>
+<details class="faq-item">
+  <summary>What about SEO for electrical contractors?</summary>
+  <div>On-page SEO fundamentals are included with every website build: meta tags, schema markup for ElectricalContractor, image optimization, and city-level landing pages for your service area. Ongoing ranking work — link building, Google Business Profile management, content creation — is a separate monthly service. See our <a href="/contractor-seo/">contractor SEO services</a> page.</div>
+</details>
+{% endblock %}
+
+{#— Final CTA —#}
+{% block cta_heading %}Ready to Wire Up More Leads?{% endblock %}
+{% block cta_subheading %}Tell us about your electrical business — we'll send a fixed-price proposal within 24 hours, no sales calls required.{% endblock %}
+
+{#— Related services —#}
+{% block service_related %}
+<a href="/contractor-seo/">
+  <strong>Contractor SEO Services</strong>
+  <span>Rank on Google for panel upgrades, EV charger installation, and local electrical searches in your service area.</span>
+</a>
+<a href="/contractor-lead-generation/">
+  <strong>Contractor Lead Generation</strong>
+  <span>Paid ads, Google Local Services Ads, and Facebook campaigns tuned for electrical contractor lead quality.</span>
+</a>
+<a href="/hvac-website-design/">
+  <strong>HVAC Website Design</strong>
+  <span>Also do HVAC? We build high-conversion HVAC contractor websites with the same proven feature set.</span>
+</a>
+{% endblock %}
