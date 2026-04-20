@@ -1,0 +1,310 @@
+/* ===== Service page shared styles ===== */
+
+.service-page {
+  color: #1a1a1a;
+}
+
+.service-page section {
+  padding: 4rem 1rem;
+}
+
+.service-page .container {
+  max-width: 1120px;
+  margin: 0 auto;
+}
+
+/* ----- Breadcrumbs ----- */
+.breadcrumbs {
+  padding: 1rem;
+  max-width: 1120px;
+  margin: 0 auto;
+  font-size: 0.9rem;
+  color: #666;
+}
+.breadcrumbs ol {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 0;
+  margin: 0;
+}
+.breadcrumbs li:not(:last-child)::after {
+  content: "›";
+  margin-left: 0.5rem;
+  color: #aaa;
+}
+.breadcrumbs a {
+  color: #06b6d4;
+  text-decoration: none;
+}
+.breadcrumbs a:hover {
+  text-decoration: underline;
+}
+
+/* ----- Hero ----- */
+.service-hero {
+  background: linear-gradient(135deg, #0891b2 0%, #06b6d4 100%);
+  color: #fff;
+  text-align: center;
+}
+.service-hero h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+.service-hero .hero-subtitle {
+  font-size: 1.25rem;
+  margin-bottom: 2rem;
+  opacity: 0.95;
+}
+@media (min-width: 768px) {
+  .service-hero h1 { font-size: 3.5rem; }
+}
+.service-hero .btn-primary {
+  display: inline-block;
+  background: #fff;
+  color: #0891b2;
+  padding: 0.875rem 2rem;
+  border-radius: 8px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: transform 0.15s ease;
+}
+.service-hero .btn-primary:hover {
+  transform: translateY(-2px);
+}
+
+/* ----- Intro ----- */
+.service-intro p {
+  font-size: 1.125rem;
+  max-width: 800px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+/* ----- Benefits grid ----- */
+.service-benefits h2,
+.service-features h2,
+.service-process h2,
+.service-examples h2,
+.service-pricing h2,
+.service-faq h2,
+.service-cta h2,
+.service-related h2 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+.benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+}
+.benefits-grid .benefit-card {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 1.5rem;
+}
+.benefits-grid .benefit-card h3 {
+  font-size: 1.125rem;
+  margin-bottom: 0.75rem;
+  color: #0891b2;
+}
+.benefits-grid .benefit-card p {
+  color: #475569;
+  line-height: 1.6;
+}
+
+/* ----- Features / process ----- */
+.service-features ul,
+.service-process ol {
+  max-width: 800px;
+  margin: 0 auto;
+  padding-left: 1.5rem;
+  line-height: 1.8;
+}
+.service-features li,
+.service-process li {
+  margin-bottom: 0.75rem;
+}
+
+/* ----- Pricing card ----- */
+.pricing-card {
+  max-width: 500px;
+  margin: 0 auto;
+  text-align: center;
+  background: #f0f9ff;
+  border: 2px solid #06b6d4;
+  border-radius: 16px;
+  padding: 2rem;
+}
+.pricing-card .price {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+.pricing-card .price strong {
+  font-size: 2.5rem;
+  color: #0891b2;
+}
+.pricing-card .price-note {
+  color: #475569;
+  font-size: 0.95rem;
+}
+
+/* ----- FAQ accordion ----- */
+.faq-list {
+  max-width: 800px;
+  margin: 0 auto;
+}
+.faq-item {
+  border-bottom: 1px solid #e2e8f0;
+}
+.faq-item summary {
+  padding: 1rem 0;
+  font-weight: 600;
+  cursor: pointer;
+  list-style: none;
+  position: relative;
+  padding-right: 2rem;
+}
+.faq-item summary::after {
+  content: "+";
+  position: absolute;
+  right: 0;
+  top: 1rem;
+  font-size: 1.5rem;
+  color: #06b6d4;
+  transition: transform 0.2s;
+}
+.faq-item[open] summary::after {
+  content: "−";
+}
+.faq-item > div {
+  padding: 0 0 1rem;
+  color: #475569;
+  line-height: 1.7;
+}
+
+/* ----- Final CTA ----- */
+.service-cta {
+  background: #f8fafc;
+  text-align: center;
+}
+.service-cta h2 {
+  margin-bottom: 1rem;
+}
+.service-cta .btn-primary {
+  display: inline-block;
+  background: #06b6d4;
+  color: #fff;
+  padding: 1rem 2.5rem;
+  border-radius: 8px;
+  font-weight: 600;
+  text-decoration: none;
+  margin-top: 1.5rem;
+}
+
+/* ----- Related services ----- */
+.related-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1rem;
+}
+.related-grid a {
+  display: block;
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 1.25rem;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.15s, transform 0.15s;
+}
+.related-grid a:hover {
+  border-color: #06b6d4;
+  transform: translateY(-2px);
+}
+.related-grid a strong {
+  display: block;
+  color: #06b6d4;
+  margin-bottom: 0.25rem;
+}
+.related-grid a span {
+  color: #64748b;
+  font-size: 0.9rem;
+}
+
+/* ----- Examples cards ----- */
+.examples-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1rem;
+}
+.example-card {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 1.5rem;
+}
+.example-card h3 {
+  color: #0891b2;
+  margin-bottom: 0.5rem;
+}
+
+/* ----- Hub page ----- */
+.services-hub {
+  padding: 4rem 1rem;
+}
+.services-hub h1 {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+.services-hub .hub-intro {
+  max-width: 700px;
+  margin: 0 auto 3rem;
+  text-align: center;
+  font-size: 1.125rem;
+  color: #475569;
+  line-height: 1.7;
+}
+.services-hub .hub-group {
+  max-width: 1120px;
+  margin: 0 auto 3rem;
+}
+.services-hub .hub-group h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+.services-hub .hub-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1rem;
+}
+.services-hub .hub-card {
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 1.5rem;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.15s, transform 0.15s;
+}
+.services-hub .hub-card:hover {
+  border-color: #06b6d4;
+  transform: translateY(-2px);
+}
+.services-hub .hub-card .icon {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+.services-hub .hub-card h3 {
+  color: #0891b2;
+  margin-bottom: 0.5rem;
+}
+.services-hub .hub-card p {
+  color: #64748b;
+  font-size: 0.95rem;
+}
