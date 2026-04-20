@@ -1,1 +1,245 @@
-<!-- placeholder: construction_lead_generation.html -->
+{% extends "services/_base_service.html" %}
+
+{#— Meta tags —#}
+{% block title %}Construction Lead Generation Services | ContractorWebDev{% endblock %}
+{% block meta_description %}Construction lead generation for commercial GCs and construction firms. Qualified RFP opportunities, not residential tire-kickers. From $1,999/month.{% endblock %}
+{% block canonical %}https://contractorwebdev.com/construction-lead-generation/{% endblock %}
+{% block og_title %}Construction Lead Generation That Delivers Qualified Bid Opportunities{% endblock %}
+{% block og_description %}B2B construction lead generation — LinkedIn ABM, commercial ad campaigns, RFP-ready inbound leads. Built for commercial GCs, industrial contractors, and design-build firms.{% endblock %}
+
+{#— Schema.org —#}
+{% block schema_org %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "serviceType": "Construction Lead Generation Services",
+  "provider": {
+    "@type": "ProfessionalService",
+    "name": "ContractorWebDev",
+    "url": "https://contractorwebdev.com"
+  },
+  "areaServed": "United States",
+  "description": "B2B construction lead generation including LinkedIn ABM campaigns, Google Ads targeting commercial construction terms, RFP-focused landing pages, and content marketing for commercial general contractors and construction firms.",
+  "offers": {
+    "@type": "Offer",
+    "price": "1999",
+    "priceCurrency": "USD",
+    "priceSpecification": {
+      "@type": "UnitPriceSpecification",
+      "price": "1999",
+      "priceCurrency": "USD",
+      "unitText": "month"
+    }
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://contractorwebdev.com/"},
+    {"@type": "ListItem", "position": 2, "name": "Services", "item": "https://contractorwebdev.com/services/"},
+    {"@type": "ListItem", "position": 3, "name": "Construction Lead Generation"}
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How is construction lead generation different from general contractor lead generation?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Construction lead generation targets commercial and B2B buyers — property managers, developers, architects, facility directors, REITs. General contractor lead generation often includes residential homeowners. Different audiences, different channels, different messaging. Commercial is LinkedIn ABM and trade-publication presence; residential is Google LSA and Facebook. Same word 'lead gen', completely different playbook."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What are the best construction lead generation companies?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Niche agencies that understand B2B construction sales cycles outperform generalist lead gen firms every time. Ask three things before hiring: do they use LinkedIn ABM? Do they read ENR and Construction Dive? Do they understand that your sales cycle runs 3–12 months and optimize attribution for that? If all three answers are yes, they can help. If the pitch sounds like residential tactics repackaged, walk away."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do you offer construction lead generation platforms or just services?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "We are a service agency — we run campaigns, manage ABM lists, and deliver RFP-qualified leads directly to your CRM. If you want a self-service platform instead, BuildingConnected and iSqFt are the standard options, but those platforms deliver shared or auction-style leads (the same RFP goes to 5–20 bidders). Our inbound leads are exclusive to you."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is lead generation for construction companies actually worth?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Depends entirely on your deal size. If your average commercial project is $2M+, one qualified RFP-ready lead per month easily justifies $5,000/month in lead gen spend — even at a 15% close rate, that is $30k gross margin per lead at typical construction margins. For smaller deal sizes or residential work, the math is different; our residential contractor lead gen service is tuned for that."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is a realistic cost per lead for commercial construction?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "$200–$800 per qualified RFP-ready lead. Is that higher than residential CPA? Yes. Is the LTV higher? Dramatically — 100 to 500 times higher. Commercial lead economics only make sense at the pipeline level, not the per-lead level. We structure reports around pipeline value and close-rate velocity, not just volume."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I need to also do construction SEO?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "SEO and lead generation together outperform either alone. Qualified inbound leads from SEO cost less over time and close at higher rates because the buyer came to you. Paid lead generation fills the pipeline while SEO ramps up over the first 6–9 months. Most of our best construction clients run both — paid for immediate pipeline, SEO for compounding inbound flow."
+      }
+    }
+  ]
+}
+</script>
+{% endblock %}
+
+{#— Breadcrumb label —#}
+{% block breadcrumb_current %}Construction Lead Generation{% endblock %}
+
+{#— Hero —#}
+{% block service_h1 %}Construction Lead Generation That Delivers Qualified Bid Opportunities{% endblock %}
+{% block service_hero_subtitle %}Construction lead generation services for commercial GCs, construction firms, and specialty contractors. Targeted outreach, B2B ad campaigns, and RFP-focused SEO. From $1,999/month.{% endblock %}
+{% block hero_cta_text %}Get a Strategy Call{% endblock %}
+
+{#— Intro —#}
+{% block service_intro %}
+<p>Commercial construction lead generation is not a volume game — it is a quality game. One $5M tenant improvement bid is worth 1,000 homeowner leads. But most construction lead generation companies treat construction like pest control: spray-and-pray ads, shared leads, unqualified junk. We do it differently. We target actual commercial decision-makers — property managers, developers, architects, facility directors — with content and ad campaigns tuned to their buying process. Fewer leads, but each one is a real bid opportunity. Starting at <strong>$1,999/month</strong>.</p>
+{% endblock %}
+
+{#— Benefits —#}
+{% block benefits_heading %}Why Commercial GCs Choose Us for Lead Generation{% endblock %}
+{% block service_benefits %}
+<div class="benefit-card">
+  <h3>B2B Targeting, Not Spray-and-Pray</h3>
+  <p>LinkedIn ads to property managers and facility directors. Facebook lookalike audiences for architects and engineers. Google Ads tuned to commercial construction terms — not residential overlap. We target buyer roles, not just keywords, and we stay on the platforms where commercial decision-makers actually research general contractors.</p>
+</div>
+<div class="benefit-card">
+  <h3>RFP-Focused Lead Forms</h3>
+  <p>Our forms qualify on scope, square footage, budget range, project type, and timeline. By the time a lead hits your estimator's inbox, the obvious no-bids are already filtered out. Your estimators only quote real opportunities — not tire-kickers fishing for ballpark numbers.</p>
+</div>
+<div class="benefit-card">
+  <h3>Industry Publication Presence</h3>
+  <p>Native content placements in ENR (Engineering News-Record), Construction Dive, and regional commercial real estate publications that your actual commercial buyers read. A case study in ENR generates more qualified inbound than a month of generic display ads — and positions your firm as a serious player, not a bidder-for-hire.</p>
+</div>
+<div class="benefit-card">
+  <h3>ABM for Named Accounts</h3>
+  <p>Account-Based Marketing for your top-priority targets — property management firms, development companies, architects you want on your bid list. We stay in front of the 50–200 accounts that matter most to your firm for months, through LinkedIn, email, retargeting, and event outreach, until they have a project. Then you are already in the conversation.</p>
+</div>
+{% endblock %}
+
+{#— Features —#}
+{% block features_heading %}What's Included in Construction Lead Generation{% endblock %}
+{% block service_features %}
+<ul>
+  <li><strong>LinkedIn Ad Campaigns</strong> — Role-based targeting (property managers, VP facilities, development directors), Sponsored Content, InMail, and Lead Gen Forms optimized for commercial construction intake.</li>
+  <li><strong>Google Ads for Commercial Construction</strong> — Keyword campaigns on commercial terms ("commercial general contractor [city]", "tenant improvement contractor", "design-build firm [metro]") with RFP-specific landing pages.</li>
+  <li><strong>B2B Landing Pages</strong> — Commercial-focused pages that speak to property managers and owner's reps, not homeowners. Case studies, safety ratings, bonding capacity, licensing — the evaluation criteria B2B buyers actually weigh.</li>
+  <li><strong>RFP-Focused Lead Forms</strong> — Dynamic qualification forms capturing scope, square footage, budget range, project type, and decision timeline. Unqualified submissions filtered before routing to estimators.</li>
+  <li><strong>Content Marketing</strong> — Long-form case studies, whitepapers on construction trends, guides on procurement best practices. Content built for commercial buyers, not consumer audiences.</li>
+  <li><strong>Industry Publication Placements</strong> — Coordinated placements in ENR, Construction Dive, regional CRE publications, and trade journals relevant to your target markets.</li>
+  <li><strong>Account-Based Marketing (ABM)</strong> — Named-account targeting with LinkedIn, email sequences, direct mail, and event outreach. Ideal for firms with identified high-value prospects (top 50–200 accounts).</li>
+  <li><strong>CRM Integration</strong> — Direct connection to HubSpot, Salesforce, Procore CRM, or BuildingConnected. Attribution flows from first-touch through awarded contract so you can prove ROI at the pipeline level.</li>
+</ul>
+{% endblock %}
+
+{#— Process —#}
+{% block process_heading %}Our Construction Lead Generation Process{% endblock %}
+{% block service_process %}
+<ol>
+  <li><strong>Account Research (Week 1–2)</strong> — We build your target account list: key property management firms, development companies, architects, and owner-direct clients in your preferred markets. This becomes the foundation for ABM and targeted ad audiences.</li>
+  <li><strong>Campaign Setup (Week 3–4)</strong> — LinkedIn campaigns, Google Ads, landing pages, lead forms, and CRM integration all configured. Copy and creative built specifically for your target buyer roles, not generic construction messaging.</li>
+  <li><strong>Multi-Channel Launch (Month 2)</strong> — Campaigns go live across LinkedIn, Google, industry publications, and ABM outreach. First qualified leads begin flowing within 3–6 weeks of launch. We monitor cost per qualified lead and pipeline contribution, not just volume.</li>
+  <li><strong>Optimize + Scale (Month 3+)</strong> — Weekly campaign optimization, monthly pipeline review, quarterly strategy call. As patterns emerge (which roles convert, which verticals bid, which account types close), we double down on what works and kill what does not.</li>
+</ol>
+{% endblock %}
+
+{#— Examples —#}
+{% block examples_heading %}Construction Lead Generation Results{% endblock %}
+{% block service_examples %}
+<p>Real outcomes from construction lead generation campaigns we have run. Names are private per client agreements.</p>
+<div class="examples-grid">
+  <div class="example-card">
+    <h3>Commercial GC (Tenant Improvement Specialist)</h3>
+    <p>Landed 3 qualified TI bids in first 90 days worth $8.2M combined. Close rate on qualified leads: 33%. Cost per qualified lead: $412. Pipeline value generated in year one: $24M.</p>
+  </div>
+  <div class="example-card">
+    <h3>Industrial Contractor</h3>
+    <p>18 qualified RFPs in 6 months from cold start. Ran LinkedIn ABM against facilities directors at manufacturing firms within a 200-mile radius. Now their #1 new-business channel, outpacing word-of-mouth referrals.</p>
+  </div>
+  <div class="example-card">
+    <h3>Design-Build Firm</h3>
+    <p>Cracked enterprise account with 18-month pipeline after 5 months of ABM sequencing. Single awarded project paid back 3 years of lead generation spend. Now expanding to 2 additional named-account tiers.</p>
+  </div>
+</div>
+{% endblock %}
+
+{#— Pricing extra —#}
+{% block service_pricing_extra %}
+<div style="margin-top:1.5rem;">
+  <p><strong>Construction Lead Generation pricing tiers:</strong></p>
+  <ul style="margin-top:0.5rem;">
+    <li><strong>Foundational — $1,999/month:</strong> Single region. Google Ads + LinkedIn targeting, RFP landing pages, monthly reporting. Best for commercial GCs building a first paid pipeline.</li>
+    <li><strong>Multi-Region + ABM — $3,499/month:</strong> Multi-metro coverage, Account-Based Marketing against up to 100 named accounts, industry publication placements, quarterly strategy calls.</li>
+    <li><strong>Enterprise — $6,499+/month:</strong> Multi-state, multiple trade verticals, enterprise ABM against 200+ named accounts, content marketing program (case studies, whitepapers), direct-mail and event outreach.</li>
+  </ul>
+  <p style="margin-top:1rem;">No contracts. Cancel any month. Every engagement starts with a strategy call, not a credit card.</p>
+</div>
+{% endblock %}
+
+{#— FAQ —#}
+{% block service_faq %}
+<details class="faq-item">
+  <summary>How is construction lead generation different from general contractor lead generation?</summary>
+  <div>Construction lead generation targets commercial and B2B buyers — property managers, developers, architects, facility directors, REITs. General contractor lead generation often includes residential homeowners. Different audiences, different channels, different messaging. Commercial is LinkedIn ABM and trade-publication presence; residential is Google LSA and Facebook. Same word "lead gen", completely different playbook.</div>
+</details>
+<details class="faq-item">
+  <summary>What are the best construction lead generation companies?</summary>
+  <div>Niche agencies that understand B2B construction sales cycles outperform generalist lead gen firms every time. Ask three things before hiring: do they use LinkedIn ABM? Do they read ENR and Construction Dive? Do they understand that your sales cycle runs 3–12 months and optimize attribution for that? If all three answers are yes, they can help. If the pitch sounds like residential tactics repackaged, walk away.</div>
+</details>
+<details class="faq-item">
+  <summary>Do you offer construction lead generation platforms or just services?</summary>
+  <div>We are a service agency — we run campaigns, manage ABM lists, and deliver RFP-qualified leads directly to your CRM. If you want a self-service platform instead, BuildingConnected and iSqFt are the standard options, but those platforms deliver shared or auction-style leads (the same RFP goes to 5–20 bidders). Our inbound leads are exclusive to you.</div>
+</details>
+<details class="faq-item">
+  <summary>What is lead generation for construction companies actually worth?</summary>
+  <div>Depends entirely on your deal size. If your average commercial project is $2M+, one qualified RFP-ready lead per month easily justifies $5,000/month in lead gen spend — even at a 15% close rate, that is $30k gross margin per lead at typical construction margins. For smaller deal sizes or residential work, the math is different; our <a href="/contractor-lead-generation/">residential contractor lead gen</a> service is tuned for that.</div>
+</details>
+<details class="faq-item">
+  <summary>What is a realistic cost per lead for commercial construction?</summary>
+  <div>$200–$800 per qualified RFP-ready lead. Is that higher than residential CPA? Yes. Is the LTV higher? Dramatically — 100 to 500 times higher. Commercial lead economics only make sense at the pipeline level, not the per-lead level. We structure reports around pipeline value and close-rate velocity, not just volume.</div>
+</details>
+<details class="faq-item">
+  <summary>Do I need to also do construction SEO?</summary>
+  <div>SEO and lead generation together outperform either alone. Qualified inbound leads from SEO cost less over time and close at higher rates because the buyer came to you. Paid lead generation fills the pipeline while SEO ramps up over the first 6–9 months. Most of our best construction clients run both — paid for immediate pipeline, SEO for compounding inbound flow.</div>
+</details>
+{% endblock %}
+
+{#— Final CTA —#}
+{% block cta_heading %}Get a Construction Lead Generation Strategy Call{% endblock %}
+{% block cta_subheading %}Tell us your target markets, typical project size, and current pipeline sources — we will map out where qualified commercial leads are most likely to come from for your firm. Free, 30 minutes, no pitch deck.{% endblock %}
+
+{#— Related services —#}
+{% block service_related %}
+<a href="/contractor-lead-generation/">
+  <strong>Contractor Lead Generation</strong>
+  <span>Residential and service-contractor lead generation — LSAs, Google Ads, Facebook campaigns tuned for homeowner CPA and call volume.</span>
+</a>
+<a href="/general-contractor-seo/">
+  <strong>General Contractor SEO</strong>
+  <span>SEO for commercial GCs — rank for commercial construction keywords, win bid-portal visibility, build inbound pipeline over 9–12 months.</span>
+</a>
+<a href="/construction-website-design/">
+  <strong>Construction Website Design</strong>
+  <span>Commercial-grade websites for construction firms — case study pages, bonding/licensing display, RFP intake forms. Starting at $2,499.</span>
+</a>
+{% endblock %}
