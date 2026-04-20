@@ -1,1 +1,242 @@
-<!-- placeholder: general_contractor_seo.html -->
+{% extends "services/_base_service.html" %}
+
+{#— Meta tags —#}
+{% block title %}General Contractor SEO Services | ContractorWebDev{% endblock %}
+{% block meta_description %}General contractor SEO to rank your GC firm for high-value commercial searches. Free audit, monthly reports, no long-term contracts. From $1,299/month.{% endblock %}
+{% block canonical %}https://contractorwebdev.com/general-contractor-seo/{% endblock %}
+{% block og_title %}General Contractor SEO Services | ContractorWebDev{% endblock %}
+{% block og_description %}General contractor SEO tuned for B2B buyers — commercial RFPs, bid portals, licensing keywords, safety ratings. From $1,299/month. Free audit.{% endblock %}
+
+{#— Schema.org —#}
+{% block schema_org %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "serviceType": "General Contractor SEO",
+  "provider": {
+    "@type": "ProfessionalService",
+    "name": "ContractorWebDev",
+    "url": "https://contractorwebdev.com"
+  },
+  "areaServed": "United States",
+  "offers": {
+    "@type": "Offer",
+    "price": "1299",
+    "priceCurrency": "USD",
+    "priceSpecification": {
+      "@type": "UnitPriceSpecification",
+      "price": "1299",
+      "priceCurrency": "USD",
+      "unitText": "MONTH"
+    }
+  },
+  "description": "Search engine optimization for general contractors targeting commercial property owners, architects, and project managers. Includes B2B keyword research, bid portal visibility, licensing keyword targeting, and safety rating content strategy."
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://contractorwebdev.com/"},
+    {"@type": "ListItem", "position": 2, "name": "Services", "item": "https://contractorwebdev.com/services/"},
+    {"@type": "ListItem", "position": 3, "name": "General Contractor SEO"}
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How is general contractor SEO different from regular contractor SEO?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "General contractor SEO targets a completely different keyword universe. Consumer contractor SEO focuses on homeowner searches like 'bathroom remodel near me'. GC SEO targets B2B decision-makers: 'commercial general contractor [city]', 'tenant improvement contractor', 'design-build construction management'. The content strategy shifts from how-to guides to authority content that wins trust before an RFP goes out. Citation sources differ too — BuildingConnected and LoopNet instead of Angi and HomeAdvisor."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What keywords should a general contractor rank for?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Core commercial keywords include 'commercial general contractor [city]', 'tenant improvement contractor [metro]', 'design-build contractor [state]', 'construction management company [city]', and 'commercial remodeling contractor'. Beyond those, we target project-type keywords specific to your specialties — office buildout, warehouse construction, retail renovation, industrial GC — plus licensing keywords like 'licensed bonded insured general contractor' that signal compliance to procurement teams."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does general contractor SEO work if my leads come from relationships?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Even relationship-driven GCs see 20–40% of new pipeline from SEO once the site ranks — particularly from new market entrants: new property owners, architects expanding their network, or procurement teams vetting firms they haven't worked with before. SEO also reinforces relationships: when a referral Googles your company to validate before signing, a strong search presence closes the deal your relationship opened."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How long does it take to see ROI on general contractor SEO?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Expect 4–6 months for first qualified bids attributable to organic search, and 9–12 months for compound ROI where SEO becomes a consistent lead channel. B2B construction sales cycles are longer than consumer — a project owner who finds you in month 3 may not sign until month 8. We track the full pipeline, not just clicks, so you can see SEO's contribution to closed revenue."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What about Google Local Services Ads for general contractors?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Google LSAs work well for residential GCs but have limited reach for commercial. Commercial property owners and project managers don't use LSAs to source contractors — they search organically, check BuildingConnected profiles, review project portfolios, and verify licensing and safety records. For commercial GCs, SEO plus B2B citations plus case study content consistently outperforms paid ads in lead quality and cost per qualified bid."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I need a new website before starting general contractor SEO?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Not always. If your site is modern and includes a project portfolio, completed project descriptions, team bios, and licensing information, we can SEO-optimize it without a rebuild. If the site is dated, lacks mobile optimization, or is missing project case studies, start with a new site — it will accelerate SEO results significantly. See our general contractor website design page at /general-contractor-website-design/."
+      }
+    }
+  ]
+}
+</script>
+{% endblock %}
+
+{#— Breadcrumb label —#}
+{% block breadcrumb_current %}General Contractor SEO{% endblock %}
+
+{#— Hero —#}
+{% block service_h1 %}General Contractor SEO That Wins B2B Leads, Not Tire-Kickers{% endblock %}
+{% block service_hero_subtitle %}SEO tuned for general contractors — commercial, residential, industrial. Rank for keywords that project owners, architects, and property managers actually search. From $1,299/month.{% endblock %}
+{% block hero_cta_text %}Get a Free GC SEO Audit{% endblock %}
+
+{#— Intro —#}
+{% block service_intro %}
+<p>General contractor SEO is different from standard home-services SEO. Your customers aren't homeowners searching "leaky faucet" — they're commercial property owners searching "commercial general contractor [city]" and architects searching "tenant improvement contractor [metro]". The keywords, the content, and the link-building strategy all have to be tuned for B2B buyers with longer sales cycles, compliance requirements, and risk-averse procurement processes.</p>
+<p>We specialize in GC SEO that generates qualified commercial bid opportunities — not homeowner tire-kickers. That means ranking for licensing keywords that signal compliance to procurement teams, appearing on bid portals where project owners source contractors, and publishing authority content that positions your firm before the RFP goes out. Starting at <strong>$1,299/month</strong> with no long-term contract required.</p>
+{% endblock %}
+
+{#— Benefits —#}
+{% block benefits_heading %}Why General Contractors Choose ContractorWebDev for SEO{% endblock %}
+{% block service_benefits %}
+<div class="benefit-card">
+  <h3>B2B Keyword Strategy</h3>
+  <p>We research keywords property managers, owners, and architects actually search. "Commercial GC [city]", "design-build contractor", "tenant improvement specialist", "construction management [metro]" — not consumer keywords that attract homeowners with $5k budgets.</p>
+</div>
+<div class="benefit-card">
+  <h3>Authority Content That Wins Bids</h3>
+  <p>Blog content targeting decision-makers: "How to Vet a Commercial GC", "What to Expect in a Design-Build Contract", "Safety Record Red Flags in GC Bids". Positions you as the expert before the RFP goes out. Builds trust with buyers who don't know you yet.</p>
+</div>
+<div class="benefit-card">
+  <h3>Local + Geo SEO Across Every Metro</h3>
+  <p>Rank in every metro and region you service. Individual landing pages per service area, each optimized for local commercial buyers, with project examples from that market and licensing info specific to that jurisdiction.</p>
+</div>
+<div class="benefit-card">
+  <h3>Reputation &amp; Trust Signals for B2B</h3>
+  <p>GC wins happen when the buyer trusts you. We optimize your Google Business Profile, build citations on B2B platforms (LoopNet, BuildingConnected, AGC), highlight safety ratings and EMR scores, and showcase project case studies that prove your track record at scale.</p>
+</div>
+{% endblock %}
+
+{#— Features —#}
+{% block features_heading %}What's Included in General Contractor SEO{% endblock %}
+{% block service_features %}
+<ul>
+  <li><strong>B2B Keyword Research</strong> — Full discovery of commercial, industrial, and design-build search terms. Prioritized by search volume, competition, and project size intent.</li>
+  <li><strong>On-Page SEO for GC Sites</strong> — Title tags, meta descriptions, header structure, schema markup for GeneralContractor, and internal linking built around your project types and service areas.</li>
+  <li><strong>Commercial-Focused Blog Content</strong> — Authority articles targeting architects, property owners, and procurement teams at the research stage. Two to four articles per month, written by contractors-turned-writers.</li>
+  <li><strong>Google Business Profile Optimization</strong> — Category selection, service areas, project photo uploads, Q&amp;A management, and review response strategy for GC-specific GBP signals.</li>
+  <li><strong>B2B Citation Building</strong> — Listings on BuildingConnected, LoopNet, AGC chapter directories, regional BBB, and state contractor licensing boards — the sources B2B buyers trust.</li>
+  <li><strong>Project Case Study SEO</strong> — Turn completed projects into SEO-optimized case study pages. "Office buildout 42,000 sq ft [city]" content that ranks and converts.</li>
+  <li><strong>Licensing &amp; Safety Keyword Targeting</strong> — Content and schema targeting compliance terms: bonded, licensed, EMR score, OSHA compliance, safety record — signals that filter in qualified commercial buyers and satisfy bid portal prequalification.</li>
+  <li><strong>Monthly Reports with RFP-Generation Tracking</strong> — Rank tracking, traffic reports, and lead attribution data so you can tie SEO investment to qualified bid volume, not vanity metrics.</li>
+</ul>
+{% endblock %}
+
+{#— Process —#}
+{% block process_heading %}How Our General Contractor SEO Process Works{% endblock %}
+{% block service_process %}
+<ol>
+  <li><strong>Audit &amp; Discovery (Week 1–2)</strong> — Full technical SEO audit of your existing site. Competitor keyword gap analysis targeting your top 3 commercial rivals. We identify your highest-value project types and service areas, map them to search demand, and build a 12-month keyword roadmap.</li>
+  <li><strong>Foundation Setup (Month 1)</strong> — On-page optimization across all key pages. Schema markup for GeneralContractor and LocalBusiness. GBP optimization. B2B citation audit and cleanup. Technical fixes: Core Web Vitals, mobile speed, crawlability issues.</li>
+  <li><strong>Content &amp; Authority Building (Months 2–6)</strong> — Regular authority content targeting commercial decision-makers. Project case study pages for completed work. Bid portal profile optimization. Link outreach to trade publications and regional business press.</li>
+  <li><strong>Compound Growth (Months 6–12+)</strong> — As rankings compound, we shift budget toward highest-ROI keywords. Add geo pages for new service areas. Build out pillar content clusters around your top project specialties. Monthly reporting ties organic traffic to qualified bid volume.</li>
+</ol>
+{% endblock %}
+
+{#— Examples —#}
+{% block examples_heading %}General Contractor SEO Results{% endblock %}
+{% block service_examples %}
+<p>General contractor SEO compounds over time — the GCs who start earliest in their market build the most durable competitive moat. Here are representative outcomes from our GC SEO work. <a href="/#portfolio">See our full portfolio →</a></p>
+<div class="examples-grid">
+  <div class="example-card">
+    <h3>Commercial GC, Mid-Size Metro</h3>
+    <p>Started ranking for "office buildout contractor [metro]" and "tenant improvement GC [city]" within 4 months. Attributed 3 qualified RFPs in month 6 directly to organic search — total project value $2.1M.</p>
+  </div>
+  <div class="example-card">
+    <h3>Design-Build Firm, Major Metro</h3>
+    <p>5x qualified RFP volume in 9 months after launching B2B content cluster targeting architects and property managers. Bid portal visibility increased from 0 to top-3 in target search terms.</p>
+  </div>
+  <div class="example-card">
+    <h3>Industrial GC, Multi-State</h3>
+    <p>Page-1 rankings in 3 metro areas for industrial construction management keywords within 12 months. Safety rating content drove 40% increase in prequalification approvals from institutional buyers.</p>
+  </div>
+</div>
+{% endblock %}
+
+{#— Pricing extra —#}
+{% block service_pricing_extra %}
+<p style="margin-top:1rem;"><strong>Starter Plan — $1,299/month:</strong> On-page SEO, GBP optimization, B2B citations, 2 blog posts/month, monthly reporting. Best for single-market GCs getting started with organic.</p>
+<p style="margin-top:0.5rem;"><strong>Growth Plan — $1,999/month:</strong> Everything in Starter plus active link building, 4 blog posts/month, project case study pages, bid portal optimization. Best for GCs ready to dominate a metro.</p>
+<p style="margin-top:0.5rem;"><strong>Enterprise Plan — $2,999+/month:</strong> Full-service SEO for multi-state GCs. Multiple metro geo pages, licensing keyword targeting per state, safety rating content program, dedicated account manager. Custom quote.</p>
+<p style="margin-top:0.75rem;"><em>No long-term contracts. Month-to-month. Cancel with 30 days notice.</em></p>
+{% endblock %}
+
+{#— FAQ —#}
+{% block faq_heading %}General Contractor SEO — Frequently Asked Questions{% endblock %}
+{% block service_faq %}
+<details class="faq-item">
+  <summary>How is general contractor SEO different from regular contractor SEO?</summary>
+  <div>General contractor SEO targets a completely different keyword universe. Consumer contractor SEO focuses on homeowner searches like "bathroom remodel near me". GC SEO targets B2B decision-makers: "commercial general contractor [city]", "tenant improvement contractor", "design-build construction management". The content strategy shifts from how-to guides to authority content that wins trust before an RFP goes out. Citation sources differ too — BuildingConnected and LoopNet instead of Angi and HomeAdvisor.</div>
+</details>
+<details class="faq-item">
+  <summary>What keywords should a general contractor rank for?</summary>
+  <div>Core commercial keywords include "commercial general contractor [city]", "tenant improvement contractor [metro]", "design-build contractor [state]", "construction management company [city]", and "commercial remodeling contractor". Beyond those, we target project-type keywords specific to your specialties — office buildout, warehouse construction, retail renovation, industrial GC — plus licensing keywords like "licensed bonded insured general contractor" that signal compliance to procurement teams.</div>
+</details>
+<details class="faq-item">
+  <summary>Does general contractor SEO work if my leads come from relationships?</summary>
+  <div>Yes. Even relationship-driven GCs see 20–40% of new pipeline from SEO once the site ranks — particularly from new market entrants: new property owners, architects expanding their network, or procurement teams vetting firms they haven't worked with before. SEO also reinforces relationships: when a referral Googles your company to validate before signing, a strong search presence closes the deal your relationship opened.</div>
+</details>
+<details class="faq-item">
+  <summary>How long does it take to see ROI on general contractor SEO?</summary>
+  <div>Expect 4–6 months for first qualified bids attributable to organic search, and 9–12 months for compound ROI where SEO becomes a consistent lead channel. B2B construction sales cycles are longer than consumer — a project owner who finds you in month 3 may not sign until month 8. We track the full pipeline, not just clicks, so you can see SEO's contribution to closed revenue.</div>
+</details>
+<details class="faq-item">
+  <summary>What about Google Local Services Ads for general contractors?</summary>
+  <div>Google LSAs work well for residential GCs but have limited reach for commercial. Commercial property owners and project managers don't use LSAs to source contractors — they search organically, check BuildingConnected profiles, review project portfolios, and verify licensing and safety records. For commercial GCs, SEO plus B2B citations plus case study content consistently outperforms paid ads in lead quality and cost per qualified bid.</div>
+</details>
+<details class="faq-item">
+  <summary>Do I need a new website before starting general contractor SEO?</summary>
+  <div>Not always. If your site is modern and includes a project portfolio, completed project descriptions, team bios, and licensing information, we can SEO-optimize it without a rebuild. If the site is dated, lacks mobile optimization, or is missing project case studies, start with a new site — it will accelerate SEO results significantly. See our <a href="/general-contractor-website-design/">General Contractor Website Design</a> page.</div>
+</details>
+{% endblock %}
+
+{#— Final CTA —#}
+{% block cta_heading %}Get a Free General Contractor SEO Audit{% endblock %}
+{% block cta_subheading %}Tell us your target markets and top project types — we'll audit your current search visibility and show you exactly where the commercial keyword opportunities are. No sales call required.{% endblock %}
+
+{#— Related services —#}
+{% block service_related %}
+<a href="/contractor-seo/">
+  <strong>Contractor SEO Services</strong>
+  <span>Broad SEO for contractors — plumbing, electrical, roofing, HVAC. Residential and commercial lead generation from organic search.</span>
+</a>
+<a href="/general-contractor-website-design/">
+  <strong>General Contractor Website Design</strong>
+  <span>Custom GC website with project portfolio, RFP request forms, service area pages, and B2B conversion flows. Starting at ${{ agency_price }}.</span>
+</a>
+<a href="/construction-lead-generation/">
+  <strong>Construction Lead Generation</strong>
+  <span>Paid search, LinkedIn ads, and bid portal strategies for commercial GCs looking for faster pipeline in competitive markets.</span>
+</a>
+{% endblock %}
