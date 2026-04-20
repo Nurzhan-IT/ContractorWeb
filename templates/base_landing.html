@@ -189,7 +189,7 @@
       <div class="grid md:grid-cols-4 gap-8 mb-8">
 
         <!-- Brand -->
-        <div class="md:col-span-2">
+        <div>
           <div class="flex items-center gap-2 mb-4">
             <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -198,10 +198,24 @@
             </div>
             <span class="text-xl font-bold">ContractorWebDev</span>
           </div>
-          <p class="mb-4 max-w-md" style="color:#94a3b8">
+          <p class="mb-4" style="color:#94a3b8">
             Custom websites built specifically for contractors. Django-powered, conversion-focused, and designed to bring you more jobs.
           </p>
 
+        </div>
+
+        <!-- Services -->
+        <div>
+          <h3 class="font-semibold mb-4">Services</h3>
+          <ul class="space-y-2 text-sm">
+            <li><a href="{{ url('services:hub') }}" class="transition-colors" style="color:#94a3b8" onmouseover="this.style.color='#22d3ee'" onmouseout="this.style.color='#94a3b8'">All Services</a></li>
+            <li><a href="{{ url('services:contractor_website_design') }}" class="transition-colors" style="color:#94a3b8" onmouseover="this.style.color='#22d3ee'" onmouseout="this.style.color='#94a3b8'">Contractor Websites</a></li>
+            <li><a href="{{ url('services:hvac_website_design') }}" class="transition-colors" style="color:#94a3b8" onmouseover="this.style.color='#22d3ee'" onmouseout="this.style.color='#94a3b8'">HVAC Websites</a></li>
+            <li><a href="{{ url('services:roofing_website_design') }}" class="transition-colors" style="color:#94a3b8" onmouseover="this.style.color='#22d3ee'" onmouseout="this.style.color='#94a3b8'">Roofing Websites</a></li>
+            <li><a href="{{ url('services:contractor_seo') }}" class="transition-colors" style="color:#94a3b8" onmouseover="this.style.color='#22d3ee'" onmouseout="this.style.color='#94a3b8'">Contractor SEO</a></li>
+            <li><a href="{{ url('services:hvac_seo') }}" class="transition-colors" style="color:#94a3b8" onmouseover="this.style.color='#22d3ee'" onmouseout="this.style.color='#94a3b8'">HVAC SEO</a></li>
+            <li><a href="{{ url('services:contractor_lead_generation') }}" class="transition-colors" style="color:#94a3b8" onmouseover="this.style.color='#22d3ee'" onmouseout="this.style.color='#94a3b8'">Lead Generation</a></li>
+          </ul>
         </div>
 
         <!-- Quick Links -->
