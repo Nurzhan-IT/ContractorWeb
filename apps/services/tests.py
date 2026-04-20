@@ -85,3 +85,44 @@ class HVACServicePageContentTestCase(TestCase):
     def test_has_related_service_links(self):
         self.assertIn('/hvac-seo/', self.html)
         self.assertIn('/contractor-lead-generation/', self.html)
+
+
+class SitemapContentsTestCase(TestCase):
+    """sitemap.xml must list all 13 service pages, the /services/ hub, and landing/demo URLs."""
+
+    def setUp(self):
+        response = self.client.get('/sitemap.xml')
+        self.assertEqual(response.status_code, 200)
+        self.xml = response.content.decode()
+
+    def test_contains_services_hub(self):
+        self.assertIn('<loc>http://testserver/services/</loc>', self.xml)
+
+    def test_contains_all_13_service_pages(self):
+        expected_paths = [
+            '/contractor-website-design/',
+            '/construction-website-design/',
+            '/general-contractor-website-design/',
+            '/hvac-website-design/',
+            '/roofing-website-design/',
+            '/electrical-contractor-website-design/',
+            '/contractor-seo/',
+            '/general-contractor-seo/',
+            '/hvac-seo/',
+            '/roofing-seo/',
+            '/plumbing-seo/',
+            '/contractor-lead-generation/',
+            '/construction-lead-generation/',
+        ]
+        for path in expected_paths:
+            with self.subTest(path=path):
+                self.assertIn(f'<loc>http://testserver{path}</loc>', self.xml)
+
+    def test_contains_landing_root(self):
+        self.assertIn('<loc>http://testserver/</loc>', self.xml)
+
+    def test_contains_blog_index(self):
+        self.assertIn('<loc>http://testserver/blog/</loc>', self.xml)
+
+    def test_contains_demo_hub(self):
+        self.assertIn('<loc>http://testserver/demo/</loc>', self.xml)
