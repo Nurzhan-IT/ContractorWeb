@@ -1,1 +1,245 @@
-<!-- placeholder: roofing_seo.html -->
+{% extends "services/_base_service.html" %}
+
+{#— Meta tags —#}
+{% block title %}Roofing SEO Services | Rank on Google's Page 1 | ContractorWebDev{% endblock %}
+{% block meta_description %}Roofing SEO services for storm restoration and local roofers. Rank for 'roofing contractor near me'. Free audit, monthly reports, no long-term contracts. From $999/month.{% endblock %}
+{% block canonical %}https://contractorwebdev.com/roofing-seo/{% endblock %}
+{% block og_title %}Roofing SEO Services That Rank You Before the Storm Hits{% endblock %}
+{% block og_description %}Roofing SEO for local roofers and storm restoration companies. Rank for 'roofing contractor near me', 'hail damage [city]', and every storm-season search that drives leads. From $999/month.{% endblock %}
+
+{#— Schema.org —#}
+{% block schema_org %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "serviceType": "Roofing SEO Services",
+  "provider": {
+    "@type": "ProfessionalService",
+    "name": "ContractorWebDev",
+    "url": "https://contractorwebdev.com"
+  },
+  "areaServed": "United States",
+  "description": "Roofing SEO services including storm-season keyword research, Google Business Profile optimization, insurance-claim content, and Map Pack dominance for local and regional roofing contractors.",
+  "offers": {
+    "@type": "Offer",
+    "price": "999",
+    "priceCurrency": "USD",
+    "priceSpecification": {
+      "@type": "UnitPriceSpecification",
+      "price": "999",
+      "priceCurrency": "USD",
+      "unitText": "month"
+    }
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://contractorwebdev.com/"},
+    {"@type": "ListItem", "position": 2, "name": "Services", "item": "https://contractorwebdev.com/services/"},
+    {"@type": "ListItem", "position": 3, "name": "Roofing SEO Services"}
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How long does roofing SEO take to rank?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "First rankings appear in 60–90 days. For storm-focused keywords, we rush coverage before hail season peaks (March–July in most US markets) so you are ranking when the weather hits and homeowners start searching. Meaningful lead flow builds through months 4–6 and compounds in year two as your domain authority grows."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is a roofing SEO checklist?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "On-page SEO (title, description, header structure, schema), Google Business Profile optimization, local citations, reviews (target 50+ with a 4.8+ average), city-level landing pages, insurance-claim content, storm-event response pages, and inbound links from roofing publications. Every plan starts with a free audit that scores each area against that checklist."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does roofing SEO cost more than SEO for other trades?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Slightly — roofing keywords are more competitive than most trades, especially storm-restoration terms during hail season. Expect $800–$2,500/month depending on market size, number of cities, and how aggressive your competitors already are on SEO. Our Local plan starts at $999/month for single-market coverage."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the difference between local roofing SEO and regular roofing SEO?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Local roofing SEO focuses on 'near me' and city/ZIP searches — the queries that drive 80% of residential roofing leads. Regular roofing SEO adds broader terms like 'roofing contractor' at the state or national level, useful for regional storm chasers or manufacturers. Most local roofers only need local roofing SEO to win."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do you offer roofing local SEO agency services?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes — that is essentially what our Local plan is. Single-market focus, Map Pack dominance, GBP optimization, citation building, and review acquisition. Works for a single-city roofer who needs to own the Map Pack within a 25-mile radius."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What are the best roofing SEO companies to work with?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ask three questions before you sign: do they specialize in home services or are they generalists? Do they track storm-specific KPIs (hail-damage terms, insurance claim searches, Map Pack rankings) or just generic traffic numbers? Do they lock you into a 12-month contract? We specialize, we track roofer KPIs, and we never use contracts — if the work is not producing, you leave."
+      }
+    }
+  ]
+}
+</script>
+{% endblock %}
+
+{#— Breadcrumb label —#}
+{% block breadcrumb_current %}Roofing SEO Services{% endblock %}
+
+{#— Hero —#}
+{% block service_h1 %}Roofing SEO Services That Rank You Before the Storm Hits{% endblock %}
+{% block service_hero_subtitle %}Roofing SEO for local roofers and storm restoration companies. Rank for "roofing contractor near me", "hail damage [city]", and every storm-season search that drives leads. From $999/month — free audit, no contracts.{% endblock %}
+{% block hero_cta_text %}Get a Free Roofing SEO Audit{% endblock %}
+
+{#— Intro —#}
+{% block service_intro %}
+<p>Roofing SEO is the difference between booking every post-storm job in your area and watching the competitor down the street soak up the leads you paid Google Ads to get. Organic search drives the highest-intent roofing leads — homeowners with actual damage searching <em>"roofing contractor near me"</em>, <em>"hail damage roof repair"</em>, <em>"emergency roofer [city]"</em>. When you rank on page one for those searches, the phone does not stop ringing. Our roofing SEO services put you there. Starting at <strong>$999/month</strong>, with a free audit of your current rankings and zero long-term contracts.</p>
+{% endblock %}
+
+{#— Benefits —#}
+{% block benefits_heading %}Why Roofing Contractors Choose Our SEO Services{% endblock %}
+{% block service_benefits %}
+<div class="benefit-card">
+  <h3>Storm-Season Surge Preparation</h3>
+  <p>Most roofing SEO agencies ignore the fact that your business has three to four weeks a year that produce fifty percent of revenue. We pre-optimize for storm events — publishing content, building citations, and warming up city pages weeks in advance — so you capture maximum search volume the minute hail hits. Missing that window is the most expensive SEO mistake a roofer can make.</p>
+</div>
+<div class="benefit-card">
+  <h3>Local Map Pack + Organic Double Play</h3>
+  <p>We do not just optimize your site. We optimize your Google Business Profile, build local citations across 50+ home-services directories, and drive review velocity — so you show up in BOTH the Map Pack and the organic listings for every local roofing search. Dominating both slots on page one means the homeowner sees your name three times before scrolling — and calls.</p>
+</div>
+<div class="benefit-card">
+  <h3>Insurance-Claim Keyword Targeting</h3>
+  <p>High-value searches like "roofer insurance claim process", "hail damage inspection", and "storm damage roof replacement" convert at 15–25% because the homeowner already has an insurance check coming. We go after these aggressively — with guide content, claim-process pages, and inspection-booking flows that rank and convert harder than any other roofing keyword category.</p>
+</div>
+<div class="benefit-card">
+  <h3>Monthly Reports, Roofing-Specific KPIs</h3>
+  <p>Not generic SEO reports. We track keywords that actually matter to roofers: hail-damage terms, local Map Pack rankings by city, insurance-claim search volume, GBP view growth, and phone-call attribution. One-page monthly summaries, no jargon. You will know exactly which storm-season keyword moved into the top-3 and how many calls it generated.</p>
+</div>
+{% endblock %}
+
+{#— Features —#}
+{% block features_heading %}What's Included in Every Roofing SEO Plan{% endblock %}
+{% block service_features %}
+<ul>
+  <li><strong>Roofing Keyword Research</strong> — Full keyword map covering storm-damage terms, local service queries, insurance-claim content, residential vs. commercial, shingle/metal/flat — all layered by city and neighborhood.</li>
+  <li><strong>On-Page SEO Audit &amp; Fixes</strong> — Titles, descriptions, header structure, internal linking, image alt text, Core Web Vitals, and schema markup — audited and corrected in month one.</li>
+  <li><strong>Google Business Profile Optimization</strong> — Service categories, service area polygons, storm-response photos, Q&amp;A, and weekly posts tuned for roofing search behavior.</li>
+  <li><strong>Local Citations</strong> — Consistent NAP data across HomeAdvisor, Angi, GAF Master Elite, BBB, Yelp, Facebook, and 50+ roofing-relevant directories. Mismatches silently kill Map Pack rankings — we find and fix them all.</li>
+  <li><strong>Content Creation</strong> — Storm-response blog posts, city landing pages, insurance-claim guides, shingle-comparison articles, and "what to expect" homeowner FAQs that rank and drive booked inspections.</li>
+  <li><strong>Roofing Industry Link Building</strong> — Inbound links from roofing publications, manufacturer partnerships (GAF, CertainTeed, Owens Corning), local home-services blogs, and storm-recovery news outlets.</li>
+  <li><strong>Review Acquisition Strategy</strong> — Automated post-job review requests via SMS and email, plus review-response templates that improve both ranking and conversion. Target: 50+ Google reviews at a 4.8+ average.</li>
+  <li><strong>Monthly Performance Reports</strong> — Every target keyword tracked by city. Every month, you see exactly what ranks, what moved, what we are working on next, and the resulting call volume.</li>
+</ul>
+{% endblock %}
+
+{#— Process —#}
+{% block process_heading %}Our Roofing SEO Process{% endblock %}
+{% block service_process %}
+<ol>
+  <li><strong>Free Audit (Week 1)</strong> — We audit your current site, Google Business Profile, citations, backlink profile, and competitor rankings across every city you service. You get a clear picture of where you stand, which keywords are closest to ranking, and what storm-season opportunities you are leaving on the table — before you spend a dollar.</li>
+  <li><strong>Strategy &amp; Keyword Map (Week 1–2)</strong> — We build your full roofing keyword map — storm keywords, insurance keywords, local service keywords — prioritize by search volume and competition, and lock in the target cities and service types for the first 90 days.</li>
+  <li><strong>On-Page &amp; Technical Fixes (Month 1)</strong> — Implement on-page changes, fix technical issues, optimize GBP, launch city-level and insurance-claim landing pages, and start review acquisition. Rankings begin moving inside week 4.</li>
+  <li><strong>Grow &amp; Report (Month 2+)</strong> — Monthly content, roofing-industry link building, citation expansion, GBP management, and seasonal pushes timed ahead of storm peaks. Monthly ranking report shows exactly what moved. Strategy adjusts each quarter based on data.</li>
+</ol>
+{% endblock %}
+
+{#— Examples —#}
+{% block examples_heading %}Roofing SEO Results{% endblock %}
+{% block service_examples %}
+<p>Real outcomes from roofing SEO campaigns we have run. Names are private per client agreements.</p>
+<div class="examples-grid">
+  <div class="example-card">
+    <h3>Storm Restoration Roofer</h3>
+    <p>Went from zero ranked keywords to 47 in a single storm season. Storm-day organic traffic grew 11x year-over-year. Phones rang non-stop for three straight weeks after the April hail event.</p>
+  </div>
+  <div class="example-card">
+    <h3>Local Roofer (Single Metro)</h3>
+    <p>Map Pack top-3 across home metro within 4 months. Cut Google Ads spend by 70% by month 6. Now runs 90% of lead flow off organic and GBP.</p>
+  </div>
+  <div class="example-card">
+    <h3>Insurance-Specialist Roofer</h3>
+    <p>6x organic qualified leads after insurance-claim content expansion. Closed claim-process terms converted at 22% — twice the rate of general roofing keywords.</p>
+  </div>
+</div>
+{% endblock %}
+
+{#— Pricing extra —#}
+{% block service_pricing_extra %}
+<div style="margin-top:1.5rem;">
+  <p><strong>Roofing SEO pricing tiers:</strong></p>
+  <ul style="margin-top:0.5rem;">
+    <li><strong>Local — $999/month:</strong> Single market, core keyword coverage, GBP optimization, on-page SEO, citations, monthly ranking report.</li>
+    <li><strong>Storm Growth — $1,799/month:</strong> Multi-metro storm coverage, insurance-claim content program, city-level landing pages, review acquisition, quarterly strategy calls.</li>
+    <li><strong>Regional Dominance — $2,999+/month:</strong> Multi-state storm restoration companies. Unlimited cities, full technical SEO, roofing-industry link building, manufacturer partnerships, competitive content strategy.</li>
+  </ul>
+  <p style="margin-top:1rem;">No contracts. Cancel any month. Every plan includes a free audit before you commit.</p>
+</div>
+{% endblock %}
+
+{#— FAQ —#}
+{% block service_faq %}
+<details class="faq-item">
+  <summary>How long does roofing SEO take to rank?</summary>
+  <div>First rankings appear in 60–90 days. For storm-focused keywords, we rush coverage before hail season peaks (March–July in most US markets) so you are ranking when the weather hits and homeowners start searching. Meaningful lead flow builds through months 4–6 and compounds in year two as your domain authority grows.</div>
+</details>
+<details class="faq-item">
+  <summary>What is a roofing SEO checklist?</summary>
+  <div>On-page SEO (title, description, header structure, schema), Google Business Profile optimization, local citations, reviews (target: 50+ with a 4.8+ average), city-level landing pages, insurance-claim content, storm-event response pages, and inbound links from roofing publications. Every plan starts with a free audit that scores each area against that checklist.</div>
+</details>
+<details class="faq-item">
+  <summary>Does roofing SEO cost more than SEO for other trades?</summary>
+  <div>Slightly — roofing keywords are more competitive than most trades, especially storm-restoration terms during hail season. Expect $800–$2,500/month depending on market size, number of cities, and how aggressive your competitors already are on SEO. Our Local plan starts at $999/month for single-market coverage.</div>
+</details>
+<details class="faq-item">
+  <summary>What is the difference between local roofing SEO and regular roofing SEO?</summary>
+  <div>Local roofing SEO focuses on "near me" and city/ZIP searches — the queries that drive 80% of residential roofing leads. Regular roofing SEO adds broader terms like "roofing contractor" at the state or national level, useful for regional storm chasers or manufacturers. Most local roofers only need local roofing SEO to win.</div>
+</details>
+<details class="faq-item">
+  <summary>Do you offer roofing local SEO agency services?</summary>
+  <div>Yes — that is essentially what our Local plan is. Single-market focus, Map Pack dominance, GBP optimization, citation building, and review acquisition. Works for a single-city roofer who needs to own the Map Pack within a 25-mile radius.</div>
+</details>
+<details class="faq-item">
+  <summary>What are the best roofing SEO companies to work with?</summary>
+  <div>Ask three questions before you sign: do they specialize in home services or are they generalists? Do they track storm-specific KPIs (hail-damage terms, insurance claim searches, Map Pack rankings) or just generic traffic numbers? Do they lock you into a 12-month contract? We specialize, we track roofer KPIs, and we never use contracts — if the work is not producing, you leave.</div>
+</details>
+{% endblock %}
+
+{#— Final CTA —#}
+{% block cta_heading %}Get a Free Roofing SEO Audit — Ready Before the Next Storm{% endblock %}
+{% block cta_subheading %}Tell us your top service area and the storm season you are preparing for — we will audit your current rankings, citations, and GBP, and show you exactly what it takes to own the Map Pack before the next hail event. Free, no commitment, delivered in 48 hours.{% endblock %}
+
+{#— Related services —#}
+{% block service_related %}
+<a href="/roofing-website-design/">
+  <strong>Roofing Website Design</strong>
+  <span>A website built for roofing conversions — storm-day landing pages, insurance-claim intake, drone photo galleries, EagleView integration. Starting at $2,499.</span>
+</a>
+<a href="/contractor-lead-generation/">
+  <strong>Contractor Lead Generation</strong>
+  <span>Google Local Services Ads, Google Ads, and Facebook campaigns tuned for roofing lead quality and cost per booked inspection.</span>
+</a>
+<a href="/hvac-seo/">
+  <strong>HVAC SEO</strong>
+  <span>Same proven SEO methodology applied to HVAC contractors — seasonal AC/furnace keywords, Map Pack dominance, and emergency-service ranking.</span>
+</a>
+{% endblock %}
