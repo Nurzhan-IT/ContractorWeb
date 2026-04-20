@@ -4,11 +4,19 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.views.generic import TemplateView
 from django.contrib.sitemaps.views import sitemap
-from config.sitemaps import LandingSitemap, DemoSitemap, BlogSitemap
+from config.sitemaps import (
+    LandingSitemap,
+    DemoSitemap,
+    BlogSitemap,
+    BlogIndexSitemap,
+    ServicePagesSitemap,
+)
 
 sitemaps = {
     'landing': LandingSitemap,
+    'services': ServicePagesSitemap,
     'demo': DemoSitemap,
+    'blog_index': BlogIndexSitemap,
     'blog': BlogSitemap,
 }
 
