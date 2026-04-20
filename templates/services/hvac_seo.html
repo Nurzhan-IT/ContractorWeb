@@ -1,1 +1,246 @@
-<!-- placeholder: hvac_seo.html -->
+{% extends "services/_base_service.html" %}
+
+{#— Meta tags —#}
+{% block title %}HVAC SEO Services | ContractorWebDev{% endblock %}
+{% block meta_description %}HVAC SEO services to rank for AC repair, furnace installation, and local HVAC searches. Free audit, monthly reports. From $899/month.{% endblock %}
+{% block canonical %}https://contractorwebdev.com/hvac-seo/{% endblock %}
+{% block og_title %}HVAC SEO Services | ContractorWebDev{% endblock %}
+{% block og_description %}HVAC SEO services that put you on page one for 'AC repair near me', 'HVAC contractor [city]', and every seasonal search your customers actually run. From $899/month, no contracts.{% endblock %}
+
+{#— Schema.org —#}
+{% block schema_org %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "serviceType": "HVAC SEO Services",
+  "provider": {
+    "@type": "ProfessionalService",
+    "name": "ContractorWebDev",
+    "url": "https://contractorwebdev.com"
+  },
+  "areaServed": "United States",
+  "description": "HVAC SEO services including keyword research, Google Business Profile optimization, city-level landing pages, and seasonal content strategy for HVAC contractors.",
+  "offers": {
+    "@type": "Offer",
+    "price": "899",
+    "priceCurrency": "USD",
+    "priceSpecification": {
+      "@type": "UnitPriceSpecification",
+      "price": "899",
+      "priceCurrency": "USD",
+      "unitText": "month"
+    }
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://contractorwebdev.com/"},
+    {"@type": "ListItem", "position": 2, "name": "Services", "item": "https://contractorwebdev.com/services/"},
+    {"@type": "ListItem", "position": 3, "name": "HVAC SEO Services"}
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How long does HVAC SEO take to generate leads?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "First rankings typically appear in 60–90 days. Meaningful lead flow starts at month 4–6. ROI compounds through year 2 as your domain authority grows and more keywords break onto page one. HVAC SEO is a long-term asset, not a quick flip — but the math beats paid ads once you're ranking."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What HVAC keywords should I target?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Start with high-intent service + location combos: 'AC repair [city]', 'HVAC contractor [city]', 'emergency furnace repair [neighborhood]'. Layer in seasonal searches: 'AC tune-up [city]' in spring, 'furnace installation [zip]' in fall. Then add long-tail problem queries: 'AC not cooling', 'heat pump blowing cold air in heat mode'. We build your full keyword map in week one."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I need city-level landing pages for HVAC SEO?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "If you service more than one city, yes — city-level landing pages are one of the biggest lever moves for local HVAC SEO. A single homepage cannot rank for 'AC repair Dallas' and 'AC repair Fort Worth' simultaneously. Dedicated pages for each city you serve let Google understand your full service footprint and rank you accordingly."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is HVAC SEO worth it with Google Ads so expensive?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. HVAC clicks on Google Ads run $15–30 each. If your conversion rate is 10%, that's $150–300 per lead — before you've paid a technician. Once your HVAC SEO is working, organic leads cost a fraction of that. Most clients break even on SEO spend by month 8–10 and then enjoy near-free leads indefinitely."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can you help with my HVAC Google Business Profile?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Google Business Profile optimization is included in every HVAC SEO plan. We audit and update your NAP data, service categories, service area, photos, Q&A, and posting cadence. GBP is the single biggest driver of Map Pack rankings — we treat it as a first-class SEO asset, not an afterthought."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What if my existing HVAC website is not SEO-friendly?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Our free audit tells you exactly what's holding your site back. If your current site can be fixed — slow load times, missing schema, broken meta tags — we fix it as part of onboarding. If the site is unfixable (poor structure, no mobile optimization, outdated CMS), our HVAC website design service builds you a new site that ranks. See /hvac-website-design/ for details."
+      }
+    }
+  ]
+}
+</script>
+{% endblock %}
+
+{#— Breadcrumb label —#}
+{% block breadcrumb_current %}HVAC SEO Services{% endblock %}
+
+{#— Hero —#}
+{% block service_h1 %}HVAC Contractor SEO That Ranks Your Shop on Google{% endblock %}
+{% block service_hero_subtitle %}HVAC SEO services that put you on page one for "AC repair near me", "HVAC contractor [city]", and every seasonal search your customers actually run. From $899/month, no contracts.{% endblock %}
+{% block hero_cta_text %}Get a Free HVAC SEO Audit{% endblock %}
+
+{#— Intro —#}
+{% block service_intro %}
+<p>HVAC is a seasonal, local, and high-intent search business. Someone Googles "emergency AC repair" when their system dies on a 100°F day — and the HVAC contractor who shows up in the Map Pack gets the call within 30 seconds. If you're not ranking for "HVAC [your city]" and "furnace repair [your neighborhood]", you're handing those leads to competitors. Our HVAC SEO services fix that, building your Google presence around the keywords that matter for AC repair, furnace installation, heat pump service, and every emergency search your customers run summer and winter. Starting at <strong>$899/month</strong>, no long-term contracts required.</p>
+{% endblock %}
+
+{#— Benefits —#}
+{% block benefits_heading %}Why HVAC Contractors Choose Our SEO Services{% endblock %}
+{% block service_benefits %}
+<div class="benefit-card">
+  <h3>Seasonal HVAC Keyword Strategy</h3>
+  <p>Summer-focused keywords — AC repair, AC tune-up, emergency AC service — and winter-focused keywords — furnace repair, heat pump, heating contractor — each optimized for peak season. We front-load content before the rush so you're ranking when demand spikes, not six weeks after.</p>
+</div>
+<div class="benefit-card">
+  <h3>Google Map Pack Dominance</h3>
+  <p>Most HVAC leads come from the 3-pack at the top of Google Maps. We optimize your Google Business Profile, build consistent local citations across 50+ directories, and drive review volume to get you there — and keep you there when competitors push back.</p>
+</div>
+<div class="benefit-card">
+  <h3>City-Level Landing Pages</h3>
+  <p>One homepage cannot rank for every city you service. We build optimized landing pages for every city and ZIP in your service area — pages that are genuinely useful to search engines and homeowners alike. Scales from 5 cities to 50 without thin-content penalties.</p>
+</div>
+<div class="benefit-card">
+  <h3>Technical SEO Built for HVAC Sites</h3>
+  <p>Fast load times, full mobile optimization, schema markup for HVACBusiness and local Service types, structured FAQ markup for rich results. Google rewards technically clean sites — and your customers convert better on pages that load in under 2 seconds on a phone.</p>
+</div>
+{% endblock %}
+
+{#— Features —#}
+{% block features_heading %}What's Included in Every HVAC SEO Plan{% endblock %}
+{% block service_features %}
+<ul>
+  <li><strong>HVAC Keyword Research</strong> — Full keyword map covering AC repair, furnace repair, heat pump, duct cleaning, HVAC installation, and emergency service — all layered by city and neighborhood.</li>
+  <li><strong>On-Page SEO Audit &amp; Fixes</strong> — Meta titles, descriptions, header structure, internal linking, image alt text, and page speed — audited and corrected in month one.</li>
+  <li><strong>Google Business Profile Optimization</strong> — Service categories, service area, photos, Q&amp;A, and weekly posts. GBP is your fastest path to the Map Pack.</li>
+  <li><strong>City-Level Landing Pages</strong> — Unique, optimized pages for every city and ZIP you service. Built to rank, not to game — real content real customers actually read.</li>
+  <li><strong>HVAC Schema Markup</strong> — HVACBusiness, Service, FAQPage, and LocalBusiness schema. Structured data that helps Google understand exactly what you do and where.</li>
+  <li><strong>Seasonal Content Strategy</strong> — Summer blog posts ("Is your AC ready for 100°F?") in April. Winter furnace content in September. Timed to build authority before peak search volume arrives.</li>
+  <li><strong>Citation Building &amp; Cleanup</strong> — Consistent NAP data across 50+ local directories. Mismatched citations silently suppress your rankings — we find and fix them all.</li>
+  <li><strong>Review Acquisition System</strong> — Automated post-job review request sequences via SMS and email. More 5-star Google reviews means higher Map Pack rankings and more calls.</li>
+  <li><strong>Monthly Ranking Reports</strong> — Every keyword tracked. Every month you see exactly where you rank, which pages are gaining, and what we're working on next.</li>
+</ul>
+{% endblock %}
+
+{#— Process —#}
+{% block process_heading %}Our HVAC SEO Process{% endblock %}
+{% block service_process %}
+<ol>
+  <li><strong>Free Audit (Week 1)</strong> — We audit your current site, GBP, citations, backlink profile, and competitor rankings. You get a clear picture of where you stand and what's holding you back — before you spend a dollar.</li>
+  <li><strong>Strategy &amp; Keyword Map (Week 1–2)</strong> — We build your full HVAC keyword map, prioritize by search volume and competition, and agree on the target cities and service types for the first 90 days.</li>
+  <li><strong>On-Page &amp; Technical Fixes (Month 1)</strong> — Implement all on-page changes, fix technical issues, optimize GBP, launch city-level landing pages, and set up review acquisition. Rankings begin moving.</li>
+  <li><strong>Grow &amp; Report (Month 2+)</strong> — Monthly content, link building, citation expansion, and GBP management. Monthly ranking report shows exactly what moved. We adjust strategy each quarter based on data.</li>
+</ol>
+{% endblock %}
+
+{#— Examples —#}
+{% block examples_heading %}HVAC SEO Results{% endblock %}
+{% block service_examples %}
+<p>Numbers are real outcomes from HVAC SEO campaigns we've run. Names are kept private per client agreements.</p>
+<div class="examples-grid">
+  <div class="example-card">
+    <h3>Single-Truck HVAC Contractor</h3>
+    <p>Ranked #1 for "AC repair [city]" in 5 months. Inbound calls doubled. Owner retired his Google Ads budget entirely by month 8.</p>
+  </div>
+  <div class="example-card">
+    <h3>Regional HVAC Company (3 Cities)</h3>
+    <p>4x organic leads during summer peak after city-level landing pages and GBP optimization. Organic now outperforms paid in all three markets.</p>
+  </div>
+  <div class="example-card">
+    <h3>New HVAC Shop (Under 1 Year Old)</h3>
+    <p>Page-1 rankings for 8 target keywords in 6 months. GBP in the Map Pack for primary city by month 4. Review count grew from 3 to 47 via automated acquisition.</p>
+  </div>
+</div>
+{% endblock %}
+
+{#— Pricing extra —#}
+{% block service_pricing_extra %}
+<div style="margin-top:1.5rem;">
+  <p><strong>HVAC SEO pricing tiers:</strong></p>
+  <ul style="margin-top:0.5rem;">
+    <li><strong>Local — $899/month:</strong> 1 city, up to 10 target keywords, GBP optimization, on-page SEO, monthly ranking report.</li>
+    <li><strong>Growth — $1,499/month:</strong> Up to 3 cities, 25+ keywords, city landing pages, seasonal content, citation building, review acquisition.</li>
+    <li><strong>Multi-Location — $2,499+/month:</strong> Unlimited cities, full technical SEO, link building campaigns, competitive content strategy, quarterly strategy calls.</li>
+  </ul>
+  <p style="margin-top:1rem;">No contracts. Cancel any month. Every plan includes a free audit before you commit.</p>
+</div>
+{% endblock %}
+
+{#— FAQ —#}
+{% block service_faq %}
+<details class="faq-item">
+  <summary>How long does HVAC SEO take to generate leads?</summary>
+  <div>First rankings typically appear in 60–90 days. Meaningful lead flow starts at month 4–6. ROI compounds through year 2 as your domain authority grows and more keywords break onto page one. HVAC SEO is a long-term asset, not a quick flip — but the math beats paid ads once you're ranking.</div>
+</details>
+<details class="faq-item">
+  <summary>What HVAC keywords should I target?</summary>
+  <div>Start with high-intent service + location combos: "AC repair [city]", "HVAC contractor [city]", "emergency furnace repair [neighborhood]". Layer in seasonal searches: "AC tune-up [city]" in spring, "furnace installation [zip]" in fall. Then add long-tail problem queries: "AC not cooling", "heat pump blowing cold air in heat mode". We build your full keyword map in week one.</div>
+</details>
+<details class="faq-item">
+  <summary>Do I need city-level landing pages for HVAC SEO?</summary>
+  <div>If you service more than one city, yes — city-level landing pages are one of the biggest lever moves for local HVAC SEO. A single homepage cannot rank for "AC repair Dallas" and "AC repair Fort Worth" simultaneously. Dedicated pages for each city you serve let Google understand your full service footprint and rank you accordingly.</div>
+</details>
+<details class="faq-item">
+  <summary>Is HVAC SEO worth it with Google Ads so expensive?</summary>
+  <div>Yes. HVAC clicks on Google Ads run $15–30 each. If your conversion rate is 10%, that's $150–300 per lead — before you've paid a technician. Once your HVAC SEO is working, organic leads cost a fraction of that. Most clients break even on SEO spend by month 8–10 and then enjoy near-free leads indefinitely.</div>
+</details>
+<details class="faq-item">
+  <summary>Can you help with my HVAC Google Business Profile?</summary>
+  <div>Yes. Google Business Profile optimization is included in every HVAC SEO plan. We audit and update your NAP data, service categories, service area, photos, Q&amp;A, and posting cadence. GBP is the single biggest driver of Map Pack rankings — we treat it as a first-class SEO asset, not an afterthought.</div>
+</details>
+<details class="faq-item">
+  <summary>What if my existing HVAC website is not SEO-friendly?</summary>
+  <div>Our free audit tells you exactly what's holding your site back. If your current site can be fixed — slow load times, missing schema, broken meta tags — we fix it as part of onboarding. If the site is unfixable (poor structure, no mobile optimization, outdated CMS), our <a href="/hvac-website-design/">HVAC website design</a> service builds you a new site that ranks.</div>
+</details>
+{% endblock %}
+
+{#— Final CTA —#}
+{% block cta_heading %}Get a Free HVAC SEO Audit{% endblock %}
+{% block cta_subheading %}Tell us your target city and top service — we'll audit your current rankings and show you exactly what it takes to get to page one. Free, no commitment, delivered within 48 hours.{% endblock %}
+
+{#— Related services —#}
+{% block service_related %}
+<a href="/hvac-website-design/">
+  <strong>HVAC Website Design</strong>
+  <span>A website built for HVAC conversions — AI quote calculator, online booking, emergency CTA, service area map. Starting at $2,499.</span>
+</a>
+<a href="/contractor-lead-generation/">
+  <strong>Contractor Lead Generation</strong>
+  <span>Google Local Services Ads, Google Ads, and Facebook campaigns tuned for HVAC lead quality and cost per call.</span>
+</a>
+<a href="/roofing-seo/">
+  <strong>Roofing SEO</strong>
+  <span>Same proven SEO methodology applied to roofing contractors. Rank for storm damage, roof replacement, and local roofing searches.</span>
+</a>
+{% endblock %}
