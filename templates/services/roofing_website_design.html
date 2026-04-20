@@ -1,1 +1,230 @@
-<!-- placeholder: roofing_website_design.html -->
+{% extends "services/_base_service.html" %}
+
+{#— Meta tags —#}
+{% block title %}Roofing Contractor Website Design | ContractorWebDev{% endblock %}
+{% block meta_description %}Roofing website design from $2,499 — storm-ready sites, damage photo upload, insurance claim flows, instant quotes. Built for roofing contractors.{% endblock %}
+{% block canonical %}https://contractorwebdev.com/roofing-website-design/{% endblock %}
+{% block og_title %}Roofing Contractor Website Design | ContractorWebDev{% endblock %}
+{% block og_description %}Roofing website design from $2,499 — storm-ready sites, damage photo upload, insurance claim flows, instant quotes. Built for roofing contractors.{% endblock %}
+
+{#— Schema.org —#}
+{% block schema_org %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "serviceType": "Roofing Website Design",
+  "provider": {
+    "@type": "ProfessionalService",
+    "name": "ContractorWebDev",
+    "url": "https://contractorwebdev.com"
+  },
+  "areaServed": "United States",
+  "offers": {
+    "@type": "Offer",
+    "price": "2499",
+    "priceCurrency": "USD"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://contractorwebdev.com/"},
+    {"@type": "ListItem", "position": 2, "name": "Services", "item": "https://contractorwebdev.com/services/"},
+    {"@type": "ListItem", "position": 3, "name": "Roofing Website Design"}
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Can the site handle traffic spikes after a hailstorm?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Every roofing website we build is load-tested to 10x average traffic before launch and backed by a CDN. We have never had a roofing client site go down during a storm event. When the phones start ringing and your neighbors start Googling, your site stays fast and captures every lead."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do you offer photo-upload lead forms for damage estimates?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Homeowners can upload damage photos directly from their mobile device. The form captures geolocation data and contact information alongside the photos, then routes the submission directly to your estimator within 60 seconds — no manual follow-up required."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What's the best roofing website design approach for a storm restoration company?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Storm restoration roofers need separate storm-damage landing pages per major metro, state-specific insurance-claim guidance content, and a mobile-first damage photo upload flow. We also recommend a dedicated insurance claim intake form that separates insurance leads from cash-pay repair leads so your estimators are not wasting time on mismatched inquiries."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do you integrate with EagleView or Roofr?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Aerial measurement integrations with EagleView and Roofr are available for production estimators. Your team can request a measurement report directly from the lead intake form, cutting the time between first contact and estimate delivery."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How quickly can a new roofing website go live if a major storm is forecast?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Our fastest roofing website shipped in 9 days under a storm-deadline. Expedited delivery is available as an add-on. Contact us as soon as the forecast is out — the earlier we start, the more features we can include before the storm hits your market."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What about Google ads for roofing — do you handle that?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Paid advertising and lead generation is a separate service from website design. We manage Google Local Services Ads, PPC campaigns, and Facebook storm-targeting ads for roofing contractors. See our contractor lead generation page for details."
+      }
+    }
+  ]
+}
+</script>
+{% endblock %}
+
+{#— Breadcrumb label —#}
+{% block breadcrumb_current %}Roofing Website Design{% endblock %}
+
+{#— Hero —#}
+{% block service_h1 %}Roofing Contractor Website Design Built for Storm Season{% endblock %}
+{% block service_hero_subtitle %}Roofing websites engineered for hail-day traffic spikes, damage photo uploads, insurance claim flows, and instant repair quotes. Catch every lead when the storm hits — not just the ones who called first.{% endblock %}
+{% block hero_cta_text %}Get a Free Roofing Website Quote{% endblock %}
+
+{#— Intro —#}
+{% block service_intro %}
+<p>Roofing is a traffic-spike business. One hailstorm generates more leads in 48 hours than the rest of the month combined — and if your roofing website crashes, loads slow, or doesn't capture photos properly, you just watched six figures in revenue go to the roofer down the street. Our roofing website design is built for that moment. Handles 10× traffic. Captures damage photos in one tap. Routes insurance claims to the right person. Starting at <strong>${{ agency_price }}</strong>.</p>
+{% endblock %}
+
+{#— Benefits —#}
+{% block benefits_heading %}Why Roofing Contractors Choose ContractorWebDev{% endblock %}
+{% block service_benefits %}
+<div class="benefit-card">
+  <h3>Built for Storm-Day Traffic Spikes</h3>
+  <p>Our roofing websites handle 10× normal traffic on hail days without slowing down or crashing. CDN-backed, load-tested before launch. When the storm chasers hit your market, your site captures every lead competitors miss.</p>
+</div>
+<div class="benefit-card">
+  <h3>Damage Photo Upload Flow</h3>
+  <p>Homeowners snap photos from their driveway — the site captures them, collects contact info, and routes to your intake team within 60 seconds. No more phone tag. No more "can you email me some pictures?"</p>
+</div>
+<div class="benefit-card">
+  <h3>Insurance Claim Assistance Messaging</h3>
+  <p>Clear CTA for insurance-claim roofing projects. Separate lead flow from cash-pay repairs. Your estimator stops wasting time on mismatched leads and starts writing more estimates that turn into signed contracts.</p>
+</div>
+<div class="benefit-card">
+  <h3>Mobile-Optimized for Door-Knocking</h3>
+  <p>Your door-to-door crew sends homeowners to the site after a pitch. Our roofing websites load instantly and convert skeptics on mobile — one tap to see your reviews, your work, and your quote form.</p>
+</div>
+{% endblock %}
+
+{#— Features —#}
+{% block features_heading %}What's Included in Every Roofing Website{% endblock %}
+{% block service_features %}
+<ul>
+  <li><strong>Damage Photo Upload</strong> — Homeowners upload photos straight from their phone. Form captures geolocation, contact details, and roof type. Estimator-ready submission in under 60 seconds.</li>
+  <li><strong>Insurance Claim Intake Flow</strong> — Dedicated form and landing page for insurance-claim projects. Collects insurance carrier, adjuster contact, and claim number upfront so your team hits the ground running.</li>
+  <li><strong>Instant Repair &amp; Replacement Quote Tool</strong> — Customers describe their roofing issue and get an instant price range. Captures contact info automatically and feeds your CRM.</li>
+  <li><strong>Storm-Damage Landing Pages</strong> — Metro-specific pages targeting "[city] hail damage roof repair" searches. Surge-optimized for post-storm lead capture in every market you serve.</li>
+  <li><strong>Service Area Map</strong> — Interactive map showing which ZIP codes and counties you service. Filters out-of-area requests and shows homeowners you know their neighborhood.</li>
+  <li><strong>Financing for New Roofs</strong> — GreenSky and Wisetack integration. Customers see monthly payment options on replacement quotes — closes larger jobs faster.</li>
+  <li><strong>Before &amp; After Gallery</strong> — Showcase shingle replacements, metal roof installations, and storm restoration projects. Filter by roof type and neighborhood.</li>
+  <li><strong>Warranty Information Page</strong> — Manufacturer warranties, workmanship guarantees, and extended coverage explained in plain language — builds trust before the first call.</li>
+</ul>
+{% endblock %}
+
+{#— Process —#}
+{% block process_heading %}How We Build Your Roofing Website{% endblock %}
+{% block service_process %}
+<ol>
+  <li><strong>Discovery (Week 1)</strong> — 60-min kickoff call. We learn your service area, material preferences (asphalt shingle, metal, flat), insurance vs. cash-pay split, and door-to-door strategy. You send us logos, certifications, drone photos, and project galleries.</li>
+  <li><strong>Design (Week 1–2)</strong> — Wireframes for homepage, storm-damage landing pages, photo upload form, service area, and contact. Approved before we write a line of code — no surprises at launch.</li>
+  <li><strong>Build &amp; Copy (Week 2–3)</strong> — We code the site with roofing-specific copy, integrate your dispatch or CRM software, set up SSL and analytics, and wire up the damage photo upload flow.</li>
+  <li><strong>Launch &amp; Support (Week 4)</strong> — Final QA across 12 device/browser combos, Google Business Profile sync, load test to 10× traffic, soft launch, then public launch. 30 days of free tweaks included.</li>
+</ol>
+{% endblock %}
+
+{#— Examples —#}
+{% block examples_heading %}Roofing Website Examples{% endblock %}
+{% block service_examples %}
+<p>Every roofing website we build is custom — not a cookie-cutter template repainted with your logo. We've built sites for owner-operators running two crews, multi-state storm restoration companies, and commercial flat-roof specialists. See our portfolio for live examples converting traffic into signed estimates. <a href="/#portfolio">See our portfolio →</a></p>
+<div class="examples-grid">
+  <div class="example-card">
+    <h3>Residential Roofing (Asphalt Shingle)</h3>
+    <p>Family-owned roofer, primary market: hail claims and full replacements. Damage photo upload form converts at 18% on mobile.</p>
+  </div>
+  <div class="example-card">
+    <h3>Commercial Flat-Roof Specialist</h3>
+    <p>Property-manager-focused site with RFQ forms, maintenance plan signups, and roof-life assessment tool.</p>
+  </div>
+  <div class="example-card">
+    <h3>Storm Restoration / Insurance Roofer</h3>
+    <p>Multi-state operator, dedicated metro landing pages, insurance claim intake, EagleView aerial measurement integration.</p>
+  </div>
+</div>
+{% endblock %}
+
+{#— Pricing extra —#}
+{% block service_pricing_extra %}
+<p style="margin-top:1rem;">Standard roofing website: ${{ agency_price }}. Multi-state storm restoration companies or commercial + residential dual operators: $3,999–$4,999. Every quote is fixed-price — no monthly fees, no surprises.</p>
+{% endblock %}
+
+{#— FAQ —#}
+{% block service_faq %}
+<details class="faq-item">
+  <summary>Can the site handle traffic spikes after a hailstorm?</summary>
+  <div>Yes. Every roofing website we build is load-tested to 10× average traffic before launch and backed by a CDN. We have never had a roofing client site go down during a storm event. When the phones start ringing and your neighbors start Googling, your site stays fast and captures every lead.</div>
+</details>
+<details class="faq-item">
+  <summary>Do you offer photo-upload lead forms for damage estimates?</summary>
+  <div>Yes. Homeowners can upload damage photos directly from their mobile device. The form captures geolocation data and contact information alongside the photos, then routes the submission directly to your estimator within 60 seconds — no manual follow-up required.</div>
+</details>
+<details class="faq-item">
+  <summary>What's the best roofing website design approach for a storm restoration company?</summary>
+  <div>Storm restoration roofers need separate storm-damage landing pages per major metro, state-specific insurance-claim guidance content, and a mobile-first damage photo upload flow. We also recommend a dedicated insurance claim intake form that separates insurance leads from cash-pay repair leads so your estimators aren't wasting time on mismatched inquiries.</div>
+</details>
+<details class="faq-item">
+  <summary>Do you integrate with EagleView or Roofr?</summary>
+  <div>Yes. Aerial measurement integrations with EagleView and Roofr are available for production estimators. Your team can request a measurement report directly from the lead intake form, cutting the time between first contact and estimate delivery.</div>
+</details>
+<details class="faq-item">
+  <summary>How quickly can a new roofing website go live if a major storm is forecast?</summary>
+  <div>Our fastest roofing website shipped in 9 days under a storm-deadline. Expedited delivery is available as an add-on. Contact us as soon as the forecast is out — the earlier we start, the more features we can include before the storm hits your market.</div>
+</details>
+<details class="faq-item">
+  <summary>What about Google ads for roofing — do you handle that?</summary>
+  <div>Paid advertising and lead generation is a separate service from website design. We manage Google Local Services Ads, PPC campaigns, and Facebook storm-targeting ads for roofing contractors. See our <a href="/contractor-lead-generation/">contractor lead generation</a> page for details.</div>
+</details>
+{% endblock %}
+
+{#— Final CTA —#}
+{% block cta_heading %}Ready Before the Next Storm Rolls In?{% endblock %}
+{% block cta_subheading %}Tell us about your roofing business — we'll send a fixed-price proposal within 24 hours, no sales calls required.{% endblock %}
+
+{#— Related services —#}
+{% block service_related %}
+<a href="/roofing-seo/">
+  <strong>Roofing SEO Services</strong>
+  <span>Rank on Google for hail damage repair, roof replacement, and local roofing searches in every market you serve.</span>
+</a>
+<a href="/contractor-lead-generation/">
+  <strong>Contractor Lead Generation</strong>
+  <span>Google Local Services Ads, PPC, and Facebook storm-targeting campaigns tuned for roofing lead quality.</span>
+</a>
+<a href="/hvac-website-design/">
+  <strong>HVAC Website Design</strong>
+  <span>Also run an HVAC division? We build high-conversion HVAC contractor websites with the same storm-ready infrastructure.</span>
+</a>
+{% endblock %}
