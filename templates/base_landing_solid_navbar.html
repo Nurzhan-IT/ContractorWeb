@@ -78,6 +78,50 @@
         <!-- Desktop Nav Links (lg+) -->
         <div class="hidden lg:flex items-center gap-0.5">
           <a href="{{ url('landing:landing') }}#features" class="nav-link px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200">Features</a>
+
+          <!-- Services dropdown -->
+          <div class="relative group">
+            <a href="{{ url('services:hub') }}" class="nav-link px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 flex items-center gap-1">
+              Services
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </a>
+            <div class="absolute left-0 top-full pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50" style="min-width:620px">
+              <div class="bg-white rounded-xl shadow-2xl border border-gray-100 p-5 grid grid-cols-3 gap-5">
+                <div>
+                  <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-3">Website Design</h4>
+                  <ul class="space-y-1.5">
+                    <li><a href="{{ url('services:contractor_website_design') }}" class="block text-sm text-gray-700 hover:text-cyan-600">Contractor Websites</a></li>
+                    <li><a href="{{ url('services:hvac_website_design') }}" class="block text-sm text-gray-700 hover:text-cyan-600">HVAC Websites</a></li>
+                    <li><a href="{{ url('services:roofing_website_design') }}" class="block text-sm text-gray-700 hover:text-cyan-600">Roofing Websites</a></li>
+                    <li><a href="{{ url('services:electrical_contractor_website_design') }}" class="block text-sm text-gray-700 hover:text-cyan-600">Electrical Websites</a></li>
+                    <li><a href="{{ url('services:construction_website_design') }}" class="block text-sm text-gray-700 hover:text-cyan-600">Construction Websites</a></li>
+                    <li><a href="{{ url('services:general_contractor_website_design') }}" class="block text-sm text-gray-700 hover:text-cyan-600">General Contractor Websites</a></li>
+                  </ul>
+                </div>
+                <div>
+                  <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-3">SEO</h4>
+                  <ul class="space-y-1.5">
+                    <li><a href="{{ url('services:contractor_seo') }}" class="block text-sm text-gray-700 hover:text-cyan-600">Contractor SEO</a></li>
+                    <li><a href="{{ url('services:general_contractor_seo') }}" class="block text-sm text-gray-700 hover:text-cyan-600">General Contractor SEO</a></li>
+                    <li><a href="{{ url('services:hvac_seo') }}" class="block text-sm text-gray-700 hover:text-cyan-600">HVAC SEO</a></li>
+                    <li><a href="{{ url('services:roofing_seo') }}" class="block text-sm text-gray-700 hover:text-cyan-600">Roofing SEO</a></li>
+                    <li><a href="{{ url('services:plumbing_seo') }}" class="block text-sm text-gray-700 hover:text-cyan-600">Plumbing SEO</a></li>
+                  </ul>
+                </div>
+                <div>
+                  <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-3">Lead Generation</h4>
+                  <ul class="space-y-1.5">
+                    <li><a href="{{ url('services:contractor_lead_generation') }}" class="block text-sm text-gray-700 hover:text-cyan-600">Contractor Lead Gen</a></li>
+                    <li><a href="{{ url('services:construction_lead_generation') }}" class="block text-sm text-gray-700 hover:text-cyan-600">Construction Lead Gen</a></li>
+                  </ul>
+                  <div class="mt-4 pt-4 border-t border-gray-100">
+                    <a href="{{ url('services:hub') }}" class="inline-flex items-center gap-1 text-sm font-semibold text-cyan-600 hover:text-cyan-700">View all services →</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
           <a href="{{ url('landing:landing') }}#portfolio" class="nav-link px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200">Portfolio</a>
           <a href="{{ url('landing:landing') }}#pricing" class="nav-link px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200">Pricing</a>
           <a href="{{ url('landing:landing') }}#contact" class="nav-link px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200">Contact</a>
@@ -124,6 +168,7 @@
     <div id="mobile-menu" class="nav-mobile-menu lg:hidden overflow-hidden transition-all duration-300 ease-in-out" style="max-height:0">
       <div class="px-4 pt-2 pb-5 space-y-1 border-t nav-mobile-border">
         <a href="{{ url('landing:landing') }}#features" class="nav-mobile-link flex items-center px-3 py-2.5 rounded-lg text-sm font-medium transition-colors duration-200">Features</a>
+        <a href="{{ url('services:hub') }}" class="nav-mobile-link flex items-center px-3 py-2.5 rounded-lg text-sm font-medium transition-colors duration-200">Services</a>
         <a href="{{ url('landing:landing') }}#portfolio" class="nav-mobile-link flex items-center px-3 py-2.5 rounded-lg text-sm font-medium transition-colors duration-200">Portfolio</a>
         <a href="{{ url('landing:landing') }}#pricing" class="nav-mobile-link flex items-center px-3 py-2.5 rounded-lg text-sm font-medium transition-colors duration-200">Pricing</a>
         <a href="{{ url('landing:landing') }}#contact" class="nav-mobile-link flex items-center px-3 py-2.5 rounded-lg text-sm font-medium transition-colors duration-200">Contact</a>
@@ -167,7 +212,7 @@
       <div class="grid md:grid-cols-4 gap-8 mb-8">
 
         <!-- Brand -->
-        <div class="md:col-span-2">
+        <div>
           <div class="flex items-center gap-2 mb-4">
             <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -176,10 +221,24 @@
             </div>
             <span class="text-xl font-bold">ContractorWebDev</span>
           </div>
-          <p class="mb-4 max-w-md" style="color:#94a3b8">
+          <p class="mb-4" style="color:#94a3b8">
             Custom websites built specifically for contractors. Django-powered, conversion-focused, and designed to bring you more jobs.
           </p>
 
+        </div>
+
+        <!-- Services -->
+        <div>
+          <h3 class="font-semibold mb-4">Services</h3>
+          <ul class="space-y-2 text-sm">
+            <li><a href="{{ url('services:hub') }}" class="transition-colors" style="color:#94a3b8" onmouseover="this.style.color='#22d3ee'" onmouseout="this.style.color='#94a3b8'">All Services</a></li>
+            <li><a href="{{ url('services:contractor_website_design') }}" class="transition-colors" style="color:#94a3b8" onmouseover="this.style.color='#22d3ee'" onmouseout="this.style.color='#94a3b8'">Contractor Websites</a></li>
+            <li><a href="{{ url('services:hvac_website_design') }}" class="transition-colors" style="color:#94a3b8" onmouseover="this.style.color='#22d3ee'" onmouseout="this.style.color='#94a3b8'">HVAC Websites</a></li>
+            <li><a href="{{ url('services:roofing_website_design') }}" class="transition-colors" style="color:#94a3b8" onmouseover="this.style.color='#22d3ee'" onmouseout="this.style.color='#94a3b8'">Roofing Websites</a></li>
+            <li><a href="{{ url('services:contractor_seo') }}" class="transition-colors" style="color:#94a3b8" onmouseover="this.style.color='#22d3ee'" onmouseout="this.style.color='#94a3b8'">Contractor SEO</a></li>
+            <li><a href="{{ url('services:hvac_seo') }}" class="transition-colors" style="color:#94a3b8" onmouseover="this.style.color='#22d3ee'" onmouseout="this.style.color='#94a3b8'">HVAC SEO</a></li>
+            <li><a href="{{ url('services:contractor_lead_generation') }}" class="transition-colors" style="color:#94a3b8" onmouseover="this.style.color='#22d3ee'" onmouseout="this.style.color='#94a3b8'">Lead Generation</a></li>
+          </ul>
         </div>
 
         <!-- Quick Links -->

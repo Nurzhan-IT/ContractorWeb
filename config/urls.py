@@ -4,11 +4,19 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.views.generic import TemplateView
 from django.contrib.sitemaps.views import sitemap
-from config.sitemaps import LandingSitemap, DemoSitemap, BlogSitemap
+from config.sitemaps import (
+    LandingSitemap,
+    DemoSitemap,
+    BlogSitemap,
+    BlogIndexSitemap,
+    ServicePagesSitemap,
+)
 
 sitemaps = {
     'landing': LandingSitemap,
+    'services': ServicePagesSitemap,
     'demo': DemoSitemap,
+    'blog_index': BlogIndexSitemap,
     'blog': BlogSitemap,
 }
 
@@ -20,6 +28,8 @@ urlpatterns = [
     path('api/', include('config.api_urls')),
     # Blog at /blog/ — part of main marketing site for SEO
     path('blog/', include('blog.urls')),
+    # Service landing pages — top-level routes, must come BEFORE landing catch-all
+    path('', include('services.urls')),
     # Legal pages
     path('privacy/', TemplateView.as_view(template_name='legal/privacy.html'), name='privacy'),
     path('terms/',   TemplateView.as_view(template_name='legal/terms.html'),   name='terms'),
