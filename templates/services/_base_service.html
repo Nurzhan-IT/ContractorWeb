@@ -95,9 +95,9 @@
       <h2>{% block cta_heading %}Ready to Get Started?{% endblock %}</h2>
       <p>{% block cta_subheading %}Fill in the form and we'll send you a detailed proposal within 24 hours.{% endblock %}</p>
       {% include "landing/_web_quote_form.html" ignore missing %}
-      {# Fallback if include missing: show link to /contact/ #}
+      {# Fallback if include missing: link to landing contact section #}
       {% block cta_form_fallback %}
-        <a href="/contact/" class="btn-primary">Contact us</a>
+        <a href="/#contact" class="btn-primary">Contact us</a>
       {% endblock %}
     </div>
   </section>
