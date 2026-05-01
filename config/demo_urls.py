@@ -11,6 +11,7 @@ from demo.views import DemoHubView
 #   /demo/service-area/  → service_area.urls
 #   /demo/portfolio/     → portfolio.urls
 #   /demo/booking/       → booking.urls
+#   /demo/plumbing/      → apps.plumbing.urls
 
 urlpatterns = [
     path('', DemoHubView.as_view(), name='demo_hub'),
@@ -19,4 +20,5 @@ urlpatterns = [
     path('service-area/', include('service_area.urls')),
     path('portfolio/', include('portfolio.urls')),
     path('booking/', include('booking.urls')),
+    path('plumbing/', include('apps.plumbing.urls')),
 ]
