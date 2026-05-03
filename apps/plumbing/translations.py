@@ -257,7 +257,7 @@ TRANSLATIONS = {
         'final_cta_eyebrow': "Don't Wait Until It Gets Worse",
         'final_cta_title': 'Ready to fix your plumbing issue?',
         'final_cta_desc': "Get an AI-powered quote in 30 seconds or call us now. Same-day service available — we're standing by.",
-        'final_cta_stats': '⚡ Average call answer time: under 30 seconds &nbsp;·&nbsp; 🕐 Same-day appointments available',
+        'final_cta_stats': '⚡ Average call answer time: under 30 seconds  🕐 Same-day appointments available',
 
         # ── Footer ───────────────────────────────────────────────────────────────
         'footer_about': "Austin's most trusted plumbing company since 1998. Licensed, insured, and proud of our 4.9-star reputation.",
@@ -554,7 +554,7 @@ TRANSLATIONS = {
         'final_cta_eyebrow': 'No Esperes a Que Empeore',
         'final_cta_title': '¿Listo para arreglar tu problema de plomería?',
         'final_cta_desc': 'Obtén una cotización con IA en 30 segundos o llámanos ahora. Servicio el mismo día disponible — estamos listos.',
-        'final_cta_stats': '⚡ Tiempo promedio de respuesta: menos de 30 segundos &nbsp;·&nbsp; 🕐 Citas el mismo día disponibles',
+        'final_cta_stats': '⚡ Tiempo promedio de respuesta: menos de 30 segundos  🕐 Citas el mismo día disponibles',
 
         # ── Footer ───────────────────────────────────────────────────────────────
         'footer_about': 'La empresa de plomería más confiable de Austin desde 1998. Licenciados, asegurados y orgullosos de nuestra reputación de 4.9 estrellas.',
