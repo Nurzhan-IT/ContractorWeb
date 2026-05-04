@@ -1,0 +1,116 @@
+{% extends "base_landing_solid_navbar.html" %}
+
+{% block extra_head %}
+  <link rel="stylesheet" href="/static/css/services.css">
+  {% block schema_org %}{% endblock %}
+{% endblock %}
+
+{% block content %}
+<main class="service-page">
+
+  <!-- Breadcrumbs -->
+  <nav class="breadcrumbs" aria-label="Breadcrumb">
+    <ol>
+      <li><a href="/">Home</a></li>
+      <li><a href="{{ url('services:hub') }}">Services</a></li>
+      <li aria-current="page">{% block breadcrumb_current %}{% endblock %}</li>
+    </ol>
+  </nav>
+
+  <!-- Hero -->
+  <section class="service-hero">
+    <div class="container">
+      <h1>{% block service_h1 %}{% endblock %}</h1>
+      <p class="hero-subtitle">{% block service_hero_subtitle %}{% endblock %}</p>
+      <a href="#get-quote" class="btn-primary">{% block hero_cta_text %}Get a Free Quote{% endblock %}</a>
+    </div>
+  </section>
+
+  <!-- Intro -->
+  <section class="service-intro">
+    <div class="container">
+      {% block service_intro %}{% endblock %}
+    </div>
+  </section>
+
+  <!-- Why choose us -->
+  <section class="service-benefits">
+    <div class="container">
+      <h2>{% block benefits_heading %}Why Choose Us{% endblock %}</h2>
+      <div class="benefits-grid">
+        {% block service_benefits %}{% endblock %}
+      </div>
+    </div>
+  </section>
+
+  <!-- What's included -->
+  <section class="service-features">
+    <div class="container">
+      <h2>{% block features_heading %}What's Included{% endblock %}</h2>
+      {% block service_features %}{% endblock %}
+    </div>
+  </section>
+
+  <!-- Our process -->
+  <section class="service-process">
+    <div class="container">
+      <h2>{% block process_heading %}Our Process{% endblock %}</h2>
+      {% block service_process %}{% endblock %}
+    </div>
+  </section>
+
+  <!-- Examples -->
+  <section class="service-examples">
+    <div class="container">
+      <h2>{% block examples_heading %}Examples{% endblock %}</h2>
+      {% block service_examples %}{% endblock %}
+    </div>
+  </section>
+
+  <!-- Pricing -->
+  <section class="service-pricing">
+    <div class="container">
+      <h2>{% block pricing_heading %}Pricing{% endblock %}</h2>
+      <div class="pricing-card">
+        <p class="price">Starting at <strong>${{ agency_price }}</strong></p>
+        <p class="price-note">No monthly fees. One-time project cost. Financing available via GreenSky and Wisetack.</p>
+        {% block service_pricing_extra %}{% endblock %}
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="service-faq">
+    <div class="container">
+      <h2>{% block faq_heading %}Frequently Asked Questions{% endblock %}</h2>
+      <div class="faq-list">
+        {% block service_faq %}{% endblock %}
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA + form -->
+  <section id="get-quote" class="service-cta">
+    <div class="container">
+      <h2>{% block cta_heading %}Ready to Get Started?{% endblock %}</h2>
+      <p>{% block cta_subheading %}Fill in the form and we'll send you a detailed proposal within 24 hours.{% endblock %}</p>
+      {% include "landing/_web_quote_form.html" ignore missing %}
+      {# Fallback if include missing: link to landing contact section #}
+      {% block cta_form_fallback %}
+        <a href="/#contact" class="btn-primary">Contact us</a>
+      {% endblock %}
+    </div>
+  </section>
+
+  <!-- Related services -->
+  <section class="service-related">
+    <div class="container">
+      <h2>Related Services</h2>
+      <div class="related-grid">
+        {% block service_related %}{% endblock %}
+      </div>
+    </div>
+  </section>
+
+</main>
+{% endblock %}

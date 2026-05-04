@@ -1,0 +1,230 @@
+{% extends "services/_base_service.html" %}
+
+{#— Meta tags —#}
+{% block title %}Contractor Website Design | ContractorWebDev{% endblock %}
+{% block meta_description %}Custom contractor website design starting at $2,499. Built for plumbers, electricians, HVAC, roofers, and general contractors. Free quote within 24 hours.{% endblock %}
+{% block canonical %}https://contractorwebdev.com/contractor-website-design/{% endblock %}
+{% block og_title %}Contractor Website Design | ContractorWebDev{% endblock %}
+{% block og_description %}Custom contractor website design starting at $2,499 — AI quote tools, 24/7 booking, emergency CTAs, built for plumbers, electricians, roofers, HVAC, and general contractors.{% endblock %}
+
+{#— Schema.org —#}
+{% block schema_org %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "serviceType": "Contractor Website Design",
+  "provider": {
+    "@type": "ProfessionalService",
+    "name": "ContractorWebDev",
+    "url": "https://contractorwebdev.com"
+  },
+  "areaServed": "United States",
+  "offers": {
+    "@type": "Offer",
+    "price": "2499",
+    "priceCurrency": "USD"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://contractorwebdev.com/"},
+    {"@type": "ListItem", "position": 2, "name": "Services", "item": "https://contractorwebdev.com/services/"},
+    {"@type": "ListItem", "position": 3, "name": "Contractor Website Design"}
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How is contractor website design different from regular small business web design?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Contractors need features that generic small-business websites simply don't have: emergency request flows, service area gating by ZIP code, trade-specific AI quote calculators, dispatch software integrations, and before/after photo galleries. Off-the-shelf templates and generic web designers miss all of that. Our contractor website designs are purpose-built for how home service businesses actually win jobs."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I need a separate website for each trade I offer?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. We handle multi-trade contractors with tab navigation and per-trade booking flows on a single site. Whether you run plumbing and HVAC, or electrical and solar, everything lives under one domain with separate landing pages for each service — better for SEO and simpler for your customers."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What if I already have a website?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "We offer a free 15-minute audit of your existing site. If it's salvageable, we'll recommend targeted upgrades with a fixed-price quote. If not, we migrate your existing content, reviews, and rankings — then rebuild it properly. You don't lose your Google history."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do you offer ongoing maintenance after launch?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "$99/month covers hosting, SSL, security patches, unlimited content edits (within reason), and priority email support. You can also choose to host the site yourself — we hand over the code and provide 30 days of free support after launch regardless."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I edit the website myself after launch?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Every contractor website we build ships with a simple admin panel. You can add project photos, update service descriptions, publish blog posts, and manage testimonials — no code required. Training is included."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do you offer SEO as part of the website build?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "On-page SEO (meta tags, schema markup for ContractorBusiness, image optimization, and auto-generated city-level landing pages) is included at no extra cost. Ongoing SEO — link building, Google Business Profile management, and content creation — is a separate monthly service. See our contractor SEO services page at contractorwebdev.com/contractor-seo/."
+      }
+    }
+  ]
+}
+</script>
+{% endblock %}
+
+{#— Breadcrumb label —#}
+{% block breadcrumb_current %}Contractor Website Design{% endblock %}
+
+{#— Hero —#}
+{% block service_h1 %}Contractor Website Design That Wins More Jobs{% endblock %}
+{% block service_hero_subtitle %}Websites built specifically for home service contractors — plumbers, electricians, roofers, HVAC techs, general contractors. AI quote tools, 24/7 booking, emergency CTAs. Launch in 3 weeks.{% endblock %}
+{% block hero_cta_text %}Get a Free Contractor Website Quote{% endblock %}
+
+{#— Intro —#}
+{% block service_intro %}
+<p>Most contractor websites are glorified digital business cards — pretty to look at, useless for winning jobs. We build contractor websites that actually convert. Every site we ship includes AI quote calculators, online booking, service area maps, and Google Reviews sync. Starting at <strong>${{ agency_price }}</strong>, with zero monthly fees. Whether you're a one-truck plumber or a multi-crew general contractor, our contractor web design services turn your website into your hardest-working salesperson.</p>
+{% endblock %}
+
+{#— Benefits —#}
+{% block benefits_heading %}Why Contractors Choose ContractorWebDev{% endblock %}
+{% block service_benefits %}
+<div class="benefit-card">
+  <h3>Built for Home Service Contractors</h3>
+  <p>Not a generic small-business template. Every feature is designed around how contractors actually win jobs: instant quote tools, emergency booking, service area gating, financing calculators, before/after photo galleries.</p>
+</div>
+<div class="benefit-card">
+  <h3>One-Time Price, Zero Monthly Fees</h3>
+  <p>Pay ${{ agency_price }} once. Own your site forever. Compare that to template builders charging $150+/month (that's $1,800/year, every year) for less functionality and no contractor-specific features.</p>
+</div>
+<div class="benefit-card">
+  <h3>3–4 Week Launch</h3>
+  <p>From signed contract to live site in under a month. We've streamlined the process across 100+ contractor websites, so you don't waste a busy season waiting for design revisions to come back.</p>
+</div>
+<div class="benefit-card">
+  <h3>Mobile Leads Captured 24/7</h3>
+  <p>73% of contractor searches happen on mobile. Our contractor website designs put "Call now" and "Get a quote" buttons above the fold, always visible, and always one tap away — day or night.</p>
+</div>
+{% endblock %}
+
+{#— Features —#}
+{% block features_heading %}What's Included in Every Contractor Website{% endblock %}
+{% block service_features %}
+<ul>
+  <li><strong>AI Quote Calculator</strong> — Trade-specific instant estimates with photo upload. Customers describe their problem, upload a photo, and get a price range. Their contact info is captured automatically.</li>
+  <li><strong>Online Booking</strong> — 24/7 scheduling synced with your calendar or dispatch software. No phone tag. Customers book a time slot and you get a notification.</li>
+  <li><strong>Service Area Map</strong> — Interactive map showing every ZIP code and city you serve. Out-of-area visitors get a polite message instead of a wasted lead.</li>
+  <li><strong>Google Reviews Auto-Sync</strong> — Fresh reviews pulled from Google Business Profile every 24 hours. No copy-paste, no manual updates, no stale star ratings.</li>
+  <li><strong>Emergency Request Button</strong> — Sticky mobile CTA for 24/7 emergency service calls. Always visible. One tap connects the homeowner to your on-call line or emergency request form.</li>
+  <li><strong>Financing Calculator</strong> — GreenSky and Wisetack integrations for jobs over $1,000. Customers see monthly payment options right on the quote — and bigger jobs close more often.</li>
+  <li><strong>Before/After Portfolio</strong> — Image comparison sliders that let prospective customers drag between before and after photos of your real projects.</li>
+  <li><strong>Auto City-Level Landing Pages</strong> — Boost local SEO by auto-generating a dedicated page for every city and neighborhood you serve. More pages, more rankings, more calls.</li>
+</ul>
+{% endblock %}
+
+{#— Process —#}
+{% block process_heading %}How We Build Your Contractor Website{% endblock %}
+{% block service_process %}
+<ol>
+  <li><strong>Discovery (Week 1)</strong> — 60-min kickoff call. We learn your trade(s), service area, pricing structure, dispatch software, and what makes your business different from every other contractor in your market. You send logos, photos, certifications, and any copy you want to keep.</li>
+  <li><strong>Design (Week 1–2)</strong> — Wireframes for homepage, services, service area, and contact pages — tailored to your trade, not a cookie-cutter layout. You approve the design before we write a single line of code.</li>
+  <li><strong>Build &amp; Copy (Week 2–3)</strong> — We code the site, write contractor-specific copy for whatever trade you're in, integrate your booking and dispatch tools, set up SSL, Google Analytics, and Search Console.</li>
+  <li><strong>Launch &amp; Support (Week 4)</strong> — Final QA across 12 device and browser combinations, Google Business Profile sync, soft launch review with you, then public launch. 30 days of free tweaks included after go-live.</li>
+</ol>
+{% endblock %}
+
+{#— Examples —#}
+{% block examples_heading %}Contractor Website Examples{% endblock %}
+{% block service_examples %}
+<p>Every contractor website we build is custom — designed for your trade, your service area, and your competitive landscape. We've launched sites for solo owner-operators running $150k/year and multi-crew shops doing $3M+ across several trades. See our portfolio for live examples ranking on Google and converting traffic into booked jobs. <a href="/#portfolio">See our portfolio →</a></p>
+<div class="examples-grid">
+  <div class="example-card">
+    <h3>Plumbing Contractor</h3>
+    <p>Single-location plumber focused on emergency repairs and drain cleaning. Emergency request button converts at 18%. Ranks top 3 in Google for "plumber near me" in two cities.</p>
+  </div>
+  <div class="example-card">
+    <h3>Electrical Contractor</h3>
+    <p>Residential electrician specializing in panel upgrades and EV charger installation. AI quote calculator pre-qualifies leads by job size before the first phone call.</p>
+  </div>
+  <div class="example-card">
+    <h3>General Contractor with Multiple Trades</h3>
+    <p>Multi-trade GC offering remodeling, roofing, and HVAC. Tab-based navigation with three separate booking flows and two dispatch integrations under one domain.</p>
+  </div>
+</div>
+{% endblock %}
+
+{#— Pricing extra —#}
+{% block service_pricing_extra %}
+<p style="margin-top:1rem;">Single-trade contractor websites start at ${{ agency_price }}. Multi-trade contractors (e.g., HVAC + plumbing or electrical + solar) with multiple booking flows average $3,999. Quotes are always fixed — no hourly billing, no surprise invoices.</p>
+{% endblock %}
+
+{#— FAQ —#}
+{% block service_faq %}
+<details class="faq-item">
+  <summary>How is contractor website design different from regular small business web design?</summary>
+  <div>Contractors need features that generic small-business websites simply don't have: emergency request flows, service area gating by ZIP code, trade-specific AI quote calculators, dispatch software integrations, and before/after photo galleries. Off-the-shelf templates and generic web designers miss all of that. Our contractor website designs are purpose-built for how home service businesses actually win jobs.</div>
+</details>
+<details class="faq-item">
+  <summary>Do I need a separate website for each trade I offer?</summary>
+  <div>No. We handle multi-trade contractors with tab navigation and per-trade booking flows on a single site. Whether you run plumbing and HVAC, or electrical and solar, everything lives under one domain with separate landing pages for each service — better for SEO and simpler for your customers.</div>
+</details>
+<details class="faq-item">
+  <summary>What if I already have a website?</summary>
+  <div>We offer a free 15-minute audit of your existing site. If it's salvageable, we'll recommend targeted upgrades with a fixed-price quote. If not, we migrate your existing content, reviews, and rankings — then rebuild it properly. You don't lose your Google history.</div>
+</details>
+<details class="faq-item">
+  <summary>Do you offer ongoing maintenance after launch?</summary>
+  <div>Yes. $99/month covers hosting, SSL, security patches, unlimited content edits (within reason), and priority email support. You can also choose to host the site yourself — we hand over the code and provide 30 days of free support after launch regardless.</div>
+</details>
+<details class="faq-item">
+  <summary>Can I edit the website myself after launch?</summary>
+  <div>Yes. Every contractor website we build ships with a simple admin panel. You can add project photos, update service descriptions, publish blog posts, and manage testimonials — no code required. Training is included.</div>
+</details>
+<details class="faq-item">
+  <summary>Do you offer SEO as part of the website build?</summary>
+  <div>On-page SEO (meta tags, schema markup for ContractorBusiness, image optimization, and auto-generated city-level landing pages) is included at no extra cost. Ongoing SEO — link building, Google Business Profile management, and content creation — is a separate monthly service. See our <a href="/contractor-seo/">contractor SEO services</a> page.</div>
+</details>
+{% endblock %}
+
+{#— Final CTA —#}
+{% block cta_heading %}Ready to Build a Website That Actually Wins Jobs?{% endblock %}
+{% block cta_subheading %}Tell us about your contracting business — we'll send a fixed-price proposal within 24 hours, no sales calls required.{% endblock %}
+
+{#— Related services —#}
+{% block service_related %}
+<a href="/contractor-seo/">
+  <strong>Contractor SEO Services</strong>
+  <span>Rank on Google for plumbing, electrical, roofing, and HVAC searches in your local service area.</span>
+</a>
+<a href="/contractor-lead-generation/">
+  <strong>Contractor Lead Generation</strong>
+  <span>Paid ads, Google Local Services Ads, and Facebook campaigns tuned for contractor lead quality and job size.</span>
+</a>
+<a href="/general-contractor-website-design/">
+  <strong>General Contractor Website Design</strong>
+  <span>Running a multi-trade GC business? We design high-conversion websites specifically for general contractors.</span>
+</a>
+{% endblock %}

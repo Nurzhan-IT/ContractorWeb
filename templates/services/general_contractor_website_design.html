@@ -1,0 +1,230 @@
+{% extends "services/_base_service.html" %}
+
+{#— Meta tags —#}
+{% block title %}General Contractor Website Design | ContractorWebDev{% endblock %}
+{% block meta_description %}Professional general contractor website design from $2,499. Project portfolios, bid flows, licensing display — built for GCs. Launch in 3 weeks.{% endblock %}
+{% block canonical %}https://contractorwebdev.com/general-contractor-website-design/{% endblock %}
+{% block og_title %}General Contractor Website Design | ContractorWebDev{% endblock %}
+{% block og_description %}Professional general contractor website design from $2,499. Project portfolios, bid flows, licensing display — built for GCs. Launch in 3 weeks.{% endblock %}
+
+{#— Schema.org —#}
+{% block schema_org %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "serviceType": "General Contractor Website Design",
+  "provider": {
+    "@type": "ProfessionalService",
+    "name": "ContractorWebDev",
+    "url": "https://contractorwebdev.com"
+  },
+  "areaServed": "United States",
+  "offers": {
+    "@type": "Offer",
+    "price": "2499",
+    "priceCurrency": "USD"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://contractorwebdev.com/"},
+    {"@type": "ListItem", "position": 2, "name": "Services", "item": "https://contractorwebdev.com/services/"},
+    {"@type": "ListItem", "position": 3, "name": "General Contractor Website Design"}
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What's different about general contractor website design vs regular contractor websites?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "General contractors need to show licensing verifiably across states, demonstrate project management capability spanning multiple trades, and offer an RFP flow that handles complex scopes. Sub-contractor and trade-specialist sites have different priorities — they sell a single skill. GC websites sell the ability to orchestrate crews, subs, and timelines across multi-phase projects."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What are the best general contractor website examples?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Check our portfolio for live GC sites. Common winning traits: hero video of a completed project, visible and verifiable licensing, a simple RFP flow that qualifies scope upfront, and a mobile-first design that loads fast. The GC websites that convert best lead with proof — case studies, client testimonials, and specific project data like square footage, budget range, and timeline."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do you have general contractor website templates?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "We don't sell templates — every GC website is custom to your specific license territory, project mix, and bid patterns. Template-based sites look the same as your competitors and rank poorly in Google. Our custom builds convert better because they reflect your actual portfolio, service area, and target client type."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can you integrate with my bidding software?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Procore, BuildingConnected, and iSqFt are supported natively. Lead form submissions, RFP requests, and scope qualification data flow directly into your bidding platform — no manual re-entry, no dropped leads."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What if I want to add a private area for clients to see job progress?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "We can build a gated client portal with weekly photo uploads and status updates. Owners and architects log in to see real-time progress without calling your PM. Add-on price: $1,500. Many GCs find this feature alone closes more commercial contracts."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I get the most leads from my GC website?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Combine a conversion-optimized GC website with contractor SEO and local citations. A well-built site without traffic is invisible; traffic without a well-built site wastes ad spend. Together, that combination typically 3–5x's inbound qualified leads within 6 months."
+      }
+    }
+  ]
+}
+</script>
+{% endblock %}
+
+{#— Breadcrumb label —#}
+{% block breadcrumb_current %}General Contractor Website Design{% endblock %}
+
+{#— Hero —#}
+{% block service_h1 %}General Contractor Website Design That Closes Bigger Deals{% endblock %}
+{% block service_hero_subtitle %}General contractor websites with project portfolios, subcontractor directories, licensing display, and RFP workflows. Built for GCs who manage crews, subs, and multi-phase jobs.{% endblock %}
+{% block hero_cta_text %}Get a Free GC Website Quote{% endblock %}
+
+{#— Intro —#}
+{% block service_intro %}
+<p>A general contractor website has to do more than look good. It has to answer every question a property owner, architect, or subcontractor might have — licensing, bonding, past projects, scope capabilities, safety record — before they ever pick up the phone. We design general contractor websites that package all of that into a conversion-focused site that launches in 3 weeks. From <strong>${{ agency_price }}</strong>.</p>
+{% endblock %}
+
+{#— Benefits —#}
+{% block benefits_heading %}Why General Contractors Choose ContractorWebDev{% endblock %}
+{% block service_benefits %}
+<div class="benefit-card">
+  <h3>Multi-Phase Project Showcases</h3>
+  <p>Beyond thumbnail galleries. Dedicated case studies with timelines, crew size, challenges overcome, and final specs. Sells your project management skill to owners and architects who need to trust your process before they sign.</p>
+</div>
+<div class="benefit-card">
+  <h3>Licensing &amp; Bonding Display</h3>
+  <p>Clean, verifiable display of GC license numbers by state, bonding amounts, and insurance limits. Zero guessing for buyers doing due diligence. Reduces back-and-forth during pre-qualification and speeds up contract signing.</p>
+</div>
+<div class="benefit-card">
+  <h3>Subcontractor Directory</h3>
+  <p>Optional public or gated subcontractor list builds trust with owners who want to vet your network. Shows you run an organized operation — not a revolving door of unknown subs.</p>
+</div>
+<div class="benefit-card">
+  <h3>RFP Flow with Scope Qualification</h3>
+  <p>Smart forms that route residential small-project requests differently from $5M+ commercial opportunities. Your salespeople focus on the right leads. No more estimating time wasted on projects below your minimum contract size.</p>
+</div>
+{% endblock %}
+
+{#— Features —#}
+{% block features_heading %}What's Included in Every General Contractor Website{% endblock %}
+{% block service_features %}
+<ul>
+  <li><strong>Project Portfolio with Filters</strong> — Sort completed work by project type, size, location, and trade. Owners quickly find projects similar to theirs and gain confidence before reaching out.</li>
+  <li><strong>Licensing &amp; Bonding Block</strong> — Structured display of all state GC licenses, bonding carriers, insurance certificates, and safety ratings. Updated easily by your team via the admin panel.</li>
+  <li><strong>Subcontractor Directory</strong> — Public or password-protected list of vetted subs by trade and region. Builds owner confidence and supports your pre-qualification narrative.</li>
+  <li><strong>RFP Form with Scope Qualification</strong> — Multi-step form that captures project type, budget range, timeline, and location before routing to your estimating team. Pre-qualifies leads automatically.</li>
+  <li><strong>Team &amp; Crew Bios with Credentials</strong> — Profiles for PMs, supers, and key subs with certifications, years of experience, and notable projects. Humanizes your operation.</li>
+  <li><strong>Case Study Long-Form Pages</strong> — Deep-dive articles per project: problem, approach, timeline, budget performance, and outcome. Strong for both SEO and sales conversations.</li>
+  <li><strong>Awards &amp; Affiliations Display</strong> — AGC membership, ENR rankings, local builder association awards. Third-party credibility signals that close commercial buyers.</li>
+  <li><strong>Career &amp; Hiring Landing Page</strong> — Attract skilled supers and project managers with a dedicated careers section. Integrates with Indeed and ZipRecruiter for job posting syndication.</li>
+</ul>
+{% endblock %}
+
+{#— Process —#}
+{% block process_heading %}How We Build Your General Contractor Website{% endblock %}
+{% block service_process %}
+<ol>
+  <li><strong>Discovery (Week 1)</strong> — 60-minute kickoff call covering your license territory, project mix (residential vs. commercial vs. industrial), key differentiators, target client profile, and current bid pipeline. You provide logos, project photos, certifications, and sub-network details.</li>
+  <li><strong>Design (Week 1–2)</strong> — Wireframes for homepage, project portfolio, case study template, RFP/contact flow, and licensing page. We get written approval before writing a single line of code.</li>
+  <li><strong>Build &amp; Copy (Week 2–3)</strong> — We code the full site, write GC-specific copy, integrate bidding software connections, set up schema markup, and configure analytics. Portfolio case studies authored with your input.</li>
+  <li><strong>Launch &amp; Support (Week 4)</strong> — QA across 12 device and browser combinations, Google Business Profile sync, soft launch, then public go-live. 30 days of free post-launch adjustments included.</li>
+</ol>
+{% endblock %}
+
+{#— Examples —#}
+{% block examples_heading %}General Contractor Website Examples{% endblock %}
+{% block service_examples %}
+<p>Every GC website we build is scoped to match your actual project mix and sales process. We've built sites for residential GCs closing $500k custom homes and commercial outfits managing $10M+ ground-up builds. See our portfolio for live examples of general contractor websites ranking in Google and converting architectural referrals into RFP submissions. <a href="/#portfolio">See our portfolio →</a></p>
+<div class="examples-grid">
+  <div class="example-card">
+    <h3>Residential GC ($500k–$2M homes)</h3>
+    <p>Custom home builder focus. Hero project video, before/after renovation case studies, and a 3-step free estimate flow. Subcontractor list gated behind owner login.</p>
+  </div>
+  <div class="example-card">
+    <h3>Commercial GC (Office/Retail/Industrial)</h3>
+    <p>Property-manager and developer-facing site with RFP qualification form, AGC credentials block, and Procore integration. Case studies sorted by square footage and sector.</p>
+  </div>
+  <div class="example-card">
+    <h3>Mixed-Use GC</h3>
+    <p>Dual-audience site serving both residential clients and commercial owners. Tab navigation separates the two tracks. Separate bid flows and separate portfolio filters for each segment.</p>
+  </div>
+</div>
+{% endblock %}
+
+{#— Pricing extra —#}
+{% block service_pricing_extra %}
+<p style="margin-top:1rem;">Base general contractor website starts at ${{ agency_price }}. GCs with 5+ active project types, multiple service areas, or a subcontractor directory: $3,999–$5,999. Client portal add-on: $1,500. Every quote is fixed — no surprises, no monthly fees.</p>
+{% endblock %}
+
+{#— FAQ —#}
+{% block service_faq %}
+<details class="faq-item">
+  <summary>What's different about general contractor website design vs regular contractor websites?</summary>
+  <div>General contractors need to show licensing verifiably across states, demonstrate project management capability spanning multiple trades, and offer an RFP flow that handles complex scopes. Sub-contractor and trade-specialist sites have different priorities — they sell a single skill. GC websites sell the ability to orchestrate crews, subs, and timelines across multi-phase projects.</div>
+</details>
+<details class="faq-item">
+  <summary>What are the best general contractor website examples?</summary>
+  <div>Check our portfolio for live GC sites. Common winning traits: hero video of a completed project, visible and verifiable licensing, a simple RFP flow that qualifies scope upfront, and a mobile-first design that loads fast. The GC websites that convert best lead with proof — case studies, client testimonials, and specific project data like square footage, budget range, and timeline.</div>
+</details>
+<details class="faq-item">
+  <summary>Do you have general contractor website templates?</summary>
+  <div>We don't sell templates — every GC website is custom to your specific license territory, project mix, and bid patterns. Template-based sites look the same as your competitors and rank poorly in Google. Our custom builds convert better because they reflect your actual portfolio, service area, and target client type.</div>
+</details>
+<details class="faq-item">
+  <summary>Can you integrate with my bidding software?</summary>
+  <div>Yes. Procore, BuildingConnected, and iSqFt are supported natively. Lead form submissions, RFP requests, and scope qualification data flow directly into your bidding platform — no manual re-entry, no dropped leads.</div>
+</details>
+<details class="faq-item">
+  <summary>What if I want to add a private area for clients to see job progress?</summary>
+  <div>We can build a gated client portal with weekly photo uploads and status updates. Owners and architects log in to see real-time progress without calling your PM. Add-on price: $1,500. Many GCs find this feature alone closes more commercial contracts.</div>
+</details>
+<details class="faq-item">
+  <summary>How do I get the most leads from my GC website?</summary>
+  <div>Combine a conversion-optimized GC website with <a href="/contractor-seo/">contractor SEO</a> and local citations. A well-built site without traffic is invisible; traffic without a well-built site wastes ad spend. Together, that combination typically 3–5x's inbound qualified leads within 6 months.</div>
+</details>
+{% endblock %}
+
+{#— Final CTA —#}
+{% block cta_heading %}Ready to Launch Your General Contractor Website?{% endblock %}
+{% block cta_subheading %}Tell us about your GC business — we'll send a fixed-price proposal within 24 hours, no sales calls required.{% endblock %}
+
+{#— Related services —#}
+{% block service_related %}
+<a href="/contractor-website-design/">
+  <strong>Contractor Website Design</strong>
+  <span>High-conversion websites for all contractor trades — plumbing, electrical, roofing, and more.</span>
+</a>
+<a href="/construction-website-design/">
+  <strong>Construction Website Design</strong>
+  <span>Custom construction company websites with project portfolios, safety records, and RFP flows.</span>
+</a>
+<a href="/general-contractor-seo/">
+  <strong>General Contractor SEO</strong>
+  <span>Rank on Google for local GC searches, commercial bid opportunities, and project-type keywords in your service area.</span>
+</a>
+{% endblock %}

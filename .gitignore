@@ -17,6 +17,7 @@ db.sqlite3         # Default Django database file
 .env.*
 !.env.example
 venv/
+.venv/
 env/
 ENV/
 

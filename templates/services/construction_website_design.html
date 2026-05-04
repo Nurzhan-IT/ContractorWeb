@@ -1,0 +1,230 @@
+{% extends "services/_base_service.html" %}
+
+{#— Meta tags —#}
+{% block title %}Construction Website Design Services | ContractorWebDev{% endblock %}
+{% block meta_description %}Construction website design starting at $2,499 — built for construction companies, general contractors, and construction firms. Launch in 3–4 weeks.{% endblock %}
+{% block canonical %}https://contractorwebdev.com/construction-website-design/{% endblock %}
+{% block og_title %}Construction Website Design Services | ContractorWebDev{% endblock %}
+{% block og_description %}Construction website design starting at $2,499 — project portfolios, RFP request flows, safety certifications, and lead capture built for commercial buyers.{% endblock %}
+
+{#— Schema.org —#}
+{% block schema_org %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "serviceType": "Construction Website Design",
+  "provider": {
+    "@type": "ProfessionalService",
+    "name": "ContractorWebDev",
+    "url": "https://contractorwebdev.com"
+  },
+  "areaServed": "United States",
+  "offers": {
+    "@type": "Offer",
+    "price": "2499",
+    "priceCurrency": "USD"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://contractorwebdev.com/"},
+    {"@type": "ListItem", "position": 2, "name": "Services", "item": "https://contractorwebdev.com/services/"},
+    {"@type": "ListItem", "position": 3, "name": "Construction Website Design"}
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How do I build a construction website that wins commercial bids?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Focus on four things: a complete project portfolio with real metrics (square footage, timelines, cost ranges — not just photos), visible safety and certification credentials, a fast RFP form that asks the right qualifying questions, and page speed under 2 seconds on mobile. Project owners and GCs verify your track record before they send an RFP — make that verification effortless."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How to make a website for a construction company?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Start with what GCs and project owners want to verify: your track record, safety rating, insurance, and response time. Build every page around those trust signals. Then layer on lead-capture tools — RFP forms, project inquiry flows, and a service area map for commercial regions. Avoid generic contractor templates that bury your credentials in a footer."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do you handle construction company website design ideas and inspiration?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Our discovery call includes a competitive analysis — we look at 3 to 5 construction sites in your market and identify winning patterns and gaps your competitors are missing. You come away from kickoff with a clear content strategy and design direction tailored to your specialty (commercial, residential, industrial, or specialty trades)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What about bidding platform integrations?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "We integrate with Procore, BuildingConnected, and iSqFt lead feeds so that qualified bid opportunities from those platforms can flow directly to your team. We also build custom RFP intake forms that match the data fields required by municipal and commercial procurement portals."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I display ongoing projects without disclosing confidential details?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. In-progress projects can be listed with project type, approximate size, and generic site photos while keeping client names, exact locations, and contract values private until project completion. We build a simple admin toggle that lets you control which details are visible on each project card."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What does the $2,499 starting price include?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The starting price covers a 6-to-8-page construction website including home, services, project portfolio with 20 starter entries, RFP request form, safety credentials block, about and team pages, mobile optimization, SSL, and 30 days of post-launch support. Larger construction firms with portfolios of 50+ completed jobs and multi-location pages are quoted separately at $4,999–$6,999."
+      }
+    }
+  ]
+}
+</script>
+{% endblock %}
+
+{#— Breadcrumb label —#}
+{% block breadcrumb_current %}Construction Website Design{% endblock %}
+
+{#— Hero —#}
+{% block service_h1 %}Construction Website Design Built to Win Commercial Bids{% endblock %}
+{% block service_hero_subtitle %}Construction websites that actually close bids. Project portfolios, RFP request flows, safety certifications front-and-center, and lead-capture built for commercial buyers — not consumer lead mills.{% endblock %}
+{% block hero_cta_text %}Get a Free Construction Website Quote{% endblock %}
+
+{#— Intro —#}
+{% block service_intro %}
+<p>Construction websites sell trust before they sell anything else. Project owners, general contractors, and property managers check your website before they send an RFP — and if your site looks like a 2010 template builder, you lose the bid before you know it existed. We design construction websites that showcase completed projects, display safety ratings and certifications, and make submitting an RFP effortless. Starting at <strong>${{ agency_price }}</strong>.</p>
+{% endblock %}
+
+{#— Benefits —#}
+{% block benefits_heading %}Why Construction Companies Choose ContractorWebDev{% endblock %}
+{% block service_benefits %}
+<div class="benefit-card">
+  <h3>Bid-Ready Project Portfolio</h3>
+  <p>Photo-rich galleries organized by project type — commercial, residential, industrial — complete with square footage, timelines, and client testimonials. Your best work sells for you before a single conversation takes place.</p>
+</div>
+<div class="benefit-card">
+  <h3>Safety &amp; Certification Front-and-Center</h3>
+  <p>OSHA ratings, insurance certificates, licensing, and bonding displayed where buyers expect to see them. Kills objections before they're raised and keeps you competitive on public and government bids.</p>
+</div>
+<div class="benefit-card">
+  <h3>RFP Request Flow</h3>
+  <p>Custom form that asks the right questions: project scope, square footage, timeline, and budget range. You receive qualified leads with enough detail to provide a real estimate — not tire-kickers filling out a "Contact us" box.</p>
+</div>
+<div class="benefit-card">
+  <h3>Mobile-Optimized for Job Site Visits</h3>
+  <p>GCs check your site from job trailers on 4G connections. Every page loads in under 2 seconds, every form works with gloves on, and every photo loads sharp on a cracked phone screen.</p>
+</div>
+{% endblock %}
+
+{#— Features —#}
+{% block features_heading %}What's Included in Every Construction Website{% endblock %}
+{% block service_features %}
+<ul>
+  <li><strong>RFP Request Form</strong> — Multi-step intake that qualifies leads by project type, scope, and timeline. Responses delivered to your inbox and optionally synced with Procore or BuildingConnected.</li>
+  <li><strong>Project Portfolio with Filters</strong> — Searchable gallery filterable by trade (concrete, steel, framing, finish), project type (commercial, residential, industrial), and scale. 20 seed entries included.</li>
+  <li><strong>Safety Credentials Display</strong> — Dedicated block for OSHA ratings, EMR score, insurance limits, licensing, and bonding — updated in one click from your admin panel.</li>
+  <li><strong>Team &amp; Crew Pages</strong> — Individual profiles for project managers and foremen with headshots, certifications (OSHA-30, LEED, etc.), and years of experience.</li>
+  <li><strong>Service Area Map for Commercial Regions</strong> — Interactive map showing counties and metro areas you serve for commercial work, with separate radius for residential projects.</li>
+  <li><strong>Case Study Pages</strong> — Long-form project write-ups with before/after photos, scope of work, challenges, and outcomes. High-value SEO content that ranks for specific project types.</li>
+  <li><strong>Subcontractor Inquiry Flow</strong> — Separate intake form for subs and vendors to apply, reducing calls to your office and keeping qualified trade partners in a searchable database.</li>
+  <li><strong>Blog-Ready for Company News</strong> — Pre-configured blog for project updates, award announcements, and safety milestone posts. Builds brand credibility with project owners over time.</li>
+</ul>
+{% endblock %}
+
+{#— Process —#}
+{% block process_heading %}How We Build Your Construction Website{% endblock %}
+{% block service_process %}
+<ol>
+  <li><strong>Discovery (Week 1)</strong> — 60-min kickoff call. We learn your specialty trades, target project types (public sector, private commercial, residential), existing portfolio assets, and certifications. You provide logos, project photos, and any existing brand standards.</li>
+  <li><strong>Design (Week 1–2)</strong> — Wireframes for homepage, portfolio, services, team, and RFP page. Approved mockups before a single line of code is written — no surprises at launch.</li>
+  <li><strong>Build &amp; Copy (Week 2–3)</strong> — Full site development, construction-specific copywriting, bidding platform integrations, SSL setup, analytics, and on-page SEO including schema markup for ConstructionBusiness.</li>
+  <li><strong>Launch &amp; Support (Week 4)</strong> — QA across 12 device and browser combinations, Google Business Profile sync, soft launch review, then public launch. 30 days of free post-launch tweaks included.</li>
+</ol>
+{% endblock %}
+
+{#— Examples —#}
+{% block examples_heading %}Construction Website Examples{% endblock %}
+{% block service_examples %}
+<p>Every construction website we build reflects the firm's specialty — not a generic contractor layout. We've launched sites for single-crew subcontractors pursuing their first commercial contracts and established GCs managing eight-figure portfolios. See live examples in our portfolio. <a href="/#portfolio">See our portfolio →</a></p>
+<div class="examples-grid">
+  <div class="example-card">
+    <h3>Commercial General Contractor</h3>
+    <p>Multi-page site with project portfolio filtered by sector (retail, healthcare, office), RFP intake form, and Procore integration. RFP conversion rate: 18%.</p>
+  </div>
+  <div class="example-card">
+    <h3>Residential Construction Firm</h3>
+    <p>Before/after portfolio, financing calculator, and online booking for design consultations. Ranks on page one for "custom home builder [city]".</p>
+  </div>
+  <div class="example-card">
+    <h3>Specialty Construction (Steel &amp; Concrete)</h3>
+    <p>Heavy focus on safety credentials and case study pages. Subcontractor inquiry flow replaced 30+ inbound calls per month.</p>
+  </div>
+</div>
+{% endblock %}
+
+{#— Pricing extra —#}
+{% block service_pricing_extra %}
+<p style="margin-top:1rem;">Standard construction websites: ${{ agency_price }}. Larger construction firms with project portfolios over 50 completed jobs and multi-location pages: $4,999–$6,999. All quotes are fixed-price — no monthly fees, no surprise invoices.</p>
+{% endblock %}
+
+{#— FAQ —#}
+{% block service_faq %}
+<details class="faq-item">
+  <summary>How do I build a construction website that wins commercial bids?</summary>
+  <div>Focus on four things: a complete project portfolio with real metrics (square footage, timelines, cost ranges — not just photos), visible safety and certification credentials, a fast RFP form that asks the right qualifying questions, and page speed under 2 seconds on mobile. Project owners and GCs verify your track record before they send an RFP — make that verification effortless.</div>
+</details>
+<details class="faq-item">
+  <summary>How to make a website for a construction company?</summary>
+  <div>Start with what GCs and project owners want to verify: your track record, safety rating, insurance, and response time. Build every page around those trust signals. Then layer on lead-capture tools — RFP forms, project inquiry flows, and a service area map for commercial regions. Avoid generic contractor templates that bury your credentials in a footer.</div>
+</details>
+<details class="faq-item">
+  <summary>Do you handle construction company website design ideas and inspiration?</summary>
+  <div>Yes. Our discovery call includes a competitive analysis — we look at 3 to 5 construction sites in your market and identify winning patterns and gaps your competitors are missing. You come away from kickoff with a clear content strategy and design direction tailored to your specialty (commercial, residential, industrial, or specialty trades).</div>
+</details>
+<details class="faq-item">
+  <summary>What about bidding platform integrations?</summary>
+  <div>We integrate with Procore, BuildingConnected, and iSqFt lead feeds so that qualified bid opportunities from those platforms can flow directly to your team. We also build custom RFP intake forms that match the data fields required by municipal and commercial procurement portals.</div>
+</details>
+<details class="faq-item">
+  <summary>Can I display ongoing projects without disclosing confidential details?</summary>
+  <div>Yes. In-progress projects can be listed with project type, approximate size, and generic site photos while keeping client names, exact locations, and contract values private until project completion. We build a simple admin toggle that lets you control which details are visible on each project card.</div>
+</details>
+<details class="faq-item">
+  <summary>What does the ${{ agency_price }} starting price include?</summary>
+  <div>The starting price covers a 6-to-8-page construction website including home, services, project portfolio with 20 starter entries, RFP request form, safety credentials block, about and team pages, mobile optimization, SSL, and 30 days of post-launch support. Larger construction firms with portfolios of 50+ completed jobs and multi-location pages are quoted separately at $4,999–$6,999.</div>
+</details>
+{% endblock %}
+
+{#— Final CTA —#}
+{% block cta_heading %}Ready to Win More Construction Bids?{% endblock %}
+{% block cta_subheading %}Tell us about your construction firm — we'll send a fixed-price proposal within 24 hours, no sales calls required.{% endblock %}
+
+{#— Related services —#}
+{% block service_related %}
+<a href="/construction-lead-generation/">
+  <strong>Construction Lead Generation</strong>
+  <span>Paid ads, Google Local Services Ads, and targeted campaigns to bring commercial construction leads directly to your inbox.</span>
+</a>
+<a href="/contractor-seo/">
+  <strong>Contractor SEO</strong>
+  <span>Rank on Google for commercial construction searches, project-type keywords, and local GC queries in your service area.</span>
+</a>
+<a href="/general-contractor-website-design/">
+  <strong>General Contractor Website Design</strong>
+  <span>Specialized GC website design with multi-trade portfolios, subcontractor management flows, and bid-focused conversion pages.</span>
+</a>
+{% endblock %}

@@ -1,0 +1,230 @@
+{% extends "services/_base_service.html" %}
+
+{#— Meta tags —#}
+{% block title %}HVAC Website Design Services | ContractorWebDev{% endblock %}
+{% block meta_description %}Professional HVAC website design starting at $2,499. AI quote calculators, online booking, service area maps — built for HVAC contractors. Free consultation.{% endblock %}
+{% block canonical %}https://contractorwebdev.com/hvac-website-design/{% endblock %}
+{% block og_title %}HVAC Website Design Services | ContractorWebDev{% endblock %}
+{% block og_description %}Professional HVAC website design starting at $2,499 — AI quote tools, online booking, service area maps, built for HVAC contractors.{% endblock %}
+
+{#— Schema.org —#}
+{% block schema_org %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "serviceType": "HVAC Website Design",
+  "provider": {
+    "@type": "ProfessionalService",
+    "name": "ContractorWebDev",
+    "url": "https://contractorwebdev.com"
+  },
+  "areaServed": "United States",
+  "offers": {
+    "@type": "Offer",
+    "price": "2499",
+    "priceCurrency": "USD"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://contractorwebdev.com/"},
+    {"@type": "ListItem", "position": 2, "name": "Services", "item": "https://contractorwebdev.com/services/"},
+    {"@type": "ListItem", "position": 3, "name": "HVAC Website Design"}
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How long does it take to build an HVAC website?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Most HVAC websites launch within 3 to 4 weeks from kickoff. That covers discovery, design, copywriting, development, mobile testing, and SEO setup. Rush delivery in 2 weeks is available for an additional fee if you are gearing up for peak AC season."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What makes HVAC website design different from a generic contractor site?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "HVAC businesses have seasonal demand swings, emergency service calls, and dual residential and commercial audiences. Our HVAC websites include service-area maps tuned for technician routes, emergency CTAs that surface during heat waves or cold snaps, maintenance-plan signup flows, and financing calculators integrated with GreenSky and Wisetack."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do you provide HVAC SEO as part of the website build?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "We include on-page SEO fundamentals at no extra cost: meta tags, schema markup for HVACBusiness, image optimization, and city-level landing pages. Ongoing HVAC SEO — link building, Google Business Profile management, content creation — is a separate monthly service. See our <a href='/hvac-seo/'>HVAC SEO services</a> page."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can the site handle traffic spikes during heat waves?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Our HVAC websites run on Django with PostgreSQL and a CDN in front. We load-test every site to 10× average traffic before launch. When temperatures cross 95°F and phones start ringing, the website stays up."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do you integrate with HVAC dispatch software like ServiceTitan or Housecall Pro?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. We offer native integrations with ServiceTitan, Housecall Pro, and FieldEdge. Customer form submissions and booking requests flow directly into your dispatch software — no manual re-entry."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What does the $2,499 starting price include?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The starting price covers a 5-page HVAC website (home, services, about, service area, contact) with AI quote calculator, online booking, Google Reviews auto-sync, emergency request button, mobile optimization, SSL, and 30 days of post-launch support. Larger sites with blog, multiple service areas, or financing integration are quoted individually."
+      }
+    }
+  ]
+}
+</script>
+{% endblock %}
+
+{#— Breadcrumb label —#}
+{% block breadcrumb_current %}HVAC Website Design{% endblock %}
+
+{#— Hero —#}
+{% block service_h1 %}HVAC Website Design That Brings You More Service Calls{% endblock %}
+{% block service_hero_subtitle %}AI quote tools for AC repair and installation. Same-day online booking. Service area maps tuned for HVAC routes. Built for HVAC contractors — not a generic template.{% endblock %}
+{% block hero_cta_text %}Get a Free HVAC Website Quote{% endblock %}
+
+{#— Intro —#}
+{% block service_intro %}
+<p>Your HVAC website is working against you if it wasn't built for HVAC. We design HVAC contractor websites that convert visitors into service calls — with instant online booking for AC tune-ups, mobile-first emergency request flows for peak heat and cold snaps, and financing calculators that close jobs on the spot. Starting at <strong>${{ agency_price }}</strong>, every HVAC website we build ships with the tools your techs need to stay booked solid year-round.</p>
+{% endblock %}
+
+{#— Benefits —#}
+{% block benefits_heading %}Why HVAC Companies Choose ContractorWebDev{% endblock %}
+{% block service_benefits %}
+<div class="benefit-card">
+  <h3>Built for HVAC Seasonality</h3>
+  <p>Heat waves and cold snaps double your inbound leads overnight. Our HVAC websites load fast, capture every lead, and stay online when your competitors' template sites crash under traffic.</p>
+</div>
+<div class="benefit-card">
+  <h3>40% Cheaper Than Industry Vendors</h3>
+  <p>Agencies like Scorpion and Townsquare charge $800+/month plus setup fees. We charge ${{ agency_price }} one time, no ongoing fees. That's $10k+ savings in year one for the same (or better) features.</p>
+</div>
+<div class="benefit-card">
+  <h3>ServiceTitan &amp; Housecall Pro Ready</h3>
+  <p>Native integrations mean every form submission and online booking drops straight into your dispatch software. No copy-paste. No missed leads. Your techs see new jobs in real time.</p>
+</div>
+<div class="benefit-card">
+  <h3>Mobile-First for Emergency Calls</h3>
+  <p>72% of HVAC emergency searches happen on mobile. Our HVAC website designs put "Call now" and "Book online" one tap away from every page — above the fold, always visible.</p>
+</div>
+{% endblock %}
+
+{#— Features —#}
+{% block features_heading %}What's Included in Every HVAC Website{% endblock %}
+{% block service_features %}
+<ul>
+  <li><strong>AI Quote Calculator</strong> — Customers describe their HVAC issue ("AC not cooling", "furnace making noise") and get an instant price range. Captures their contact info automatically.</li>
+  <li><strong>Online Booking for Service Calls &amp; Maintenance</strong> — 24/7 booking flow for tune-ups, repairs, installations. Syncs with your dispatch calendar.</li>
+  <li><strong>HVAC Service Area Map</strong> — Interactive map showing which ZIP codes and cities you service. Built-in lead gate for out-of-area requests.</li>
+  <li><strong>Google Reviews Auto-Sync</strong> — Fresh reviews pull from Google Business Profile every 24 hours. Zero manual work.</li>
+  <li><strong>Emergency Request Button</strong> — Sticky CTA on mobile that triggers an SMS-ready form during heat waves and cold snaps.</li>
+  <li><strong>Financing Calculator</strong> — GreenSky and Wisetack integration. Customers see monthly payment options on new system quotes.</li>
+  <li><strong>Maintenance Plan Signup Flow</strong> — Lets homeowners subscribe to seasonal tune-up plans online.</li>
+  <li><strong>City-Level Landing Pages</strong> — Auto-generated pages for every city and neighborhood you serve. Major boost for local HVAC SEO.</li>
+</ul>
+{% endblock %}
+
+{#— Process —#}
+{% block process_heading %}How We Build Your HVAC Website{% endblock %}
+{% block service_process %}
+<ol>
+  <li><strong>Discovery (Week 1)</strong> — 60-min kickoff call. We learn your service area, pricing structure, dispatch software, unique selling points. You send us logos, photos, certifications.</li>
+  <li><strong>Design (Week 1–2)</strong> — Wireframes for homepage, services, service area, contact. Approved designs before we write a line of code.</li>
+  <li><strong>Build &amp; Copy (Week 2–3)</strong> — We code the site, write HVAC-specific copy, integrate your dispatch software, set up SSL and analytics.</li>
+  <li><strong>Launch &amp; Support (Week 4)</strong> — Final QA across 12 device/browser combos, Google Business Profile sync, soft launch to friends and family, then public launch. 30 days of free tweaks included.</li>
+</ol>
+{% endblock %}
+
+{#— Examples —#}
+{% block examples_heading %}HVAC Website Examples{% endblock %}
+{% block service_examples %}
+<p>Every HVAC website we build is custom — not a cookie-cutter template. We've launched sites for single-truck HVAC operations doing $200k/year and regional outfits running 40+ techs across three states. See our full portfolio for live examples of HVAC websites ranking in Google and converting traffic into booked service calls. <a href="/#portfolio">See our portfolio →</a></p>
+<div class="examples-grid">
+  <div class="example-card">
+    <h3>Residential HVAC</h3>
+    <p>Single-location contractor, focus on AC tune-ups and emergency repair. Emergency button converts at 14%.</p>
+  </div>
+  <div class="example-card">
+    <h3>Commercial HVAC</h3>
+    <p>Property-manager-focused site with RFP request forms and service contract flows.</p>
+  </div>
+  <div class="example-card">
+    <h3>Full-Service HVAC + Plumbing</h3>
+    <p>Dual-trade contractor with tab navigation, two dispatch integrations, and seasonal promotion banners.</p>
+  </div>
+</div>
+{% endblock %}
+
+{#— Pricing extra —#}
+{% block service_pricing_extra %}
+<p style="margin-top:1rem;">Most HVAC websites fall in the $2,499–$4,499 range depending on page count, number of integrations, and whether you need multilingual versions. Every quote is fixed — no surprises, no monthly creep.</p>
+{% endblock %}
+
+{#— FAQ —#}
+{% block service_faq %}
+<details class="faq-item">
+  <summary>How long does it take to build an HVAC website?</summary>
+  <div>Most HVAC websites launch within 3 to 4 weeks from kickoff. That covers discovery, design, copywriting, development, mobile testing, and SEO setup. Rush delivery in 2 weeks is available for an additional fee if you're gearing up for peak AC season.</div>
+</details>
+<details class="faq-item">
+  <summary>What makes HVAC website design different from a generic contractor site?</summary>
+  <div>HVAC businesses have seasonal demand swings, emergency service calls, and dual residential and commercial audiences. Our HVAC websites include service-area maps tuned for technician routes, emergency CTAs that surface during heat waves or cold snaps, maintenance-plan signup flows, and financing calculators integrated with GreenSky and Wisetack.</div>
+</details>
+<details class="faq-item">
+  <summary>Do you provide HVAC SEO as part of the website build?</summary>
+  <div>We include on-page SEO fundamentals at no extra cost: meta tags, schema markup for HVACBusiness, image optimization, and city-level landing pages. Ongoing HVAC SEO — link building, Google Business Profile management, content creation — is a separate monthly service. See our <a href="/hvac-seo/">HVAC SEO services</a> page.</div>
+</details>
+<details class="faq-item">
+  <summary>Can the site handle traffic spikes during heat waves?</summary>
+  <div>Yes. Our HVAC websites run on Django with PostgreSQL and a CDN in front. We load-test every site to 10× average traffic before launch. When temperatures cross 95°F and phones start ringing, the website stays up.</div>
+</details>
+<details class="faq-item">
+  <summary>Do you integrate with HVAC dispatch software like ServiceTitan or Housecall Pro?</summary>
+  <div>Yes. We offer native integrations with ServiceTitan, Housecall Pro, and FieldEdge. Customer form submissions and booking requests flow directly into your dispatch software — no manual re-entry.</div>
+</details>
+<details class="faq-item">
+  <summary>What does the ${{ agency_price }} starting price include?</summary>
+  <div>The starting price covers a 5-page HVAC website (home, services, about, service area, contact) with AI quote calculator, online booking, Google Reviews auto-sync, emergency request button, mobile optimization, SSL, and 30 days of post-launch support. Larger sites with blog, multiple service areas, or financing integration are quoted individually.</div>
+</details>
+{% endblock %}
+
+{#— Final CTA —#}
+{% block cta_heading %}Ready to Build Your HVAC Website?{% endblock %}
+{% block cta_subheading %}Tell us about your HVAC business — we'll send a fixed-price proposal within 24 hours, no sales calls required.{% endblock %}
+
+{#— Related services —#}
+{% block service_related %}
+<a href="/hvac-seo/">
+  <strong>HVAC SEO Services</strong>
+  <span>Rank on Google for AC repair, furnace installation, and local HVAC searches in your service area.</span>
+</a>
+<a href="/contractor-lead-generation/">
+  <strong>Contractor Lead Generation</strong>
+  <span>Paid ads, Google Local Services Ads, and Facebook ad campaigns tuned for HVAC lead quality.</span>
+</a>
+<a href="/roofing-website-design/">
+  <strong>Roofing Website Design</strong>
+  <span>Separate roofing division? We also design high-conversion roofing contractor websites.</span>
+</a>
+{% endblock %}

@@ -1,0 +1,115 @@
+{% extends "base_landing_solid_navbar.html" %}
+
+{% block title %}Services for Contractors | Website Design, SEO, Lead Generation | ContractorWebDev{% endblock %}
+{% block meta_description %}ContractorWebDev offers website design, SEO, and lead generation services for HVAC, plumbing, roofing, electrical, and general contractors. See all 13 services.{% endblock %}
+{% block canonical %}https://contractorwebdev.com/services/{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="/static/css/services.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://contractorwebdev.com/"},
+    {"@type": "ListItem", "position": 2, "name": "Services"}
+  ]
+}
+</script>
+{% endblock %}
+
+{% block content %}
+<main class="services-hub">
+  <h1>Our Services for Contractors</h1>
+  <p class="hub-intro">We specialize in digital services for home service and commercial contractors — website design, SEO, and lead generation. Every service is tuned to your specific trade, whether you run a one-truck plumbing operation or a multi-state commercial GC.</p>
+
+  <section class="hub-group">
+    <h2>Website Design by Trade</h2>
+    <div class="hub-cards">
+      <a href="{{ url('services:contractor_website_design') }}" class="hub-card">
+        <div class="icon">🔧</div>
+        <h3>Contractor Websites</h3>
+        <p>Websites for home-service contractors across all trades. From $2,499.</p>
+      </a>
+      <a href="{{ url('services:hvac_website_design') }}" class="hub-card">
+        <div class="icon">❄️</div>
+        <h3>HVAC Websites</h3>
+        <p>HVAC-specific sites with booking, service area, and dispatch integration.</p>
+      </a>
+      <a href="{{ url('services:roofing_website_design') }}" class="hub-card">
+        <div class="icon">🏠</div>
+        <h3>Roofing Websites</h3>
+        <p>Storm-ready roofing sites with damage photo flows and insurance CTAs.</p>
+      </a>
+      <a href="{{ url('services:electrical_contractor_website_design') }}" class="hub-card">
+        <div class="icon">⚡</div>
+        <h3>Electrical Websites</h3>
+        <p>Electrical contractor sites with panel upgrade quotes and 24/7 emergency flows.</p>
+      </a>
+      <a href="{{ url('services:construction_website_design') }}" class="hub-card">
+        <div class="icon">🏗️</div>
+        <h3>Construction Websites</h3>
+        <p>Construction firm sites with project portfolios and RFP flows.</p>
+      </a>
+      <a href="{{ url('services:general_contractor_website_design') }}" class="hub-card">
+        <div class="icon">📐</div>
+        <h3>General Contractor Websites</h3>
+        <p>GC-focused sites with licensing display, subcontractor directories, and bid flows.</p>
+      </a>
+    </div>
+  </section>
+
+  <section class="hub-group">
+    <h2>SEO Services</h2>
+    <div class="hub-cards">
+      <a href="{{ url('services:contractor_seo') }}" class="hub-card">
+        <div class="icon">📈</div>
+        <h3>Contractor SEO</h3>
+        <p>Core SEO for home-service contractors. Page-1 rankings for local searches.</p>
+      </a>
+      <a href="{{ url('services:general_contractor_seo') }}" class="hub-card">
+        <div class="icon">🎯</div>
+        <h3>General Contractor SEO</h3>
+        <p>B2B SEO for commercial GCs targeting property managers and architects.</p>
+      </a>
+      <a href="{{ url('services:hvac_seo') }}" class="hub-card">
+        <div class="icon">🌡️</div>
+        <h3>HVAC SEO</h3>
+        <p>Seasonal HVAC SEO for AC repair, furnace installation, and local Map Pack dominance.</p>
+      </a>
+      <a href="{{ url('services:roofing_seo') }}" class="hub-card">
+        <div class="icon">⛈️</div>
+        <h3>Roofing SEO</h3>
+        <p>Storm-ready roofing SEO with insurance-claim keyword targeting.</p>
+      </a>
+      <a href="{{ url('services:plumbing_seo') }}" class="hub-card">
+        <div class="icon">🔧</div>
+        <h3>Plumbing SEO</h3>
+        <p>Local plumbing SEO for Map Pack dominance in "plumber near me" searches.</p>
+      </a>
+    </div>
+  </section>
+
+  <section class="hub-group">
+    <h2>Lead Generation</h2>
+    <div class="hub-cards">
+      <a href="{{ url('services:contractor_lead_generation') }}" class="hub-card">
+        <div class="icon">📞</div>
+        <h3>Contractor Lead Generation</h3>
+        <p>Exclusive, qualified leads via Google LSAs, Facebook ads, and SEO funnels.</p>
+      </a>
+      <a href="{{ url('services:construction_lead_generation') }}" class="hub-card">
+        <div class="icon">🏢</div>
+        <h3>Construction Lead Generation</h3>
+        <p>B2B lead gen for commercial GCs targeting property managers and developers.</p>
+      </a>
+    </div>
+  </section>
+
+  <section style="text-align:center; padding:3rem 1rem;">
+    <h2>Not Sure Which Service You Need?</h2>
+    <p>Tell us about your business — we will recommend the right combination.</p>
+    <a href="/#contact" class="btn-primary" style="display:inline-block; background:#06b6d4; color:#fff; padding:1rem 2.5rem; border-radius:8px; font-weight:600; text-decoration:none; margin-top:1rem;">Contact Us</a>
+  </section>
+</main>
+{% endblock %}
