@@ -5,6 +5,7 @@ class PlumbingBusiness(models.Model):
     name = models.CharField(max_length=200)
     slug = models.SlugField(unique=True, help_text="URL: /demo/plumbing/{slug}")
     phone = models.CharField(max_length=20)
+    email = models.EmailField(max_length=200, blank=True)
     address = models.CharField(max_length=300)
     city = models.CharField(max_length=100)
     state = models.CharField(max_length=50, default='')

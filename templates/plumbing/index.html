@@ -1747,10 +1747,14 @@
 
       <div class="md:col-span-1">
         <div class="flex items-center gap-2 mb-4">
-          <div class="w-8 h-8 bg-brand-500 rounded-lg flex items-center justify-center">
-            <svg class="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2"><path stroke-linecap="round" stroke-linejoin="round" d="M15.5 8.5a3.5 3.5 0 11-7 0 3.5 3.5 0 017 0zM12 12v9m-4-4h8"/></svg>
-          </div>
-          <span class="font-black text-white text-lg">ProFlow<span class="text-accent">.</span></span>
+          {% if business.logo %}
+            <img src="{{ business.logo.url }}" alt="{{ business.name }}" class="h-8 w-auto">
+          {% else %}
+            <div class="w-8 h-8 bg-brand-500 rounded-lg flex items-center justify-center">
+              <svg class="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2"><path stroke-linecap="round" stroke-linejoin="round" d="M15.5 8.5a3.5 3.5 0 11-7 0 3.5 3.5 0 017 0zM12 12v9m-4-4h8"/></svg>
+            </div>
+          {% endif %}
+          <span class="font-black text-white text-lg">{{ business.name }}</span>
         </div>
         <p class="text-sm text-gray-400 leading-relaxed mb-4">{{ t.footer_about }}</p>
         <div class="flex gap-3">
@@ -1800,11 +1804,11 @@
           </li>
           <li class="flex items-start gap-2">
             <svg class="w-4 h-4 text-accent mt-0.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-            <a href="mailto:hello@proflowplumbing.com" class="hover:text-white">hello@proflowplumbing.com</a>
+            {% if business.email %}<a href="mailto:{{ business.email }}" class="hover:text-white">{{ business.email }}</a>{% endif %}
           </li>
           <li class="flex items-start gap-2">
             <svg class="w-4 h-4 text-accent mt-0.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-            <span>1400 S Congress Ave<br/>Austin, TX 78704</span>
+            <span>{{ business.address }}<br/>{{ business.city }}, {{ business.state }} {{ business.zip_code }}</span>
           </li>
           <li class="flex items-start gap-2">
             <svg class="w-4 h-4 text-accent mt-0.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>

@@ -260,7 +260,7 @@ TRANSLATIONS = {
         'final_cta_stats': '⚡ Average call answer time: under 30 seconds  🕐 Same-day appointments available',
 
         # ── Footer ───────────────────────────────────────────────────────────────
-        'footer_about': "Austin's most trusted plumbing company since 1998. Licensed, insured, and proud of our 4.9-star reputation.",
+        'footer_about': "{city}'s most trusted plumbing company since {since_year}. Licensed, insured, and proud of our {review_score}-star reputation.",
         'footer_services_title': 'Services',
         'footer_drain': 'Drain Cleaning',
         'footer_heater': 'Water Heater Repair',
@@ -270,7 +270,7 @@ TRANSLATIONS = {
         'footer_repipe': 'Full Home Repiping',
         'footer_emergency': 'Emergency Plumbing',
         'footer_company_title': 'Company',
-        'footer_about_link': 'About ProFlow',
+        'footer_about_link': 'About {name}',
         'footer_team_link': 'Meet Our Team',
         'footer_reviews_link': 'Customer Reviews',
         'footer_blog_link': 'Blog & Tips',
@@ -279,7 +279,7 @@ TRANSLATIONS = {
         'footer_contact_title': 'Contact',
         'footer_hours': 'Mon–Sun: 7am–10pm',
         'footer_emergency_label': 'Emergency: 24/7',
-        'footer_copyright': '© 2024 ProFlow Plumbing Inc. All rights reserved. TX License #TX-4891',
+        'footer_copyright': '© {year} {name}. All rights reserved.{license_part}',
         'footer_privacy': 'Privacy Policy',
         'footer_terms': 'Terms of Service',
         'footer_sitemap': 'Sitemap',
@@ -557,7 +557,7 @@ TRANSLATIONS = {
         'final_cta_stats': '⚡ Tiempo promedio de respuesta: menos de 30 segundos  🕐 Citas el mismo día disponibles',
 
         # ── Footer ───────────────────────────────────────────────────────────────
-        'footer_about': 'La empresa de plomería más confiable de Austin desde 1998. Licenciados, asegurados y orgullosos de nuestra reputación de 4.9 estrellas.',
+        'footer_about': 'La empresa de plomería más confiable de {city} desde {since_year}. Licenciados, asegurados y orgullosos de nuestra reputación de {review_score} estrellas.',
         'footer_services_title': 'Servicios',
         'footer_drain': 'Limpieza de Drenajes',
         'footer_heater': 'Reparación de Calentadores',
@@ -567,7 +567,7 @@ TRANSLATIONS = {
         'footer_repipe': 'Re-tubería Completa',
         'footer_emergency': 'Plomería de Emergencia',
         'footer_company_title': 'Empresa',
-        'footer_about_link': 'Acerca de ProFlow',
+        'footer_about_link': 'Acerca de {name}',
         'footer_team_link': 'Conoce al Equipo',
         'footer_reviews_link': 'Reseñas de Clientes',
         'footer_blog_link': 'Blog y Consejos',
@@ -576,7 +576,7 @@ TRANSLATIONS = {
         'footer_contact_title': 'Contacto',
         'footer_hours': 'Lun–Dom: 7am–10pm',
         'footer_emergency_label': 'Emergencias: 24/7',
-        'footer_copyright': '© 2024 ProFlow Plumbing Inc. Todos los derechos reservados. Licencia TX #TX-4891',
+        'footer_copyright': '© {year} {name}. Todos los derechos reservados.{license_part}',
         'footer_privacy': 'Política de Privacidad',
         'footer_terms': 'Términos de Servicio',
         'footer_sitemap': 'Mapa del Sitio',
