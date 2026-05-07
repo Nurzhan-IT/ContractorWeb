@@ -9,7 +9,7 @@ class BaseServiceView(TemplateView):
         ctx = super().get_context_data(**kwargs)
         ctx['cf_turnstile_site_key'] = getattr(settings, 'CF_TURNSTILE_SITE_KEY', '')
         ctx['agency_name'] = 'ContractorWebDev'
-        ctx['agency_price'] = '2,499'
+        ctx['agency_price'] = '1,499'
         return ctx
 
 

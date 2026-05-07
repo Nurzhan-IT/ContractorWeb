@@ -68,14 +68,203 @@
   </section>
 
   <!-- Pricing -->
-  <section class="service-pricing">
-    <div class="container">
-      <h2>{% block pricing_heading %}Pricing{% endblock %}</h2>
-      <div class="pricing-card">
-        <p class="price">Starting at <strong>${{ agency_price }}</strong></p>
-        <p class="price-note">No monthly fees. One-time project cost. Financing available via GreenSky and Wisetack.</p>
-        {% block service_pricing_extra %}{% endblock %}
+  <section id="pricing" class="py-24 bg-gray-50 relative overflow-hidden">
+    <div class="absolute inset-0 bg-radial-cyan pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+
+      <div class="text-center mb-16 animate-section">
+        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6" style="background:rgba(34,197,94,0.1);border:1px solid rgba(34,197,94,0.2)">
+          <span class="text-sm font-semibold text-green-600">Simple, Transparent Pricing</span>
+        </div>
+        <h2 class="text-4xl sm:text-5xl font-bold text-gray-900 mb-4">One Package. Everything Included.</h2>
+        <p class="text-xl text-gray-600 max-w-2xl mx-auto">No tiers to pick, no upsells. One flat price — you own the website, host it anywhere, no ongoing fees.</p>
       </div>
+
+      <div class="max-w-2xl mx-auto relative">
+
+        <!-- Complete (single package) -->
+        <div class="animate-section relative pt-6">
+          <div class="absolute top-0 left-1/2 z-10" style="transform:translateX(-50%)">
+            <span class="inline-flex items-center gap-1.5 px-5 py-1.5 rounded-full text-sm font-bold text-white whitespace-nowrap shadow-md" style="background:linear-gradient(to right,#facc15,#f97316)">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L9.5 9.5 2 12l7.5 2.5L12 22l2.5-7.5L22 12l-7.5-2.5z"/></svg>
+              Everything Included — No Upsells
+            </span>
+          </div>
+          <div class="relative p-8 sm:p-10 rounded-2xl shadow-2xl flex flex-col text-center" style="background:linear-gradient(135deg,#06b6d4,#2563eb);color:white">
+            <h3 class="text-3xl font-bold text-white mb-3">Complete</h3>
+            <span class="text-6xl font-bold text-white leading-none mb-2">$1,499</span>
+            <p class="text-xs mb-4" style="color:#a5f3fc">One-time · No monthly fees · You own the website</p>
+            <p class="text-sm font-medium mb-8" style="color:rgba(255,255,255,0.8)">One package. Every feature. No choices to agonize over.</p>
+
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 mb-8">
+
+              <div class="text-center p-5 rounded-xl" style="background:rgba(255,255,255,0.08)">
+                <div class="text-4xl font-bold text-white mb-1">15 sec</div>
+                <div class="text-xs" style="color:#a5f3fc">AI instant calculator — Visitors get a ballpark price in 15 seconds — you get a pre-qualified lead</div>
+              </div>
+
+              <div class="text-center p-5 rounded-xl" style="background:rgba(255,255,255,0.08)">
+                <div class="text-4xl font-bold text-white mb-1">24/7</div>
+                <div class="text-xs" style="color:#a5f3fc">Customers book themselves — even while you sleep</div>
+              </div>
+
+              <div class="text-center p-5 rounded-xl" style="background:rgba(255,255,255,0.08)">
+                <div class="text-4xl font-bold text-white mb-1">10</div>
+                <div class="text-xs" style="color:#a5f3fc">Pages targeting the cities and areas you work in</div>
+              </div>
+
+              <div class="text-center p-5 rounded-xl" style="background:rgba(255,255,255,0.08)">
+                <div class="text-4xl font-bold text-white mb-1">90</div>
+                <div class="text-xs" style="color:#a5f3fc">Days to start ranking on Google in your area</div>
+              </div>
+
+              <div class="text-center p-5 rounded-xl" style="background:rgba(255,255,255,0.08)">
+                <div class="text-4xl font-bold text-white mb-1">0</div>
+                <div class="text-xs" style="color:#a5f3fc">Missed leads — you get an email/sms the moment someone reaches out</div>
+              </div>
+
+              <div class="text-center p-5 rounded-xl" style="background:rgba(255,255,255,0.08)">
+                <div class="text-4xl font-bold text-white mb-1">3 mo</div>
+                <div class="text-xs" style="color:#a5f3fc">We stay with you for 3 months after launch — anything needs adjusting, just ask</div>
+              </div>
+
+              <div class="text-center p-5 rounded-xl" style="background:rgba(255,255,255,0.08)">
+                <div class="text-4xl font-bold text-white mb-1">2 sec</div>
+                <div class="text-xs" style="color:#a5f3fc">Page load — slow sites lose customers before they read a word</div>
+              </div>
+
+              <div class="text-center p-5 rounded-xl" style="background:rgba(255,255,255,0.08)">
+                <div class="text-4xl font-bold text-white mb-1">5★</div>
+                <div class="text-xs" style="color:#a5f3fc">Your Google reviews appear on your site automatically</div>
+              </div>
+
+              <div class="text-center p-5 rounded-xl" style="background:rgba(255,255,255,0.08)">
+                <div class="text-lg font-bold text-white mb-1">Financing calculator</div>
+                <div class="text-xs" style="color:#a5f3fc">Turns an $8,000 job into easy monthly payments — more customers say yes</div>
+              </div>
+
+              <div class="text-center p-5 rounded-xl" style="background:rgba(255,255,255,0.08)">
+                <div class="text-lg font-bold text-white mb-1">On every device</div>
+                <div class="text-xs" style="color:#a5f3fc">Works perfectly on phones, tablets, and desktops — 70% of your customers browse on mobile</div>
+              </div>
+
+              <div class="text-center p-5 rounded-xl" style="background:rgba(255,255,255,0.08)">
+                <div class="text-lg font-bold text-white mb-1">Google Maps</div>
+                <div class="text-xs" style="color:#a5f3fc">Your business pinned and ready to show up in local searches</div>
+              </div>
+
+              <div class="text-center p-5 rounded-xl" style="background:rgba(255,255,255,0.08)">
+                <div class="text-lg font-bold text-white mb-1">Blog included</div>
+                <div class="text-xs" style="color:#a5f3fc">Helps Google find you for more searches over time</div>
+              </div>
+
+              <div class="col-span-2 sm:col-span-1 sm:col-start-2 text-center p-5 rounded-xl" style="background:rgba(255,255,255,0.08)">
+                <div class="text-lg font-bold text-white mb-1">En Español</div>
+                <div class="text-xs" style="color:#a5f3fc">Full Spanish version — reach Hispanic homeowners in your area</div>
+              </div>
+
+            </div>
+
+            <a href="#get-quote" class="block w-full py-4 px-6 rounded-lg font-bold text-lg text-center transition-all duration-300 hover:bg-cyan-50 shadow-lg" style="background:white;color:#2563eb">
+              Get Your Complete Site →
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Payment Terms — First Clients -->
+      <div class="mt-12 max-w-4xl mx-auto animate-section">
+        <div class="relative rounded-2xl overflow-visible bg-white" style="border:1px solid #e2e8f0;box-shadow:0 4px 24px rgba(6,182,212,0.08)">
+
+          <div class="absolute -top-4 left-1/2" style="transform:translateX(-50%)">
+            <span class="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full text-xs font-bold text-white whitespace-nowrap shadow-md" style="background:linear-gradient(to right,#06b6d4,#2563eb)">
+              <span class="inline-block w-1.5 h-1.5 rounded-full bg-white animate-pulse"></span>
+              PAYMENT AFTER APPROVAL — ZERO RISK
+            </span>
+          </div>
+
+          <div class="px-6 sm:px-10 py-8 pt-10">
+
+            <div class="text-center mb-7">
+              <p class="text-xl sm:text-2xl font-bold text-gray-900">You see the finished site — then you pay</p>
+              <p class="text-sm text-gray-500 mt-1.5 max-w-xl mx-auto">We build first, you approve — <span class="font-semibold text-gray-700">zero risk on your side.</span></p>
+            </div>
+
+            <div class="flex flex-col sm:flex-row items-stretch gap-3 sm:gap-0">
+
+              <div class="flex-1 text-center px-4 py-5 rounded-xl" style="background:#f8fafc;border:1px solid #e2e8f0">
+                <div class="w-11 h-11 rounded-full mx-auto mb-3 flex items-center justify-center" style="background:#f1f5f9">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                </div>
+                <p class="text-3xl font-extrabold text-gray-300">$0</p>
+                <p class="text-xs font-bold text-gray-500 mt-1 uppercase tracking-wide">Today</p>
+                <p class="text-xs text-gray-400 mt-1">No deposit required</p>
+              </div>
+
+              <div class="hidden sm:flex items-center justify-center px-2 flex-shrink-0">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#06b6d4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+              </div>
+              <div class="flex sm:hidden items-center justify-center py-1">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#06b6d4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="M5 12l7 7 7-7"/></svg>
+              </div>
+
+              <div class="flex-1 text-center px-4 py-5 rounded-xl" style="background:#f8fafc;border:1px solid #e2e8f0">
+                <div class="w-11 h-11 rounded-full mx-auto mb-3 flex items-center justify-center" style="background:linear-gradient(135deg,#cffafe,#a5f3fc)">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0891b2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+                </div>
+                <p class="text-3xl font-extrabold" style="color:#2563eb">100%</p>
+                <p class="text-xs font-bold text-gray-700 mt-1 uppercase tracking-wide">After Launch</p>
+                <p class="text-xs text-gray-500 mt-1">Site live on server</p>
+              </div>
+
+            </div>
+
+            <div class="mt-6 flex flex-col sm:flex-row items-center justify-center gap-4 text-center">
+              <p class="text-xs text-gray-500">
+                <span class="font-semibold text-gray-700">100% transparent process.</span> Review every page before paying anything.
+              </p>
+              <a href="#get-quote" class="flex-shrink-0 inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-xs font-bold text-white transition-all hover:shadow-md" style="background:linear-gradient(to right,#06b6d4,#2563eb)">
+                Get Started →
+              </a>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- Included with every tier -->
+      <div class="mt-12 max-w-2xl mx-auto animate-section">
+        <p class="text-center text-sm font-semibold text-gray-500 mb-4 uppercase tracking-wide">Included with every tier</p>
+        <div class="flex flex-wrap justify-center gap-2">
+          <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium bg-white border border-gray-200 text-gray-700">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#06b6d4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            You own the website — completely
+          </span>
+          <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium bg-white border border-gray-200 text-gray-700">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#06b6d4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Host it anywhere — no lock-in
+          </span>
+          <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium bg-white border border-gray-200 text-gray-700">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#06b6d4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            No lock-in, no recurring fees
+          </span>
+          <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium bg-white border border-gray-200 text-gray-700">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#06b6d4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Mobile-first design
+          </span>
+          <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium bg-white border border-gray-200 text-gray-700">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#06b6d4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            SSL + security setup
+          </span>
+        </div>
+      </div>
+
+      <div class="mt-10 text-center animate-section">
+        <p class="text-sm text-gray-600">Your site belongs to you — move it to any hosting provider, any time</p>
+      </div>
+
     </div>
   </section>
 

@@ -53,12 +53,12 @@
         </a>
 
         <!-- Desktop Nav Links (lg+) -->
-        <div class="hidden lg:flex items-center gap-0.5">
-          <a href="{{ url('landing:landing') }}#features" class="nav-link px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200">Features</a>
+        <div class="hidden xl:flex items-center gap-0.5">
+          <a href="{{ url('landing:landing') }}#features" class="nav-link px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 whitespace-nowrap">Features</a>
 
           <!-- Services dropdown -->
           <div class="relative group">
-            <a href="{{ url('services:hub') }}" class="nav-link px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 flex items-center gap-1">
+            <a href="{{ url('services:hub') }}" class="nav-link px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 flex items-center gap-1 whitespace-nowrap">
               Services
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
             </a>
@@ -99,11 +99,11 @@
             </div>
           </div>
 
-          <a href="{{ url('landing:landing') }}#portfolio" class="nav-link px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200">Portfolio</a>
-          <a href="{{ url('landing:landing') }}#pricing" class="nav-link px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200">Pricing</a>
-          <a href="{{ url('landing:landing') }}#contact" class="nav-link px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200">Contact</a>
-          <a href="{{ url('blog:index') }}" class="nav-link px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200">Blog</a>
-          <a href="{{ url('demo_hub') }}" class="nav-link px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 flex items-center gap-2">
+          <a href="{{ url('landing:landing') }}#portfolio" class="nav-link px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 whitespace-nowrap">Portfolio</a>
+          <a href="{{ url('landing:landing') }}#pricing" class="nav-link px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 whitespace-nowrap">Pricing</a>
+          <a href="{{ url('landing:landing') }}#contact" class="nav-link px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 whitespace-nowrap">Contact</a>
+          <a href="{{ url('blog:index') }}" class="nav-link px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 whitespace-nowrap">Blog</a>
+          <a href="{{ url('demo_hub') }}" class="nav-link px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 flex items-center gap-2 whitespace-nowrap">
             <span class="relative flex h-2 w-2">
               <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
               <span class="relative inline-flex rounded-full h-2 w-2 bg-cyan-500"></span>
@@ -113,8 +113,8 @@
         </div>
 
         <!-- Desktop Actions (lg+) -->
-        <div class="hidden lg:flex items-center gap-3">
-          <a href="tel:+14692972933" class="nav-phone flex items-center gap-1.5 text-sm font-medium transition-colors duration-200">
+        <div class="hidden xl:flex items-center gap-3">
+          <a href="tel:+14692972933" class="nav-phone flex items-center gap-1.5 text-sm font-medium transition-colors duration-200 whitespace-nowrap">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.77 3.35 2 2 0 0 1 3.74 1h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9a16 16 0 0 0 6.91 6.91l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
             </svg>
@@ -124,19 +124,19 @@
             data-cal-link="contractorwebdev/website-development-consulting"
             data-cal-namespace="website-development-consulting"
             data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'
-            class="nav-phone flex items-center gap-1.5 text-sm font-medium transition-colors duration-200 cursor-pointer">
+            class="nav-phone flex items-center gap-1.5 text-sm font-medium transition-colors duration-200 cursor-pointer whitespace-nowrap">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
             </svg>
             Book a Free Call
           </button>
-          <a href="{{ url('landing:landing') }}#contact" class="px-5 py-2.5 bg-gradient-to-r from-cyan-500 to-blue-600 text-white text-sm font-semibold rounded-lg transition-all duration-300 hover:shadow-lg hover:scale-105" style="box-shadow:none">
+          <a href="{{ url('landing:landing') }}#contact" class="px-5 py-2.5 bg-gradient-to-r from-cyan-500 to-blue-600 text-white text-sm font-semibold rounded-lg transition-all duration-300 hover:shadow-lg hover:scale-105 whitespace-nowrap" style="box-shadow:none">
             Get Quote
           </a>
         </div>
 
-        <!-- Mobile Burger (< lg) -->
-        <button id="nav-burger" class="lg:hidden p-2 rounded-lg nav-burger-btn transition-colors duration-200" aria-label="Toggle menu">
+        <!-- Mobile Burger (< xl) -->
+        <button id="nav-burger" class="xl:hidden p-2 rounded-lg nav-burger-btn transition-colors duration-200" aria-label="Toggle menu">
           <div class="nav-burger-icon w-5 flex flex-col gap-1.5">
             <span class="block h-0.5 w-full nav-burger-line rounded-full transition-all duration-300 origin-center"></span>
             <span class="block h-0.5 w-full nav-burger-line rounded-full transition-all duration-300"></span>
@@ -148,7 +148,7 @@
     </div>
 
     <!-- Mobile Menu -->
-    <div id="mobile-menu" class="nav-mobile-menu lg:hidden overflow-hidden transition-all duration-300 ease-in-out" style="max-height:0">
+    <div id="mobile-menu" class="nav-mobile-menu xl:hidden overflow-hidden transition-all duration-300 ease-in-out" style="max-height:0">
       <div class="px-4 pt-2 pb-5 space-y-1 border-t nav-mobile-border">
         <a href="{{ url('landing:landing') }}#features" class="nav-mobile-link flex items-center px-3 py-2.5 rounded-lg text-sm font-medium transition-colors duration-200">Features</a>
         <a href="{{ url('services:hub') }}" class="nav-mobile-link flex items-center px-3 py-2.5 rounded-lg text-sm font-medium transition-colors duration-200">Services</a>
