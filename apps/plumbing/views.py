@@ -35,6 +35,19 @@ class PlumbingLandingView(View):
             city=business.city,
             state=business.state,
         )
+        since_year = date.today().year - business.years_in_business
+        license_part = f" {business.state} License #{business.license_number}" if business.license_number else ""
+        t['footer_about'] = t['footer_about'].format(
+            city=business.city,
+            since_year=since_year,
+            review_score=business.review_score,
+        )
+        t['footer_about_link'] = t['footer_about_link'].format(name=business.name)
+        t['footer_copyright'] = t['footer_copyright'].format(
+            year=date.today().year,
+            name=business.name,
+            license_part=license_part,
+        )
 
         site_key = settings.CF_TURNSTILE_SITE_KEY
         # Turnstile is only active when a real key is configured.
