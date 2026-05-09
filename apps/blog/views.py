@@ -69,6 +69,8 @@ class ArticleDetailView(TemplateView):
             'excerpt':         article.excerpt,
             'cover_image_url': article.cover_image_url,
             'published_at':    article.published_at,
+            'updated_at':      article.updated_at,
+            'category':        article.category,
             'category_name':   article.category.name if article.category else '',
             'category_slug':   article.category.slug if article.category else '',
             'content_html':    _render_markdown(article.content),
