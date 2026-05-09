@@ -28,30 +28,8 @@
   }
   </script>
   {% if business.logo %}<link rel="icon" type="image/png" href="{{ business.logo }}">{% endif %}
-  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="{{ static('css/tailwind.css') }}">
   <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            brand: {
-              50:  '#eff6ff',
-              100: '#dbeafe',
-              500: '#2563eb',
-              600: '#1d4ed8',
-              700: '#1e40af',
-              900: '#1e3a5f',
-            },
-            accent: '#f97316',
-          },
-          fontFamily: {
-            sans: ['Inter', 'system-ui', 'sans-serif'],
-          },
-        }
-      }
-    }
-  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <style>

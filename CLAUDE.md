@@ -31,12 +31,12 @@ Demo subdomain for a web agency showcasing interactive features to local contrac
 | Maps | Leaflet.js (CDN, no API key) |
 | Calendar UI | Cal.com Embed (official inline JS widget) |
 | Before/After slider | `img-comparison-slider` (CDN, web component) |
-| Styling | Tailwind CSS (CDN) |
+| Styling | Tailwind CSS v3 (standalone CLI, compiled to `static/css/tailwind.css`) |
 | HTTP client (JS) | fetch API (native, no axios) |
 | Captcha | Cloudflare Turnstile (JS embed) |
 | Markdown rendering | `markdown` + `bleach` (Python) |
 
-No npm build step. All JS libs loaded via CDN in `base.html`.
+No npm build step. All JS libs loaded via CDN in `base.html`. **Exception:** Tailwind CSS is compiled via the standalone CLI binary (`tailwindcss.exe`). Run `.\build_tailwind.ps1` after adding new Tailwind classes. The compiled output (`static/css/tailwind.css`) is committed to git.
 
 ---
 

@@ -126,6 +126,45 @@ python manage.py collectstatic --noinput
 | Maps | Leaflet.js (CDN) |
 | Calendar | FullCalendar.js (CDN) |
 | Before/After | img-comparison-slider (CDN) |
-| Styling | Tailwind CSS (CDN) |
+| Styling | Tailwind CSS v3 (compiled, `static/css/tailwind.css`) |
 
 No npm / no build step — all JS loaded via CDN.
+Tailwind CSS is the only exception: it uses a standalone CLI binary (no Node.js required).
+
+---
+
+## Tailwind CSS
+
+Tailwind is compiled via the **standalone CLI binary** (`tailwindcss.exe`) — no npm or Node.js needed.
+
+### Файлы
+
+| Файл | Назначение |
+|------|-----------|
+| `tailwind.config.js` | Конфиг: пути сканирования, кастомные цвета (`brand-*`, `accent`) |
+| `static/css/tailwind_input.css` | Входной файл с директивами `@tailwind` |
+| `static/css/tailwind.css` | **Скомпилированный CSS** — коммитится в git, отдаётся сервером |
+| `tailwindcss.exe` | Бинарник компилятора (40MB, в `.gitignore`, не в git) |
+| `build_tailwind.ps1` | Скрипт сборки для Windows |
+
+### Когда нужно пересобирать CSS
+
+Только если добавил **новый Tailwind-класс** в шаблон или JS-файл, которого раньше не было.
+
+```powershell
+# Windows (PowerShell)
+.\build_tailwind.ps1
+```
+
+Скрипт автоматически скачает `tailwindcss.exe` если его нет. После сборки — закоммитить обновлённый `static/css/tailwind.css` и запушить.
+
+### Деплой на сервер
+
+На сервере ничего дополнительно делать **не нужно** — `static/css/tailwind.css` уже скомпилирован и лежит в git:
+
+```bash
+git pull
+python manage.py collectstatic --no-input
+```
+
+`tailwindcss.exe` и `build_tailwind.ps1` на сервере не нужны.

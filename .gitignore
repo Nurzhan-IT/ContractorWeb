@@ -35,4 +35,7 @@ Thumbs.db
 htmlcov/
 .tox/
 media/
-# staticfiles/ 
+# staticfiles/
+
+# Tailwind CLI binary (40MB, download via build_tailwind.ps1)
+tailwindcss.exe

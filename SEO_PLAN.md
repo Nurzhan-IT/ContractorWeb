@@ -151,21 +151,20 @@ Sitemap: https://contractorwebdev.com/sitemap.xml
 
 Для нового домена backlinks — самый важный сигнал для Google. Без них ранжирование идёт очень медленно.
 
-### 4.1 Бесплатные бизнес-каталоги (делать сразу)
+### 4.1 Каталоги для веб-агентств (делать сразу)
 
-Зарегистрировать сайт в этих каталогах — дают dofollow ссылки и local SEO сигналы:
+Yelp, BBB, Angi — не подходят: они для локального бизнеса с американским адресом.
+Эти платформы специально для агентств по всему миру — адрес страны там не является минусом.
 
-| Каталог | URL | Тип |
+| Платформа | Для чего | Приоритет |
 |---|---|---|
-| Google Business Profile | business.google.com | Обязательно |
-| Yelp for Business | biz.yelp.com | Важно |
-| Bing Places | bingplaces.com | Важно |
-| BBB (Better Business Bureau) | bbb.org | Важно |
-| Angi (Angie's List) | angi.com | Очень важно для contractor ниши |
-| HomeAdvisor | homeadvisor.com | Очень важно для contractor ниши |
-| Thumbtack | thumbtack.com | Важно |
-| Houzz | houzz.com | Важно для home improvement |
-| Facebook Business Page | facebook.com | С ссылкой на сайт |
+| Clutch.co | Главный каталог IT/веб агентств, клиенты активно ищут там подрядчиков | Высокий |
+| DesignRush.com | Каталог агентств по нишам, есть фильтр "contractor website design" | Высокий |
+| GoodFirms.co | Отзывы и рейтинги агентств, хорошо индексируется Google | Средний |
+| AgencySpotter.com | Специализированный каталог веб-агентств | Средний |
+| Facebook Business Page | Страница агентства со ссылкой на сайт | Низкий |
+
+**Важно для Clutch и GoodFirms:** нужны отзывы реальных клиентов — без них профиль не ранжируется внутри платформы. Попроси первых клиентов оставить отзыв сразу после завершения проекта.
 
 ### 4.2 HARO / Help a Reporter Out
 
@@ -317,10 +316,10 @@ Google использует Core Web Vitals как сигнал ранжиров
 - [x] Убрать `/demo/*` из sitemap.xml
 - [x] BreadcrumbList + CollectionPage JSON-LD на странице блога
 - [x] Установить Google Analytics 4 (код добавлен — добавь реальный ID в .env)
-- [ ] Настроить Google Search Console, добавить sitemap
-- [ ] Запросить индексацию всех 5 статей через GSC
-- [ ] Зарегистрировать сайт в Google Business Profile
-- [ ] Зарегистрировать в Angi, HomeAdvisor, Yelp, BBB, Houzz
+- [x] Настроить Google Search Console, добавить sitemap
+- [x] Запросить индексацию всех 5 статей через GSC
+- [ ] Зарегистрировать агентство на Clutch.co
+- [ ] Зарегистрировать агентство на DesignRush.com
 - [ ] Проверить PageSpeed Insights, устранить критические проблемы
 - [ ] Написать 2 новые статьи с long-tail ключевыми словами
 - [ ] Добавить внутренние ссылки между существующими 5 статьями
