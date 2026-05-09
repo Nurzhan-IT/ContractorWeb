@@ -310,14 +310,17 @@ Google использует Core Web Vitals как сигнал ранжиров
 
 ## Быстрый чеклист
 
-- [ ] Починить `robots.txt` (строка Sitemap)
+- [x] Починить `robots.txt` (строка Sitemap)
+- [x] Добавить `updated_at` поле в модель Article, сделать миграцию
+- [x] Добавить `article:published_time` / `article:modified_time` OG теги
+- [x] Скрыть `/demo/*` и юридические страницы от индексации (noindex)
+- [x] Убрать `/demo/*` из sitemap.xml
+- [x] BreadcrumbList + CollectionPage JSON-LD на странице блога
+- [x] Установить Google Analytics 4 (код добавлен — добавь реальный ID в .env)
 - [ ] Настроить Google Search Console, добавить sitemap
-- [ ] Установить Google Analytics 4
 - [ ] Запросить индексацию всех 5 статей через GSC
 - [ ] Зарегистрировать сайт в Google Business Profile
 - [ ] Зарегистрировать в Angi, HomeAdvisor, Yelp, BBB, Houzz
-- [ ] Добавить `updated_at` поле в модель Article, сделать миграцию
-- [ ] Добавить `article:published_time` / `article:modified_time` OG теги
 - [ ] Проверить PageSpeed Insights, устранить критические проблемы
 - [ ] Написать 2 новые статьи с long-tail ключевыми словами
 - [ ] Добавить внутренние ссылки между существующими 5 статьями
