@@ -15,24 +15,6 @@ class LandingSitemap(Sitemap):
         return reverse(item)
 
 
-class DemoSitemap(Sitemap):
-    priority = 0.7
-    changefreq = 'weekly'
-
-    def items(self):
-        return [
-            'demo_hub',
-            'quote:quote',
-            'emergency:index',
-            'service_area:index',
-            'portfolio:index',
-            'booking:index',
-        ]
-
-    def location(self, item):
-        return reverse(item)
-
-
 class BlogSitemap(Sitemap):
     priority = 0.8
     changefreq = 'weekly'
@@ -41,7 +23,7 @@ class BlogSitemap(Sitemap):
         return Article.objects.filter(is_published=True)
 
     def lastmod(self, obj):
-        return obj.published_at
+        return obj.updated_at
 
 
 class BlogIndexSitemap(Sitemap):

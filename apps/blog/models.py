@@ -25,6 +25,7 @@ class Article(models.Model):
     cover_image_url = models.URLField(blank=True, help_text='External URL of the cover image')
     published_at    = models.DateTimeField()
     is_published    = models.BooleanField(default=False)
+    updated_at      = models.DateTimeField(auto_now=True)
 
     class Meta:
         ordering = ['-published_at']
