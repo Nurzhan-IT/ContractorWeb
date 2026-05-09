@@ -31,35 +31,20 @@
 
 ---
 
-## Промпт 2 — Добавить SEO-поля в модель Article
+## Промпт 2 — Добавить поле updated_at в модель Article
 
 ```
-В apps/blog/models.py модель Article не имеет полей для SEO-контроля
-и не отслеживает дату изменения.
+В apps/blog/models.py модель Article не отслеживает дату последнего изменения.
+Это поле нужно для корректного lastmod в sitemap.xml и dateModified в JSON-LD схеме.
 
-Добавь в класс Article следующие поля после поля is_published:
+Добавь в класс Article одно поле после is_published:
 
     updated_at = models.DateTimeField(auto_now=True)
-    seo_title = models.CharField(
-        max_length=70, blank=True,
-        help_text='Custom page title (max 70 chars). Leave blank to use article title.'
-    )
-    seo_description = models.CharField(
-        max_length=160, blank=True,
-        help_text='Custom meta description (max 160 chars). Leave blank to use excerpt.'
-    )
-    featured_image_alt = models.CharField(
-        max_length=200, blank=True,
-        help_text='Alt text for the cover image. Leave blank to use article title.'
-    )
 
 После изменения модели создай и примени миграцию:
 
     python manage.py makemigrations blog
     python manage.py migrate
-
-Также зарегистрируй новые поля в apps/blog/admin.py если файл существует —
-добавь их в fieldsets или fields чтобы они были видны в Django admin.
 
 Больше ничего не меняй.
 ```
@@ -133,17 +118,7 @@ templates/booking/index.html.
 ```
 Файл templates/blog/detail.html содержит мета-теги и JSON-LD схему.
 
-Задача 1 — Используй seo_title и seo_description если они заполнены,
-иначе fallback на article.title и article.excerpt.
-
-Замени блоки в начале файла:
-
-    {% block title %}{{ article.seo_title if article.seo_title else article.title }} | ContractorWebDev Blog{% endblock %}
-    {% block meta_description %}{{ article.seo_description if article.seo_description else article.excerpt }}{% endblock %}
-    {% block og_title %}{{ article.seo_title if article.seo_title else article.title }} | ContractorWebDev Blog{% endblock %}
-    {% block og_description %}{{ article.seo_description if article.seo_description else article.excerpt }}{% endblock %}
-
-Задача 2 — Добавь article: Open Graph мета-теги и явный og:type в {% block extra_head %}
+Задача 1 — Добавь article: Open Graph мета-теги и явный og:type в {% block extra_head %}
 ДО тега <script type="application/ld+json">:
 
     <meta property="og:type" content="article">
@@ -153,13 +128,9 @@ templates/booking/index.html.
     <meta property="article:section" content="{{ article.category.name }}">
     {% endif %}
 
-Задача 3 — В JSON-LD схеме Article исправь dateModified чтобы использовал updated_at:
+Задача 2 — В JSON-LD схеме Article исправь dateModified чтобы использовал updated_at:
 
     "dateModified": "{{ article.updated_at.isoformat() }}",
-
-Задача 4 — В теге <img> обложки статьи замени alt на:
-
-    alt="{{ article.featured_image_alt if article.featured_image_alt else article.title }}"
 
 Больше ничего не меняй.
 ```
