@@ -13,7 +13,7 @@ from django.urls import path, include
 #   POST /api/plumbing/<slug>/quote/pdf/                → PlumbingQuotePDFView
 #   (booking has no API endpoints — handled by Cal.com Embed)
 
-from apps.plumbing.views import PlumbingQuoteSubmitView, PlumbingQuotePDFView
+from plumbing.views import PlumbingQuoteSubmitView, PlumbingQuotePDFView
 
 urlpatterns = [
     path('quote/', include('quote.api_urls')),

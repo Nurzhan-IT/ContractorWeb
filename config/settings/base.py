@@ -34,7 +34,7 @@ INSTALLED_APPS = [
     'web_quote',
     'blog',
     'services',
-    'apps.plumbing',
+    'plumbing',
 ]
 
 MIDDLEWARE = [
