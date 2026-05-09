@@ -1832,13 +1832,13 @@
 
 <!-- Sticky bottom CTA bar (mobile only) -->
 <div id="fab-call" class="fixed bottom-0 left-0 right-0 z-50 md:hidden bg-white border-t border-gray-200 px-4 py-3 flex gap-3 shadow-2xl">
-  <a href="tel:{{ business.phone.replace(' ', '').replace('-', '').replace('(', '').replace(')', '') }}"
-     class="flex-1 flex items-center justify-center gap-2 bg-accent text-white font-black py-3.5 rounded-2xl text-base pulse-ring">
-    {{ t.fab_call }}
-  </a>
   <a href="#quote"
      class="flex-1 flex items-center justify-center gap-2 bg-brand-600 text-white font-bold py-3.5 rounded-2xl text-sm">
     {{ t.fab_estimate }}
+  </a>
+  <a href="tel:{{ business.phone.replace(' ', '').replace('-', '').replace('(', '').replace(')', '') }}"
+     class="flex-1 flex items-center justify-center gap-2 bg-accent text-white font-black py-3.5 rounded-2xl text-base pulse-ring">
+    {{ t.fab_call }}
   </a>
 </div>
 <!-- Spacer so content isn't hidden behind sticky bar -->
