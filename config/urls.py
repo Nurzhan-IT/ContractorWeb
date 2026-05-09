@@ -6,7 +6,6 @@ from django.views.generic import TemplateView
 from django.contrib.sitemaps.views import sitemap
 from config.sitemaps import (
     LandingSitemap,
-    DemoSitemap,
     BlogSitemap,
     BlogIndexSitemap,
     ServicePagesSitemap,
@@ -15,7 +14,6 @@ from config.sitemaps import (
 sitemaps = {
     'landing': LandingSitemap,
     'services': ServicePagesSitemap,
-    'demo': DemoSitemap,
     'blog_index': BlogIndexSitemap,
     'blog': BlogSitemap,
 }
