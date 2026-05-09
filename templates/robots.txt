@@ -2,5 +2,7 @@ User-agent: *
 Allow: /
 Disallow: /admin/
 Disallow: /api/
+Disallow: /demo/
+Disallow: /contact/
 
-Sitemap: https://{{ site_domain }}/sitemap.xml
+Sitemap: https://contractorwebdev.com/sitemap.xml
