@@ -3,6 +3,44 @@
 {% block title %}Blog & Contractor Tips | ContractorWebDev{% endblock %}
 {% block meta_description %}Practical tips and guides for homeowners — plumbing, electrical, roofing and more from your local contractor.{% endblock %}
 
+{% block extra_head %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://contractorwebdev.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "https://contractorwebdev.com/blog/"
+    }
+  ]
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Contractor Website Tips & SEO Blog",
+  "description": "Articles about contractor websites, local SEO, online booking, and lead generation for plumbers, electricians, and roofers.",
+  "url": "https://contractorwebdev.com/blog/",
+  "publisher": {
+    "@type": "Organization",
+    "name": "ContractorWebDev",
+    "url": "https://contractorwebdev.com/"
+  }
+}
+</script>
+{% endblock %}
+
 {% block content %}
 <div class="max-w-6xl mx-auto px-4 py-10 sm:py-14">
 
