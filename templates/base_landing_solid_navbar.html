@@ -324,7 +324,7 @@
 
   {% block sticky_cta %}{% endblock %}
 
-  <script src="{{ static('js/landing/main.js') }}"></script>
+  <script defer src="{{ static('js/landing/main.js') }}"></script>
   {% block extra_js %}{% endblock %}
 
   <!-- Cookie notice (informational only — strictly necessary cookies don't require opt-in) -->
@@ -358,7 +358,7 @@
               onmouseover="this.style.color='#d1d5db'" onmouseout="this.style.color='#6b7280'"
               aria-label="Dismiss">&#x2715;</button>
     </div>
-    <p style="font-size:0.75rem;color:#6b7280;margin:0 0 1rem 0;line-height:1.5;">
+    <p style="font-size:0.75rem;color:#9ca3af;margin:0 0 1rem 0;line-height:1.5;">
       We use strictly necessary cookies only — CSRF protection &amp; session. No tracking or analytics.
       <a href="{{ url('cookies') }}" style="color:#22d3ee;text-decoration:none;"
          onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">Learn more about our cookie policy</a>
