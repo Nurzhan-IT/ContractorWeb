@@ -5,8 +5,8 @@
 {% block canonical %}{{ request.build_absolute_uri(request.path) }}{% endblock %}
 {% block og_title %}{{ article.title }} | ContractorWebDev Blog{% endblock %}
 {% block og_description %}{{ article.excerpt }}{% endblock %}
-{% block og_image %}{{ article.cover_image_url if article.cover_image_url else request.scheme + '://' + request.get_host() + '/static/img/og-blog.png' }}{% endblock %}
-{% block twitter_image %}{{ article.cover_image_url if article.cover_image_url else request.scheme + '://' + request.get_host() + '/static/img/og-blog.png' }}{% endblock %}
+{% block og_image %}{{ article.cover_image.url if article.cover_image else request.scheme + '://' + request.get_host() + '/static/img/og-blog.png' }}{% endblock %}
+{% block twitter_image %}{{ article.cover_image.url if article.cover_image else request.scheme + '://' + request.get_host() + '/static/img/og-blog.png' }}{% endblock %}
 
 {% block extra_head %}
 <meta property="og:type" content="article">
@@ -23,7 +23,7 @@
   "description": {{ article.excerpt | tojson }},
   "datePublished": "{{ article.published_at.isoformat() }}",
   "dateModified": "{{ article.updated_at.isoformat() }}",
-  "image": {{ (article.cover_image_url or (request.scheme + '://' + request.get_host() + '/static/img/og-blog.png')) | tojson }},
+  "image": {{ (article.cover_image.url if article.cover_image else (request.scheme + '://' + request.get_host() + '/static/img/og-blog.png')) | tojson }},
   "mainEntityOfPage": {{ request.build_absolute_uri(request.path) | tojson }},
   "publisher": {
     "@type": "Organization",
@@ -96,12 +96,13 @@
   </a>
 
   <!-- Cover image -->
-  {% if article.cover_image_url %}
+  {% if article.cover_image %}
   <div class="rounded-2xl overflow-hidden mb-8 max-h-64 min-h-[200px] bg-gray-100">
-    <img src="{{ article.cover_image_url }}"
+    <img src="{{ article.cover_image.url }}"
          alt="{{ article.title }}"
          class="w-full h-full object-cover"
-         loading="lazy"
+         fetchpriority="high"
+         loading="eager"
          width="800"
          height="400">
   </div>
@@ -138,8 +139,8 @@
       {% for post in related_articles %}
       <a href="{{ url('blog:detail', slug=post.slug) }}"
          class="block group rounded-xl border border-gray-200 overflow-hidden hover:shadow-md transition-shadow">
-        {% if post.cover_image_url %}
-        <img src="{{ post.cover_image_url }}"
+        {% if post.cover_image %}
+        <img src="{{ post.cover_image.url }}"
              alt="{{ post.title }}"
              class="w-full h-32 object-cover"
              loading="lazy">

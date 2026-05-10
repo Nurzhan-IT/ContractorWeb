@@ -22,7 +22,7 @@ class Article(models.Model):
     )
     excerpt         = models.TextField(max_length=300, help_text='Short summary shown on listing cards')
     content         = models.TextField(help_text='Full article body in Markdown format')
-    cover_image_url = models.URLField(blank=True, help_text='External URL of the cover image')
+    cover_image     = models.ImageField(upload_to='blog/', blank=True)
     published_at    = models.DateTimeField()
     is_published    = models.BooleanField(default=False)
     updated_at      = models.DateTimeField(auto_now=True)

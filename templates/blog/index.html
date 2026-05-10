@@ -1,6 +1,7 @@
 {% extends 'base_landing_solid_navbar.html' %}
 
 {% block title %}Blog & Contractor Tips | ContractorWebDev{% endblock %}
+{% block canonical %}https://contractorwebdev.com/blog/{% endblock %}
 {% block meta_description %}Practical tips and guides for homeowners — plumbing, electrical, roofing and more from your local contractor.{% endblock %}
 
 {% block extra_head %}
@@ -75,12 +76,12 @@
               transition-all duration-200 hover:-translate-y-1 overflow-hidden">
 
       <!-- Cover image -->
-      {% if article.cover_image_url %}
+      {% if article.cover_image %}
       <div class="h-44 overflow-hidden bg-gray-100">
-        <img src="{{ article.cover_image_url }}"
+        <img src="{{ article.cover_image.url }}"
              alt="{{ article.title }}"
              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-             loading="lazy">
+             {% if loop.first %}fetchpriority="high" loading="eager"{% else %}loading="lazy"{% endif %}>
       </div>
       {% else %}
       <div class="h-44 bg-gradient-to-br from-cyan-50 to-blue-100 flex items-center justify-center text-5xl">

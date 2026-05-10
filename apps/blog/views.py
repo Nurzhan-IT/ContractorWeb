@@ -38,7 +38,7 @@ class BlogListView(TemplateView):
                 'title':           a.title,
                 'slug':            a.slug,
                 'excerpt':         a.excerpt,
-                'cover_image_url': a.cover_image_url,
+                'cover_image':     a.cover_image,
                 'published_at':    a.published_at,
                 'category_name':   a.category.name if a.category else '',
                 'category_slug':   a.category.slug if a.category else '',
@@ -67,7 +67,7 @@ class ArticleDetailView(TemplateView):
             'title':           article.title,
             'slug':            article.slug,
             'excerpt':         article.excerpt,
-            'cover_image_url': article.cover_image_url,
+            'cover_image':     article.cover_image,
             'published_at':    article.published_at,
             'updated_at':      article.updated_at,
             'category':        article.category,
@@ -83,7 +83,7 @@ class ArticleDetailView(TemplateView):
             {
                 'title':           a.title,
                 'slug':            a.slug,
-                'cover_image_url': a.cover_image_url,
+                'cover_image':     a.cover_image,
             }
             for a in related_qs.order_by('-published_at')[:3]
         ]
