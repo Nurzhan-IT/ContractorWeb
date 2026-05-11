@@ -1,0 +1,50 @@
+{% extends "admin/base_site.html" %}
+{% load i18n %}
+
+{% block content %}
+<h1>Import PlumbingBusiness CSV</h1>
+
+{% if results %}
+<div style="margin-bottom: 20px; padding: 12px; background: #f8f8f8; border: 1px solid #ddd; border-radius: 4px;">
+    <strong>Import complete:</strong>
+    {{ results.created }} created &nbsp;|&nbsp;
+    {{ results.updated }} updated &nbsp;|&nbsp;
+    {{ results.skipped }} skipped (errors)
+
+    {% if results.errors %}
+    <details style="margin-top: 10px;">
+        <summary>Errors ({{ results.errors|length }})</summary>
+        <ul style="margin-top: 8px; color: #c00;">
+            {% for err in results.errors %}
+            <li>Row {{ err.row }}: {{ err.msg }}</li>
+            {% endfor %}
+        </ul>
+    </details>
+    {% endif %}
+</div>
+{% endif %}
+
+<div style="max-width: 500px;">
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <p>
+            <label for="csv_file"><strong>CSV file:</strong></label><br>
+            <input type="file" name="csv_file" id="csv_file" accept=".csv" required
+                   style="margin-top: 6px;">
+        </p>
+        <p style="color: #666; font-size: 13px;">
+            Expected columns: <code>name, slug, phone, email, address, city, state, zip_code,
+            review_count, review_score, years_in_business, license_number, tagline_en, tagline_es,
+            description_en, description_es, google_maps_embed_url, is_active</code>
+        </p>
+        <p>
+            Duplicates (matched by <strong>slug</strong>) will be <strong>updated</strong>.
+        </p>
+        <p>
+            <input type="submit" value="Import" class="button default">
+            &nbsp;
+            <a href="{% url 'admin:plumbing_plumbingbusiness_changelist' %}">Cancel</a>
+        </p>
+    </form>
+</div>
+{% endblock %}
