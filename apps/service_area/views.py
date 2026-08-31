@@ -5,7 +5,7 @@ from django.http import JsonResponse
 from django.views import View
 from django.views.generic import TemplateView
 
-from .geo import CENTER_LAT, CENTER_LNG, RADIUS_MILES, RADIUS_METERS, check_zip
+from .geo import CENTER_LAT, CENTER_LNG, RADIUS_METERS, RADIUS_MILES, check_zip
 
 
 class ServiceAreaPageView(TemplateView):
@@ -29,9 +29,7 @@ class ZipCheckView(View):
 
         zip_code = data.get('zip', '').strip()
         if not re.match(r'^\d{5}$', zip_code):
-            return JsonResponse(
-                {'error': 'Please enter a valid 5-digit ZIP code'}, status=400
-            )
+            return JsonResponse({'error': 'Please enter a valid 5-digit ZIP code'}, status=400)
 
         result = check_zip(zip_code)
 

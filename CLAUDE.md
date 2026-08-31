@@ -209,17 +209,17 @@ Price ranges are calculated as: `base_range + (unit_count × per_unit) × urgenc
 
 ```python
 PRICING_CONFIG = {
-    "plumbing_leak":  {"base": (150, 300), "per_unit": 50,  "unit_label": "pipes/points"},
-    "faucet_toilet":  {"base": (120, 250), "per_unit": 30,  "unit_label": "fixtures"},
-    "water_heater":   {"base": (800, 1400),"per_unit": 0,   "unit_label": None},
-    "electrical":     {"base": (200, 500), "per_unit": 75,  "unit_label": "outlets/panels"},
-    "roofing":        {"base": (300, 600), "per_unit": 2,   "unit_label": "sq ft"},
+    'plumbing_leak': {'base': (150, 300), 'per_unit': 50, 'unit_label': 'pipes/points'},
+    'faucet_toilet': {'base': (120, 250), 'per_unit': 30, 'unit_label': 'fixtures'},
+    'water_heater': {'base': (800, 1400), 'per_unit': 0, 'unit_label': None},
+    'electrical': {'base': (200, 500), 'per_unit': 75, 'unit_label': 'outlets/panels'},
+    'roofing': {'base': (300, 600), 'per_unit': 2, 'unit_label': 'sq ft'},
 }
 
 URGENCY_MULTIPLIERS = {
-    "normal":    1.0,
-    "urgent":    1.4,
-    "emergency": 2.0,
+    'normal': 1.0,
+    'urgent': 1.4,
+    'emergency': 2.0,
 }
 ```
 

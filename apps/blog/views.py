@@ -1,14 +1,35 @@
-import markdown
 import bleach
+import markdown
 from django.http import Http404
 from django.views.generic import TemplateView
 
 from .models import Article, Category
 
 BLEACH_ALLOWED_TAGS = [
-    'p', 'br', 'strong', 'em', 'ul', 'ol', 'li', 'h1', 'h2', 'h3', 'h4',
-    'h5', 'h6', 'blockquote', 'code', 'pre', 'a', 'hr', 'table', 'thead',
-    'tbody', 'tr', 'th', 'td',
+    'p',
+    'br',
+    'strong',
+    'em',
+    'ul',
+    'ol',
+    'li',
+    'h1',
+    'h2',
+    'h3',
+    'h4',
+    'h5',
+    'h6',
+    'blockquote',
+    'code',
+    'pre',
+    'a',
+    'hr',
+    'table',
+    'thead',
+    'tbody',
+    'tr',
+    'th',
+    'td',
 ]
 BLEACH_ALLOWED_ATTRS = {'a': ['href', 'title', 'rel']}
 
@@ -34,20 +55,22 @@ class BlogListView(TemplateView):
 
         articles = []
         for a in qs:
-            articles.append({
-                'title':           a.title,
-                'slug':            a.slug,
-                'excerpt':         a.excerpt,
-                'cover_image':     a.cover_image,
-                'published_at':    a.published_at,
-                'category_name':   a.category.name if a.category else '',
-                'category_slug':   a.category.slug if a.category else '',
-            })
+            articles.append(
+                {
+                    'title': a.title,
+                    'slug': a.slug,
+                    'excerpt': a.excerpt,
+                    'cover_image': a.cover_image,
+                    'published_at': a.published_at,
+                    'category_name': a.category.name if a.category else '',
+                    'category_slug': a.category.slug if a.category else '',
+                }
+            )
 
         categories = list(Category.objects.filter(articles__is_published=True).distinct())
 
-        ctx['articles']        = articles
-        ctx['categories']      = categories
+        ctx['articles'] = articles
+        ctx['categories'] = categories
         ctx['active_category'] = active_slug
         return ctx
 
@@ -64,16 +87,16 @@ class ArticleDetailView(TemplateView):
             raise Http404
 
         ctx['article'] = {
-            'title':           article.title,
-            'slug':            article.slug,
-            'excerpt':         article.excerpt,
-            'cover_image':     article.cover_image,
-            'published_at':    article.published_at,
-            'updated_at':      article.updated_at,
-            'category':        article.category,
-            'category_name':   article.category.name if article.category else '',
-            'category_slug':   article.category.slug if article.category else '',
-            'content_html':    _render_markdown(article.content),
+            'title': article.title,
+            'slug': article.slug,
+            'excerpt': article.excerpt,
+            'cover_image': article.cover_image,
+            'published_at': article.published_at,
+            'updated_at': article.updated_at,
+            'category': article.category,
+            'category_name': article.category.name if article.category else '',
+            'category_slug': article.category.slug if article.category else '',
+            'content_html': _render_markdown(article.content),
         }
 
         related_qs = Article.objects.filter(is_published=True).exclude(id=article.id)
@@ -81,9 +104,9 @@ class ArticleDetailView(TemplateView):
             related_qs = related_qs.filter(category=article.category)
         ctx['related_articles'] = [
             {
-                'title':           a.title,
-                'slug':            a.slug,
-                'cover_image':     a.cover_image,
+                'title': a.title,
+                'slug': a.slug,
+                'cover_image': a.cover_image,
             }
             for a in related_qs.order_by('-published_at')[:3]
         ]

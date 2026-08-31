@@ -1,7 +1,6 @@
+from blog.models import Article
 from django.contrib.sitemaps import Sitemap
 from django.urls import reverse
-
-from blog.models import Article
 
 
 class LandingSitemap(Sitemap):

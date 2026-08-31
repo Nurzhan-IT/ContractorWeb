@@ -41,7 +41,7 @@ Then open http://127.0.0.1:8000/
 Open `apps/service_area/geo.py` and update the `CENTER` tuple (line 4):
 
 ```python
-CENTER = (33.7490, -84.3880)   # Atlanta, GA  ← change to your city's coords
+CENTER = (33.7490, -84.3880)  # Atlanta, GA  ← change to your city's coords
 ```
 
 Latitude/longitude for any US city can be found at [latlong.net](https://www.latlong.net/).
@@ -113,6 +113,8 @@ python manage.py collectstatic --noinput
 ```
 
 ---
+
+[![CI](https://github.com/12farit21/ContractorWeb/actions/workflows/ci.yml/badge.svg)](https://github.com/12farit21/ContractorWeb/actions/workflows/ci.yml)
 
 ## Tech Stack
 

@@ -8,11 +8,9 @@ TRANSLATIONS = {
         'nav_work': 'Our Work',
         'nav_faq': 'FAQ',
         'nav_cta': 'Free AI Quote',
-
         # ── Top bar ──────────────────────────────────────────────────────────────
         'topbar_heading': '24/7 Emergency Plumbing',
         'topbar_text': 'Same-day response guaranteed. Call now:',
-
         # ── Hero ─────────────────────────────────────────────────────────────────
         'hero_badge': 'Trusted by {review_count}+ homeowners in {city}, {state}',
         'hero_availability': '3 technicians available now in',
@@ -33,14 +31,11 @@ TRANSLATIONS = {
         'hero_card_eta': 'ETA: 45 min · Mike T.',
         'hero_card_review': '"Fixed my burst pipe in 30 min. Absolute lifesavers!"',
         'hero_certified_by': 'Certified by',
-
         # ── CTAs ─────────────────────────────────────────────────────────────────
         'cta_quote': 'Get Free AI Quote',
         'cta_call': 'Call Now',
-
         # ── Emergency badge ───────────────────────────────────────────────────────
         'emergency_badge': "24/7 Emergency — we're available now",
-
         # ── Trust bar ─────────────────────────────────────────────────────────────
         'trust_licensed_title': 'Fully Licensed & Insured',
         'trust_licensed_sub': 'State of Texas #TX-4891',
@@ -51,10 +46,8 @@ TRANSLATIONS = {
         'trust_satisfaction_title': '100% Satisfaction',
         'trust_satisfaction_sub': "We fix it or it's free",
         'trust_satisfaction_sub2': 'verified reviews',
-
         # ── Platform bar ─────────────────────────────────────────────────────────
         'find_us_on': 'Find us on',
-
         # ── Services ─────────────────────────────────────────────────────────────
         'services_eyebrow': 'What We Fix',
         'services_title': 'Our Services',
@@ -78,7 +71,6 @@ TRANSLATIONS = {
         'service_sewer_desc': 'Trenchless sewer repair technology — fix your sewer line without destroying your yard.',
         'service_repipe_title': 'Full Home Repiping',
         'service_repipe_desc': 'Complete pipe replacement with PEX or copper. Improve water quality and pressure throughout your home.',
-
         # ── Quote form ───────────────────────────────────────────────────────────
         'quote_title': 'Get Your Free AI Estimate',
         'quote_subtitle': 'Instant price estimate in under 30 seconds',
@@ -122,7 +114,6 @@ TRANSLATIONS = {
         'quote_stats_speed': 'average AI response time',
         'quote_stats_accuracy': 'estimate accuracy rate',
         'pdf_download': 'Download PDF Estimate',
-
         # ── JS loading messages ──────────────────────────────────────────────────
         'js_analyzing': 'Analyzing your problem...',
         'js_reading_photos': 'Reading photos...',
@@ -139,7 +130,6 @@ TRANSLATIONS = {
         'js_validation_phone': 'Enter a valid phone number (10+ digits).',
         'js_validation_address': 'Address is required.',
         'js_validation_desc': 'Please describe the problem (20+ characters).',
-
         # ── Financing ────────────────────────────────────────────────────────────
         'financing_eyebrow': 'Flexible Payment Options',
         'financing_title_1': "Don't Let Budget",
@@ -163,7 +153,6 @@ TRANSLATIONS = {
         'financing_no_commitment': 'No commitment required · Soft credit check only',
         'financing_partners': 'Our financing partners',
         'financing_fine_print': '*Financing subject to credit approval. Terms and rates vary by lender. Ask your technician for details.',
-
         # ── How it works ─────────────────────────────────────────────────────────
         'how_it_works': 'How It Works',
         'how_eyebrow': 'Simple Process',
@@ -175,7 +164,6 @@ TRANSLATIONS = {
         'how_step3_desc': 'We call within 15 min to confirm your estimate and book a time',
         'how_step4_title': 'Problem Solved!',
         'how_step4_desc': 'Licensed plumber arrives and fixes the issue at the quoted price',
-
         # ── Team ─────────────────────────────────────────────────────────────────
         'team_title': 'Meet the Team',
         'team_eyebrow': 'Meet the Team',
@@ -198,7 +186,6 @@ TRANSLATIONS = {
         'team_tom_role': 'Lead Technician',
         'team_tom_exp': '11 years experience',
         'team_tom_spec': 'Commercial plumbing and emergency response specialist',
-
         # ── Reviews ──────────────────────────────────────────────────────────────
         'reviews_title': 'What Our Customers Say',
         'reviews_join_cta': 'Join Our Happy Customers',
@@ -218,7 +205,6 @@ TRANSLATIONS = {
         'review_5_text': '"I\'ve used ProFlow 3 times now. They\'re consistently punctual, professional, and fair. The AI quote tool is genius — I always know the ballpark cost before anyone shows up. Love this company."',
         'review_6_time': '1 month ago',
         'review_6_text': '"Had a slab leak detected. Mike used modern camera equipment, found it exactly, and repaired it minimally invasively. Would have cost 3x with another company. ProFlow saved my weekend and my wallet."',
-
         # ── Before / After ───────────────────────────────────────────────────────
         'work_eyebrow': 'Our Work',
         'work_title': 'Before & After',
@@ -230,12 +216,10 @@ TRANSLATIONS = {
         'work_2_desc': 'Old failing unit swapped for tankless — same-day install',
         'work_3_title': 'Kitchen Drain Restoration',
         'work_3_desc': 'Root-choked main line hydro-jetted and relined in 2 hours',
-
         # ── Map ──────────────────────────────────────────────────────────────────
         'map_title': 'Our Service Area',
         'map_eyebrow': 'Find Us',
         'map_not_configured': 'Map not configured',
-
         # ── FAQ ──────────────────────────────────────────────────────────────────
         'faq_title': 'Frequently Asked Questions',
         'faq_eyebrow': 'Common Questions',
@@ -246,19 +230,17 @@ TRANSLATIONS = {
         'faq_q3': 'What areas do you serve?',
         'faq_a3': "We serve all of Austin and the surrounding area including Round Rock, Cedar Park, Georgetown, Pflugerville, Kyle, Buda, and Bastrop. If you're unsure, enter your zip code in the quote form and we'll confirm coverage.",
         'faq_q4': 'Is there a service call fee?',
-        'faq_a4': "Standard service calls (Mon–Fri, 8am–6pm) have no dispatch fee — you only pay for the work performed. After-hours and emergency calls include a $79 dispatch fee, which is waived if we complete the repair. This will always be disclosed before we dispatch.",
+        'faq_a4': 'Standard service calls (Mon–Fri, 8am–6pm) have no dispatch fee — you only pay for the work performed. After-hours and emergency calls include a $79 dispatch fee, which is waived if we complete the repair. This will always be disclosed before we dispatch.',
         'faq_q5': 'What warranty do you offer on repairs?',
         'faq_a5': "All labor carries a 1-year warranty. Parts and fixtures come with manufacturer warranties ranging from 1–10 years. Major jobs like repiping and sewer replacement carry a 2-year labor warranty. If something we repaired fails within the warranty period, we'll fix it at no cost.",
         'faq_cta_question': 'Still have questions?',
         'faq_cta_sub': 'Our team is ready to help — call or get a free estimate online.',
         'faq_cta_estimate': 'Get Free Estimate',
-
         # ── Final CTA ────────────────────────────────────────────────────────────
         'final_cta_eyebrow': "Don't Wait Until It Gets Worse",
         'final_cta_title': 'Ready to fix your plumbing issue?',
         'final_cta_desc': "Get an AI-powered quote in 30 seconds or call us now. Same-day service available — we're standing by.",
         'final_cta_stats': '⚡ Average call answer time: under 30 seconds  🕐 Same-day appointments available',
-
         # ── Footer ───────────────────────────────────────────────────────────────
         'footer_about': "{city}'s most trusted plumbing company since {since_year}. Licensed, insured, and proud of our {review_score}-star reputation.",
         'footer_services_title': 'Services',
@@ -283,19 +265,15 @@ TRANSLATIONS = {
         'footer_privacy': 'Privacy Policy',
         'footer_terms': 'Terms of Service',
         'footer_sitemap': 'Sitemap',
-
         # ── Mobile sticky CTA ────────────────────────────────────────────────────
         'fab_call': '📞 Call Now — Free',
         'fab_estimate': 'Get Free Estimate',
-
         # ── Misc ─────────────────────────────────────────────────────────────────
         'price_from': 'From',
-
         # ── Booking ──────────────────────────────────────────────────────────────
         'booking_title': 'Book a Service',
         'booking_subtitle': 'Schedule online — available 24/7',
     },
-
     'es': {
         # ── Nav ──────────────────────────────────────────────────────────────────
         'nav_services': 'Servicios',
@@ -305,11 +283,9 @@ TRANSLATIONS = {
         'nav_work': 'Trabajos',
         'nav_faq': 'FAQ',
         'nav_cta': 'Cotizar Gratis',
-
         # ── Top bar ──────────────────────────────────────────────────────────────
         'topbar_heading': 'Plomería de Emergencia 24/7',
         'topbar_text': 'Respuesta el mismo día garantizada. Llame ahora:',
-
         # ── Hero ─────────────────────────────────────────────────────────────────
         'hero_badge': '{review_count}+ clientes satisfechos en {city}, {state}',
         'hero_availability': '3 técnicos disponibles ahora en',
@@ -330,14 +306,11 @@ TRANSLATIONS = {
         'hero_card_eta': 'ETA: 45 min · Mike T.',
         'hero_card_review': '"Arregló mi tubería rota en 30 min. ¡Un salvavidas de verdad!"',
         'hero_certified_by': 'Certificado por',
-
         # ── CTAs ─────────────────────────────────────────────────────────────────
         'cta_quote': 'Cotizar con IA',
         'cta_call': 'Llamar',
-
         # ── Emergency badge ───────────────────────────────────────────────────────
         'emergency_badge': 'Emergencias 24/7 — disponibles ahora',
-
         # ── Trust bar ─────────────────────────────────────────────────────────────
         'trust_licensed_title': 'Licenciado y Asegurado',
         'trust_licensed_sub': 'Estado de Texas #TX-4891',
@@ -348,10 +321,8 @@ TRANSLATIONS = {
         'trust_satisfaction_title': '100% de Satisfacción',
         'trust_satisfaction_sub': 'Lo arreglamos o es gratis',
         'trust_satisfaction_sub2': 'reseñas verificadas',
-
         # ── Platform bar ─────────────────────────────────────────────────────────
         'find_us_on': 'Encuéntranos en',
-
         # ── Services ─────────────────────────────────────────────────────────────
         'services_eyebrow': 'Lo Que Reparamos',
         'services_title': 'Nuestros Servicios',
@@ -375,7 +346,6 @@ TRANSLATIONS = {
         'service_sewer_desc': 'Tecnología de reparación sin zanjas — arregla tu línea de alcantarilla sin destruir tu jardín.',
         'service_repipe_title': 'Re-tubería Completa del Hogar',
         'service_repipe_desc': 'Reemplazo completo de tuberías con PEX o cobre. Mejora la calidad del agua y la presión en todo el hogar.',
-
         # ── Quote form ───────────────────────────────────────────────────────────
         'quote_title': 'Estimado Gratis con IA',
         'quote_subtitle': 'Precio estimado al instante, en menos de 30 segundos',
@@ -419,7 +389,6 @@ TRANSLATIONS = {
         'quote_stats_speed': 'tiempo promedio de respuesta de la IA',
         'quote_stats_accuracy': 'tasa de precisión del estimado',
         'pdf_download': 'Descargar Estimado PDF',
-
         # ── JS loading messages ──────────────────────────────────────────────────
         'js_analyzing': 'Analizando tu problema...',
         'js_reading_photos': 'Leyendo fotos...',
@@ -436,7 +405,6 @@ TRANSLATIONS = {
         'js_validation_phone': 'Ingresa un número de teléfono válido (10+ dígitos).',
         'js_validation_address': 'La dirección es requerida.',
         'js_validation_desc': 'Por favor describe el problema (20+ caracteres).',
-
         # ── Financing ────────────────────────────────────────────────────────────
         'financing_eyebrow': 'Opciones de Pago Flexibles',
         'financing_title_1': 'No dejes que el presupuesto',
@@ -460,7 +428,6 @@ TRANSLATIONS = {
         'financing_no_commitment': 'Sin compromiso · Solo consulta de crédito blanda',
         'financing_partners': 'Nuestros socios financieros',
         'financing_fine_print': '*Financiamiento sujeto a aprobación de crédito. Términos y tasas varían según el prestamista. Consulta con tu técnico.',
-
         # ── How it works ─────────────────────────────────────────────────────────
         'how_it_works': 'Cómo Funciona',
         'how_eyebrow': 'Proceso Simple',
@@ -472,7 +439,6 @@ TRANSLATIONS = {
         'how_step3_desc': 'Te llamamos en 15 min para confirmar el estimado y programar una cita',
         'how_step4_title': '¡Problema Resuelto!',
         'how_step4_desc': 'El plomero licenciado llega y arregla el problema al precio cotizado',
-
         # ── Team ─────────────────────────────────────────────────────────────────
         'team_title': 'Conoce al Equipo',
         'team_eyebrow': 'Conoce al Equipo',
@@ -495,7 +461,6 @@ TRANSLATIONS = {
         'team_tom_role': 'Técnico Líder',
         'team_tom_exp': '11 años de experiencia',
         'team_tom_spec': 'Especialista en plomería comercial y respuesta a emergencias',
-
         # ── Reviews ──────────────────────────────────────────────────────────────
         'reviews_title': 'Opiniones de Clientes',
         'reviews_join_cta': 'Únete a Nuestros Clientes Felices',
@@ -515,7 +480,6 @@ TRANSLATIONS = {
         'review_5_text': '"He usado ProFlow 3 veces. Son puntuales, profesionales y justos. La herramienta de cotización con IA es genial — siempre sé el costo aproximado antes de que lleguen. ¡Me encanta esta empresa!"',
         'review_6_time': 'hace 1 mes',
         'review_6_text': '"Detectaron una fuga en la losa. Mike usó equipo moderno de cámara, la encontró exactamente y la reparó con mínima invasión. Con otra empresa hubiera costado 3 veces más. ¡ProFlow salvó mi fin de semana!"',
-
         # ── Before / After ───────────────────────────────────────────────────────
         'work_eyebrow': 'Nuestro Trabajo',
         'work_title': 'Antes y Después',
@@ -527,12 +491,10 @@ TRANSLATIONS = {
         'work_2_desc': 'Unidad defectuosa cambiada por calentador sin tanque — instalación el mismo día',
         'work_3_title': 'Restauración de Drenaje de Cocina',
         'work_3_desc': 'Línea principal tapada con raíces limpiada con hidrojet y revestida en 2 horas',
-
         # ── Map ──────────────────────────────────────────────────────────────────
         'map_title': 'Área de Servicio',
         'map_eyebrow': 'Encuéntranos',
         'map_not_configured': 'Mapa no configurado',
-
         # ── FAQ ──────────────────────────────────────────────────────────────────
         'faq_title': 'Preguntas Frecuentes',
         'faq_eyebrow': 'Preguntas Comunes',
@@ -549,13 +511,11 @@ TRANSLATIONS = {
         'faq_cta_question': '¿Tienes más preguntas?',
         'faq_cta_sub': 'Nuestro equipo está listo para ayudar — llama u obtén un estimado gratis en línea.',
         'faq_cta_estimate': 'Obtener Estimado Gratis',
-
         # ── Final CTA ────────────────────────────────────────────────────────────
         'final_cta_eyebrow': 'No Esperes a Que Empeore',
         'final_cta_title': '¿Listo para arreglar tu problema de plomería?',
         'final_cta_desc': 'Obtén una cotización con IA en 30 segundos o llámanos ahora. Servicio el mismo día disponible — estamos listos.',
         'final_cta_stats': '⚡ Tiempo promedio de respuesta: menos de 30 segundos  🕐 Citas el mismo día disponibles',
-
         # ── Footer ───────────────────────────────────────────────────────────────
         'footer_about': 'La empresa de plomería más confiable de {city} desde {since_year}. Licenciados, asegurados y orgullosos de nuestra reputación de {review_score} estrellas.',
         'footer_services_title': 'Servicios',
@@ -580,14 +540,11 @@ TRANSLATIONS = {
         'footer_privacy': 'Política de Privacidad',
         'footer_terms': 'Términos de Servicio',
         'footer_sitemap': 'Mapa del Sitio',
-
         # ── Mobile sticky CTA ────────────────────────────────────────────────────
         'fab_call': '📞 Llamar — Gratis',
         'fab_estimate': 'Obtener Estimado Gratis',
-
         # ── Misc ─────────────────────────────────────────────────────────────────
         'price_from': 'Desde',
-
         # ── Booking ──────────────────────────────────────────────────────────────
         'booking_title': 'Reservar Servicio',
         'booking_subtitle': 'Agenda en línea — disponible 24/7',

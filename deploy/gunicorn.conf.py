@@ -4,14 +4,14 @@
 import multiprocessing
 
 # Bind to Unix socket (nginx will proxy to this)
-bind = "unix:/run/contractorwebdev/gunicorn.sock"
+bind = 'unix:/run/contractorwebdev/gunicorn.sock'
 
 # Workers: with gthread, fewer workers + more threads is optimal
 workers = multiprocessing.cpu_count() * 2 + 1
 
 # gthread: each worker runs N threads concurrently.
 # While one thread waits for OpenRouter API, others serve normal requests.
-worker_class = "gthread"
+worker_class = 'gthread'
 threads = 4  # each worker handles up to 4 concurrent requests
 
 # Timeout: 120s for AI calls (OpenRouter can be slow)
@@ -24,12 +24,12 @@ graceful_timeout = 30
 keepalive = 5
 
 # Log to stdout/stderr (systemd captures these)
-accesslog = "-"
-errorlog = "-"
-loglevel = "info"
+accesslog = '-'
+errorlog = '-'
+loglevel = 'info'
 
 # Process name (shows in `ps aux`)
-proc_name = "contractorwebdev"
+proc_name = 'contractorwebdev'
 
 # Preload app for faster worker startup and memory sharing
 preload_app = True

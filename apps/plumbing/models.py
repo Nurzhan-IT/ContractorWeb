@@ -3,7 +3,7 @@ from django.db import models
 
 class PlumbingBusiness(models.Model):
     name = models.CharField(max_length=200)
-    slug = models.SlugField(unique=True, help_text="URL: /demo/plumbing/{slug}")
+    slug = models.SlugField(unique=True, help_text='URL: /demo/plumbing/{slug}')
     phone = models.CharField(max_length=20)
     email = models.EmailField(max_length=200, blank=True)
     address = models.CharField(max_length=300)
@@ -21,7 +21,7 @@ class PlumbingBusiness(models.Model):
     description_es = models.TextField(blank=True)
     google_maps_embed_url = models.TextField(
         blank=True,
-        help_text="Полная ссылка из Google Maps → Share → Embed a map → src=...",
+        help_text='Полная ссылка из Google Maps → Share → Embed a map → src=...',
     )
     is_active = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)

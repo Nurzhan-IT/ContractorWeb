@@ -20,24 +20,24 @@ class PortfolioPageView(TemplateView):
             except (ValueError, AttributeError):
                 after_url = ''
 
-            projects.append({
-                'id': p.pk,
-                'title': p.title,
-                'service_type': p.service_type,
-                'service_type_display': p.get_service_type_display(),
-                'before_image_url': before_url,
-                'after_image_url': after_url,
-                'description': p.description,
-                'duration': p.duration,
-                'savings': p.savings,
-                'client_location': p.client_location,
-            })
+            projects.append(
+                {
+                    'id': p.pk,
+                    'title': p.title,
+                    'service_type': p.service_type,
+                    'service_type_display': p.get_service_type_display(),
+                    'before_image_url': before_url,
+                    'after_image_url': after_url,
+                    'description': p.description,
+                    'duration': p.duration,
+                    'savings': p.savings,
+                    'client_location': p.client_location,
+                }
+            )
 
         # Unique service types present in DB, in choice-definition order
         type_order = [c[0] for c in BeforeAfterProject.SERVICE_CHOICES]
-        present = set(
-            BeforeAfterProject.objects.values_list('service_type', flat=True)
-        )
+        present = set(BeforeAfterProject.objects.values_list('service_type', flat=True))
         service_types = [t for t in type_order if t in present]
 
         ctx['projects'] = projects

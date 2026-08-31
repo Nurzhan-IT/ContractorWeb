@@ -121,18 +121,18 @@ OPENROUTER_MODEL = 'google/gemini-2.5-flash-lite'
 
 # Cloudflare Turnstile (used by web_quote form on landing page)
 # Default test keys always pass — replace with real keys from dash.cloudflare.com → Turnstile
-CF_TURNSTILE_SITE_KEY   = os.environ.get('CF_TURNSTILE_SITE_KEY',   '1x00000000000000000000AA')
+CF_TURNSTILE_SITE_KEY = os.environ.get('CF_TURNSTILE_SITE_KEY', '1x00000000000000000000AA')
 CF_TURNSTILE_SECRET_KEY = os.environ.get('CF_TURNSTILE_SECRET_KEY', '1x0000000000000000000000000000000AA')
 
 # Google Analytics 4
 GOOGLE_ANALYTICS_ID = os.environ.get('GOOGLE_ANALYTICS_ID', '')
 
 # Cal.com (used by booking app)
-CAL_API_KEY  = os.environ.get('CAL_API_KEY', '')
+CAL_API_KEY = os.environ.get('CAL_API_KEY', '')
 CAL_USERNAME = os.environ.get('CAL_USERNAME', 'demo')
 CAL_BASE_URL = 'https://api.cal.com/v2'
 CAL_SLUGS = {
-    'plumbing_leak': os.environ.get('CAL_SLUG_PLUMBING',   'plumbing-repair'),
-    'faucet_toilet': os.environ.get('CAL_SLUG_FAUCET',     'faucet-toilet'),
-    'electrical':    os.environ.get('CAL_SLUG_ELECTRICAL', 'electrical-work'),
+    'plumbing_leak': os.environ.get('CAL_SLUG_PLUMBING', 'plumbing-repair'),
+    'faucet_toilet': os.environ.get('CAL_SLUG_FAUCET', 'faucet-toilet'),
+    'electrical': os.environ.get('CAL_SLUG_ELECTRICAL', 'electrical-work'),
 }

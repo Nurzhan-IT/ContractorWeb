@@ -1,9 +1,8 @@
 from unittest.mock import patch
 
+from booking.views import BookingPageView
 from django.test import RequestFactory, TestCase
 from django.urls import reverse
-
-from booking.views import BookingPageView
 
 _FAKE_PREVIEW = [
     {'service': 'Plumbing Repair', 'slug': 'plumbing-repair', 'next_available': 'N/A', 'total_slots_week': 0},

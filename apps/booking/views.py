@@ -15,6 +15,6 @@ class BookingPageView(TemplateView):
         ctx['service_choices'] = [
             {'key': 'plumbing_leak', 'label': 'Plumbing Repair', 'duration': '1 hr'},
             {'key': 'faucet_toilet', 'label': 'Faucet & Toilet', 'duration': '1 hr'},
-            {'key': 'electrical',    'label': 'Electrical Work',  'duration': '2 hrs'},
+            {'key': 'electrical', 'label': 'Electrical Work', 'duration': '2 hrs'},
         ]
         return ctx

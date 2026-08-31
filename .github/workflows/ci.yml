@@ -1,0 +1,207 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: ci_user
+          POSTGRES_PASSWORD: ci_password
+          POSTGRES_DB: ci_db
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U ci_user -d ci_db"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    env:
+      # config.settings.docker: real Postgres (like production) without the
+      # HTTPS/HSTS hardening in production.py, which would redirect every
+      # test-client request and break the test suite.
+      DJANGO_SETTINGS_MODULE: config.settings.docker
+      SECRET_KEY: ci-test-secret-key-not-for-production
+      DATABASE_URL: postgresql://ci_user:ci_password@localhost:5432/ci_db?sslmode=disable
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Check for missing migrations
+        run: python manage.py makemigrations --check --dry-run
+
+      - name: Run tests
+        run: python manage.py test booking quote services
+
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install ruff
+        run: pip install ruff==0.16.5
+
+      - name: Run ruff check
+        run: ruff check .
+
+      - name: Run ruff format --check
+        run: ruff format --check .
+
+  deploy-check:
+    runs-on: ubuntu-latest
+
+    env:
+      # Checked against config.settings.production itself (not the relaxed
+      # config.settings.docker used by the "test" job) so this catches real
+      # regressions in the security settings (SECURE_SSL_REDIRECT, HSTS,
+      # secure cookies, etc.). No live DB is needed — check --deploy never
+      # opens a connection — DATABASE_URL just has to parse.
+      DJANGO_SETTINGS_MODULE: config.settings.production
+      # Long/high-entropy on purpose: Django's security.W009 check flags
+      # short or low-entropy SECRET_KEYs, which would otherwise fail this
+      # job on every run for reasons unrelated to production.py itself.
+      SECRET_KEY: ci-dummy-secret-key-for-github-actions-not-for-real-use-0123456789
+      DATABASE_URL: postgresql://ci_user:ci_password@localhost:5432/ci_db?sslmode=disable
+      ALLOWED_HOSTS: demo.example.com
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      # --fail-level WARNING is required: by default `check --deploy` exits
+      # 0 even when it reports warnings, so a regression (e.g. someone
+      # setting SECURE_SSL_REDIRECT = False) would print a warning but
+      # leave CI green.
+      - name: Django deployment security checks
+        run: python manage.py check --deploy --fail-level WARNING
+
+  tailwind-check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: docker/setup-buildx-action@v4
+
+      # Builds only the Dockerfile's "tailwind" stage, which compiles
+      # static/css/tailwind_input.css + every class referenced in
+      # templates/apps/static/js into static/css/tailwind.css. Building
+      # just this stage (not the full image) skips the venv/collectstatic
+      # work the "docker-test" job already covers.
+      # Shares its GitHub Actions cache scope (no `scope:` override, so
+      # both default to "buildkit") with docker-test's build below — same
+      # Dockerfile and context, so a cache write from either job's "tailwind"
+      # layers (curl'ing the tailwindcss binary, running it) is reusable by
+      # the other.
+      - name: Build the tailwind stage
+        uses: docker/build-push-action@v7
+        with:
+          context: .
+          target: tailwind
+          tags: tailwind-ci-check:latest
+          load: true
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      - name: Verify tailwind.css is non-empty
+        run: docker run --rm tailwind-ci-check sh -c "test -s static/css/tailwind.css"
+
+      # Compares the freshly-compiled CSS against the file committed to
+      # git. A difference means someone added/changed Tailwind classes in
+      # a template but forgot to run build_tailwind.ps1 and commit the
+      # result — the committed CSS no longer matches the templates.
+      - name: Check committed tailwind.css is up to date
+        run: |
+          docker run --rm tailwind-ci-check cat static/css/tailwind.css > /tmp/fresh-tailwind.css
+          if ! diff -u static/css/tailwind.css /tmp/fresh-tailwind.css; then
+            echo "::error::static/css/tailwind.css is out of date with the templates. Run .\\build_tailwind.ps1 and commit the result."
+            exit 1
+          fi
+
+  docker-test:
+    runs-on: ubuntu-latest
+
+    env:
+      # Without this, Compose derives the project name (and so the image
+      # tag below) from the checkout directory's basename, which follows
+      # the GitHub repo name — not guaranteed to match what's built here.
+      # Pinning it keeps the buildx tag and `docker compose up`'s expected
+      # image name in sync regardless of repo name.
+      COMPOSE_PROJECT_NAME: ci
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: docker/setup-buildx-action@v4
+
+      # docker-compose.yml's web service reads env_file: .env; the values
+      # in it don't matter here since DJANGO_SETTINGS_MODULE and
+      # DATABASE_URL are overridden by the compose file itself, but the
+      # file has to exist for `docker compose` to start.
+      - name: Create .env for docker compose
+        run: cp .env.example .env
+
+      # Built via buildx (not `docker compose build`) so cache-from/cache-to
+      # can target the GitHub Actions cache — `docker compose build` has no
+      # equivalent flag. "ci-web:latest" matches what compose expects given
+      # COMPOSE_PROJECT_NAME=ci above; with that tag already present and
+      # --load'ed, the `docker compose up` below reuses it instead of
+      # rebuilding.
+      - name: Build image
+        uses: docker/build-push-action@v7
+        with:
+          context: .
+          tags: ci-web:latest
+          load: true
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      # --wait blocks until every service with a healthcheck (db's
+      # pg_isready, web's inherited Dockerfile HEALTHCHECK on /healthz/)
+      # reports healthy.
+      - name: Start services
+        run: docker compose up -d --wait
+
+      - name: Run tests inside the container
+        run: docker compose exec -T web python manage.py test booking quote services
+
+      - name: Show logs on failure
+        if: failure()
+        run: docker compose logs
+
+      - name: Tear down
+        if: always()
+        run: docker compose down -v

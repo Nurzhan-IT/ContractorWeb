@@ -1,6 +1,5 @@
-from django.urls import path, include
-
 from demo.views import DemoHubView
+from django.urls import include, path
 
 # Demo page URLs mounted at /demo/
 #

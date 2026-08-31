@@ -1,21 +1,23 @@
-from django.contrib import admin
-from django.http import HttpResponse
-from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
-from django.views.generic import TemplateView
+from django.contrib import admin
 from django.contrib.sitemaps.views import sitemap
+from django.http import HttpResponse
+from django.urls import include, path
+from django.views.generic import TemplateView
+
 from config.sitemaps import (
-    LandingSitemap,
-    BlogSitemap,
     BlogIndexSitemap,
-    ServicePagesSitemap,
+    BlogSitemap,
     DemoSitemap,
+    LandingSitemap,
+    ServicePagesSitemap,
 )
 
 
 def healthz(request):
     return HttpResponse('ok')
+
 
 sitemaps = {
     'landing': LandingSitemap,
@@ -38,7 +40,7 @@ urlpatterns = [
     path('', include('services.urls')),
     # Legal pages
     path('privacy/', TemplateView.as_view(template_name='legal/privacy.html'), name='privacy'),
-    path('terms/',   TemplateView.as_view(template_name='legal/terms.html'),   name='terms'),
+    path('terms/', TemplateView.as_view(template_name='legal/terms.html'), name='terms'),
     path('cookies/', TemplateView.as_view(template_name='legal/cookies.html'), name='cookies'),
     # SEO files
     path('robots.txt', TemplateView.as_view(template_name='robots.txt', content_type='text/plain')),

@@ -1,6 +1,7 @@
+from datetime import timedelta
+
 from django.core.management.base import BaseCommand
 from django.utils import timezone
-from datetime import timedelta
 from quote.models import QuoteRequest
 from web_quote.models import WebQuoteRequest
 
@@ -23,7 +24,9 @@ class Command(BaseCommand):
         deleted_q, _ = QuoteRequest.objects.filter(created_at__lt=cutoff).delete()
         deleted_wq, _ = WebQuoteRequest.objects.filter(created_at__lt=cutoff).delete()
 
-        self.stdout.write(self.style.SUCCESS(
-            f'Deleted {deleted_q} QuoteRequest(s) and {deleted_wq} WebQuoteRequest(s) '
-            f'older than {days} days (cutoff: {cutoff.date()})'
-        ))
+        self.stdout.write(
+            self.style.SUCCESS(
+                f'Deleted {deleted_q} QuoteRequest(s) and {deleted_wq} WebQuoteRequest(s) '
+                f'older than {days} days (cutoff: {cutoff.date()})'
+            )
+        )

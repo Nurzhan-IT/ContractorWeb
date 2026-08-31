@@ -22,16 +22,18 @@ def files_to_base64(files_list) -> list:
 
     if len(files_list) > MAX_FILES:
         logger.warning(
-            "files_to_base64: received %d files, processing only first %d",
-            len(files_list), MAX_FILES,
+            'files_to_base64: received %d files, processing only first %d',
+            len(files_list),
+            MAX_FILES,
         )
 
     for uploaded_file in files_list[:MAX_FILES]:
         # Size check
         if uploaded_file.size > MAX_FILE_SIZE:
             logger.warning(
-                "files_to_base64: skipping %s — size %d bytes exceeds 4 MB limit",
-                uploaded_file.name, uploaded_file.size,
+                'files_to_base64: skipping %s — size %d bytes exceeds 4 MB limit',
+                uploaded_file.name,
+                uploaded_file.size,
             )
             continue
 
@@ -41,14 +43,16 @@ def files_to_base64(files_list) -> list:
         # Optionally validate with python-magic for extra security
         try:
             import magic
+
             uploaded_file.seek(0)
             header = uploaded_file.read(2048)
             uploaded_file.seek(0)
             detected = magic.from_buffer(header, mime=True)
             if detected not in ALLOWED_MIME_TYPES:
                 logger.warning(
-                    "files_to_base64: skipping %s — magic detected type %s not allowed",
-                    uploaded_file.name, detected,
+                    'files_to_base64: skipping %s — magic detected type %s not allowed',
+                    uploaded_file.name,
+                    detected,
                 )
                 continue
             mime = detected  # trust magic over browser
@@ -56,13 +60,14 @@ def files_to_base64(files_list) -> list:
             # python-magic not available or failed — fall back to content_type
             if mime not in ALLOWED_MIME_TYPES:
                 logger.warning(
-                    "files_to_base64: skipping %s — content_type %s not allowed",
-                    uploaded_file.name, mime,
+                    'files_to_base64: skipping %s — content_type %s not allowed',
+                    uploaded_file.name,
+                    mime,
                 )
                 continue
 
         uploaded_file.seek(0)
         data = base64.b64encode(uploaded_file.read()).decode('ascii')
-        result.append({"data": data, "media_type": mime})
+        result.append({'data': data, 'media_type': mime})
 
     return result

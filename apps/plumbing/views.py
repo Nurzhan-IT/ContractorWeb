@@ -7,7 +7,6 @@ from django.http import HttpResponse, HttpResponseBadRequest, JsonResponse
 from django.shortcuts import get_object_or_404, redirect
 from django.template.response import TemplateResponse
 from django.views import View
-
 from quote.ai_service import QuoteAIService
 from quote.models import QuoteRequest
 from quote.utils import files_to_base64
@@ -36,7 +35,7 @@ class PlumbingLandingView(View):
             state=business.state,
         )
         since_year = date.today().year - business.years_in_business
-        license_part = f" {business.state} License #{business.license_number}" if business.license_number else ""
+        license_part = f' {business.state} License #{business.license_number}' if business.license_number else ''
         t['footer_about'] = t['footer_about'].format(
             city=business.city,
             since_year=since_year,
@@ -56,15 +55,19 @@ class PlumbingLandingView(View):
         _PLACEHOLDER_KEYS = {'your-site-key-here', '', '1x00000000000000000000AA'}
         turnstile_active = site_key not in _PLACEHOLDER_KEYS
 
-        return TemplateResponse(request, 'plumbing/index.html', {
-            'business': business,
-            'lang': lang,
-            'tagline': tagline,
-            'description': description,
-            'CF_TURNSTILE_SITE_KEY': site_key,
-            'turnstile_active': turnstile_active,
-            't': t,
-        })
+        return TemplateResponse(
+            request,
+            'plumbing/index.html',
+            {
+                'business': business,
+                'lang': lang,
+                'tagline': tagline,
+                'description': description,
+                'CF_TURNSTILE_SITE_KEY': site_key,
+                'turnstile_active': turnstile_active,
+                't': t,
+            },
+        )
 
 
 def set_language_view(request, slug, lang):
@@ -83,23 +86,23 @@ class PlumbingQuoteSubmitView(View):
 
         if not _check_rate_limit(ip):
             return JsonResponse(
-                {"success": False, "error": "Too many requests. Please try again in an hour."},
+                {'success': False, 'error': 'Too many requests. Please try again in an hour.'},
                 status=429,
             )
 
         cf_token = request.POST.get('cf-turnstile-response', '')
         if not _verify_turnstile(cf_token, ip):
             return JsonResponse(
-                {"success": False, "error": "Captcha verification failed. Please refresh the page and try again."},
+                {'success': False, 'error': 'Captcha verification failed. Please refresh the page and try again.'},
                 status=400,
             )
 
-        name     = request.POST.get('name', '').strip()
-        phone    = request.POST.get('phone', '').strip()
-        email    = request.POST.get('email', '').strip()
-        address  = request.POST.get('address', '').strip()
+        name = request.POST.get('name', '').strip()
+        phone = request.POST.get('phone', '').strip()
+        email = request.POST.get('email', '').strip()
+        address = request.POST.get('address', '').strip()
         zip_code = request.POST.get('zip_code', '').strip()
-        problem  = request.POST.get('problem_description', '').strip()
+        problem = request.POST.get('problem_description', '').strip()
 
         _EMAIL_RE = re.compile(r'^[^\s@]+@[^\s@]+\.[^\s@]{2,}$')
         errors = {}
@@ -125,45 +128,45 @@ class PlumbingQuoteSubmitView(View):
             errors['zip_code'] = 'ZIP code must be 5 digits.'
 
         if errors:
-            return JsonResponse({"success": False, "errors": errors}, status=400)
+            return JsonResponse({'success': False, 'errors': errors}, status=400)
 
         photo_files = request.FILES.getlist('photos')
         images = files_to_base64(photo_files) if photo_files else []
 
         ai_service = QuoteAIService()
         ai_service.SYSTEM_PROMPT = (
-            f"You are providing an estimate on behalf of {business.name}, "
-            f"a licensed plumbing company. "
+            f'You are providing an estimate on behalf of {business.name}, a licensed plumbing company. '
         ) + ai_service.SYSTEM_PROMPT
 
-        full_address = f"{address}, {zip_code}" if zip_code else address
+        full_address = f'{address}, {zip_code}' if zip_code else address
         result = ai_service.get_estimate(
             problem_description=problem,
             address=full_address,
             images_base64=images,
         )
 
-        has_error = "error" in result
+        has_error = 'error' in result
         QuoteRequest.objects.create(
             name=name,
             phone=phone,
             email=email,
             address=address,
             zip_code=zip_code,
-            problem_description=f"[{business.name}] {problem}",
+            problem_description=f'[{business.name}] {problem}',
             ai_response=result if not has_error else None,
-            ai_error=result.get("error", ""),
+            ai_error=result.get('error', ''),
         )
 
         if has_error:
-            return JsonResponse({"success": False, "error": result["error"]})
+            return JsonResponse({'success': False, 'error': result['error']})
 
-        return JsonResponse({"success": True, "estimate": result})
+        return JsonResponse({'success': True, 'estimate': result})
 
 
 class PlumbingQuotePDFView(View):
     def post(self, request, business_slug):
         import json
+
         business = get_object_or_404(PlumbingBusiness, slug=business_slug, is_active=True)
 
         try:
@@ -175,13 +178,13 @@ class PlumbingQuotePDFView(View):
         if not estimate or not isinstance(estimate, dict):
             return JsonResponse({'error': 'Missing estimate data'}, status=400)
 
-        name    = data.get('name', 'Customer')
+        name = data.get('name', 'Customer')
         address = data.get('address', '')
         problem = data.get('problem_description', '')
 
         buf = _build_plumbing_pdf(business, name, address, problem, estimate)
         safe_name = re.sub(r'[^a-zA-Z0-9_-]', '_', name)[:30]
-        filename = f"estimate_{safe_name}_{date.today().isoformat()}.pdf"
+        filename = f'estimate_{safe_name}_{date.today().isoformat()}.pdf'
 
         response = HttpResponse(buf.read(), content_type='application/pdf')
         response['Content-Disposition'] = f'attachment; filename="{filename}"'
@@ -191,18 +194,23 @@ class PlumbingQuotePDFView(View):
 def _build_plumbing_pdf(business, name: str, address: str, problem: str, estimate: dict) -> io.BytesIO:
     from reportlab.lib import colors
     from reportlab.lib.pagesizes import letter
-    from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
+    from reportlab.lib.styles import ParagraphStyle, getSampleStyleSheet
     from reportlab.lib.units import inch
     from reportlab.platypus import (
-        SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle,
-        HRFlowable, Image,
+        HRFlowable,
+        Image,
+        Paragraph,
+        SimpleDocTemplate,
+        Spacer,
+        Table,
+        TableStyle,
     )
 
-    DARK   = colors.HexColor('#111827')
+    DARK = colors.HexColor('#111827')
     ACCENT = colors.HexColor('#1d4ed8')
-    GREEN  = colors.HexColor('#15803d')
-    GRAY   = colors.HexColor('#6b7280')
-    LIGHT  = colors.HexColor('#f1f5f9')
+    GREEN = colors.HexColor('#15803d')
+    GRAY = colors.HexColor('#6b7280')
+    LIGHT = colors.HexColor('#f1f5f9')
 
     buf = io.BytesIO()
     doc = SimpleDocTemplate(
@@ -219,14 +227,20 @@ def _build_plumbing_pdf(business, name: str, address: str, problem: str, estimat
 
     # ── Header ──────────────────────────────────────────────────────────────
     header_style = ParagraphStyle(
-        'Header', parent=styles['Normal'],
-        fontSize=18, fontName='Helvetica-Bold', textColor=colors.white,
+        'Header',
+        parent=styles['Normal'],
+        fontSize=18,
+        fontName='Helvetica-Bold',
+        textColor=colors.white,
         spaceAfter=4,
     )
     title_style = ParagraphStyle(
-        'FE', parent=styles['Normal'],
-        fontSize=12, fontName='Helvetica-Bold',
-        textColor=colors.HexColor('#60a5fa'), alignment=2,
+        'FE',
+        parent=styles['Normal'],
+        fontSize=12,
+        fontName='Helvetica-Bold',
+        textColor=colors.HexColor('#60a5fa'),
+        alignment=2,
     )
 
     if business.logo and business.logo.name:
@@ -241,42 +255,70 @@ def _build_plumbing_pdf(business, name: str, address: str, problem: str, estimat
         [[logo_cell, Paragraph(f'{business.name} — Plumbing Estimate', title_style)]],
         colWidths=[3.5 * inch, 3.0 * inch],
     )
-    header_table.setStyle(TableStyle([
-        ('BACKGROUND', (0, 0), (-1, -1), DARK),
-        ('TOPPADDING', (0, 0), (-1, -1), 14),
-        ('BOTTOMPADDING', (0, 0), (-1, -1), 14),
-        ('LEFTPADDING', (0, 0), (0, -1), 14),
-        ('RIGHTPADDING', (-1, 0), (-1, -1), 14),
-        ('VALIGN', (0, 0), (-1, -1), 'MIDDLE'),
-    ]))
+    header_table.setStyle(
+        TableStyle(
+            [
+                ('BACKGROUND', (0, 0), (-1, -1), DARK),
+                ('TOPPADDING', (0, 0), (-1, -1), 14),
+                ('BOTTOMPADDING', (0, 0), (-1, -1), 14),
+                ('LEFTPADDING', (0, 0), (0, -1), 14),
+                ('RIGHTPADDING', (-1, 0), (-1, -1), 14),
+                ('VALIGN', (0, 0), (-1, -1), 'MIDDLE'),
+            ]
+        )
+    )
     story.append(header_table)
 
-    story.append(Paragraph(
-        f"Generated: {date.today().strftime('%B %d, %Y')}",
-        ParagraphStyle('Date', parent=styles['Normal'], fontSize=8, textColor=GRAY, spaceAfter=12),
-    ))
+    story.append(
+        Paragraph(
+            f'Generated: {date.today().strftime("%B %d, %Y")}',
+            ParagraphStyle('Date', parent=styles['Normal'], fontSize=8, textColor=GRAY, spaceAfter=12),
+        )
+    )
 
     def section(title):
         story.append(Spacer(1, 8))
-        story.append(Table(
-            [[Paragraph(title.upper(), ParagraphStyle(
-                'ST', parent=styles['Normal'],
-                fontSize=8, fontName='Helvetica-Bold', textColor=ACCENT,
-            ))]],
-            colWidths=[6.5 * inch],
-        ))
+        story.append(
+            Table(
+                [
+                    [
+                        Paragraph(
+                            title.upper(),
+                            ParagraphStyle(
+                                'ST',
+                                parent=styles['Normal'],
+                                fontSize=8,
+                                fontName='Helvetica-Bold',
+                                textColor=ACCENT,
+                            ),
+                        )
+                    ]
+                ],
+                colWidths=[6.5 * inch],
+            )
+        )
         story.append(HRFlowable(width='100%', thickness=1, color=ACCENT, spaceAfter=6))
 
     def kv(label, value):
-        story.append(Table(
-            [[
-                Paragraph(label, ParagraphStyle('KL', parent=styles['Normal'],
-                    fontSize=9, fontName='Helvetica-Bold', textColor=GRAY)),
-                Paragraph(str(value) if value else '—', ParagraphStyle('KV', parent=styles['Normal'],
-                    fontSize=9, textColor=DARK)),
-            ]],
-            colWidths=[1.8 * inch, 4.7 * inch],
-        ))
+        story.append(
+            Table(
+                [
+                    [
+                        Paragraph(
+                            label,
+                            ParagraphStyle(
+                                'KL', parent=styles['Normal'], fontSize=9, fontName='Helvetica-Bold', textColor=GRAY
+                            ),
+                        ),
+                        Paragraph(
+                            str(value) if value else '—',
+                            ParagraphStyle('KV', parent=styles['Normal'], fontSize=9, textColor=DARK),
+                        ),
+                    ]
+                ],
+                colWidths=[1.8 * inch, 4.7 * inch],
+            )
+        )
         story.append(Spacer(1, 3))
 
     # ── Client ───────────────────────────────────────────────────────────────
@@ -287,48 +329,73 @@ def _build_plumbing_pdf(business, name: str, address: str, problem: str, estimat
 
     # ── Problem description ──────────────────────────────────────────────────
     section('Problem Description')
-    story.append(Paragraph(problem or '—', ParagraphStyle(
-        'PD', parent=styles['Normal'], fontSize=9, textColor=DARK, leading=14,
-    )))
+    story.append(
+        Paragraph(
+            problem or '—',
+            ParagraphStyle(
+                'PD',
+                parent=styles['Normal'],
+                fontSize=9,
+                textColor=DARK,
+                leading=14,
+            ),
+        )
+    )
     story.append(Spacer(1, 6))
 
     # ── Service type ─────────────────────────────────────────────────────────
     section('Service Type')
-    story.append(Paragraph(
-        estimate.get('service_type', '—'),
-        ParagraphStyle('SType', parent=styles['Normal'],
-            fontSize=11, fontName='Helvetica-Bold', textColor=DARK),
-    ))
+    story.append(
+        Paragraph(
+            estimate.get('service_type', '—'),
+            ParagraphStyle('SType', parent=styles['Normal'], fontSize=11, fontName='Helvetica-Bold', textColor=DARK),
+        )
+    )
     story.append(Spacer(1, 6))
 
     # ── Cost range ───────────────────────────────────────────────────────────
     section('Estimated Cost')
     min_p = estimate.get('min_price', 0)
     max_p = estimate.get('max_price', 0)
-    story.append(Paragraph(
-        f'${min_p:,} – ${max_p:,}',
-        ParagraphStyle('Price', parent=styles['Normal'],
-            fontSize=28, fontName='Helvetica-Bold', textColor=GREEN),
-    ))
+    story.append(
+        Paragraph(
+            f'${min_p:,} – ${max_p:,}',
+            ParagraphStyle('Price', parent=styles['Normal'], fontSize=28, fontName='Helvetica-Bold', textColor=GREEN),
+        )
+    )
     story.append(Spacer(1, 8))
 
     # ── Breakdown table ──────────────────────────────────────────────────────
     breakdown = estimate.get('breakdown', [])
     if breakdown and isinstance(breakdown, list):
         section('Price Breakdown')
-        tbl_data = [[
-            Paragraph('Item', ParagraphStyle('TH', parent=styles['Normal'],
-                fontSize=8, fontName='Helvetica-Bold', textColor=GRAY)),
-            Paragraph('Estimated Cost', ParagraphStyle('TH2', parent=styles['Normal'],
-                fontSize=8, fontName='Helvetica-Bold', textColor=GRAY)),
-        ]]
+        tbl_data = [
+            [
+                Paragraph(
+                    'Item',
+                    ParagraphStyle(
+                        'TH', parent=styles['Normal'], fontSize=8, fontName='Helvetica-Bold', textColor=GRAY
+                    ),
+                ),
+                Paragraph(
+                    'Estimated Cost',
+                    ParagraphStyle(
+                        'TH2', parent=styles['Normal'], fontSize=8, fontName='Helvetica-Bold', textColor=GRAY
+                    ),
+                ),
+            ]
+        ]
         for i, row in enumerate(breakdown):
-            tbl_data.append([
-                Paragraph(row.get('item', ''), ParagraphStyle('TI', parent=styles['Normal'],
-                    fontSize=8, textColor=DARK)),
-                Paragraph(row.get('cost', ''), ParagraphStyle('TC', parent=styles['Normal'],
-                    fontSize=8, textColor=DARK)),
-            ])
+            tbl_data.append(
+                [
+                    Paragraph(
+                        row.get('item', ''), ParagraphStyle('TI', parent=styles['Normal'], fontSize=8, textColor=DARK)
+                    ),
+                    Paragraph(
+                        row.get('cost', ''), ParagraphStyle('TC', parent=styles['Normal'], fontSize=8, textColor=DARK)
+                    ),
+                ]
+            )
 
         tbl = Table(tbl_data, colWidths=[4.5 * inch, 2.0 * inch])
         tbl_style = [
@@ -348,36 +415,38 @@ def _build_plumbing_pdf(business, name: str, address: str, problem: str, estimat
 
     # ── Notes ────────────────────────────────────────────────────────────────
     urgency_note = estimate.get('urgency_note', '')
-    assumptions  = estimate.get('assumptions', '')
+    assumptions = estimate.get('assumptions', '')
     if urgency_note or assumptions:
         section('Notes')
         if urgency_note:
-            story.append(Paragraph(
-                f'⚡ {urgency_note}',
-                ParagraphStyle('Note', parent=styles['Normal'],
-                    fontSize=8, textColor=colors.HexColor('#92400e'), leading=13),
-            ))
+            story.append(
+                Paragraph(
+                    f'⚡ {urgency_note}',
+                    ParagraphStyle(
+                        'Note', parent=styles['Normal'], fontSize=8, textColor=colors.HexColor('#92400e'), leading=13
+                    ),
+                )
+            )
             story.append(Spacer(1, 4))
         if assumptions:
-            story.append(Paragraph(
-                f'ℹ Our assumptions: {assumptions}',
-                ParagraphStyle('Assump', parent=styles['Normal'],
-                    fontSize=8, textColor=GRAY, leading=13),
-            ))
+            story.append(
+                Paragraph(
+                    f'ℹ Our assumptions: {assumptions}',
+                    ParagraphStyle('Assump', parent=styles['Normal'], fontSize=8, textColor=GRAY, leading=13),
+                )
+            )
         story.append(Spacer(1, 6))
 
     # ── Footer ───────────────────────────────────────────────────────────────
     story.append(HRFlowable(width='100%', thickness=0.5, color=colors.HexColor('#e5e7eb'), spaceBefore=8))
     disclaimer = estimate.get('disclaimer', 'Final price after on-site inspection.')
-    footer_contact = (
-        f"{business.name} | {business.phone} | "
-        f"{business.address}, {business.city}, {business.state}"
+    footer_contact = f'{business.name} | {business.phone} | {business.address}, {business.city}, {business.state}'
+    story.append(
+        Paragraph(
+            f'{disclaimer}  •  {footer_contact}',
+            ParagraphStyle('Footer', parent=styles['Normal'], fontSize=7, textColor=GRAY, alignment=1),
+        )
     )
-    story.append(Paragraph(
-        f'{disclaimer}  •  {footer_contact}',
-        ParagraphStyle('Footer', parent=styles['Normal'],
-            fontSize=7, textColor=GRAY, alignment=1),
-    ))
 
     doc.build(story)
     buf.seek(0)

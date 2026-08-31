@@ -8,8 +8,8 @@ from dotenv import load_dotenv
 # This makes `manage.py` work without manually sourcing .env in bash.
 # load_dotenv does NOT override vars already set in the environment (systemd, etc.).
 _project_root = Path(__file__).resolve().parent.parent.parent  # = website_django/
-load_dotenv(_project_root.parent / '.env')   # /var/www/contractorwebdev/.env
-load_dotenv(_project_root / '.env')          # fallback: website_django/.env
+load_dotenv(_project_root.parent / '.env')  # /var/www/contractorwebdev/.env
+load_dotenv(_project_root / '.env')  # fallback: website_django/.env
 
 from .base import *  # noqa: F401, F403
 
@@ -20,11 +20,7 @@ DEBUG = False
 ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '').split(',')
 
 # Trusted origins for CSRF (required for HTTPS + Cloudflare proxy)
-CSRF_TRUSTED_ORIGINS = [
-    f'https://{h.strip()}'
-    for h in os.environ.get('ALLOWED_HOSTS', '').split(',')
-    if h.strip()
-]
+CSRF_TRUSTED_ORIGINS = [f'https://{h.strip()}' for h in os.environ.get('ALLOWED_HOSTS', '').split(',') if h.strip()]
 
 # Parse DATABASE_URL (postgresql://user:pass@host:port/dbname)
 # Requires psycopg2-binary: pip install psycopg2-binary
@@ -76,7 +72,7 @@ SECURE_SSL_REDIRECT = True
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 # HSTS (HTTP Strict Transport Security)
-SECURE_HSTS_SECONDS = 31536000        # 1 year
+SECURE_HSTS_SECONDS = 31536000  # 1 year
 SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 SECURE_HSTS_PRELOAD = True
 

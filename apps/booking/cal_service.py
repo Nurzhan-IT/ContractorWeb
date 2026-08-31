@@ -6,11 +6,12 @@ The actual booking UI is handled entirely by the Cal.com Embed.
 
 API docs: https://cal.com/docs/api-reference/v2
 """
+
 import json
 import urllib.error
 import urllib.parse
 import urllib.request
-from datetime import date, datetime, timedelta
+from datetime import date, timedelta
 
 from django.conf import settings
 from django.core.cache import cache
@@ -19,7 +20,7 @@ from django.core.cache import cache
 _SERVICE_LABELS = {
     'plumbing_leak': 'Plumbing Repair',
     'faucet_toilet': 'Faucet & Toilet',
-    'electrical':    'Electrical Work',
+    'electrical': 'Electrical Work',
 }
 
 
@@ -36,7 +37,7 @@ class CalComService:
         Returns parsed JSON dict, or {"status": "error", "error": "..."} on failure.
         """
         try:
-            url = f"{self.BASE_URL}{path}?{urllib.parse.urlencode(params)}"
+            url = f'{self.BASE_URL}{path}?{urllib.parse.urlencode(params)}'
             req = urllib.request.Request(url)
             req.add_header('Authorization', f'Bearer {self.api_key}')
             req.add_header('cal-api-version', api_version)
@@ -132,12 +133,14 @@ class CalComService:
             label = _SERVICE_LABELS.get(service_key, service_key)
 
             if not self.api_key:
-                result.append({
-                    'service': label,
-                    'slug': slug,
-                    'next_available': 'N/A',
-                    'total_slots_week': 0,
-                })
+                result.append(
+                    {
+                        'service': label,
+                        'slug': slug,
+                        'next_available': 'N/A',
+                        'total_slots_week': 0,
+                    }
+                )
                 continue
 
             slots_data = self.get_upcoming_slots(slug, days=7)
@@ -163,12 +166,14 @@ class CalComService:
                     pass
                 break
 
-            result.append({
-                'service': label,
-                'slug': slug,
-                'next_available': next_available,
-                'total_slots_week': total,
-            })
+            result.append(
+                {
+                    'service': label,
+                    'slug': slug,
+                    'next_available': next_available,
+                    'total_slots_week': total,
+                }
+            )
 
         cache.set(cache_key, result, 15 * 60)
         return result

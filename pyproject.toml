@@ -1,0 +1,33 @@
+[tool.ruff]
+line-length = 119
+target-version = "py312"
+exclude = [
+    "migrations",
+    ".venv",
+    "venv",
+    "staticfiles",
+    "media",
+]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I"]
+ignore = [
+    "E501",  # line length — relaxed rather than hard-enforced
+]
+
+[tool.ruff.lint.per-file-ignores]
+"**/__init__.py" = ["F401"]
+"**/migrations/*.py" = ["E501", "F401"]
+# load_dotenv() must run before `from .base import *` picks up its output.
+"config/settings/local.py" = ["E402"]
+"config/settings/production.py" = ["E402"]
+# Pre-existing unused locals in the PDF builder (YELLOW, sub_style, bg) —
+# left as-is rather than silently deleted; `bg` looks like unfinished
+# zebra-striping for the breakdown table. Flagged for the team to decide.
+"apps/quote/views.py" = ["F841"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["apps", "config"]
+
+[tool.ruff.format]
+quote-style = "single"
