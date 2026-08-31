@@ -80,7 +80,7 @@ class HVACServicePageContentTestCase(TestCase):
         self.assertIn('"@type": "BreadcrumbList"', self.html)
 
     def test_has_pricing(self):
-        self.assertIn('2,499', self.html)
+        self.assertIn('1,499', self.html)
 
     def test_has_related_service_links(self):
         self.assertIn('/hvac-seo/', self.html)

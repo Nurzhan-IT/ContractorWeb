@@ -1,71 +1,57 @@
-import json
-from datetime import date, time
+from unittest.mock import patch
 
-from django.test import Client, TestCase
+from django.test import RequestFactory, TestCase
+from django.urls import reverse
 
-from .models import Booking, TimeSlot
+from booking.views import BookingPageView
+
+_FAKE_PREVIEW = [
+    {'service': 'Plumbing Repair', 'slug': 'plumbing-repair', 'next_available': 'N/A', 'total_slots_week': 0},
+    {'service': 'Faucet & Toilet', 'slug': 'faucet-toilet', 'next_available': 'N/A', 'total_slots_week': 0},
+    {'service': 'Electrical Work', 'slug': 'electrical-work', 'next_available': 'N/A', 'total_slots_week': 0},
+]
 
 
-class DoubleBookingTest(TestCase):
+class BookingPageTestCase(TestCase):
+    """Booking has no local models or API — Cal.com Embed owns the whole flow."""
+
     def setUp(self):
-        self.slot = TimeSlot.objects.create(
-            date=date(2027, 7, 10),
-            start_time=time(9, 0),
-            end_time=time(10, 0),
-            is_available=True,
+        self.response = self.client.get(reverse('booking:index'))
+        self.html = self.response.content.decode()
+
+    def test_page_returns_200(self):
+        self.assertEqual(self.response.status_code, 200)
+
+    def test_has_cal_embed_script(self):
+        self.assertIn('app.cal.com/embed/embed.js', self.html)
+
+    def test_has_powered_by_cal_badge(self):
+        self.assertIn('Scheduling powered by', self.html)
+
+
+class BookingPageContextTestCase(TestCase):
+    """get_context_data tested directly via RequestFactory: django-jinja
+    doesn't send the template_rendered signal the Django test client relies
+    on for response.context, and get_all_services_preview() is mocked so
+    this doesn't depend on CAL_API_KEY or make a real network call.
+    """
+
+    def setUp(self):
+        patcher = patch(
+            'booking.views.CalComService.get_all_services_preview',
+            return_value=_FAKE_PREVIEW,
         )
-        self.client = Client()
-        self.payload = {
-            'slot_id': self.slot.id,
-            'name': 'John Doe',
-            'phone': '555-1234',
-            'email': 'john@example.com',
-            'service_type': 'plumbing_leak',
-            'comment': '',
-        }
+        self.addCleanup(patcher.stop)
+        patcher.start()
 
-    def _post(self):
-        return self.client.post(
-            '/api/booking/submit/',
-            json.dumps(self.payload),
-            content_type='application/json',
-        )
+        request = RequestFactory().get('/demo/booking/')
+        view = BookingPageView()
+        view.setup(request)
+        self.ctx = view.get_context_data()
 
-    def test_first_booking_succeeds(self):
-        resp = self._post()
-        self.assertEqual(resp.status_code, 200)
-        body = resp.json()
-        self.assertTrue(body['success'])
-        self.assertIn('gcal_url', body)
-        self.assertIn('booking_id', body)
+    def test_has_three_service_choices(self):
+        keys = {c['key'] for c in self.ctx['service_choices']}
+        self.assertEqual(keys, {'plumbing_leak', 'faucet_toilet', 'electrical'})
 
-    def test_double_booking_returns_409(self):
-        resp1 = self._post()
-        self.assertEqual(resp1.status_code, 200)
-
-        resp2 = self._post()
-        self.assertEqual(resp2.status_code, 409)
-        self.assertIn('error', resp2.json())
-
-    def test_slot_marked_unavailable_after_booking(self):
-        self._post()
-        self.slot.refresh_from_db()
-        self.assertFalse(self.slot.is_available)
-
-    def test_missing_required_fields_returns_400(self):
-        payload = {'slot_id': self.slot.id, 'name': 'Jane'}
-        resp = self.client.post(
-            '/api/booking/submit/',
-            json.dumps(payload),
-            content_type='application/json',
-        )
-        self.assertEqual(resp.status_code, 400)
-
-    def test_invalid_email_returns_400(self):
-        payload = {**self.payload, 'email': 'not-an-email'}
-        resp = self.client.post(
-            '/api/booking/submit/',
-            json.dumps(payload),
-            content_type='application/json',
-        )
-        self.assertEqual(resp.status_code, 400)
+    def test_has_services_preview(self):
+        self.assertEqual(self.ctx['services_preview'], _FAKE_PREVIEW)

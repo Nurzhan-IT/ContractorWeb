@@ -1,0 +1,35 @@
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: contractorwebdev:latest
+    restart: unless-stopped
+    # No `volumes: .:/app` here — the image is the deployable artifact,
+    # code and the collectstatic'd staticfiles/ come from the build, not
+    # a bind mount. See deploy/env.production.example for the variables
+    # this file expects; copy it to deploy/.env.production and fill it in
+    # (matches .gitignore's `.env.*` rule, so it stays untracked).
+    env_file:
+      - deploy/.env.production
+    environment:
+      DJANGO_SETTINGS_MODULE: config.settings.production
+    # Reuses deploy/gunicorn.conf.py (worker/thread counts, the 120s
+    # timeout OpenRouter calls need, preload_app) — only `bind` is
+    # overridden, since that file points at a Unix socket for the
+    # bare-metal/systemd deployment in deploy/contractorwebdev.service.
+    command: ["gunicorn", "-c", "deploy/gunicorn.conf.py", "--bind", "0.0.0.0:8000", "config.wsgi:application"]
+    ports:
+      - "8000:8000"
+    volumes:
+      - media_data:/app/media
+    # No externally-reachable `db` service: production points DATABASE_URL
+    # at whatever Postgres you actually run (managed, or the same host as
+    # in deploy/env.production.example). TLS/domain routing is still
+    # expected to sit in front of this container (e.g. deploy/nginx.conf,
+    # adapted to proxy_pass to this container instead of the gunicorn
+    # socket, or a cloud load balancer) — SECURE_SSL_REDIRECT in
+    # production.py assumes an X-Forwarded-Proto header from one.
+
+volumes:
+  media_data:

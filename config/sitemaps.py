@@ -15,6 +15,17 @@ class LandingSitemap(Sitemap):
         return reverse(item)
 
 
+class DemoSitemap(Sitemap):
+    priority = 0.6
+    changefreq = 'monthly'
+
+    def items(self):
+        return ['demo_hub']
+
+    def location(self, item):
+        return reverse(item)
+
+
 class BlogSitemap(Sitemap):
     priority = 0.8
     changefreq = 'weekly'

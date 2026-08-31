@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.http import HttpResponse
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
@@ -9,17 +10,24 @@ from config.sitemaps import (
     BlogSitemap,
     BlogIndexSitemap,
     ServicePagesSitemap,
+    DemoSitemap,
 )
+
+
+def healthz(request):
+    return HttpResponse('ok')
 
 sitemaps = {
     'landing': LandingSitemap,
     'services': ServicePagesSitemap,
     'blog_index': BlogIndexSitemap,
     'blog': BlogSitemap,
+    'demo': DemoSitemap,
 }
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('healthz/', healthz, name='healthz'),
     # Demo feature pages: /demo/
     path('demo/', include('config.demo_urls')),
     # API endpoints: /api/

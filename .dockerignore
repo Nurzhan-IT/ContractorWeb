@@ -1,0 +1,47 @@
+# VCS / editor
+.git
+.gitignore
+.vscode/
+.idea/
+
+# Python
+venv/
+.venv/
+env/
+ENV/
+__pycache__/
+**/__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache
+.cache
+.tox/
+htmlcov/
+
+# Django runtime artifacts (not needed in the build context)
+db.sqlite3
+*.sqlite3
+media/
+staticfiles/
+*.log
+
+# Secrets
+.env
+.env.*
+!.env.example
+
+# Windows-only tooling not used in the Linux image
+tailwindcss.exe
+
+# JS tooling (no npm build step today, but keep this out if it ever appears)
+node_modules/
+
+# Docker
+Dockerfile
+.dockerignore
+docker-compose*.yml
+
+# OS
+.DS_Store
+Thumbs.db
