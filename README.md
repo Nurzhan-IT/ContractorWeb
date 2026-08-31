@@ -1,172 +1,125 @@
-# ContractorPro Demo Site
+# ContractorWebDev
 
-Interactive demo of contractor website features built with Django + Jinja2. Each feature
-lives on its own page under `/demo/` and is fully self-contained.
+Django-проект веб-агентства, специализирующейся на сайтах для подрядчиков (сантехники,
+электрики, кровельщики, HVAC). Совмещает маркетинговый сайт агентства, каталог
+демо-фич для потенциальных клиентов и white-label лендинги под конкретные компании.
 
----
+## Что внутри
 
-## Quick Start (5 commands)
+**Маркетинговый сайт агентства**
+- Лендинг с формой AI-квоута (оценка стоимости работ по описанию + фото)
+- SEO-лендинги под услуги (дизайн сайтов, SEO, лидогенерация) для каждой ниши: сантехника,
+  электрика, кровля, HVAC, генеральный подряд
+- Блог с Markdown-контентом, категориями и админкой
+- `sitemap.xml`, `robots.txt`, юридические страницы
+
+**Демо-хаб** (`/demo/`) — витрина интерактивных фич, которые агентство продаёт клиентам:
+- Калькулятор мгновенной оценки стоимости (AI, фото + описание проблемы → PDF-смета)
+- Форма экстренного вызова 24/7 (симуляция SMS-уведомления и ETA)
+- Карта зоны обслуживания (геокодинг ZIP-кода, проверка радиуса на Leaflet)
+- Слайдер "до/после" по портфолио выполненных работ
+- Онлайн-запись на визит через встроенный Cal.com
+
+**White-label лендинги** (`/demo/plumbing/<slug>/`) — готовый шаблон сайта под конкретную
+сантехническую компанию: своя AI-форма оценки, двуязычный интерфейс (en/es), генерация
+PDF-сметы с логотипом клиента. Компании и их данные (включая массовый импорт через CSV)
+управляются из Django admin.
+
+## Стек
+
+| Слой | Технология |
+|---|---|
+| Backend | Django 5.2 |
+| Шаблоны | Jinja2 (django-jinja) |
+| БД | SQLite (dev) / PostgreSQL (prod, docker) |
+| AI | OpenRouter API (Gemini 2.5 Flash) |
+| PDF | ReportLab |
+| Геокодинг | geopy + Nominatim |
+| Карта | Leaflet.js (CDN) |
+| Онлайн-запись | Cal.com Embed |
+| Слайдер "до/после" | img-comparison-slider (CDN) |
+| Капча | Cloudflare Turnstile |
+| Markdown → HTML | markdown + bleach |
+| Стили | Tailwind CSS v3 (standalone CLI, без npm) |
+| Контейнеризация | Docker, docker-compose, gunicorn + whitenoise |
+| CI | GitHub Actions: тесты, ruff, `check --deploy`, сборка Tailwind, docker-test |
+
+Никакого npm и фронтенд-сборки — все JS-библиотеки подключены через CDN. Исключение —
+Tailwind, который компилируется отдельным CLI-бинарником.
+
+## Быстрый старт
 
 ```bash
 pip install -r requirements.txt
+cp .env.example .env          # задать SECRET_KEY и остальные переменные
 python manage.py migrate
-python manage.py loaddata portfolio
-python manage.py generate_slots --days=14
+python manage.py createsuperuser
 python manage.py runserver
 ```
 
-Then open http://127.0.0.1:8000/
+Открыть [http://127.0.0.1:8000/](http://127.0.0.1:8000/).
 
-> Copy `.env.example` to `.env` and set `SECRET_KEY` before first run.
-
----
-
-## Demo URLs
-
-| URL | Feature |
-|-----|---------|
-| `/` | Landing page |
-| `/demo/` | Demo hub (all feature cards) |
-| `/demo/quote/` | Instant Quote Calculator |
-| `/demo/emergency/` | Emergency 24/7 Request |
-| `/demo/service-area/` | Service Area Map |
-| `/demo/portfolio/` | Before/After Slider Gallery |
-| `/demo/booking/` | Online Booking Calendar |
-| `/admin/` | Django admin |
-
----
-
-## How to Change the Service Area Center
-
-Open `apps/service_area/geo.py` and update the `CENTER` tuple (line 4):
-
-```python
-CENTER = (33.7490, -84.3880)  # Atlanta, GA  ← change to your city's coords
-```
-
-Latitude/longitude for any US city can be found at [latlong.net](https://www.latlong.net/).
-The radius is set with `RADIUS_MILES = 35` on the line below — change as needed.
-
----
-
-## How to Add or Edit Portfolio Projects
-
-**Option A — Edit the fixture file** (recommended for bulk changes):
-
-1. Open `apps/portfolio/fixtures/portfolio.json`
-2. Add or modify entries following the existing format
-3. Reload: `python manage.py loaddata portfolio`
-
-**Option B — Use Django Admin:**
-
-1. Create a superuser: `python manage.py createsuperuser`
-2. Go to http://127.0.0.1:8000/admin/ → Before After Projects
-3. Add or edit entries directly in the UI
-
-Image files go in `static/img/before_after/` with the convention:
-`before_N.jpg` / `after_N.jpg` (where N matches the `order` field).
-
----
-
-## How to Reset Booking Slots
+### Через Docker
 
 ```bash
-# Add 14 fresh days (keeps existing bookings)
-python manage.py generate_slots --days=14
-
-# Wipe all slots and bookings and regenerate
-python manage.py generate_slots --days=14 --reset
+cp .env.example .env
+docker compose up --build
 ```
 
-Slots are generated with ~40% randomly pre-booked to simulate realistic availability.
+Поднимает приложение и PostgreSQL; миграции применяются автоматически при старте контейнера.
 
----
-
-## Creating a Superuser (for Admin)
-
-```bash
-python manage.py createsuperuser
-# Follow prompts: username, email, password
-```
-
-Then log in at http://127.0.0.1:8000/admin/
-
----
-
-## Production Deployment
-
-Set these environment variables (see `.env.example`):
+## Структура проекта
 
 ```
-DJANGO_SETTINGS_MODULE=config.settings.production
-SECRET_KEY=<strong-random-key>
-DATABASE_URL=postgresql://user:pass@host:5432/dbname
-ALLOWED_HOSTS=demo.yourdomain.com
+apps/
+├── landing/     # главная страница агентства + форма контакта
+├── web_quote/   # AI-форма оценки стоимости на лендинге
+├── services/    # SEO-лендинги услуг (дизайн, SEO, лидогенерация по нишам)
+├── blog/        # блог: категории, статьи в Markdown
+├── plumbing/    # white-label сайты под конкретные сантехнические компании
+├── demo/        # хаб демо-фич
+├── quote/       # Feature: AI-калькулятор оценки стоимости
+├── emergency/   # Feature: экстренный вызов (симуляция)
+├── service_area/# Feature: карта зоны обслуживания
+├── portfolio/   # Feature: галерея "до/после"
+└── booking/     # Feature: онлайн-запись через Cal.com
+config/
+├── settings/    # local / docker / production
+├── urls.py, demo_urls.py, api_urls.py, sitemaps.py
 ```
 
-Then run:
+Подробное описание ответственности каждого приложения, API-эндпоинтов и правил проекта —
+в [CLAUDE.md](CLAUDE.md).
 
-```bash
-pip install psycopg2-binary
-python manage.py migrate
-python manage.py collectstatic --noinput
-```
+## Переменные окружения
 
----
-
-[![CI](https://github.com/12farit21/ContractorWeb/actions/workflows/ci.yml/badge.svg)](https://github.com/12farit21/ContractorWeb/actions/workflows/ci.yml)
-
-## Tech Stack
-
-| Layer | Choice |
-|-------|--------|
-| Backend | Django 4.2+ |
-| Templates | Jinja2 (django-jinja) |
-| Database | SQLite (dev) / PostgreSQL (prod) |
-| PDF | ReportLab |
-| Geocoding | geopy + Nominatim (no API key) |
-| Maps | Leaflet.js (CDN) |
-| Calendar | FullCalendar.js (CDN) |
-| Before/After | img-comparison-slider (CDN) |
-| Styling | Tailwind CSS v3 (compiled, `static/css/tailwind.css`) |
-
-No npm / no build step — all JS loaded via CDN.
-Tailwind CSS is the only exception: it uses a standalone CLI binary (no Node.js required).
-
----
+См. [.env.example](.env.example): ключ Django, строка подключения к БД, ключ OpenRouter
+(AI-оценки), ключи Cloudflare Turnstile (капча), ключи Cal.com (онлайн-запись), ID Google
+Analytics.
 
 ## Tailwind CSS
 
-Tailwind is compiled via the **standalone CLI binary** (`tailwindcss.exe`) — no npm or Node.js needed.
-
-### Файлы
-
-| Файл | Назначение |
-|------|-----------|
-| `tailwind.config.js` | Конфиг: пути сканирования, кастомные цвета (`brand-*`, `accent`) |
-| `static/css/tailwind_input.css` | Входной файл с директивами `@tailwind` |
-| `static/css/tailwind.css` | **Скомпилированный CSS** — коммитится в git, отдаётся сервером |
-| `tailwindcss.exe` | Бинарник компилятора (40MB, в `.gitignore`, не в git) |
-| `build_tailwind.ps1` | Скрипт сборки для Windows |
-
-### Когда нужно пересобирать CSS
-
-Только если добавил **новый Tailwind-класс** в шаблон или JS-файл, которого раньше не было.
+Собирается отдельным CLI-бинарником, без Node.js:
 
 ```powershell
-# Windows (PowerShell)
 .\build_tailwind.ps1
 ```
 
-Скрипт автоматически скачает `tailwindcss.exe` если его нет. После сборки — закоммитить обновлённый `static/css/tailwind.css` и запушить.
+Запускать при добавлении новых Tailwind-классов в шаблоны или JS. Результат
+(`static/css/tailwind.css`) коммитится в git — на сервере пересборка не нужна.
 
-### Деплой на сервер
-
-На сервере ничего дополнительно делать **не нужно** — `static/css/tailwind.css` уже скомпилирован и лежит в git:
+## Тесты
 
 ```bash
-git pull
-python manage.py collectstatic --no-input
+python manage.py test booking quote services
 ```
 
-`tailwindcss.exe` и `build_tailwind.ps1` на сервере не нужны.
+CI (GitHub Actions) на каждый push/PR в `main` прогоняет тесты, линтер ruff, проверку
+`check --deploy`, сборку Tailwind-стадии Docker-образа и полный docker-compose тест-запуск.
+
+## Деплой
+
+Продакшн-настройки — `config/settings/production.py` (PostgreSQL, статика через
+whitenoise, HTTPS/HSTS). Образ собирается многостадийным `Dockerfile` (venv → сборка
+Tailwind → runtime), запускается через gunicorn под непривилегированным пользователем,
+health-check — `/healthz/`.
